@@ -43,8 +43,8 @@ public class LoginWindow extends javax.swing.JFrame {
         lbl_logo = new javax.swing.JLabel();
         lbl_title = new javax.swing.JLabel();
         pnl_login = new javax.swing.JPanel();
-        txt_login = new PlaceholderFields("Login...", new Insets(15, 5, 15, 10));
-        txt_password = new PlaceholderFields("Senha...", new Insets(15, 5, 15, 10));
+        txt_login = new PlaceholderFields("Login...", new Insets(0, 15, 0, 0));
+        txt_password = new PlaceholderFields("Senha...", new Insets(0, 15, 0, 0));
         btt_login = new RoundedButton("Entrar") ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,18 +87,20 @@ public class LoginWindow extends javax.swing.JFrame {
 
         pnl_login.setBackground(new java.awt.Color(28, 28, 28));
 
-        txt_login.setBackground(new java.awt.Color(127, 127, 127));
+        txt_login.setBackground(new java.awt.Color(51, 51, 51));
+        txt_login.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
         txt_login.setForeground(new java.awt.Color(168, 170, 170));
-        txt_login.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(127, 127, 127)));
+        txt_login.setBorder(null);
         txt_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_loginActionPerformed(evt);
             }
         });
 
-        txt_password.setBackground(new java.awt.Color(127, 127, 127));
+        txt_password.setBackground(new java.awt.Color(51, 51, 51));
+        txt_password.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
         txt_password.setForeground(new java.awt.Color(168, 170, 170));
-        txt_password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(127, 127, 127)));
+        txt_password.setBorder(null);
         txt_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_passwordActionPerformed(evt);

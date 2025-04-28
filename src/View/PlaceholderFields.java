@@ -14,21 +14,22 @@ import javax.swing.*;
 public class PlaceholderFields extends JTextField {
 
     private String placeholderText;
-    private final Color placeholderColor = new Color(167,167,167);
-    private final Color inputColor= new Color(168,170,170);
-    private Insets padding; // Padding for the placeholder text
+    private final Color placeholderColor = new Color(168,168,168);
+    private final Color backgroundColor = new Color(51,51,51);
+    private final Color hoverBackgroundColor = new Color(64,64,64);
+    private final Color inputColor= new Color(236, 239, 241);
+    private Insets padding; // padding for the placeholder text
 
-    // Constructor for JTextField or JTextArea with custom colors and padding
+    // constructor for JTextField or JTextArea with custom colors and padding
     public PlaceholderFields(String placeholderText, Insets padding) {
-        super(); // Call the constructor of JTextComponent (parent class)
+        super(); // call the constructor of JTextComponent (parent class)
         this.placeholderText = placeholderText;
         this.padding = padding;
-
+        
         setText(placeholderText);
         setForeground(placeholderColor);
         
-        // Set padding
-        setMargin(padding);
+        setBorder(BorderFactory.createEmptyBorder());
         
         initialize();
     }
@@ -37,6 +38,7 @@ public class PlaceholderFields extends JTextField {
         addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
+                setBackground(hoverBackgroundColor);
                 if (getText().equals(placeholderText)) {
                     setText("");
                     setForeground(inputColor);
@@ -45,6 +47,7 @@ public class PlaceholderFields extends JTextField {
 
             @Override
             public void focusLost(FocusEvent e) {
+                setBackground(backgroundColor);
                 if (getText().isEmpty()) {
                     setText(placeholderText);
                     setForeground(placeholderColor);
@@ -52,18 +55,29 @@ public class PlaceholderFields extends JTextField {
             }
         });
     }
+    
 
-    @Override
+@Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g.create();
 
-        if (getText().equals(placeholderText) && getForeground().equals(placeholderColor)) {
-            // Apply custom padding for the placeholder text
-            Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(placeholderColor);
+        // Fill background
+        g2.setColor(getBackground());
+        g2.fillRect(0, 0, getWidth(), getHeight());
 
-            // Apply the padding by adjusting the x and y positions
-            g2d.drawString(placeholderText, padding.left, padding.top + g.getFontMetrics().getAscent());
-        }
+        // Translate for padding
+        g2.translate(padding.left, padding.top);
+
+        // Create a temporary graphics context with clipped padding area
+        Shape oldClip = g2.getClip();
+        g2.setClip(0, 0, getWidth() - padding.left - padding.right,
+                getHeight() - padding.top - padding.bottom);
+
+        // Let the UI delegate draw the text within this clipped/padded area
+        g2.setColor(getForeground());
+        super.paintComponent(g2);
+
+        g2.setClip(oldClip);
+        g2.dispose();
     }
 }
