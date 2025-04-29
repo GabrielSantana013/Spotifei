@@ -61,19 +61,19 @@ public class PlaceholderFields extends JTextField {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
 
-        // Fill background
+        // fill background
         g2.setColor(getBackground());
         g2.fillRect(0, 0, getWidth(), getHeight());
 
-        // Translate for padding
+        // translate for padding
         g2.translate(padding.left, padding.top);
 
-        // Create a temporary graphics context with clipped padding area
+        // create a temporary graphics context with clipped padding area
         Shape oldClip = g2.getClip();
         g2.setClip(0, 0, getWidth() - padding.left - padding.right,
                 getHeight() - padding.top - padding.bottom);
 
-        // Let the UI delegate draw the text within this clipped/padded area
+        // let the UI delegate draw the text within this clipped/padded area
         g2.setColor(getForeground());
         super.paintComponent(g2);
 

@@ -17,8 +17,16 @@ public class RoundedButton extends JButton {
     private Color currentBackground = normalColor;
     private Timer hoverTimer;
     private boolean hovering = false;
-    private int cornerRadius = 30;
+    private int cornerRadiusHorizontal = 30;
+    private int cornerRadiusVertical = 30;
+    
+    // enum for alignment
+    public enum TextAlign {
+        LEFT, CENTER, RIGHT
+    }
 
+    private TextAlign textAlign = TextAlign.CENTER;
+    
     public RoundedButton(String text) {
         super(text);
         setContentAreaFilled(false);
@@ -43,27 +51,76 @@ public class RoundedButton extends JButton {
     });
     }
 
-    public void setCornerRadius(int radius) {
-        this.cornerRadius = radius;
-        repaint();
+    public int getCornerRadiusHorizontal() {
+        return cornerRadiusHorizontal;
     }
 
-    public int getCornerRadius() {
-        return this.cornerRadius;
+    public void setCornerRadiusHorizontal(int cornerRadiusHorizontal) {
+        this.cornerRadiusHorizontal = cornerRadiusHorizontal;
     }
 
+    public int getCornerRadiusVertical() {
+        return cornerRadiusVertical;
+    }
+
+    public void setCornerRadiusVertical(int cornerRadiusVertical) {
+        this.cornerRadiusVertical = cornerRadiusVertical;
+    }
+
+    
+    
+    // set the text alignment
+    public void setTextAlignment(TextAlign align) {
+        this.textAlign = align;
+        switch (align) {
+            case LEFT -> {
+                setHorizontalAlignment(SwingConstants.LEFT);
+//                setMargin(new Insets(0, 15, 0, 5));
+            }
+            case CENTER -> {
+                setHorizontalAlignment(SwingConstants.CENTER);
+//                setMargin(new Insets(0, 0, 0, 0));
+            }
+            case RIGHT -> {
+                setHorizontalAlignment(SwingConstants.RIGHT);
+//                setMargin(new Insets(0, 5, 0, 30));
+            }
+        }
+    }
+
+    
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
+        // draw background
         g2.setColor(getBackground());
         g2.fillRoundRect(0, 0, getWidth(), getHeight(),
-                cornerRadius, cornerRadius);
-        g2.dispose();
+                cornerRadiusHorizontal, cornerRadiusVertical);
 
-        super.paintComponent(g);
+        // draw text manually
+        String text = getText();
+        FontMetrics fm = g2.getFontMetrics(getFont());
+        int textWidth = fm.stringWidth(text);
+        int textHeight = fm.getAscent();
+
+        int x;
+        int y = (getHeight() + textHeight) / 2 - 2; // vertical centering
+
+        switch (textAlign) {
+            case LEFT -> x = 15;
+            case CENTER -> x = (getWidth() - textWidth) / 2;
+            case RIGHT -> x = getWidth() - textWidth - 15;
+            default -> x = (getWidth() - textWidth) / 2;
+        }
+
+        g2.setFont(getFont());
+        g2.setColor(getForeground());
+        g2.drawString(text, x, y);
+
+        g2.dispose();
     }
 
     @Override
@@ -75,7 +132,7 @@ public class RoundedButton extends JButton {
         g2.setColor(getBackground());
         g2.setStroke(new BasicStroke(1));
         g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1,
-                cornerRadius, cornerRadius);
+                cornerRadiusHorizontal, cornerRadiusVertical);
 
         g2.dispose();
     }
