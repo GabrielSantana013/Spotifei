@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View;
+package view;
 import java.awt.*;
 
 /**
@@ -113,7 +113,7 @@ public class LoginWindow extends javax.swing.JFrame {
         btt_login.setText("Entrar");
         btt_login.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_login.setBorderPainted(false);
-        btt_login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_login.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout pnl_loginLayout = new javax.swing.GroupLayout(pnl_login);
         pnl_login.setLayout(pnl_loginLayout);

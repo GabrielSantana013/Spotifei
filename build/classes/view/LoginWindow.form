@@ -114,7 +114,7 @@
                   <Image iconType="3" name="/logos_imgs/logoSpotifei.png"/>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor Padr&#xe3;o"/>
                 </Property>
               </Properties>
             </Component>
@@ -245,7 +245,7 @@
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
+                  <Color id="Cursor Padr&#xe3;o"/>
                 </Property>
               </Properties>
               <AuxValues>
