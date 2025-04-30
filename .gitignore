@@ -25,3 +25,6 @@ replay_pid*
 
 # DB variables
 config.properties
+
+#unused things
+private.xml

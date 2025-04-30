@@ -7,26 +7,31 @@ import java.awt.*;
 
 /**
  *
- * @author schneider
+ * @author Pedro Schneider, Gabriel Santana Dias
  */
 public class LoginWindow extends javax.swing.JFrame {
 
     private final int width = 512;
-    private final int height = 376;
+    private final int height = 448;
     
     /**
      * Creates new form LoginWindow
      */
     public LoginWindow() {
-        // Get the screen size
+        initComponents();
+        
+        this.setSize(width, height);
+        
+        // changes window icon
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
+        
+        // get the screen size and center the window
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();
         int x = (screenSize.width - width) / 2;
         int y = (screenSize.height - height) / 2;
         
-        this.setLocation(new Point(x,y));
-        initComponents();
-        
+        this.setLocation(new Point(x,y));        
     }
 
     /**
@@ -38,54 +43,55 @@ public class LoginWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnl_all = new javax.swing.JPanel();
-        pnl_titleLogo = new javax.swing.JPanel();
-        lbl_logo = new javax.swing.JLabel();
+        login_pnl_all = new javax.swing.JPanel();
+        login_pnl_titleLogo = new javax.swing.JPanel();
+        icon_logo = new javax.swing.JLabel();
         lbl_title = new javax.swing.JLabel();
-        pnl_login = new javax.swing.JPanel();
+        login_pnl_login = new javax.swing.JPanel();
         txt_login = new PlaceholderFields("Login...", new Insets(0, 15, 0, 0));
         txt_password = new PlaceholderFields("Senha...", new Insets(0, 15, 0, 0));
         btt_login = new RoundedButton("Entrar") ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Spotifei");
         setBackground(new java.awt.Color(28, 28, 28));
         setResizable(false);
 
-        pnl_all.setBackground(new java.awt.Color(28, 28, 28));
+        login_pnl_all.setBackground(new java.awt.Color(28, 28, 28));
 
-        pnl_titleLogo.setBackground(new java.awt.Color(28, 28, 28));
+        login_pnl_titleLogo.setBackground(new java.awt.Color(28, 28, 28));
 
-        lbl_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logos_imgs/logoSpotifei.png"))); // NOI18N
-        lbl_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png"))); // NOI18N
+        icon_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lbl_title.setFont(new java.awt.Font("Fira Mono Medium", 0, 24)); // NOI18N
         lbl_title.setForeground(new java.awt.Color(30, 215, 96));
         lbl_title.setText("Spotifei");
 
-        javax.swing.GroupLayout pnl_titleLogoLayout = new javax.swing.GroupLayout(pnl_titleLogo);
-        pnl_titleLogo.setLayout(pnl_titleLogoLayout);
-        pnl_titleLogoLayout.setHorizontalGroup(
-            pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_titleLogoLayout.createSequentialGroup()
+        javax.swing.GroupLayout login_pnl_titleLogoLayout = new javax.swing.GroupLayout(login_pnl_titleLogo);
+        login_pnl_titleLogo.setLayout(login_pnl_titleLogoLayout);
+        login_pnl_titleLogoLayout.setHorizontalGroup(
+            login_pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(login_pnl_titleLogoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_logo)
+                .addComponent(icon_logo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbl_title)
                 .addContainerGap())
         );
-        pnl_titleLogoLayout.setVerticalGroup(
-            pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_titleLogoLayout.createSequentialGroup()
+        login_pnl_titleLogoLayout.setVerticalGroup(
+            login_pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(login_pnl_titleLogoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_logo)
-                    .addGroup(pnl_titleLogoLayout.createSequentialGroup()
+                .addGroup(login_pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon_logo)
+                    .addGroup(login_pnl_titleLogoLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(lbl_title)))
                 .addContainerGap())
         );
 
-        pnl_login.setBackground(new java.awt.Color(28, 28, 28));
+        login_pnl_login.setBackground(new java.awt.Color(28, 28, 28));
 
         txt_login.setBackground(new java.awt.Color(51, 51, 51));
         txt_login.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
@@ -113,61 +119,66 @@ public class LoginWindow extends javax.swing.JFrame {
         btt_login.setText("Entrar");
         btt_login.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_login.setBorderPainted(false);
-        btt_login.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_loginActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout pnl_loginLayout = new javax.swing.GroupLayout(pnl_login);
-        pnl_login.setLayout(pnl_loginLayout);
-        pnl_loginLayout.setHorizontalGroup(
-            pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_loginLayout.createSequentialGroup()
+        javax.swing.GroupLayout login_pnl_loginLayout = new javax.swing.GroupLayout(login_pnl_login);
+        login_pnl_login.setLayout(login_pnl_loginLayout);
+        login_pnl_loginLayout.setHorizontalGroup(
+            login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, login_pnl_loginLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt_password)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_loginLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, login_pnl_loginLayout.createSequentialGroup()
                 .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
-            .addGroup(pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_loginLayout.createSequentialGroup()
+            .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(login_pnl_loginLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(txt_login, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                     .addContainerGap()))
         );
-        pnl_loginLayout.setVerticalGroup(
-            pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_loginLayout.createSequentialGroup()
+        login_pnl_loginLayout.setVerticalGroup(
+            login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(login_pnl_loginLayout.createSequentialGroup()
                 .addGap(109, 109, 109)
                 .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_loginLayout.createSequentialGroup()
+            .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(login_pnl_loginLayout.createSequentialGroup()
                     .addGap(45, 45, 45)
                     .addComponent(txt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(161, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout pnl_allLayout = new javax.swing.GroupLayout(pnl_all);
-        pnl_all.setLayout(pnl_allLayout);
-        pnl_allLayout.setHorizontalGroup(
-            pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_allLayout.createSequentialGroup()
+        javax.swing.GroupLayout login_pnl_allLayout = new javax.swing.GroupLayout(login_pnl_all);
+        login_pnl_all.setLayout(login_pnl_allLayout);
+        login_pnl_allLayout.setHorizontalGroup(
+            login_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(login_pnl_allLayout.createSequentialGroup()
                 .addGap(156, 156, 156)
-                .addComponent(pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(login_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_allLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, login_pnl_allLayout.createSequentialGroup()
                 .addContainerGap(86, Short.MAX_VALUE)
-                .addComponent(pnl_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(login_pnl_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84))
         );
-        pnl_allLayout.setVerticalGroup(
-            pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_allLayout.createSequentialGroup()
+        login_pnl_allLayout.setVerticalGroup(
+            login_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(login_pnl_allLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(login_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(login_pnl_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -175,11 +186,11 @@ public class LoginWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_all, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(login_pnl_all, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_all, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(login_pnl_all, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -192,6 +203,13 @@ public class LoginWindow extends javax.swing.JFrame {
     private void txt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_loginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_loginActionPerformed
+
+    private void btt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_loginActionPerformed
+        // TODO add your handling code here:
+        HomeWindow hw = new HomeWindow();
+        hw.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(false);
+    }//GEN-LAST:event_btt_loginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,11 +248,11 @@ public class LoginWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_login;
-    private javax.swing.JLabel lbl_logo;
+    private javax.swing.JLabel icon_logo;
     private javax.swing.JLabel lbl_title;
-    private javax.swing.JPanel pnl_all;
-    private javax.swing.JPanel pnl_login;
-    private javax.swing.JPanel pnl_titleLogo;
+    private javax.swing.JPanel login_pnl_all;
+    private javax.swing.JPanel login_pnl_login;
+    private javax.swing.JPanel login_pnl_titleLogo;
     private javax.swing.JTextField txt_login;
     private javax.swing.JTextField txt_password;
     // End of variables declaration//GEN-END:variables
