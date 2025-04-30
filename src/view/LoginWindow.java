@@ -11,6 +11,8 @@ import java.awt.*;
  */
 public class LoginWindow extends javax.swing.JFrame {
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private final Dimension screenSize = toolkit.getScreenSize();
     private final int width = 512;
     private final int height = 448;
     
@@ -26,8 +28,6 @@ public class LoginWindow extends javax.swing.JFrame {
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
         
         // get the screen size and center the window
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = toolkit.getScreenSize();
         int x = (screenSize.width - width) / 2;
         int y = (screenSize.height - height) / 2;
         
@@ -51,6 +51,7 @@ public class LoginWindow extends javax.swing.JFrame {
         txt_login = new PlaceholderFields("Login...", new Insets(0, 15, 0, 0));
         txt_password = new PlaceholderFields("Senha...", new Insets(0, 15, 0, 0));
         btt_login = new RoundedButton("Entrar") ;
+        btt_register = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -126,18 +127,31 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         });
 
+        btt_register.setBackground(new java.awt.Color(28, 28, 28));
+        btt_register.setForeground(new java.awt.Color(236, 239, 241));
+        btt_register.setText("Não possui cadastro? Registre-se agora!");
+        btt_register.setBorderPainted(false);
+        btt_register.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_registerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout login_pnl_loginLayout = new javax.swing.GroupLayout(login_pnl_login);
         login_pnl_login.setLayout(login_pnl_loginLayout);
         login_pnl_loginLayout.setHorizontalGroup(
             login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, login_pnl_loginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txt_password)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, login_pnl_loginLayout.createSequentialGroup()
                 .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
+            .addGroup(login_pnl_loginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_password)
+                    .addComponent(btt_register, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(login_pnl_loginLayout.createSequentialGroup()
                     .addContainerGap()
@@ -151,7 +165,9 @@ public class LoginWindow extends javax.swing.JFrame {
                 .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btt_register)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(login_pnl_loginLayout.createSequentialGroup()
                     .addGap(45, 45, 45)
@@ -179,7 +195,7 @@ public class LoginWindow extends javax.swing.JFrame {
                 .addComponent(login_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(login_pnl_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,6 +226,13 @@ public class LoginWindow extends javax.swing.JFrame {
         hw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_btt_loginActionPerformed
+
+    private void btt_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerActionPerformed
+        // TODO add your handling code here:
+        RegistrationWindow rw = new RegistrationWindow();
+        rw.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(false);
+    }//GEN-LAST:event_btt_registerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,6 +271,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_login;
+    private javax.swing.JButton btt_register;
     private javax.swing.JLabel icon_logo;
     private javax.swing.JLabel lbl_title;
     private javax.swing.JPanel login_pnl_all;

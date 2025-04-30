@@ -12,9 +12,11 @@ import view.RoundedButton.*;
  * @author Pedro Schneider, Gabriel Santana Dias
  */
 public class HomeWindow extends javax.swing.JFrame {
-
-    private final int width = 1024;
-    private final int height = 1024;
+    
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private final Dimension screenSize = toolkit.getScreenSize();
+    private final int width = screenSize.width;
+    private final int height = screenSize.height;
     
     /**
      * Creates new form HomeWindow
@@ -27,9 +29,8 @@ public class HomeWindow extends javax.swing.JFrame {
         // changes window icon
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
         
-        // get the screen size and center the window
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = toolkit.getScreenSize();
+        // center the window
+
         int x = (screenSize.width - width) / 2;
         int y = (screenSize.height - height) / 2;
         

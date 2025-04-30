@@ -3,18 +3,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+import java.awt.*;
 
 /**
  *
- * @author gabas
+ * @author Pedro Schneider, Gabriel Santana Dias
  */
 public class RegistrationWindow extends javax.swing.JFrame {
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private final Dimension screenSize = toolkit.getScreenSize();
+    private final int width = 512;
+    private final int height = 576;
+    
     /**
-     * Creates new form RegistrationWindow
+     * Creates new form LoginWindow
      */
     public RegistrationWindow() {
         initComponents();
+        
+        this.setSize(width, height);
+        
+        // changes window icon
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
+        
+        // get the screen size and center the window
+
+        int x = (screenSize.width - width) / 2;
+        int y = (screenSize.height - height) / 2;
+        
+        this.setLocation(new Point(x,y));        
     }
 
     /**
@@ -26,57 +44,268 @@ public class RegistrationWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        register_pnl_all = new javax.swing.JPanel();
+        register_pnl_titleLogo = new javax.swing.JPanel();
+        icon_logo = new javax.swing.JLabel();
+        lbl_title = new javax.swing.JLabel();
+        register_pnl_registration = new javax.swing.JPanel();
+        txt_name = new PlaceholderFields("Digite seu nome...", new Insets(0, 15, 0, 0));
+        txt_birthDate = new PlaceholderFields("Digite sua data de nascimento...", new Insets(0, 15, 0, 0));
+        txt_login = new PlaceholderFields("Digite seu login...", new Insets(0, 15, 0, 0));
+        txt_password = new PlaceholderFields("Digite sua senha...", new Insets(0, 15, 0, 0));
+        cbox_gender = new javax.swing.JComboBox<>();
+        btt_login = new RoundedButton("Cadastrar") ;
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Spotifei");
+        setBackground(new java.awt.Color(28, 28, 28));
+        setResizable(false);
+
+        register_pnl_all.setBackground(new java.awt.Color(28, 28, 28));
+
+        register_pnl_titleLogo.setBackground(new java.awt.Color(28, 28, 28));
+
+        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png"))); // NOI18N
+        icon_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        lbl_title.setFont(new java.awt.Font("Fira Mono Medium", 0, 24)); // NOI18N
+        lbl_title.setForeground(new java.awt.Color(30, 215, 96));
+        lbl_title.setText("Spotifei");
+
+        javax.swing.GroupLayout register_pnl_titleLogoLayout = new javax.swing.GroupLayout(register_pnl_titleLogo);
+        register_pnl_titleLogo.setLayout(register_pnl_titleLogoLayout);
+        register_pnl_titleLogoLayout.setHorizontalGroup(
+            register_pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(register_pnl_titleLogoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(icon_logo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_title)
+                .addContainerGap())
+        );
+        register_pnl_titleLogoLayout.setVerticalGroup(
+            register_pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(register_pnl_titleLogoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(register_pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon_logo)
+                    .addGroup(register_pnl_titleLogoLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lbl_title)))
+                .addContainerGap())
+        );
+
+        register_pnl_registration.setBackground(new java.awt.Color(28, 28, 28));
+
+        txt_name.setBackground(new java.awt.Color(51, 51, 51));
+        txt_name.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        txt_name.setForeground(new java.awt.Color(168, 170, 170));
+        txt_name.setBorder(null);
+        txt_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nameActionPerformed(evt);
+            }
+        });
+
+        txt_birthDate.setBackground(new java.awt.Color(51, 51, 51));
+        txt_birthDate.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        txt_birthDate.setForeground(new java.awt.Color(168, 170, 170));
+        txt_birthDate.setBorder(null);
+        txt_birthDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_birthDateActionPerformed(evt);
+            }
+        });
+
+        txt_login.setBackground(new java.awt.Color(51, 51, 51));
+        txt_login.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        txt_login.setForeground(new java.awt.Color(168, 170, 170));
+        txt_login.setBorder(null);
+        txt_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_loginActionPerformed(evt);
+            }
+        });
+
+        txt_password.setBackground(new java.awt.Color(51, 51, 51));
+        txt_password.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        txt_password.setForeground(new java.awt.Color(168, 170, 170));
+        txt_password.setBorder(null);
+        txt_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_passwordActionPerformed(evt);
+            }
+        });
+
+        cbox_gender.setBackground(new java.awt.Color(51, 51, 51));
+        cbox_gender.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        cbox_gender.setForeground(new java.awt.Color(168, 170, 170));
+        cbox_gender.setMaximumRowCount(3);
+        cbox_gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outro" }));
+        cbox_gender.setToolTipText("");
+        cbox_gender.setBorder(null);
+        cbox_gender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        btt_login.setBackground(new java.awt.Color(185, 192, 198));
+        btt_login.setFont(new java.awt.Font("Fira Mono", 1, 18)); // NOI18N
+        btt_login.setForeground(new java.awt.Color(28, 28, 28));
+        btt_login.setText("Cadastrar");
+        btt_login.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
+        btt_login.setBorderPainted(false);
+        btt_login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_loginActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout register_pnl_registrationLayout = new javax.swing.GroupLayout(register_pnl_registration);
+        register_pnl_registration.setLayout(register_pnl_registrationLayout);
+        register_pnl_registrationLayout.setHorizontalGroup(
+            register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(register_pnl_registrationLayout.createSequentialGroup()
+                .addGroup(register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(register_pnl_registrationLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_login, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                            .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                            .addComponent(txt_birthDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_name, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)))
+                    .addGroup(register_pnl_registrationLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cbox_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(register_pnl_registrationLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        register_pnl_registrationLayout.setVerticalGroup(
+            register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, register_pnl_registrationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cbox_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout register_pnl_allLayout = new javax.swing.GroupLayout(register_pnl_all);
+        register_pnl_all.setLayout(register_pnl_allLayout);
+        register_pnl_allLayout.setHorizontalGroup(
+            register_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(register_pnl_allLayout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(register_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, register_pnl_allLayout.createSequentialGroup()
+                .addContainerGap(77, Short.MAX_VALUE)
+                .addComponent(register_pnl_registration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
+        );
+        register_pnl_allLayout.setVerticalGroup(
+            register_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(register_pnl_allLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(register_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(register_pnl_registration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(register_pnl_all, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(register_pnl_all, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_passwordActionPerformed
+
+    private void txt_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nameActionPerformed
+
+    private void btt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_loginActionPerformed
+        // TODO add your handling code here:
+        LoginWindow lw = new LoginWindow();
+        lw.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(false);
+    }//GEN-LAST:event_btt_loginActionPerformed
+
+    private void txt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_loginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_loginActionPerformed
+
+    private void txt_birthDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_birthDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_birthDateActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrationWindow().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new LoginWindow().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btt_login;
+    private javax.swing.JComboBox<String> cbox_gender;
+    private javax.swing.JLabel icon_logo;
+    private javax.swing.JLabel lbl_title;
+    private javax.swing.JPanel register_pnl_all;
+    private javax.swing.JPanel register_pnl_registration;
+    private javax.swing.JPanel register_pnl_titleLogo;
+    private javax.swing.JTextField txt_birthDate;
+    private javax.swing.JTextField txt_login;
+    private javax.swing.JTextField txt_name;
+    private javax.swing.JTextField txt_password;
     // End of variables declaration//GEN-END:variables
 }
