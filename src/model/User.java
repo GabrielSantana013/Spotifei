@@ -16,7 +16,7 @@ public class User extends Person{
     private String userLogin, userPassword;
     private int userId;
 
-    private ArrayList<String> historic;
+    private ArrayList<String> historic; //talvez adicionar isso no construtor?
     
     public User(String userLogin, String userPassword, int userId, String name, 
             String gender, Date birthDate) {
