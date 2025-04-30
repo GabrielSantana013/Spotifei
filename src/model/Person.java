@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -43,8 +45,14 @@ public class Person {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(String dateStr) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        this.birthDate = sdf.parse(dateStr);
+    }
+    
+    public String getFormattedBirthDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(this.birthDate);
     }
     
 }

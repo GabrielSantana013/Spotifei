@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -15,6 +16,8 @@ public class User extends Person{
     private String userLogin, userPassword;
     private int userId;
 
+    private ArrayList<String> historic;
+    
     public User(String userLogin, String userPassword, int userId, String name, 
             String gender, Date birthDate) {
         super(name, gender, birthDate);
