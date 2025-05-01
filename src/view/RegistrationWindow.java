@@ -3,7 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+import controller.RegistrationController;
 import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -12,7 +18,7 @@ import java.awt.*;
 public class RegistrationWindow extends javax.swing.JFrame {
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private final Dimension screenSize = toolkit.getScreenSize();
+    private  Dimension screenSize = toolkit.getScreenSize();
     private final int width = 512;
     private final int height = 576;
     
@@ -21,6 +27,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
      */
     public RegistrationWindow() {
         initComponents();
+        c = new RegistrationController(this);
         
         this.setSize(width, height);
         
@@ -34,6 +41,56 @@ public class RegistrationWindow extends javax.swing.JFrame {
         
         this.setLocation(new Point(x,y));        
     }
+
+    public JComboBox<String> getCbox_gender() {
+        return cbox_gender;
+    }
+
+    public void setCbox_gender(JComboBox<String> cbox_gender) {
+        this.cbox_gender = cbox_gender;
+    }
+
+    public JLabel getLbl_title() {
+        return lbl_title;
+    }
+
+    public void setLbl_title(JLabel lbl_title) {
+        this.lbl_title = lbl_title;
+    }
+
+    public JTextField getTxt_birthDate() {
+        return txt_birthDate;
+    }
+
+    public void setTxt_birthDate(JTextField txt_birthDate) {
+        this.txt_birthDate = txt_birthDate;
+    }
+
+    public JTextField getTxt_login() {
+        return txt_login;
+    }
+
+    public void setTxt_login(JTextField txt_login) {
+        this.txt_login = txt_login;
+    }
+
+    public JTextField getTxt_name() {
+        return txt_name;
+    }
+
+    public void setTxt_name(JTextField txt_name) {
+        this.txt_name = txt_name;
+    }
+
+    public JTextField getTxt_password() {
+        return txt_password;
+    }
+
+    public void setTxt_password(JTextField txt_password) {
+        this.txt_password = txt_password;
+    }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,7 +111,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         txt_login = new PlaceholderFields("Digite seu login...", new Insets(0, 15, 0, 0));
         txt_password = new PlaceholderFields("Digite sua senha...", new Insets(0, 15, 0, 0));
         cbox_gender = new javax.swing.JComboBox<>();
-        btt_login = new RoundedButton("Cadastrar") ;
+        btt_cadastrar = new RoundedButton("Cadastrar") ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -146,16 +203,16 @@ public class RegistrationWindow extends javax.swing.JFrame {
         cbox_gender.setBorder(null);
         cbox_gender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btt_login.setBackground(new java.awt.Color(185, 192, 198));
-        btt_login.setFont(new java.awt.Font("Fira Mono", 1, 18)); // NOI18N
-        btt_login.setForeground(new java.awt.Color(28, 28, 28));
-        btt_login.setText("Cadastrar");
-        btt_login.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
-        btt_login.setBorderPainted(false);
-        btt_login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btt_login.addActionListener(new java.awt.event.ActionListener() {
+        btt_cadastrar.setBackground(new java.awt.Color(185, 192, 198));
+        btt_cadastrar.setFont(new java.awt.Font("Fira Mono", 1, 18)); // NOI18N
+        btt_cadastrar.setForeground(new java.awt.Color(28, 28, 28));
+        btt_cadastrar.setText("Cadastrar");
+        btt_cadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
+        btt_cadastrar.setBorderPainted(false);
+        btt_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btt_loginActionPerformed(evt);
+                btt_cadastrarActionPerformed(evt);
             }
         });
 
@@ -164,22 +221,19 @@ public class RegistrationWindow extends javax.swing.JFrame {
         register_pnl_registrationLayout.setHorizontalGroup(
             register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(register_pnl_registrationLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_login, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                    .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                    .addComponent(txt_birthDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txt_name, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                     .addGroup(register_pnl_registrationLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_login, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                            .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                            .addComponent(txt_birthDate, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_name, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)))
-                    .addGroup(register_pnl_registrationLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(cbox_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(register_pnl_registrationLayout.createSequentialGroup()
                 .addGap(92, 92, 92)
-                .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btt_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         register_pnl_registrationLayout.setVerticalGroup(
@@ -196,7 +250,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(cbox_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btt_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
@@ -245,12 +299,13 @@ public class RegistrationWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nameActionPerformed
 
-    private void btt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_loginActionPerformed
-        // TODO add your handling code here:
+    private void btt_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_cadastrarActionPerformed
+        // TODO add your handling code here:        
+        c.saveUser();
         LoginWindow lw = new LoginWindow();
         lw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
-    }//GEN-LAST:event_btt_loginActionPerformed
+    }//GEN-LAST:event_btt_cadastrarActionPerformed
 
     private void txt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_loginActionPerformed
         // TODO add your handling code here:
@@ -295,8 +350,10 @@ public class RegistrationWindow extends javax.swing.JFrame {
 //        });
 //    }
 
+    private RegistrationController c;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btt_login;
+    private javax.swing.JButton btt_cadastrar;
     private javax.swing.JComboBox<String> cbox_gender;
     private javax.swing.JLabel icon_logo;
     private javax.swing.JLabel lbl_title;

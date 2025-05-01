@@ -21,8 +21,8 @@ public class UserDAO {
     }
     
     public void insert(User user) throws SQLException{
-        String sql = "insert into User (name, gender, birthDate, loginUser,"
-                + " passwordUser) values(?,?,?,?,?)";                
+        String sql = "insert into \"Spotifei\".\"Users\"(name, gender, \"birthDate\", \"loginUser\","
+                + " \"passwordUser\") values(?,?,?,?,?)";                
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, user.getName());
         statement.setString(2, user.getGender());

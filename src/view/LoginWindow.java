@@ -21,7 +21,7 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
-        
+                
         this.setSize(width, height);
         
         // changes window icon
@@ -229,11 +229,13 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void btt_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerActionPerformed
         // TODO add your handling code here:
-        RegistrationWindow rw = new RegistrationWindow();
-        rw.setVisible(rootPaneCheckingEnabled);
+        RegistrationWindow rw = new RegistrationWindow();        
+        rw.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btt_registerActionPerformed
 
+    
+    
     /**
      * @param args the command line arguments
      */

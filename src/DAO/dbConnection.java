@@ -34,7 +34,7 @@ public class dbConnection {
         
         Connection conexao = DriverManager.getConnection(url, user, password);
         if (conexao != null && !conexao.isClosed()) {
-                System.out.println("Conexão bem-sucedida!");
+                System.out.println("Conexao bem-sucedida!");
             } else {
                 System.out.println("Conexão falhou!");
             }
