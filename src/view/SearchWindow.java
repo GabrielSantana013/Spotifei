@@ -6,14 +6,13 @@ package view;
 
 import view.customClasses.RoundedButton;
 import java.awt.*;
-import javax.swing.*;
 import view.customClasses.RoundedButton.*;
 
 /**
  *
  * @author Pedro Schneider, Gabriel Santana Dias
  */
-public class HomeWindow extends javax.swing.JFrame {
+public class SearchWindow extends javax.swing.JFrame {
     
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     private final Dimension screenSize = toolkit.getScreenSize();
@@ -23,7 +22,7 @@ public class HomeWindow extends javax.swing.JFrame {
     /**
      * Creates new form HomeWindow
      */
-    public HomeWindow() {
+    public SearchWindow() {
         initComponents();
 
         this.setSize(width, height);
@@ -67,11 +66,6 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_botSide = new javax.swing.JPanel();
         home_pnl_inside = new javax.swing.JPanel();
         btt_profile = new RoundedButton("user_name");
-        home_pnl_welcome = new javax.swing.JPanel();
-        spacing1 = new javax.swing.JPanel();
-        lbl_welcome = new javax.swing.JLabel();
-        icon_wave = new javax.swing.JLabel();
-        spacing2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -242,61 +236,13 @@ public class HomeWindow extends javax.swing.JFrame {
             }
         });
 
-        home_pnl_welcome.setBackground(new java.awt.Color(18, 18, 18));
-        home_pnl_welcome.setLayout(new javax.swing.BoxLayout(home_pnl_welcome, javax.swing.BoxLayout.LINE_AXIS));
-
-        spacing1.setBackground(new java.awt.Color(18, 18, 18));
-        spacing1.setPreferredSize(new java.awt.Dimension(200, 100));
-
-        javax.swing.GroupLayout spacing1Layout = new javax.swing.GroupLayout(spacing1);
-        spacing1.setLayout(spacing1Layout);
-        spacing1Layout.setHorizontalGroup(
-            spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
-        spacing1Layout.setVerticalGroup(
-            spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        home_pnl_welcome.add(spacing1);
-
-        lbl_welcome.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        lbl_welcome.setForeground(new java.awt.Color(168, 170, 170));
-        lbl_welcome.setText("Bem-vindo(a), user_name!");
-        lbl_welcome.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
-        home_pnl_welcome.add(lbl_welcome);
-
-        icon_wave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/waveEmoji.png"))); // NOI18N
-        home_pnl_welcome.add(icon_wave);
-
-        spacing2.setBackground(new java.awt.Color(18, 18, 18));
-        spacing2.setPreferredSize(new java.awt.Dimension(200, 100));
-
-        javax.swing.GroupLayout spacing2Layout = new javax.swing.GroupLayout(spacing2);
-        spacing2.setLayout(spacing2Layout);
-        spacing2Layout.setHorizontalGroup(
-            spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
-        spacing2Layout.setVerticalGroup(
-            spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        home_pnl_welcome.add(spacing2);
-
         javax.swing.GroupLayout home_pnl_insideLayout = new javax.swing.GroupLayout(home_pnl_inside);
         home_pnl_inside.setLayout(home_pnl_insideLayout);
         home_pnl_insideLayout.setHorizontalGroup(
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(home_pnl_insideLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, home_pnl_insideLayout.createSequentialGroup()
-                        .addGap(0, 608, Short.MAX_VALUE)
-                        .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(home_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, home_pnl_insideLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         home_pnl_insideLayout.setVerticalGroup(
@@ -304,8 +250,6 @@ public class HomeWindow extends javax.swing.JFrame {
             .addGroup(home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(home_pnl_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -355,13 +299,13 @@ public class HomeWindow extends javax.swing.JFrame {
 
     private void home_pnl_homeOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_homeOptMouseClicked
         // TODO add your handling code here:
+        HomeWindow hw = new HomeWindow();
+        hw.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(false);
     }//GEN-LAST:event_home_pnl_homeOptMouseClicked
 
     private void home_pnl_searchOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_searchOptMouseClicked
         // TODO add your handling code here:
-        SearchWindow sw = new SearchWindow();
-        sw.setVisible(rootPaneCheckingEnabled);
-        this.setVisible(false);
     }//GEN-LAST:event_home_pnl_searchOptMouseClicked
 
     private void home_pnl_playlistOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_playlistOptMouseClicked
@@ -418,18 +362,13 @@ public class HomeWindow extends javax.swing.JFrame {
     private javax.swing.JPanel home_pnl_searchOpt;
     private javax.swing.JPanel home_pnl_titleLogo;
     private javax.swing.JPanel home_pnl_topSide;
-    private javax.swing.JPanel home_pnl_welcome;
     private javax.swing.JLabel icon_home;
     private javax.swing.JLabel icon_logo;
     private javax.swing.JLabel icon_playlist;
     private javax.swing.JLabel icon_search;
-    private javax.swing.JLabel icon_wave;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_playlist;
     private javax.swing.JLabel lbl_search;
     private javax.swing.JLabel lbl_title;
-    private javax.swing.JLabel lbl_welcome;
-    private javax.swing.JPanel spacing1;
-    private javax.swing.JPanel spacing2;
     // End of variables declaration//GEN-END:variables
 }

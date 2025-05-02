@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+import view.customClasses.RoundedButton;
+import view.customClasses.PlaceholderFields;
 import controller.LoginController;
 import java.awt.*;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -34,9 +36,69 @@ public class LoginWindow extends javax.swing.JFrame {
         int x = (screenSize.width - width) / 2;
         int y = (screenSize.height - height) / 2;
         
-        this.setLocation(new Point(x,y));        
+        this.setLocation(new Point(x,y));
+        this.setMinimumSize(new Dimension(512, 448));
+        
+        // set maximum size of the window
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                int maxWidth = 1024;
+                int maxHeight = 896;
+
+                int width = getWidth();
+                int height = getHeight();
+
+                if (width > maxWidth || height > maxHeight) {
+                    setSize(Math.min(width, maxWidth), Math.min(height, maxHeight));
+                }
+            }
+        });
+        
+        // center panel after layout is initialized
+        SwingUtilities.invokeLater(() -> {
+            centerLoginPanel();
+            // addResizeListener();
+        });
     }
 
+    private void centerLoginPanel() {
+        int panelHeight = login_pnl_all.getHeight();
+        int loginPanelHeight = login_pnl_login.getPreferredSize().height;
+        int logoHeight = login_pnl_titleLogo.getPreferredSize().height;
+
+        int topMargin = 20;
+        int spaceAfterLogo = 30;
+
+        int remainingHeight = panelHeight - (logoHeight + topMargin + spaceAfterLogo);
+        int y = logoHeight + topMargin + spaceAfterLogo + (remainingHeight - loginPanelHeight) / 2;
+
+        int panelWidth = login_pnl_all.getWidth();
+        int loginPanelWidth = login_pnl_login.getPreferredSize().width;
+        int x = (panelWidth - loginPanelWidth) / 2;
+
+        // important: set layout to null for manual placement
+        login_pnl_all.setLayout(null);
+        login_pnl_titleLogo.setBounds((panelWidth - login_pnl_titleLogo.getPreferredSize().width) / 2, topMargin,
+                                      login_pnl_titleLogo.getPreferredSize().width,
+                                      login_pnl_titleLogo.getPreferredSize().height);
+
+        login_pnl_login.setBounds(x, y - 20, loginPanelWidth, loginPanelHeight);
+
+        login_pnl_all.revalidate();
+        login_pnl_all.repaint();
+    }
+
+    // TODO: use this resize listener for home reponsiveness
+//    private void addResizeListener() {
+//        login_pnl_all.addComponentListener(new java.awt.event.ComponentAdapter() {
+//            @Override
+//            public void componentResized(java.awt.event.ComponentEvent evt) {
+//                centerLoginPanel();
+//            }
+//        });
+//    }
+    
     public JTextField getTxt_login() {
         return txt_login;
     }
@@ -140,6 +202,7 @@ public class LoginWindow extends javax.swing.JFrame {
         btt_login.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_login.setBorderPainted(false);
         btt_login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_login.setPreferredSize(new java.awt.Dimension(170, 50));
         btt_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btt_loginActionPerformed(evt);
@@ -162,14 +225,14 @@ public class LoginWindow extends javax.swing.JFrame {
         login_pnl_loginLayout.setHorizontalGroup(
             login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, login_pnl_loginLayout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
             .addGroup(login_pnl_loginLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_password)
-                    .addComponent(btt_register, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btt_register, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(login_pnl_loginLayout.createSequentialGroup()
@@ -180,18 +243,17 @@ public class LoginWindow extends javax.swing.JFrame {
         login_pnl_loginLayout.setVerticalGroup(
             login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(login_pnl_loginLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
+                .addContainerGap(115, Short.MAX_VALUE)
                 .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btt_register)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btt_register))
             .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(login_pnl_loginLayout.createSequentialGroup()
                     .addGap(45, 45, 45)
                     .addComponent(txt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(161, Short.MAX_VALUE)))
+                    .addContainerGap(179, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout login_pnl_allLayout = new javax.swing.GroupLayout(login_pnl_all);
@@ -199,22 +261,22 @@ public class LoginWindow extends javax.swing.JFrame {
         login_pnl_allLayout.setHorizontalGroup(
             login_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(login_pnl_allLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(169, 169, 169)
                 .addComponent(login_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, login_pnl_allLayout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .addComponent(login_pnl_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addGap(85, 85, 85))
         );
         login_pnl_allLayout.setVerticalGroup(
             login_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(login_pnl_allLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(login_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(login_pnl_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,11 +287,23 @@ public class LoginWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(login_pnl_all, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(login_pnl_all, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btt_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerActionPerformed
+        // TODO add your handling code here:
+        RegistrationWindow rw = new RegistrationWindow();
+        rw.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btt_registerActionPerformed
+
+    private void btt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_loginActionPerformed
+        // TODO add your handling code here:
+        c.userLogin();
+    }//GEN-LAST:event_btt_loginActionPerformed
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
         // TODO add your handling code here:
@@ -238,18 +312,6 @@ public class LoginWindow extends javax.swing.JFrame {
     private void txt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_loginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_loginActionPerformed
-
-    private void btt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_loginActionPerformed
-        // TODO add your handling code here:
-        c.userLogin();  
-    }//GEN-LAST:event_btt_loginActionPerformed
-
-    private void btt_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerActionPerformed
-        // TODO add your handling code here:
-        RegistrationWindow rw = new RegistrationWindow();        
-        rw.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btt_registerActionPerformed
    
     /**
      * @param args the command line arguments

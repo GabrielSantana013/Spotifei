@@ -14,12 +14,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import java.util.Date;
+import javax.swing.SwingUtilities;
 import view.LoginWindow;
+import view.customDialogs.CustomJDialog;
 
 
 /**
  *
- * @author gabas
+ * @author Pedro Schneider, Gabriel Santana Dias
  */
 public class RegistrationController {
 
@@ -44,7 +46,9 @@ public class RegistrationController {
             sdf.setLenient(false);
             birthDate = sdf.parse(bDateString);            
         }catch(ParseException e){
-            JOptionPane.showMessageDialog(view, "Data invalida.");
+            SwingUtilities.invokeLater(() -> {
+                    CustomJDialog.showCustomDialog("Aviso!", "Data inválida");
+                });
         }        
                 
         User user = new User(userLogin, userPassword, name, gender, birthDate);       
@@ -54,13 +58,16 @@ public class RegistrationController {
             Connection conn = connection.getConnection();
             UserDAO dao = new UserDAO(conn);
             dao.insert(user);
-            JOptionPane.showMessageDialog(view, "Usuario Cadastrado");
+            SwingUtilities.invokeLater(() -> {
+                    CustomJDialog.showCustomDialog("Cadastro", "Usuário cadastrado com sucesso!");
+                });
             LoginWindow lw = new LoginWindow();
             lw.setVisible(true);
             view.setVisible(false);
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(view, "Erro de conexao", 
-                       "Erro", JOptionPane.ERROR_MESSAGE);
+            SwingUtilities.invokeLater(() -> {
+                    CustomJDialog.showCustomDialog("ERRO!", "Erro de conexão com o banco de dados.\nEntre em contato com os administradores.");
+            });
         }
     }   
 }

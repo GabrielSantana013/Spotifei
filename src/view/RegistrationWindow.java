@@ -3,12 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+import view.customClasses.RoundedButton;
+import view.customClasses.PlaceholderFields;
 import controller.RegistrationController;
 import java.awt.*;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.JTextField;
 
 /**
@@ -35,11 +34,40 @@ public class RegistrationWindow extends javax.swing.JFrame {
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
         
         // get the screen size and center the window
-
         int x = (screenSize.width - width) / 2;
         int y = (screenSize.height - height) / 2;
         
-        this.setLocation(new Point(x,y));        
+        this.setLocation(new Point(x,y));    
+        
+        // center panel after layout is initialized
+        SwingUtilities.invokeLater(() -> centerLoginPanel());
+    }
+
+    private void centerLoginPanel() {
+        int panelHeight = register_pnl_all.getHeight();
+        int loginPanelHeight = register_pnl_registration.getPreferredSize().height;
+        int logoHeight = register_pnl_titleLogo.getPreferredSize().height;
+
+        int topMargin = 20;
+        int spaceAfterLogo = 30;
+
+        int remainingHeight = panelHeight - (logoHeight + topMargin + spaceAfterLogo);
+        int y = logoHeight + topMargin + spaceAfterLogo + (remainingHeight - loginPanelHeight) / 2;
+
+        int panelWidth = register_pnl_all.getWidth();
+        int loginPanelWidth = register_pnl_registration.getPreferredSize().width;
+        int x = (panelWidth - loginPanelWidth) / 2;
+
+        // important: set layout to null for manual placement
+        register_pnl_all.setLayout(null);
+        register_pnl_titleLogo.setBounds((panelWidth - register_pnl_titleLogo.getPreferredSize().width) / 2, topMargin,
+                                      register_pnl_titleLogo.getPreferredSize().width,
+                                      register_pnl_titleLogo.getPreferredSize().height);
+
+        register_pnl_registration.setBounds(x, y - 20, loginPanelWidth, loginPanelHeight);
+
+        register_pnl_all.revalidate();
+        register_pnl_all.repaint();
     }
 
     public JComboBox<String> getCbox_gender() {
@@ -111,7 +139,9 @@ public class RegistrationWindow extends javax.swing.JFrame {
         txt_login = new PlaceholderFields("Digite seu login...", new Insets(0, 15, 0, 0));
         txt_password = new PlaceholderFields("Digite sua senha...", new Insets(0, 15, 0, 0));
         cbox_gender = new javax.swing.JComboBox<>();
+        register_btt_pnl = new javax.swing.JPanel();
         btt_cadastrar = new RoundedButton("Cadastrar") ;
+        btt_return = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -203,38 +233,44 @@ public class RegistrationWindow extends javax.swing.JFrame {
         cbox_gender.setBorder(null);
         cbox_gender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        register_btt_pnl.setBackground(new java.awt.Color(28, 28, 28));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
+        flowLayout1.setAlignOnBaseline(true);
+        register_btt_pnl.setLayout(flowLayout1);
+
         btt_cadastrar.setBackground(new java.awt.Color(185, 192, 198));
         btt_cadastrar.setFont(new java.awt.Font("Fira Mono", 1, 18)); // NOI18N
         btt_cadastrar.setForeground(new java.awt.Color(28, 28, 28));
         btt_cadastrar.setText("Cadastrar");
         btt_cadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_cadastrar.setBorderPainted(false);
-        btt_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_cadastrar.setPreferredSize(new java.awt.Dimension(170, 50));
         btt_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btt_cadastrarActionPerformed(evt);
             }
         });
+        register_btt_pnl.add(btt_cadastrar);
 
         javax.swing.GroupLayout register_pnl_registrationLayout = new javax.swing.GroupLayout(register_pnl_registration);
         register_pnl_registration.setLayout(register_pnl_registrationLayout);
         register_pnl_registrationLayout.setHorizontalGroup(
             register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(register_pnl_registrationLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_login, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                    .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                    .addComponent(txt_birthDate, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt_name, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                     .addGroup(register_pnl_registrationLayout.createSequentialGroup()
-                        .addComponent(cbox_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addGroup(register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_login, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                            .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                            .addComponent(txt_birthDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_name, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)))
+                    .addGroup(register_pnl_registrationLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cbox_gender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(register_pnl_registrationLayout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(btt_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(register_btt_pnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         register_pnl_registrationLayout.setVerticalGroup(
             register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,31 +286,46 @@ public class RegistrationWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(cbox_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btt_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addComponent(register_btt_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
+
+        btt_return.setBackground(new java.awt.Color(28, 28, 28));
+        btt_return.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/returnArrow.png"))); // NOI18N
+        btt_return.setBorder(null);
+        btt_return.setBorderPainted(false);
+        btt_return.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_return.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_returnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout register_pnl_allLayout = new javax.swing.GroupLayout(register_pnl_all);
         register_pnl_all.setLayout(register_pnl_allLayout);
         register_pnl_allLayout.setHorizontalGroup(
             register_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(register_pnl_allLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(register_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, register_pnl_allLayout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(register_pnl_registration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
+            .addGroup(register_pnl_allLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btt_return)
+                .addGap(135, 135, 135)
+                .addComponent(register_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         register_pnl_allLayout.setVerticalGroup(
             register_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(register_pnl_allLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(register_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(register_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(register_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btt_return))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(register_pnl_registration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -311,6 +362,13 @@ public class RegistrationWindow extends javax.swing.JFrame {
     private void txt_birthDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_birthDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_birthDateActionPerformed
+
+    private void btt_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_returnActionPerformed
+        // TODO add your handling code here:
+        LoginWindow lw = new LoginWindow();        
+        lw.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btt_returnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,9 +409,11 @@ public class RegistrationWindow extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_cadastrar;
+    private javax.swing.JButton btt_return;
     private javax.swing.JComboBox<String> cbox_gender;
     private javax.swing.JLabel icon_logo;
     private javax.swing.JLabel lbl_title;
+    private javax.swing.JPanel register_btt_pnl;
     private javax.swing.JPanel register_pnl_all;
     private javax.swing.JPanel register_pnl_registration;
     private javax.swing.JPanel register_pnl_titleLogo;

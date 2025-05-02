@@ -13,7 +13,7 @@ import view.customClasses.RoundedButton.*;
  *
  * @author Pedro Schneider, Gabriel Santana Dias
  */
-public class HomeWindow extends javax.swing.JFrame {
+public class PlaylistsWindow extends javax.swing.JFrame {
     
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     private final Dimension screenSize = toolkit.getScreenSize();
@@ -23,7 +23,7 @@ public class HomeWindow extends javax.swing.JFrame {
     /**
      * Creates new form HomeWindow
      */
-    public HomeWindow() {
+    public PlaylistsWindow() {
         initComponents();
 
         this.setSize(width, height);
@@ -69,7 +69,7 @@ public class HomeWindow extends javax.swing.JFrame {
         btt_profile = new RoundedButton("user_name");
         home_pnl_welcome = new javax.swing.JPanel();
         spacing1 = new javax.swing.JPanel();
-        lbl_welcome = new javax.swing.JLabel();
+        lbl_playlists = new javax.swing.JLabel();
         icon_wave = new javax.swing.JLabel();
         spacing2 = new javax.swing.JPanel();
 
@@ -161,8 +161,8 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                home_pnl_playlistOptMouseClicked(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                home_pnl_playlistOptMouseEntered(evt);
             }
         });
 
@@ -252,7 +252,7 @@ public class HomeWindow extends javax.swing.JFrame {
         spacing1.setLayout(spacing1Layout);
         spacing1Layout.setHorizontalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
         );
         spacing1Layout.setVerticalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,11 +261,11 @@ public class HomeWindow extends javax.swing.JFrame {
 
         home_pnl_welcome.add(spacing1);
 
-        lbl_welcome.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        lbl_welcome.setForeground(new java.awt.Color(168, 170, 170));
-        lbl_welcome.setText("Bem-vindo(a), user_name!");
-        lbl_welcome.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
-        home_pnl_welcome.add(lbl_welcome);
+        lbl_playlists.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        lbl_playlists.setForeground(new java.awt.Color(168, 170, 170));
+        lbl_playlists.setText("Playlists!");
+        lbl_playlists.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
+        home_pnl_welcome.add(lbl_playlists);
 
         icon_wave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/waveEmoji.png"))); // NOI18N
         home_pnl_welcome.add(icon_wave);
@@ -277,7 +277,7 @@ public class HomeWindow extends javax.swing.JFrame {
         spacing2.setLayout(spacing2Layout);
         spacing2Layout.setHorizontalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
         );
         spacing2Layout.setVerticalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,11 +350,14 @@ public class HomeWindow extends javax.swing.JFrame {
 
     private void btt_profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_profileActionPerformed
         // TODO add your handling code here:
-
+        
     }//GEN-LAST:event_btt_profileActionPerformed
 
     private void home_pnl_homeOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_homeOptMouseClicked
         // TODO add your handling code here:
+        HomeWindow hw = new HomeWindow();
+        hw.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(false);
     }//GEN-LAST:event_home_pnl_homeOptMouseClicked
 
     private void home_pnl_searchOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_searchOptMouseClicked
@@ -364,12 +367,9 @@ public class HomeWindow extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_searchOptMouseClicked
 
-    private void home_pnl_playlistOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_playlistOptMouseClicked
+    private void home_pnl_playlistOptMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_playlistOptMouseEntered
         // TODO add your handling code here:
-        PlaylistsWindow pw = new PlaylistsWindow();
-        pw.setVisible(rootPaneCheckingEnabled);
-        this.setVisible(false);
-    }//GEN-LAST:event_home_pnl_playlistOptMouseClicked
+    }//GEN-LAST:event_home_pnl_playlistOptMouseEntered
 
     /**
      * @param args the command line arguments
@@ -426,9 +426,9 @@ public class HomeWindow extends javax.swing.JFrame {
     private javax.swing.JLabel icon_wave;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_playlist;
+    private javax.swing.JLabel lbl_playlists;
     private javax.swing.JLabel lbl_search;
     private javax.swing.JLabel lbl_title;
-    private javax.swing.JLabel lbl_welcome;
     private javax.swing.JPanel spacing1;
     private javax.swing.JPanel spacing2;
     // End of variables declaration//GEN-END:variables

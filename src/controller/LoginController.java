@@ -4,12 +4,13 @@
  */
 package controller;
 
+import view.customDialogs.CustomJDialog;  // import custom dialog pop-up
 import DAO.DbConnection;
 import DAO.UserDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import model.User;
 import view.HomeWindow;
 import view.LoginWindow;
@@ -37,18 +38,22 @@ public class LoginController {
            ResultSet res = dao.search(user);
            if(res.next()){
                user = User.fromResultSet(res);
-               JOptionPane.showMessageDialog(view, "Login efetuado com Sucesso!");
+               SwingUtilities.invokeLater(() -> {
+                    CustomJDialog.showCustomDialog("Aviso!", "Usuário logado com sucesso!");
+                });
                System.out.println(user.toString());
                view.setVisible(false);
                HomeWindow homeWin = new HomeWindow();
                homeWin.setVisible(true);
            }else{
-               JOptionPane.showMessageDialog(view, "Usuário nao encontrado.", 
-                       "Erro", JOptionPane.ERROR_MESSAGE);           
+               SwingUtilities.invokeLater(() -> {
+                    CustomJDialog.showCustomDialog("Erro!", "Usuário não encontrado!");
+                });        
            }           
        }catch(SQLException e){
-           JOptionPane.showMessageDialog(view, "Erro de conexao", 
-                       "Erro", JOptionPane.ERROR_MESSAGE);
+           SwingUtilities.invokeLater(() -> {
+                    CustomJDialog.showCustomDialog("ERRO!", "Erro de conexão com o banco de dados.\nEntre em contato com os administradores.");
+            });
        }     
     }
 }
