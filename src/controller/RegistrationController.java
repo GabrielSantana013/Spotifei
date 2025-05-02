@@ -5,7 +5,7 @@
 package controller;
 
 import DAO.UserDAO;
-import DAO.dbConnection;
+import DAO.DbConnection;
 import model.User;
 import view.RegistrationWindow;
 import java.sql.Connection;
@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import java.util.Date;
+import view.LoginWindow;
 
 
 /**
@@ -43,19 +44,23 @@ public class RegistrationController {
             sdf.setLenient(false);
             birthDate = sdf.parse(bDateString);            
         }catch(ParseException e){
-            JOptionPane.showMessageDialog(view, "Data inválida.");
+            JOptionPane.showMessageDialog(view, "Data invalida.");
         }        
                 
         User user = new User(userLogin, userPassword, name, gender, birthDate);       
-        dbConnection conexao = new dbConnection();
+        DbConnection connection = new DbConnection();
         
         try{
-            Connection conn = conexao.getConnection();
+            Connection conn = connection.getConnection();
             UserDAO dao = new UserDAO(conn);
             dao.insert(user);
-            JOptionPane.showMessageDialog(view, "Usuário Cadastrado");
+            JOptionPane.showMessageDialog(view, "Usuario Cadastrado");
+            LoginWindow lw = new LoginWindow();
+            lw.setVisible(true);
+            view.setVisible(false);
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(view, "Erro de conexão" + e.getMessage());
+            JOptionPane.showMessageDialog(view, "Erro de conexao", 
+                       "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }   
 }

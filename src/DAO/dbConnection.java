@@ -15,12 +15,12 @@ import java.util.Properties;
  *
  * @author gabas
  */
-public class dbConnection {
+public class DbConnection {
         
     public Connection getConnection() throws SQLException{
     
         Properties prop = new Properties();
-        try{InputStream input = dbConnection.class.getClassLoader()
+        try{InputStream input = DbConnection.class.getClassLoader()
                 .getResourceAsStream("DAO/config.properties");
             prop.load(input);
         }
@@ -34,9 +34,9 @@ public class dbConnection {
         
         Connection conexao = DriverManager.getConnection(url, user, password);
         if (conexao != null && !conexao.isClosed()) {
-                System.out.println("Conexao bem-sucedida!");
+                System.out.println("DbConnection works");
             } else {
-                System.out.println("Conexão falhou!");
+                System.out.println("DbConnection isn't working");
             }
         return conexao;       
     }

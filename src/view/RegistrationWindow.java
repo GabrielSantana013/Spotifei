@@ -302,9 +302,6 @@ public class RegistrationWindow extends javax.swing.JFrame {
     private void btt_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_cadastrarActionPerformed
         // TODO add your handling code here:        
         c.saveUser();
-        LoginWindow lw = new LoginWindow();
-        lw.setVisible(rootPaneCheckingEnabled);
-        this.setVisible(false);
     }//GEN-LAST:event_btt_cadastrarActionPerformed
 
     private void txt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_loginActionPerformed

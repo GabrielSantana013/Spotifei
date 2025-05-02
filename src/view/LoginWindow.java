@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+import controller.LoginController;
 import java.awt.*;
+import javax.swing.JTextField;
 
 /**
  *
@@ -21,6 +23,7 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
+        c = new LoginController(this);
                 
         this.setSize(width, height);
         
@@ -32,6 +35,22 @@ public class LoginWindow extends javax.swing.JFrame {
         int y = (screenSize.height - height) / 2;
         
         this.setLocation(new Point(x,y));        
+    }
+
+    public JTextField getTxt_login() {
+        return txt_login;
+    }
+
+    public void setTxt_login(JTextField txt_login) {
+        this.txt_login = txt_login;
+    }
+
+    public JTextField getTxt_password() {
+        return txt_password;
+    }
+
+    public void setTxt_password(JTextField txt_password) {
+        this.txt_password = txt_password;
     }
 
     /**
@@ -222,9 +241,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void btt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_loginActionPerformed
         // TODO add your handling code here:
-        HomeWindow hw = new HomeWindow();
-        hw.setVisible(rootPaneCheckingEnabled);
-        this.setVisible(false);
+        c.userLogin();  
     }//GEN-LAST:event_btt_loginActionPerformed
 
     private void btt_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerActionPerformed
@@ -233,9 +250,7 @@ public class LoginWindow extends javax.swing.JFrame {
         rw.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btt_registerActionPerformed
-
-    
-    
+   
     /**
      * @param args the command line arguments
      */
@@ -270,6 +285,8 @@ public class LoginWindow extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    
+    private LoginController c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_login;

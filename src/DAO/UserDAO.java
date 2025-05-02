@@ -5,6 +5,7 @@
 package DAO;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import model.User;
 
@@ -21,8 +22,8 @@ public class UserDAO {
     }
     
     public void insert(User user) throws SQLException{
-        String sql = "insert into \"Spotifei\".\"Users\"(name, gender, \"birthDate\", \"loginUser\","
-                + " \"passwordUser\") values(?,?,?,?,?)";                
+        String sql = "insert into spotifei.users(name, gender, birth_date,"
+                + " login_user, password_user) values(?,?,?,?,?)";                
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, user.getName());
         statement.setString(2, user.getGender());
@@ -31,5 +32,16 @@ public class UserDAO {
         statement.setString(5, user.getUserPassword());
         statement.execute();
         conn.close();
-    }            
+    }
+    
+    public ResultSet search(User user)throws SQLException{
+        String sql = "select * from spotifei.users where login_user = ? AND"
+                + " password_user = ?";   
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, user.getUserLogin());
+        statement.setString(2, user.getUserPassword());
+        statement.execute();
+        ResultSet result = statement.getResultSet();
+        return result;
+    }
 }
