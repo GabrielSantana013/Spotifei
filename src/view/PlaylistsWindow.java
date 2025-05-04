@@ -355,7 +355,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
 
     private void home_pnl_homeOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_homeOptMouseClicked
         // TODO add your handling code here:
-        HomeWindow hw = new HomeWindow();
+        HomeWindow hw = new HomeWindow(null);
         hw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_homeOptMouseClicked

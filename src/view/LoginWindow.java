@@ -8,6 +8,7 @@ import view.customClasses.PlaceholderFields;
 import controller.LoginController;
 import java.awt.*;
 import javax.swing.*;
+import view.customDialogs.CustomJDialog;
 
 /**
  *
@@ -302,7 +303,14 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void btt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_loginActionPerformed
         // TODO add your handling code here:
-        c.userLogin();
+        try {
+        c.login();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println();
+            System.out.println(e.getMessage());
+            CustomJDialog.showCustomDialog("Erro!", "Ocorreu um erro inesperado.");
+        }
     }//GEN-LAST:event_btt_loginActionPerformed
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed

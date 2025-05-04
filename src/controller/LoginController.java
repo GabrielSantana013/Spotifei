@@ -4,56 +4,78 @@
  */
 package controller;
 
-import view.customDialogs.CustomJDialog;  // import custom dialog pop-up
+import view.customDialogs.CustomJDialog;
 import DAO.DbConnection;
 import DAO.UserDAO;
-import java.sql.Connection;
+import auth.Authenticator;
+import auth.UserAuthenticator;
+import auth.AdmAuthenticator;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 import javax.swing.*;
+import model.Adm;
 import model.User;
 import view.HomeWindow;
 import view.LoginWindow;
 
-/**
- *
- * @author Gabriel
- */
 public class LoginController {
-    
+
     private LoginWindow view;
+    private Authenticator<User> userAuthenticator;
+    private Authenticator<Adm> admAuthenticator;
 
     public LoginController(LoginWindow view) {
-        this.view = view;       
+        this.view = view;
+        this.userAuthenticator = new UserAuthenticator();
+        this.admAuthenticator = new AdmAuthenticator();
     }
-    
-    public void userLogin(){    
-       User user = new User(view.getTxt_login().getText(), 
-               view.getTxt_password().getText(), -1, null, null, null, null);
-       
-       DbConnection connection = new DbConnection();
-       try{
-           Connection conn = connection.getConnection();
-           UserDAO dao = new UserDAO(conn);
-           ResultSet res = dao.search(user);
-           if(res.next()){
-               user = User.fromResultSet(res);
-               SwingUtilities.invokeLater(() -> {
+
+    public void login() {
+        String login = view.getTxt_login().getText();
+        String password = view.getTxt_password().getText();
+
+        try {
+           //tenta autenticar como user
+            User user = userAuthenticator.authenticate(login, password);
+            if (user != null) {
+                SwingUtilities.invokeLater(() -> {
                     CustomJDialog.showCustomDialog("Aviso!", "Usuário logado com sucesso!");
                 });
-               System.out.println(user.toString());
-               view.setVisible(false);
-               HomeWindow homeWin = new HomeWindow();
-               homeWin.setVisible(true);
-           }else{
-               SwingUtilities.invokeLater(() -> {
-                    CustomJDialog.showCustomDialog("Erro!", "Usuário não encontrado!");
-                });        
-           }           
-       }catch(SQLException e){
-           SwingUtilities.invokeLater(() -> {
-                    CustomJDialog.showCustomDialog("ERRO!", "Erro de conexão com o banco de dados.\nEntre em contato com os administradores.");
+
+                System.out.println(user); // debug
+                view.setVisible(false);
+                HomeWindow homeWin = new HomeWindow(user); // janela do usuário               
+                homeWin.setVisible(true);
+                return;
+            }
+
+            //tenta autenticar como administrador
+            Adm adm = admAuthenticator.authenticate(login, password);
+            if (adm != null) {
+                SwingUtilities.invokeLater(() -> {
+                    CustomJDialog.showCustomDialog("Aviso!", "Administrador "
+                            + "logado com sucesso!");
+                });
+
+                System.out.println(adm); // debug
+                view.setVisible(false);
+                HomeWindow homeWin = new HomeWindow(null); // ou HomeWindowAdm futuramente
+                homeWin.setVisible(true);
+                return;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            SwingUtilities.invokeLater(() -> {
+                CustomJDialog.showCustomDialog("Erro!", "Erro de conexão com o "
+                        + "banco de dados.\nEntre em contato com os administradores.");
             });
-       }     
+            return;
+        }
+
+        // Se não for user nem admin
+        SwingUtilities.invokeLater(() -> {
+            CustomJDialog.showCustomDialog("Aviso!", "Usuário e/ou senha inválidos!");
+        });
     }
 }
+

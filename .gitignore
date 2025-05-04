@@ -19,12 +19,32 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# virtual machine crash logs
 hs_err_pid*
 replay_pid*
 
 # DB variables
 config.properties
 
-#unused things
+# unused things
 private.xml
+
+# Pastas geradas automaticamente (build/distribuição)
+build/
+dist/
+
+# Configurações locais do NetBeans
+nbproject/private/
+nbproject/Makefile-*.mk
+nbproject/configs/
+
+# Arquivos temporários e de backup
+*.tmp
+*.bak
+*.swp
+
+# Configurações de IDEs
+*.iml
+*.ipr
+*.iws
+.idea/

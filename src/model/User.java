@@ -36,6 +36,11 @@ public class User extends Person{
         this.userPassword = userPassword;
     }
     
+    public User(String userLogin, String userPassword){
+        this.userLogin = userLogin;
+        this.userPassword = userPassword;
+    }
+    
     
     public String getUserLogin() {
         return userLogin;

@@ -4,9 +4,11 @@
  */
 package view;
 
+import controller.HomeController;
 import view.customClasses.RoundedButton;
 import java.awt.*;
 import javax.swing.*;
+import model.User;
 import view.customClasses.RoundedButton.*;
 
 /**
@@ -23,9 +25,10 @@ public class HomeWindow extends javax.swing.JFrame {
     /**
      * Creates new form HomeWindow
      */
-    public HomeWindow() {
+    public HomeWindow(User user) {
         initComponents();
-
+        c =  new HomeController(this, user);
+        
         this.setSize(width, height);
         
         // changes window icon
@@ -37,7 +40,26 @@ public class HomeWindow extends javax.swing.JFrame {
         int y = (screenSize.height - height) / 2;
         
         this.setLocation(new Point(x,y));
+        c.setUserNameOnWindow();
     }
+    
+    public JButton getBtt_profile() {
+        return btt_profile;
+    }
+
+    public void setBtt_profile(JButton btt_profile) {
+        this.btt_profile = btt_profile;
+    }
+
+    public JLabel getLbl_welcome() {
+        return lbl_welcome;
+    }
+
+    public void setLbl_welcome(JLabel lbl_welcome) {
+        this.lbl_welcome = lbl_welcome;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -405,6 +427,8 @@ public class HomeWindow extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    
+    private HomeController c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_profile;
