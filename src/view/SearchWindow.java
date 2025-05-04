@@ -6,6 +6,7 @@ package view;
 
 import view.customClasses.RoundedButton;
 import java.awt.*;
+import model.User;
 import view.customClasses.RoundedButton.*;
 
 /**
@@ -18,12 +19,14 @@ public class SearchWindow extends javax.swing.JFrame {
     private final Dimension screenSize = toolkit.getScreenSize();
     private final int width = screenSize.width;
     private final int height = screenSize.height;
+    private User user;
     
     /**
      * Creates new form HomeWindow
      */
-    public SearchWindow() {
+    public SearchWindow(User user) {
         initComponents();
+        this.user = user;
 
         this.setSize(width, height);
         
@@ -218,6 +221,7 @@ public class SearchWindow extends javax.swing.JFrame {
         );
 
         home_pnl_inside.setBackground(new java.awt.Color(18, 18, 18));
+        home_pnl_inside.setPreferredSize(new java.awt.Dimension(48, 20));
 
         ((RoundedButton) btt_profile).setTextAlignment(TextAlign.LEFT);
         btt_profile.setBackground(new java.awt.Color(185, 192, 198));
@@ -227,9 +231,9 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_profile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_profile.setBorderPainted(false);
         btt_profile.setPreferredSize(new Dimension(200,30));
-        btt_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ((RoundedButton) btt_profile).setCornerRadiusVertical(60);
-        ((RoundedButton) btt_profile).setCornerRadiusHorizontal(30);
+        btt_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ((RoundedButton) btt_profile).setCornerRadiusVertical(80);
+        ((RoundedButton) btt_profile).setCornerRadiusHorizontal(40);
         btt_profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btt_profileActionPerformed(evt);
@@ -242,14 +246,14 @@ public class SearchWindow extends javax.swing.JFrame {
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         home_pnl_insideLayout.setVerticalGroup(
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -262,7 +266,7 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addComponent(home_pnl_leftSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(home_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(home_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
                     .addComponent(home_pnl_topSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         home_pnl_allLayout.setVerticalGroup(
@@ -272,7 +276,7 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addGroup(home_pnl_allLayout.createSequentialGroup()
                         .addComponent(home_pnl_topSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(home_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(home_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
                     .addComponent(home_pnl_leftSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(home_pnl_botSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -299,7 +303,7 @@ public class SearchWindow extends javax.swing.JFrame {
 
     private void home_pnl_homeOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_homeOptMouseClicked
         // TODO add your handling code here:
-        HomeWindow hw = new HomeWindow(null);
+        HomeWindow hw = new HomeWindow(user);
         hw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_homeOptMouseClicked
@@ -310,7 +314,7 @@ public class SearchWindow extends javax.swing.JFrame {
 
     private void home_pnl_playlistOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_playlistOptMouseClicked
         // TODO add your handling code here:
-        PlaylistsWindow pw = new PlaylistsWindow();
+        PlaylistsWindow pw = new PlaylistsWindow(user);
         pw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_playlistOptMouseClicked

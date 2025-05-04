@@ -3,8 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Workspaces/ws-Spotifei/Spotifei/src/controller/HomeController.java</file>
-            <file>file:/D:/Workspaces/ws-Spotifei/Spotifei/src/controller/LoginController.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/spotifei/Main.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/view/LoginWindow.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/view/RegistrationWindow.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/view/HomeWindow.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/view/SearchWindow.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/view/PlaylistsWindow.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/controller/LoginController.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/controller/RegistrationController.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/view/customDialogs/CustomJDialog.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/auth/Authenticator.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/auth/AdmAuthenticator.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/auth/UserAuthenticator.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/controller/HomeController.java</file>
+            <file>file:/home/pedro/Documents/Workspace-PROGRAMMING/GitHub-Repos/Spotifei/src/model/User.java</file>
         </group>
     </open-files>
 </project-private>

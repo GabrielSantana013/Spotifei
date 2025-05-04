@@ -25,4 +25,8 @@ public class HomeController {
         view.getBtt_profile().setText(user.getUserLogin());
         view.getLbl_welcome().setText("Bem-vindo(a), " + user.getName());
     }
+
+    public User getUser() {
+        return user;
+    }
 }

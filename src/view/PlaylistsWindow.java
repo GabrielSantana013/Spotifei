@@ -7,6 +7,7 @@ package view;
 import view.customClasses.RoundedButton;
 import java.awt.*;
 import javax.swing.*;
+import model.User;
 import view.customClasses.RoundedButton.*;
 
 /**
@@ -19,12 +20,14 @@ public class PlaylistsWindow extends javax.swing.JFrame {
     private final Dimension screenSize = toolkit.getScreenSize();
     private final int width = screenSize.width;
     private final int height = screenSize.height;
-    
+    private User user;
+
     /**
      * Creates new form HomeWindow
      */
-    public PlaylistsWindow() {
+    public PlaylistsWindow(User user) {
         initComponents();
+        this.user = user;
 
         this.setSize(width, height);
         
@@ -233,9 +236,9 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         btt_profile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_profile.setBorderPainted(false);
         btt_profile.setPreferredSize(new Dimension(200,30));
-        btt_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ((RoundedButton) btt_profile).setCornerRadiusVertical(60);
-        ((RoundedButton) btt_profile).setCornerRadiusHorizontal(30);
+        btt_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ((RoundedButton) btt_profile).setCornerRadiusVertical(80);
+        ((RoundedButton) btt_profile).setCornerRadiusHorizontal(40);
         btt_profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btt_profileActionPerformed(evt);
@@ -252,11 +255,11 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         spacing1.setLayout(spacing1Layout);
         spacing1Layout.setHorizontalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
         spacing1Layout.setVerticalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 48, Short.MAX_VALUE)
         );
 
         home_pnl_welcome.add(spacing1);
@@ -277,11 +280,11 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         spacing2.setLayout(spacing2Layout);
         spacing2Layout.setHorizontalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
         spacing2Layout.setVerticalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 48, Short.MAX_VALUE)
         );
 
         home_pnl_welcome.add(spacing2);
@@ -292,21 +295,19 @@ public class PlaylistsWindow extends javax.swing.JFrame {
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, home_pnl_insideLayout.createSequentialGroup()
-                        .addGap(0, 608, Short.MAX_VALUE)
-                        .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(home_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(home_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         home_pnl_insideLayout.setVerticalGroup(
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(home_pnl_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(home_pnl_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btt_profile, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout home_pnl_allLayout = new javax.swing.GroupLayout(home_pnl_all);
@@ -355,14 +356,14 @@ public class PlaylistsWindow extends javax.swing.JFrame {
 
     private void home_pnl_homeOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_homeOptMouseClicked
         // TODO add your handling code here:
-        HomeWindow hw = new HomeWindow(null);
+        HomeWindow hw = new HomeWindow(user);
         hw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_homeOptMouseClicked
 
     private void home_pnl_searchOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_searchOptMouseClicked
         // TODO add your handling code here:
-        SearchWindow sw = new SearchWindow();
+        SearchWindow sw = new SearchWindow(user);
         sw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_searchOptMouseClicked
