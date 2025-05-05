@@ -18,6 +18,7 @@ public class Adm extends Person{
 
     private int admId;
     private String admLogin, admPassword;
+    private boolean adm;
 
     public Adm(int admId, String admLogin, String admPassword, String name, 
             String gender, Date birthDate) {
@@ -25,6 +26,7 @@ public class Adm extends Person{
         this.admId = admId;
         this.admLogin = admLogin;
         this.admPassword = admPassword;
+        this.adm = true;
     }
 
     public Adm(String admLogin, String admPassword, String name, String gender, 
@@ -32,11 +34,13 @@ public class Adm extends Person{
         super(name, gender, birthDate);
         this.admLogin = admLogin;
         this.admPassword = admPassword;
+        this.adm = true;
     }
 
     public Adm(String admLogin, String admPassword) {
         this.admLogin = admLogin;
         this.admPassword = admPassword;
+        this.adm = true;
     }
  
     public int getAdmId() {
@@ -54,7 +58,10 @@ public class Adm extends Person{
     public String getAdmPassword() {
         return admPassword;
     }
-    
+
+    public boolean isAdm() {
+        return adm;
+    }  
     
     //esse método cria um adm com os resultados da consulta (usar para login)
     public static Adm fromResultSet(ResultSet res) throws SQLException {
@@ -67,7 +74,7 @@ public class Adm extends Person{
             res.getString("password_adm"),
             res.getString("name"),
             res.getString("gender"),
-            birthDate
+            birthDate            
         );
     }
     
