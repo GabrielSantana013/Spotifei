@@ -4,8 +4,12 @@
  */
 package view;
 
+import controller.MusicSearchController;
 import view.customClasses.RoundedButton;
 import java.awt.*;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import model.User;
 import view.customClasses.*;
 import view.customClasses.RoundedButton.TextAlign;
@@ -27,6 +31,7 @@ public class SearchWindow extends javax.swing.JFrame {
      */
     public SearchWindow(User user) {
         initComponents();
+        c = new MusicSearchController(this);
         this.user = user;
 
         this.setSize(width, height);
@@ -41,6 +46,26 @@ public class SearchWindow extends javax.swing.JFrame {
         
         this.setLocation(new Point(x,y));
     }
+
+    public JTextField getSearch_name() {
+        return search_name;
+    }
+
+    public void setSearch_name(JTextField search_name) {
+        this.search_name = search_name;
+    }
+
+    public JList<String> getjList1() {
+        return jList1;
+    }
+
+    public void setjList1(JList<String> jList1) {
+        this.jList1 = jList1;
+    }
+
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,7 +147,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,7 +167,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_searchOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_searchOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_searchOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -162,7 +187,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_searchOpt);
 
         home_pnl_playlistOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -404,6 +429,7 @@ public class SearchWindow extends javax.swing.JFrame {
 
     private void search_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_nameActionPerformed
         // TODO add your handling code here:
+        c.searchMusic();
     }//GEN-LAST:event_search_nameActionPerformed
 
     /**
@@ -440,6 +466,8 @@ public class SearchWindow extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    
+    private MusicSearchController c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_profile;

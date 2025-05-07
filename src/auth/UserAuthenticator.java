@@ -23,7 +23,7 @@ public class UserAuthenticator implements Authenticator<User>{
         try{
             Connection conn = new DbConnection().getConnection();
             UserDAO dao = new UserDAO(conn);
-            ResultSet result = dao.search(new User(login, password));
+            ResultSet result = dao.login(new User(login, password));
             
             if(result.next()){
                 return User.fromResultSet(result);

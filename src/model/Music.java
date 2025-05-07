@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author unifgdias
@@ -11,18 +14,21 @@ package model;
 public class Music {
     
     private int musicId, likes, deslikes, duration;
-    private String musicTitle, musicDescription;
+    private String musicTitle, musicDescription, genre;
 
-    public Music(int musicId, int likes, int deslikes, int duration, String musicTitle, String musicDescription) {
+    public Music(int musicId, int likes, int deslikes, int duration, 
+            String musicTitle, String musicDescription, String genre) {
         this.musicId = musicId;
         this.likes = likes;
         this.deslikes = deslikes;
         this.duration = duration;
         this.musicTitle = musicTitle;
         this.musicDescription = musicDescription;
+        this.genre = genre;
     }
 
-    public Music(int likes, int deslikes, int duration, String musicTitle, String musicDescription) {
+    public Music(int likes, int deslikes, int duration, String musicTitle, 
+            String musicDescription) {
         this.likes = likes;
         this.deslikes = deslikes;
         this.duration = duration;
@@ -76,6 +82,19 @@ public class Music {
 
     public void setMusicDescription(String musicDescription) {
         this.musicDescription = musicDescription;
+    }
+    
+    public static Music fromResultSet(ResultSet res) throws SQLException {
+        
+        return new Music(
+            res.getInt("music_id"),            
+            res.getInt("likes"),            
+            res.getInt("deslikes"),
+            res.getInt("duration"),
+            res.getString("title"),
+            res.getString("description"),                        
+            res.getString("genre")
+        );
     }
     
 }

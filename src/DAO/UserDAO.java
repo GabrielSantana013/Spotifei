@@ -34,7 +34,7 @@ public class UserDAO {
         conn.close();
     }
     
-    public ResultSet search(User user)throws SQLException{
+    public ResultSet login(User user)throws SQLException{
         String sql = "select * from spotifei.users where login_user = ? AND"
                 + " password_user = ?";   
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -44,4 +44,5 @@ public class UserDAO {
         ResultSet result = statement.getResultSet();
         return result;
     }
+    
 }
