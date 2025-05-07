@@ -14,10 +14,10 @@ import javax.swing.*;
 public class PlaceholderFields extends JTextField {
 
     private String placeholderText;
-    private final Color placeholderColor = new Color(168,168,168);
-    private final Color backgroundColor = new Color(51,51,51);
-    private final Color hoverBackgroundColor = new Color(64,64,64);
-    private final Color inputColor= new Color(236, 239, 241);
+    private Color placeholderColor = new Color(168,168,168);
+    private Color backgroundColor = new Color(51,51,51);
+    private Color hoverBackgroundColor = new Color(64,64,64);
+    private Color inputColor= new Color(236, 239, 241);
     private Insets padding; // padding for the placeholder text
 
     // constructor for JTextField or JTextArea with custom colors and padding
@@ -34,6 +34,22 @@ public class PlaceholderFields extends JTextField {
         initialize();
     }
 
+    public void setPlaceholderColor(Color placeholderColor) {
+        this.placeholderColor = placeholderColor;
+    }
+
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public void setHoverBackgroundColor(Color hoverBackgroundColor) {
+        this.hoverBackgroundColor = hoverBackgroundColor;
+    }
+
+    public void setInputColor(Color inputColor) {
+        this.inputColor = inputColor;
+    }
+    
     private void initialize() {
         addFocusListener(new FocusAdapter() {
             @Override

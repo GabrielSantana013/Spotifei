@@ -7,7 +7,8 @@ package view;
 import view.customClasses.RoundedButton;
 import java.awt.*;
 import model.User;
-import view.customClasses.RoundedButton.*;
+import view.customClasses.*;
+import view.customClasses.RoundedButton.TextAlign;
 
 /**
  *
@@ -51,7 +52,7 @@ public class SearchWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         home_pnl_all = new javax.swing.JPanel();
-        home_pnl_leftSide = new javax.swing.JPanel();
+        search_pnl_leftSide = new javax.swing.JPanel();
         home_pnl_titleLogo = new javax.swing.JPanel();
         icon_logo = new javax.swing.JLabel();
         lbl_title = new javax.swing.JLabel();
@@ -65,10 +66,16 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_playlistOpt = new javax.swing.JPanel();
         icon_playlist = new javax.swing.JLabel();
         lbl_playlist = new javax.swing.JLabel();
-        home_pnl_topSide = new javax.swing.JPanel();
-        home_pnl_botSide = new javax.swing.JPanel();
-        home_pnl_inside = new javax.swing.JPanel();
+        search_pnl_topSide = new javax.swing.JPanel();
+        search_pnl_botSide = new javax.swing.JPanel();
+        search_pnl_inside = new javax.swing.JPanel();
+        search_pnl_bar = new RoundedPanel();
+        search_name = new PlaceholderFields("Digite o nome da música...", new Insets(0, 15, 0, 0));
+        icon1 = new javax.swing.JLabel();
         btt_profile = new RoundedButton("user_name");
+        search_pnl_musics = new javax.swing.JPanel();
+        scroll_pane = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -76,7 +83,7 @@ public class SearchWindow extends javax.swing.JFrame {
 
         home_pnl_all.setBackground(new java.awt.Color(28, 28, 28));
 
-        home_pnl_leftSide.setBackground(new java.awt.Color(28, 28, 28));
+        search_pnl_leftSide.setBackground(new java.awt.Color(28, 28, 28));
 
         home_pnl_titleLogo.setBackground(new java.awt.Color(28, 28, 28));
 
@@ -174,19 +181,19 @@ public class SearchWindow extends javax.swing.JFrame {
 
         home_pnl_options.add(home_pnl_playlistOpt);
 
-        javax.swing.GroupLayout home_pnl_leftSideLayout = new javax.swing.GroupLayout(home_pnl_leftSide);
-        home_pnl_leftSide.setLayout(home_pnl_leftSideLayout);
-        home_pnl_leftSideLayout.setHorizontalGroup(
-            home_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(home_pnl_leftSideLayout.createSequentialGroup()
+        javax.swing.GroupLayout search_pnl_leftSideLayout = new javax.swing.GroupLayout(search_pnl_leftSide);
+        search_pnl_leftSide.setLayout(search_pnl_leftSideLayout);
+        search_pnl_leftSideLayout.setHorizontalGroup(
+            search_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(search_pnl_leftSideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(home_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(search_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(home_pnl_options, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(home_pnl_titleLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        home_pnl_leftSideLayout.setVerticalGroup(
-            home_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(home_pnl_leftSideLayout.createSequentialGroup()
+        search_pnl_leftSideLayout.setVerticalGroup(
+            search_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(search_pnl_leftSideLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(home_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -194,34 +201,77 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addContainerGap(440, Short.MAX_VALUE))
         );
 
-        home_pnl_topSide.setBackground(new java.awt.Color(28, 28, 28));
+        search_pnl_topSide.setBackground(new java.awt.Color(28, 28, 28));
 
-        javax.swing.GroupLayout home_pnl_topSideLayout = new javax.swing.GroupLayout(home_pnl_topSide);
-        home_pnl_topSide.setLayout(home_pnl_topSideLayout);
-        home_pnl_topSideLayout.setHorizontalGroup(
-            home_pnl_topSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout search_pnl_topSideLayout = new javax.swing.GroupLayout(search_pnl_topSide);
+        search_pnl_topSide.setLayout(search_pnl_topSideLayout);
+        search_pnl_topSideLayout.setHorizontalGroup(
+            search_pnl_topSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        home_pnl_topSideLayout.setVerticalGroup(
-            home_pnl_topSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        search_pnl_topSideLayout.setVerticalGroup(
+            search_pnl_topSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        home_pnl_botSide.setBackground(new java.awt.Color(28, 28, 28));
+        search_pnl_botSide.setBackground(new java.awt.Color(28, 28, 28));
 
-        javax.swing.GroupLayout home_pnl_botSideLayout = new javax.swing.GroupLayout(home_pnl_botSide);
-        home_pnl_botSide.setLayout(home_pnl_botSideLayout);
-        home_pnl_botSideLayout.setHorizontalGroup(
-            home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout search_pnl_botSideLayout = new javax.swing.GroupLayout(search_pnl_botSide);
+        search_pnl_botSide.setLayout(search_pnl_botSideLayout);
+        search_pnl_botSideLayout.setHorizontalGroup(
+            search_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1024, Short.MAX_VALUE)
         );
-        home_pnl_botSideLayout.setVerticalGroup(
-            home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        search_pnl_botSideLayout.setVerticalGroup(
+            search_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 130, Short.MAX_VALUE)
         );
 
-        home_pnl_inside.setBackground(new java.awt.Color(18, 18, 18));
-        home_pnl_inside.setPreferredSize(new java.awt.Dimension(48, 20));
+        search_pnl_inside.setBackground(new java.awt.Color(18, 18, 18));
+        search_pnl_inside.setPreferredSize(new java.awt.Dimension(48, 20));
+
+        search_pnl_bar.setPreferredSize(new java.awt.Dimension(289, 0));
+
+        ((PlaceholderFields) search_name).setBackgroundColor(new Color(185,192,198));
+        ((PlaceholderFields) search_name).setInputColor(new Color(28,28,28));
+        ((PlaceholderFields) search_name).setPlaceholderColor(new Color(28,28,28));
+        ((PlaceholderFields) search_name).setHoverBackgroundColor(new Color(185,192,198));
+        search_name.setBackground(new java.awt.Color(185, 192, 198));
+        search_name.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        search_name.setForeground(new java.awt.Color(168, 170, 170));
+        search_name.setBorder(null);
+        search_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_nameActionPerformed(evt);
+            }
+        });
+
+        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/searchIcon_gray_small.png"))); // NOI18N
+
+        javax.swing.GroupLayout search_pnl_barLayout = new javax.swing.GroupLayout(search_pnl_bar);
+        search_pnl_bar.setLayout(search_pnl_barLayout);
+        search_pnl_barLayout.setHorizontalGroup(
+            search_pnl_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(search_pnl_barLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(search_name, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icon1)
+                .addContainerGap())
+        );
+        search_pnl_barLayout.setVerticalGroup(
+            search_pnl_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(search_pnl_barLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(search_name, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(icon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        ((RoundedPanel) search_pnl_bar).setCornerRadiusHorizontal(80);
+        ((RoundedPanel) search_pnl_bar).setCornerRadiusHorizontal(40);
+        ((RoundedPanel) search_pnl_bar).setNormalColor(new Color(185,192,198));
+        ((RoundedPanel) search_pnl_bar).setHoverColor(new Color(185,192,198));
 
         ((RoundedButton) btt_profile).setTextAlignment(TextAlign.LEFT);
         btt_profile.setBackground(new java.awt.Color(185, 192, 198));
@@ -240,20 +290,54 @@ public class SearchWindow extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout home_pnl_insideLayout = new javax.swing.GroupLayout(home_pnl_inside);
-        home_pnl_inside.setLayout(home_pnl_insideLayout);
-        home_pnl_insideLayout.setHorizontalGroup(
-            home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, home_pnl_insideLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scroll_pane.setViewportView(jList1);
+
+        javax.swing.GroupLayout search_pnl_musicsLayout = new javax.swing.GroupLayout(search_pnl_musics);
+        search_pnl_musics.setLayout(search_pnl_musicsLayout);
+        search_pnl_musicsLayout.setHorizontalGroup(
+            search_pnl_musicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(search_pnl_musicsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scroll_pane)
                 .addContainerGap())
         );
-        home_pnl_insideLayout.setVerticalGroup(
-            home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(home_pnl_insideLayout.createSequentialGroup()
+        search_pnl_musicsLayout.setVerticalGroup(
+            search_pnl_musicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(search_pnl_musicsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scroll_pane, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout search_pnl_insideLayout = new javax.swing.GroupLayout(search_pnl_inside);
+        search_pnl_inside.setLayout(search_pnl_insideLayout);
+        search_pnl_insideLayout.setHorizontalGroup(
+            search_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(search_pnl_insideLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(search_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(search_pnl_musics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(search_pnl_insideLayout.createSequentialGroup()
+                        .addComponent(search_pnl_bar, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                        .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        search_pnl_insideLayout.setVerticalGroup(
+            search_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(search_pnl_insideLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(search_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btt_profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(search_pnl_bar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(search_pnl_musics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -261,25 +345,25 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_all.setLayout(home_pnl_allLayout);
         home_pnl_allLayout.setHorizontalGroup(
             home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(home_pnl_botSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(search_pnl_botSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(home_pnl_allLayout.createSequentialGroup()
-                .addComponent(home_pnl_leftSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(search_pnl_leftSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(home_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
-                    .addComponent(home_pnl_topSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+                    .addComponent(search_pnl_topSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         home_pnl_allLayout.setVerticalGroup(
             home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(home_pnl_allLayout.createSequentialGroup()
                 .addGroup(home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(home_pnl_allLayout.createSequentialGroup()
-                        .addComponent(home_pnl_topSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(search_pnl_topSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(home_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
-                    .addComponent(home_pnl_leftSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
+                    .addComponent(search_pnl_leftSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(home_pnl_botSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(search_pnl_botSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -295,11 +379,6 @@ public class SearchWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btt_profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_profileActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btt_profileActionPerformed
 
     private void home_pnl_homeOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_homeOptMouseClicked
         // TODO add your handling code here:
@@ -318,6 +397,14 @@ public class SearchWindow extends javax.swing.JFrame {
         pw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_playlistOptMouseClicked
+
+    private void btt_profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_profileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btt_profileActionPerformed
+
+    private void search_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_nameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,22 +444,28 @@ public class SearchWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_profile;
     private javax.swing.JPanel home_pnl_all;
-    private javax.swing.JPanel home_pnl_botSide;
     private javax.swing.JPanel home_pnl_homeOpt;
-    private javax.swing.JPanel home_pnl_inside;
-    private javax.swing.JPanel home_pnl_leftSide;
     private javax.swing.JPanel home_pnl_options;
     private javax.swing.JPanel home_pnl_playlistOpt;
     private javax.swing.JPanel home_pnl_searchOpt;
     private javax.swing.JPanel home_pnl_titleLogo;
-    private javax.swing.JPanel home_pnl_topSide;
+    private javax.swing.JLabel icon1;
     private javax.swing.JLabel icon_home;
     private javax.swing.JLabel icon_logo;
     private javax.swing.JLabel icon_playlist;
     private javax.swing.JLabel icon_search;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_playlist;
     private javax.swing.JLabel lbl_search;
     private javax.swing.JLabel lbl_title;
+    private javax.swing.JScrollPane scroll_pane;
+    private javax.swing.JTextField search_name;
+    private javax.swing.JPanel search_pnl_bar;
+    private javax.swing.JPanel search_pnl_botSide;
+    private javax.swing.JPanel search_pnl_inside;
+    private javax.swing.JPanel search_pnl_leftSide;
+    private javax.swing.JPanel search_pnl_musics;
+    private javax.swing.JPanel search_pnl_topSide;
     // End of variables declaration//GEN-END:variables
 }
