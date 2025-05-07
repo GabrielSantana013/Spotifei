@@ -108,7 +108,7 @@ public class HomeWindow extends javax.swing.JFrame {
         icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png"))); // NOI18N
         icon_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        lbl_title.setFont(new java.awt.Font("Fira Mono Medium", 0, 24)); // NOI18N
+        lbl_title.setFont(new Font("Gotham Black", Font.PLAIN, 24));
         lbl_title.setForeground(new java.awt.Color(30, 215, 96));
         lbl_title.setText("Spotifei");
 
@@ -151,7 +151,7 @@ public class HomeWindow extends javax.swing.JFrame {
         icon_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/homeIcon.png"))); // NOI18N
         home_pnl_homeOpt.add(icon_home);
 
-        lbl_home.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        lbl_home.setFont(new Font("Gotham Black", Font.PLAIN, 16));
         lbl_home.setForeground(new java.awt.Color(168, 170, 170));
         lbl_home.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_home.setText("Home");
@@ -171,7 +171,7 @@ public class HomeWindow extends javax.swing.JFrame {
         icon_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/searchIcon.png"))); // NOI18N
         home_pnl_searchOpt.add(icon_search);
 
-        lbl_search.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        lbl_search.setFont(new Font("Gotham Black", Font.PLAIN, 16));
         lbl_search.setForeground(new java.awt.Color(168, 170, 170));
         lbl_search.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_search.setText("Buscar");
@@ -191,7 +191,7 @@ public class HomeWindow extends javax.swing.JFrame {
         icon_playlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/playlistIcon.png"))); // NOI18N
         home_pnl_playlistOpt.add(icon_playlist);
 
-        lbl_playlist.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        lbl_playlist.setFont(new Font("Gotham Black", Font.PLAIN, 16));
         lbl_playlist.setForeground(new java.awt.Color(168, 170, 170));
         lbl_playlist.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_playlist.setText("Playlists");
@@ -249,7 +249,7 @@ public class HomeWindow extends javax.swing.JFrame {
 
         ((RoundedButton) btt_profile).setTextAlignment(TextAlign.LEFT);
         btt_profile.setBackground(new java.awt.Color(185, 192, 198));
-        btt_profile.setFont(new java.awt.Font("Fira Mono", 1, 12)); // NOI18N
+        btt_profile.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
         btt_profile.setForeground(new java.awt.Color(28, 28, 28));
         btt_profile.setText("user_name");
         btt_profile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
@@ -275,7 +275,7 @@ public class HomeWindow extends javax.swing.JFrame {
         spacing1.setLayout(spacing1Layout);
         spacing1Layout.setHorizontalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 181, Short.MAX_VALUE)
+            .addGap(0, 212, Short.MAX_VALUE)
         );
         spacing1Layout.setVerticalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +284,7 @@ public class HomeWindow extends javax.swing.JFrame {
 
         home_pnl_welcome.add(spacing1);
 
-        lbl_welcome.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        lbl_welcome.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 18));
         lbl_welcome.setForeground(new java.awt.Color(168, 170, 170));
         lbl_welcome.setText("Bem-vindo(a), user_name!");
         lbl_welcome.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
@@ -300,7 +300,7 @@ public class HomeWindow extends javax.swing.JFrame {
         spacing2.setLayout(spacing2Layout);
         spacing2Layout.setHorizontalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 181, Short.MAX_VALUE)
+            .addGap(0, 212, Short.MAX_VALUE)
         );
         spacing2Layout.setVerticalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

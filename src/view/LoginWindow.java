@@ -147,7 +147,7 @@ public class LoginWindow extends javax.swing.JFrame {
         icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png"))); // NOI18N
         icon_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        lbl_title.setFont(new java.awt.Font("Fira Mono Medium", 0, 24)); // NOI18N
+        lbl_title.setFont(new Font("Gotham Black", Font.PLAIN, 24));
         lbl_title.setForeground(new java.awt.Color(30, 215, 96));
         lbl_title.setText("Spotifei");
 
@@ -177,7 +177,7 @@ public class LoginWindow extends javax.swing.JFrame {
         login_pnl_login.setBackground(new java.awt.Color(28, 28, 28));
 
         txt_login.setBackground(new java.awt.Color(51, 51, 51));
-        txt_login.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        txt_login.setFont(new java.awt.Font("Gotham Thin", 1, 14));
         txt_login.setForeground(new java.awt.Color(168, 170, 170));
         txt_login.setBorder(null);
         txt_login.addActionListener(new java.awt.event.ActionListener() {
@@ -187,7 +187,7 @@ public class LoginWindow extends javax.swing.JFrame {
         });
 
         txt_password.setBackground(new java.awt.Color(51, 51, 51));
-        txt_password.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        txt_password.setFont(new java.awt.Font("Gotham Thin", 1, 14));
         txt_password.setForeground(new java.awt.Color(168, 170, 170));
         txt_password.setBorder(null);
         txt_password.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +197,7 @@ public class LoginWindow extends javax.swing.JFrame {
         });
 
         btt_login.setBackground(new java.awt.Color(185, 192, 198));
-        btt_login.setFont(new java.awt.Font("Fira Mono", 1, 18)); // NOI18N
+        btt_login.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 18));
         btt_login.setForeground(new java.awt.Color(28, 28, 28));
         btt_login.setText("Entrar");
         btt_login.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
@@ -211,6 +211,7 @@ public class LoginWindow extends javax.swing.JFrame {
         });
 
         btt_register.setBackground(new java.awt.Color(28, 28, 28));
+        btt_register.setFont(new java.awt.Font("Gotham Light", Font.ITALIC, 13));
         btt_register.setForeground(new java.awt.Color(236, 239, 241));
         btt_register.setText("Não possui cadastro? Registre-se agora!");
         btt_register.setBorderPainted(false);
@@ -244,7 +245,7 @@ public class LoginWindow extends javax.swing.JFrame {
         login_pnl_loginLayout.setVerticalGroup(
             login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(login_pnl_loginLayout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
+                .addContainerGap(121, Short.MAX_VALUE)
                 .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)

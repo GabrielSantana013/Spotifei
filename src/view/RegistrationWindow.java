@@ -86,11 +86,11 @@ public class RegistrationWindow extends javax.swing.JFrame {
         this.lbl_title = lbl_title;
     }
 
-    public JTextField getTxt_birthDate() {
+    public JFormattedTextField getTxt_birthDate() {
         return txt_birthDate;
     }
 
-    public void setTxt_birthDate(JTextField txt_birthDate) {
+    public void setTxt_birthDate(JFormattedTextField txt_birthDate) {
         this.txt_birthDate = txt_birthDate;
     }
 
@@ -135,7 +135,14 @@ public class RegistrationWindow extends javax.swing.JFrame {
         lbl_title = new javax.swing.JLabel();
         register_pnl_registration = new javax.swing.JPanel();
         txt_name = new PlaceholderFields("Digite seu nome...", new Insets(0, 15, 0, 0));
-        txt_birthDate = new PlaceholderFields("Digite sua data de nascimento...", new Insets(0, 15, 0, 0));
+        javax.swing.text.MaskFormatter dateFormatter = null;
+        try {
+            dateFormatter = new javax.swing.text.MaskFormatter("##/##/####");
+            dateFormatter.setPlaceholderCharacter('_');
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_birthDate = new PlaceholderFields(dateFormatter, "01/01/2000", new Insets(0, 15, 0, 0));
         txt_login = new PlaceholderFields("Digite seu login...", new Insets(0, 15, 0, 0));
         txt_password = new PlaceholderFields("Digite sua senha...", new Insets(0, 15, 0, 0));
         cbox_gender = new javax.swing.JComboBox<>();
@@ -155,7 +162,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png"))); // NOI18N
         icon_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        lbl_title.setFont(new java.awt.Font("Fira Mono Medium", 0, 24)); // NOI18N
+        lbl_title.setFont(new Font("Gotham Black", Font.PLAIN, 24));
         lbl_title.setForeground(new java.awt.Color(30, 215, 96));
         lbl_title.setText("Spotifei");
 
@@ -185,7 +192,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         register_pnl_registration.setBackground(new java.awt.Color(28, 28, 28));
 
         txt_name.setBackground(new java.awt.Color(51, 51, 51));
-        txt_name.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        txt_name.setFont(new java.awt.Font("Gotham Thin", 1, 14));
         txt_name.setForeground(new java.awt.Color(168, 170, 170));
         txt_name.setBorder(null);
         txt_name.addActionListener(new java.awt.event.ActionListener() {
@@ -195,17 +202,12 @@ public class RegistrationWindow extends javax.swing.JFrame {
         });
 
         txt_birthDate.setBackground(new java.awt.Color(51, 51, 51));
-        txt_birthDate.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
-        txt_birthDate.setForeground(new java.awt.Color(168, 170, 170));
         txt_birthDate.setBorder(null);
-        txt_birthDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_birthDateActionPerformed(evt);
-            }
-        });
+        txt_birthDate.setForeground(new java.awt.Color(168, 168, 168));
+        txt_birthDate.setFont(new java.awt.Font("Gotham Thin", 1, 14));
 
         txt_login.setBackground(new java.awt.Color(51, 51, 51));
-        txt_login.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        txt_login.setFont(new java.awt.Font("Gotham Thin", 1, 14));
         txt_login.setForeground(new java.awt.Color(168, 170, 170));
         txt_login.setBorder(null);
         txt_login.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +217,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         });
 
         txt_password.setBackground(new java.awt.Color(51, 51, 51));
-        txt_password.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        txt_password.setFont(new java.awt.Font("Gotham Thin", 1, 14));
         txt_password.setForeground(new java.awt.Color(168, 170, 170));
         txt_password.setBorder(null);
         txt_password.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +227,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         });
 
         cbox_gender.setBackground(new java.awt.Color(51, 51, 51));
-        cbox_gender.setFont(new java.awt.Font("Fira Mono", 1, 14)); // NOI18N
+        cbox_gender.setFont(new java.awt.Font("Gotham Thin", 1, 14));
         cbox_gender.setForeground(new java.awt.Color(168, 170, 170));
         cbox_gender.setMaximumRowCount(3);
         cbox_gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outro" }));
@@ -239,7 +241,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         register_btt_pnl.setLayout(flowLayout1);
 
         btt_cadastrar.setBackground(new java.awt.Color(185, 192, 198));
-        btt_cadastrar.setFont(new java.awt.Font("Fira Mono", 1, 18)); // NOI18N
+        btt_cadastrar.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 18));
         btt_cadastrar.setForeground(new java.awt.Color(28, 28, 28));
         btt_cadastrar.setText("Cadastrar");
         btt_cadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
@@ -257,20 +259,16 @@ public class RegistrationWindow extends javax.swing.JFrame {
         register_pnl_registration.setLayout(register_pnl_registrationLayout);
         register_pnl_registrationLayout.setHorizontalGroup(
             register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(register_pnl_registrationLayout.createSequentialGroup()
-                .addGroup(register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(register_pnl_registrationLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_login, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                            .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                            .addComponent(txt_birthDate, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_name, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)))
-                    .addGroup(register_pnl_registrationLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cbox_gender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
             .addComponent(register_btt_pnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, register_pnl_registrationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txt_birthDate)
+                    .addComponent(txt_login, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                    .addComponent(txt_password, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                    .addComponent(txt_name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                    .addComponent(cbox_gender, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         register_pnl_registrationLayout.setVerticalGroup(
             register_pnl_registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,10 +357,6 @@ public class RegistrationWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_loginActionPerformed
 
-    private void txt_birthDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_birthDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_birthDateActionPerformed
-
     private void btt_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_returnActionPerformed
         // TODO add your handling code here:
         LoginWindow lw = new LoginWindow();        
@@ -417,7 +411,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
     private javax.swing.JPanel register_pnl_all;
     private javax.swing.JPanel register_pnl_registration;
     private javax.swing.JPanel register_pnl_titleLogo;
-    private javax.swing.JTextField txt_birthDate;
+    private javax.swing.JFormattedTextField txt_birthDate;
     private javax.swing.JTextField txt_login;
     private javax.swing.JTextField txt_name;
     private javax.swing.JTextField txt_password;

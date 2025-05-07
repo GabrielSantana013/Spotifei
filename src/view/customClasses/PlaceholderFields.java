@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * @author Pedro Schneider, Gabriel Santana Dias
  */
-public class PlaceholderFields extends JTextField {
+public class PlaceholderFields extends JFormattedTextField {
 
     private String placeholderText;
     private Color placeholderColor = new Color(168,168,168);
@@ -23,6 +23,20 @@ public class PlaceholderFields extends JTextField {
     // constructor for JTextField or JTextArea with custom colors and padding
     public PlaceholderFields(String placeholderText, Insets padding) {
         super(); // call the constructor of JTextComponent (parent class)
+        this.placeholderText = placeholderText;
+        this.padding = padding;
+        
+        setText(placeholderText);
+        setForeground(placeholderColor);
+        
+        setBorder(BorderFactory.createEmptyBorder());
+        
+        initialize();
+    }
+    
+    // constructor for formatted text field
+    public PlaceholderFields(AbstractFormatter formatter, String placeholderText, Insets padding) {
+        super(formatter);
         this.placeholderText = placeholderText;
         this.padding = padding;
         
@@ -50,6 +64,26 @@ public class PlaceholderFields extends JTextField {
         this.inputColor = inputColor;
     }
     
+    private boolean isEffectivelyEmpty() {
+    String text = getText();
+
+    // for formatted fields: check if it only contains the placeholder character or separators
+    if (getFormatter() instanceof javax.swing.text.MaskFormatter mf) {
+        char placeholderChar = mf.getPlaceholderCharacter();
+
+        // strip out all non-placeholder characters (e.g., '/', spaces)
+        for (char c : text.toCharArray()) {
+            if (Character.isDigit(c)) return false;
+            if (Character.isLetter(c)) return false;
+            if (c != placeholderChar && c != ' ' && c != '/') return false;
+        }
+        return true;
+    }
+
+    // for normal fields: just trim and check
+    return text.trim().isEmpty();
+}
+    
     private void initialize() {
         addFocusListener(new FocusAdapter() {
             @Override
@@ -64,7 +98,7 @@ public class PlaceholderFields extends JTextField {
             @Override
             public void focusLost(FocusEvent e) {
                 setBackground(backgroundColor);
-                if (getText().isEmpty()) {
+                if (isEffectivelyEmpty()) {
                     setText(placeholderText);
                     setForeground(placeholderColor);
                 }
@@ -77,9 +111,12 @@ public class PlaceholderFields extends JTextField {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
 
-        // fill background
+        // set background
         g2.setColor(getBackground());
         g2.fillRect(0, 0, getWidth(), getHeight());
+
+        // set anti-aliasing (improves text quality)
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         // translate for padding
         g2.translate(padding.left, padding.top);
