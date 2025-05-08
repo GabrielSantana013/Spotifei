@@ -24,18 +24,28 @@ public class MusicDAO {
         this.conn = conn;
     }
     
-    public List<Music> searchMusic(String musicName)throws SQLException{
-        String sql = "select * from spotifei.music where lower(title) like lower(?)";
+    public List<Music> searchMusic(String musicName) throws SQLException {
+        String sql = "SELECT m.*, a.name AS artist_name FROM spotifei.music m " +
+                 "JOIN spotifei.artist a ON m.artist_id = a.artist_id " +
+                 "WHERE LOWER(m.title) LIKE LOWER(?) OR " +
+                 "LOWER(m.genre) LIKE LOWER(?) OR " +
+                 "LOWER(a.name) LIKE LOWER(?)";
+    
         List<Music> musics = new ArrayList<>();
-        
+    
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, "%" + musicName + "%");//busca parcial
+        statement.setString(1, "%" + musicName + "%"); // busca parcial
+        statement.setString(2, "%" + musicName + "%");
+        statement.setString(3, "%" + musicName + "%");
+    
         ResultSet result = statement.executeQuery();
-        
-        while(result.next()){
-         musics.add(Music.fromResultSet(result));
+    
+        while (result.next()) {
+            musics.add(Music.fromResultSet(result));
         }
+    
         return musics;
     }
+
     
 }

@@ -14,10 +14,11 @@ import java.sql.SQLException;
 public class Music {
     
     private int musicId, likes, deslikes, duration;
-    private String musicTitle, musicDescription, genre;
+    private String musicTitle, musicDescription, genre, artistName;
 
     public Music(int musicId, int likes, int deslikes, int duration, 
-            String musicTitle, String musicDescription, String genre) {
+            String musicTitle, String musicDescription, String genre,
+            String artistName) {
         this.musicId = musicId;
         this.likes = likes;
         this.deslikes = deslikes;
@@ -25,6 +26,7 @@ public class Music {
         this.musicTitle = musicTitle;
         this.musicDescription = musicDescription;
         this.genre = genre;
+        this.artistName = artistName;
     }
 
     public Music(int likes, int deslikes, int duration, String musicTitle, 
@@ -83,6 +85,22 @@ public class Music {
     public void setMusicDescription(String musicDescription) {
         this.musicDescription = musicDescription;
     }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getArtistName() {
+        return artistName;
+    }
+
+    public void setArtistName(String artistName) {
+        this.artistName = artistName;
+    }
     
     public static Music fromResultSet(ResultSet res) throws SQLException {
         
@@ -93,7 +111,8 @@ public class Music {
             res.getInt("duration"),
             res.getString("title"),
             res.getString("description"),                        
-            res.getString("genre")
+            res.getString("genre"),
+            res.getString("artist_name")
         );
     }
     

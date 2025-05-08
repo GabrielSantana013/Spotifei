@@ -29,7 +29,7 @@ public class SearchWindow extends javax.swing.JFrame {
      */
     public SearchWindow(User user) {
         initComponents();
-        c = new MusicSearchController(this);
+        c = new MusicSearchController(this, user);
         this.user = user;
 
         this.setSize(width, height);
@@ -46,6 +46,7 @@ public class SearchWindow extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> {
             list_musics.requestFocusInWindow();
         });
+        c.setUserNameOnWindow();
     }
 
     public JTextField getSearch_name() {
@@ -64,9 +65,69 @@ public class SearchWindow extends javax.swing.JFrame {
         this.list_musics = jList1;
     }
 
-    
-    
-    
+    public JLabel getLbl_musicArtist() {
+        return lbl_musicArtist;
+    }
+
+    public void setLbl_musicArtist(JLabel lbl_musicArtist) {
+        this.lbl_musicArtist = lbl_musicArtist;
+    }
+
+    public JLabel getLbl_musicDescription() {
+        return lbl_musicDescription;
+    }
+
+    public void setLbl_musicDescription(JLabel lbl_musicDescription) {
+        this.lbl_musicDescription = lbl_musicDescription;
+    }
+
+    public JLabel getLbl_musicDislikes() {
+        return lbl_musicDislikes;
+    }
+
+    public void setLbl_musicDislikes(JLabel lbl_musicDislikes) {
+        this.lbl_musicDislikes = lbl_musicDislikes;
+    }
+
+    public JLabel getLbl_musicDuration() {
+        return lbl_musicDuration;
+    }
+
+    public void setLbl_musicDuration(JLabel lbl_musicDuration) {
+        this.lbl_musicDuration = lbl_musicDuration;
+    }
+
+    public JLabel getLbl_musicGenre() {
+        return lbl_musicGenre;
+    }
+
+    public void setLbl_musicGenre(JLabel lbl_musicGenre) {
+        this.lbl_musicGenre = lbl_musicGenre;
+    }
+
+    public JLabel getLbl_musicLikes() {
+        return lbl_musicLikes;
+    }
+
+    public void setLbl_musicLikes(JLabel lbl_musicLikes) {
+        this.lbl_musicLikes = lbl_musicLikes;
+    }
+
+    public JLabel getLbl_musicTitle() {
+        return lbl_musicTitle;
+    }
+
+    public void setLbl_musicTitle(JLabel lbl_musicTitle) {
+        this.lbl_musicTitle = lbl_musicTitle;
+    }
+
+    public JButton getBtt_profile() {
+        return btt_profile;
+    }
+
+    public void setBtt_profile(JButton btt_profile) {
+        this.btt_profile = btt_profile;
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.

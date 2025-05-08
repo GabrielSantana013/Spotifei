@@ -21,6 +21,7 @@ public class HomeWindow extends javax.swing.JFrame {
     private final Dimension screenSize = toolkit.getScreenSize();
     private final int width = screenSize.width;
     private final int height = screenSize.height;
+    private User user;
     
     /**
      * Creates new form HomeWindow
@@ -28,6 +29,7 @@ public class HomeWindow extends javax.swing.JFrame {
     public HomeWindow(User user) {
         initComponents();
         c =  new HomeController(this, user);
+        this.user = user;
         
         this.setSize(width, height);
         
@@ -380,14 +382,14 @@ public class HomeWindow extends javax.swing.JFrame {
 
     private void home_pnl_searchOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_searchOptMouseClicked
         // TODO add your handling code here:
-        SearchWindow sw = new SearchWindow(c.getUser());
+        SearchWindow sw = new SearchWindow(user);
         sw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_searchOptMouseClicked
 
     private void home_pnl_playlistOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_playlistOptMouseClicked
         // TODO add your handling code here:
-        PlaylistsWindow pw = new PlaylistsWindow(c.getUser());
+        PlaylistsWindow pw = new PlaylistsWindow(user);
         pw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_playlistOptMouseClicked
