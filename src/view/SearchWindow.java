@@ -127,8 +127,25 @@ public class SearchWindow extends javax.swing.JFrame {
 
     public void setBtt_profile(JButton btt_profile) {
         this.btt_profile = btt_profile;
-    }    
+    }
 
+    public JButton getBtt_dislike() {
+        return btt_dislike;
+    }
+
+    public void setBtt_dislike(JButton btt_dislike) {
+        this.btt_dislike = btt_dislike;
+    }
+
+    public JButton getBtt_like() {
+        return btt_like;
+    }
+
+    public void setBtt_like(JButton btt_like) {
+        this.btt_like = btt_like;
+    }
+
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -66,7 +66,14 @@ public class User extends Person{
     public boolean isAdm() {
         return adm;
     }
-    
+
+    public ArrayList<String> getHistoric() {
+        return historic;
+    }
+
+    public void setHistoric(ArrayList<String> historic) {
+        this.historic = historic;
+    }
     
     //esse método cria um usuário com os resultados da consulta (usar para login)
     public static User fromResultSet(ResultSet res) throws SQLException {
@@ -75,7 +82,7 @@ public class User extends Person{
         ArrayList<String> historicList = new ArrayList<>();
     
         if (historicString != null && !historicString.isEmpty()) {
-            historicList = new ArrayList<>(Arrays.asList(historicString.split(",")));
+            historicList = new ArrayList<>(Arrays.asList(historicString.split(";")));
         }
         
         Date birthDate = new Date(res.getDate("birth_date").getTime());
@@ -89,6 +96,20 @@ public class User extends Person{
             res.getString("gender"),
             birthDate
         );
+    }
+    
+    public void addToHistoric(String musicTitle) {
+        
+        if (historic == null) {
+            historic = new ArrayList<>();
+        }
+
+        historic.remove(musicTitle); // remove se já existir p/
+        historic.add(0, musicTitle); // adiciona no topo
+
+        if (historic.size() > 10) {
+            historic.remove(historic.size() - 1);
+        }
     }
 
     @Override

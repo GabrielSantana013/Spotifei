@@ -45,4 +45,16 @@ public class UserDAO {
         return result;
     }
     
+    public void updateHistoric(User user) throws SQLException {
+        String sql = "UPDATE spotifei.users SET historic = ? WHERE login_user = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+
+        // Serializa o histórico
+        String serializedHistoric = String.join(";", user.getHistoric());
+
+        statement.setString(1, serializedHistoric);
+        statement.setString(2, user.getUserLogin());
+        statement.executeUpdate();
+    }
+    
 }
