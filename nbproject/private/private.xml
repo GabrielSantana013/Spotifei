@@ -3,13 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/gabas/Documentos/ws-Spotfei/Spotifei/src/controller/MusicSearchController.java</file>
-            <file>file:/home/gabas/Documentos/ws-Spotfei/Spotifei/src/model/Music.java</file>
-            <file>file:/home/gabas/Documentos/ws-Spotfei/Spotifei/src/view/SearchWindow.java</file>
-            <file>file:/home/gabas/Documentos/ws-Spotfei/Spotifei/src/DAO/MusicDAO.java</file>
-            <file>file:/home/gabas/Documentos/ws-Spotfei/Spotifei/src/view/HomeWindow.java</file>
-            <file>file:/home/gabas/Documentos/ws-Spotfei/Spotifei/src/view/PlaylistsWindow.java</file>
-            <file>file:/home/gabas/Documentos/ws-Spotfei/Spotifei/src/DAO/UserDAO.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/spotifei/Main.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/view/LoginWindow.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/view/HomeWindow.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/view/SearchWindow.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/view/PlaylistsWindow.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/view/RegistrationWindow.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/view/customClasses/PlaceholderFields.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/view/customClasses/RoundedButton.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/controller/MusicSearchController.java</file>
+            <file>file:/home/schneider/Workspace/FEI/3o_semestre/CCM310_Arq.Poo/projeto_final/Spotfei/src/view/customClasses/RoundedPanel.java</file>
         </group>
     </open-files>
 </project-private>

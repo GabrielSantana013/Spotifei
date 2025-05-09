@@ -172,6 +172,7 @@ public class SearchWindow extends javax.swing.JFrame {
         lbl_playlist = new javax.swing.JLabel();
         search_pnl_topSide = new javax.swing.JPanel();
         search_pnl_botSide = new javax.swing.JPanel();
+        btt_addPlaylist = new javax.swing.JButton();
         search_pnl_inside = new javax.swing.JPanel();
         btt_profile = new RoundedButton("user_name");
         search_pnl_bar = new RoundedPanel();
@@ -191,10 +192,10 @@ public class SearchWindow extends javax.swing.JFrame {
         lbl3 = new javax.swing.JLabel();
         lbl4 = new javax.swing.JLabel();
         lbl5 = new javax.swing.JLabel();
+        lbl_musicGenre = new javax.swing.JLabel();
         musicDesc_scroll = new javax.swing.JScrollPane();
         lbl_musicDescription = new javax.swing.JTextArea();
         lbl_musicDuration = new javax.swing.JLabel();
-        lbl_musicGenre = new javax.swing.JLabel();
         pnl4 = new javax.swing.JPanel();
         lbl_musicDislikes = new javax.swing.JLabel();
         lbl_musicLikes = new javax.swing.JLabel();
@@ -246,7 +247,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -266,7 +267,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_searchOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_pnl_searchOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_searchOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -286,7 +287,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_searchOpt);
 
         home_pnl_playlistOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -322,7 +323,7 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addComponent(home_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(home_pnl_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
 
         search_pnl_topSide.setBackground(new java.awt.Color(28, 28, 28));
@@ -340,15 +341,23 @@ public class SearchWindow extends javax.swing.JFrame {
 
         search_pnl_botSide.setBackground(new java.awt.Color(28, 28, 28));
 
+        btt_addPlaylist.setText("Adicionar");
+
         javax.swing.GroupLayout search_pnl_botSideLayout = new javax.swing.GroupLayout(search_pnl_botSide);
         search_pnl_botSide.setLayout(search_pnl_botSideLayout);
         search_pnl_botSideLayout.setHorizontalGroup(
             search_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, search_pnl_botSideLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btt_addPlaylist)
+                .addContainerGap())
         );
         search_pnl_botSideLayout.setVerticalGroup(
             search_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
+            .addGroup(search_pnl_botSideLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btt_addPlaylist)
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         search_pnl_inside.setBackground(new java.awt.Color(18, 18, 18));
@@ -480,7 +489,7 @@ public class SearchWindow extends javax.swing.JFrame {
                         .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl1)
                             .addComponent(lbl2))
-                        .addGap(0, 204, Short.MAX_VALUE)))
+                        .addGap(0, 159, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnl2Layout.setVerticalGroup(
@@ -510,16 +519,24 @@ public class SearchWindow extends javax.swing.JFrame {
         lbl5.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         lbl5.setText("Duração");
 
+        lbl_musicGenre.setFont(new Font("Gotham Black", Font.PLAIN, 22));
+        lbl_musicGenre.setForeground(new java.awt.Color(168, 168, 168));
+
         musicDesc_scroll.setBackground(new java.awt.Color(18, 18, 18));
+        musicDesc_scroll.setBorder(null);
+        musicDesc_scroll.setForeground(new java.awt.Color(168, 168, 168));
+        musicDesc_scroll.setToolTipText("");
 
         lbl_musicDescription.setBackground(new java.awt.Color(18, 18, 18));
         lbl_musicDescription.setColumns(20);
         lbl_musicDescription.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         lbl_musicDescription.setForeground(new java.awt.Color(168, 168, 168));
         lbl_musicDescription.setLineWrap(true);
-        lbl_musicDescription.setRows(5);
+        lbl_musicDescription.setRows(4);
         lbl_musicDescription.setWrapStyleWord(true);
+        lbl_musicDescription.setDisabledTextColor(new java.awt.Color(168, 168, 168));
         lbl_musicDescription.setEnabled(false);
+        lbl_musicDescription.setSelectedTextColor(new java.awt.Color(168, 168, 168));
         musicDesc_scroll.setViewportView(lbl_musicDescription);
 
         musicDesc_scroll.setBorder(null);
@@ -532,9 +549,6 @@ public class SearchWindow extends javax.swing.JFrame {
         lbl_musicDuration.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         lbl_musicDuration.setForeground(new java.awt.Color(168, 168, 168));
 
-        lbl_musicGenre.setFont(new Font("Gotham Black", Font.PLAIN, 22));
-        lbl_musicGenre.setForeground(new java.awt.Color(168, 168, 168));
-
         javax.swing.GroupLayout pnl3Layout = new javax.swing.GroupLayout(pnl3);
         pnl3.setLayout(pnl3Layout);
         pnl3Layout.setHorizontalGroup(
@@ -542,13 +556,16 @@ public class SearchWindow extends javax.swing.JFrame {
             .addGroup(pnl3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl3)
-                    .addComponent(lbl_musicGenre)
-                    .addComponent(lbl4)
-                    .addComponent(lbl5)
-                    .addComponent(lbl_musicDuration)
-                    .addComponent(musicDesc_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(musicDesc_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(pnl3Layout.createSequentialGroup()
+                        .addGroup(pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl3)
+                            .addComponent(lbl_musicGenre)
+                            .addComponent(lbl4)
+                            .addComponent(lbl5)
+                            .addComponent(lbl_musicDuration))
+                        .addGap(0, 147, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnl3Layout.setVerticalGroup(
             pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -603,7 +620,7 @@ public class SearchWindow extends javax.swing.JFrame {
                         .addComponent(btt_dislike)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_musicDislikes)))
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
         pnl4Layout.setVerticalGroup(
             pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -633,13 +650,13 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addGroup(search_pnl_insideLayout.createSequentialGroup()
                         .addGap(212, 212, 212)
                         .addGroup(search_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(scroll_musics)
-                            .addComponent(search_pnl_bar, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
+                            .addComponent(scroll_musics, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                            .addComponent(search_pnl_bar, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
                         .addGap(212, 212, 212)
                         .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(search_pnl_insideLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(search_pnl_musicInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(search_pnl_musicInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         search_pnl_insideLayout.setVerticalGroup(
@@ -665,7 +682,7 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addComponent(search_pnl_leftSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
+                    .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
                     .addComponent(search_pnl_topSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         home_pnl_allLayout.setVerticalGroup(
@@ -675,7 +692,7 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addGroup(home_pnl_allLayout.createSequentialGroup()
                         .addComponent(search_pnl_topSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE))
+                        .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE))
                     .addComponent(search_pnl_leftSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(search_pnl_botSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -761,6 +778,7 @@ public class SearchWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel artist_photo;
+    private javax.swing.JButton btt_addPlaylist;
     private javax.swing.JButton btt_dislike;
     private javax.swing.JButton btt_like;
     private javax.swing.JButton btt_profile;

@@ -20,6 +20,7 @@ public class RoundedPanel extends JPanel {
     private boolean hovering = false;
     private int cornerRadiusHorizontal = 30;
     private int cornerRadiusVertical = 30;
+    private int hover = 1;
 
     public RoundedPanel() {
         setOpaque(false);
@@ -30,13 +31,15 @@ public class RoundedPanel extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 hovering = true;
-                startHoverAnimation();
+                if(hover == 1)
+                    startHoverAnimation();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 hovering = false;
-                startHoverAnimation();
+                if(hover == 1)
+                    startHoverAnimation();
             }
         });
     }
@@ -65,6 +68,10 @@ public class RoundedPanel extends JPanel {
         this.cornerRadiusVertical = cornerRadiusVertical;
     }
 
+    public void setHover(int setHover) {
+        this.hover = setHover;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); // importante para respeitar a opacidade
@@ -81,19 +88,20 @@ public class RoundedPanel extends JPanel {
         g2.dispose();
     }
 
-    @Override
-    protected void paintBorder(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-
-        g2.setColor(getBackground().darker());
-        g2.setStroke(new BasicStroke(1));
-        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1,
-                cornerRadiusHorizontal, cornerRadiusVertical);
-
-        g2.dispose();
-    }
+    // TODO: review this, don't think it's necessary
+//    @Override
+//    protected void paintBorder(Graphics g) {
+//        Graphics2D g2 = (Graphics2D) g.create();
+//        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+//                RenderingHints.VALUE_ANTIALIAS_ON);
+//
+//        g2.setColor(getBackground().darker());
+//        g2.setStroke(new BasicStroke(1));
+//        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1,
+//                cornerRadiusHorizontal, cornerRadiusVertical);
+//
+//        g2.dispose();
+//    }
 
     private Color blendColors(Color c1, Color c2, float ratio) {
         float ir = 1.0f - ratio;

@@ -9,6 +9,7 @@ import java.awt.*;
 import javax.swing.*;
 import model.User;
 import view.customClasses.RoundedButton.*;
+import view.customClasses.RoundedPanel;
 
 /**
  *
@@ -51,8 +52,8 @@ public class PlaylistsWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        home_pnl_all = new javax.swing.JPanel();
-        home_pnl_leftSide = new javax.swing.JPanel();
+        playlist_pnl_all = new javax.swing.JPanel();
+        playlist_pnl_leftSide = new javax.swing.JPanel();
         home_pnl_titleLogo = new javax.swing.JPanel();
         icon_logo = new javax.swing.JLabel();
         lbl_title = new javax.swing.JLabel();
@@ -66,23 +67,30 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         home_pnl_playlistOpt = new javax.swing.JPanel();
         icon_playlist = new javax.swing.JLabel();
         lbl_playlist = new javax.swing.JLabel();
-        home_pnl_topSide = new javax.swing.JPanel();
-        home_pnl_botSide = new javax.swing.JPanel();
-        home_pnl_inside = new javax.swing.JPanel();
+        playlist_pnl_topSide = new javax.swing.JPanel();
+        playlist_pnl_botSide = new javax.swing.JPanel();
+        playlist_pnl_inside = new javax.swing.JPanel();
         btt_profile = new RoundedButton("user_name");
-        home_pnl_welcome = new javax.swing.JPanel();
+        playlist_pnl_welcome = new javax.swing.JPanel();
         spacing1 = new javax.swing.JPanel();
-        lbl_playlists = new javax.swing.JLabel();
         icon_wave = new javax.swing.JLabel();
+        lbl_playlists = new javax.swing.JLabel();
         spacing2 = new javax.swing.JPanel();
+        playlist_pnl_playlists = new RoundedPanel();
+        playlist1 = new RoundedPanel();
+        lbl_playlist1 = new javax.swing.JLabel();
+        pad5 = new javax.swing.JPanel();
+        playlist2 = new RoundedPanel();
+        lbl_playlist2 = new javax.swing.JLabel();
+        btt_removePlaylist = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
         setResizable(false);
 
-        home_pnl_all.setBackground(new java.awt.Color(28, 28, 28));
+        playlist_pnl_all.setBackground(new java.awt.Color(28, 28, 28));
 
-        home_pnl_leftSide.setBackground(new java.awt.Color(28, 28, 28));
+        playlist_pnl_leftSide.setBackground(new java.awt.Color(28, 28, 28));
 
         home_pnl_titleLogo.setBackground(new java.awt.Color(28, 28, 28));
 
@@ -180,19 +188,19 @@ public class PlaylistsWindow extends javax.swing.JFrame {
 
         home_pnl_options.add(home_pnl_playlistOpt);
 
-        javax.swing.GroupLayout home_pnl_leftSideLayout = new javax.swing.GroupLayout(home_pnl_leftSide);
-        home_pnl_leftSide.setLayout(home_pnl_leftSideLayout);
-        home_pnl_leftSideLayout.setHorizontalGroup(
-            home_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(home_pnl_leftSideLayout.createSequentialGroup()
+        javax.swing.GroupLayout playlist_pnl_leftSideLayout = new javax.swing.GroupLayout(playlist_pnl_leftSide);
+        playlist_pnl_leftSide.setLayout(playlist_pnl_leftSideLayout);
+        playlist_pnl_leftSideLayout.setHorizontalGroup(
+            playlist_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playlist_pnl_leftSideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(home_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(playlist_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(home_pnl_options, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(home_pnl_titleLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        home_pnl_leftSideLayout.setVerticalGroup(
-            home_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(home_pnl_leftSideLayout.createSequentialGroup()
+        playlist_pnl_leftSideLayout.setVerticalGroup(
+            playlist_pnl_leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playlist_pnl_leftSideLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(home_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -200,33 +208,33 @@ public class PlaylistsWindow extends javax.swing.JFrame {
                 .addContainerGap(376, Short.MAX_VALUE))
         );
 
-        home_pnl_topSide.setBackground(new java.awt.Color(28, 28, 28));
+        playlist_pnl_topSide.setBackground(new java.awt.Color(28, 28, 28));
 
-        javax.swing.GroupLayout home_pnl_topSideLayout = new javax.swing.GroupLayout(home_pnl_topSide);
-        home_pnl_topSide.setLayout(home_pnl_topSideLayout);
-        home_pnl_topSideLayout.setHorizontalGroup(
-            home_pnl_topSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout playlist_pnl_topSideLayout = new javax.swing.GroupLayout(playlist_pnl_topSide);
+        playlist_pnl_topSide.setLayout(playlist_pnl_topSideLayout);
+        playlist_pnl_topSideLayout.setHorizontalGroup(
+            playlist_pnl_topSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        home_pnl_topSideLayout.setVerticalGroup(
-            home_pnl_topSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        playlist_pnl_topSideLayout.setVerticalGroup(
+            playlist_pnl_topSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        home_pnl_botSide.setBackground(new java.awt.Color(28, 28, 28));
+        playlist_pnl_botSide.setBackground(new java.awt.Color(28, 28, 28));
 
-        javax.swing.GroupLayout home_pnl_botSideLayout = new javax.swing.GroupLayout(home_pnl_botSide);
-        home_pnl_botSide.setLayout(home_pnl_botSideLayout);
-        home_pnl_botSideLayout.setHorizontalGroup(
-            home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+        javax.swing.GroupLayout playlist_pnl_botSideLayout = new javax.swing.GroupLayout(playlist_pnl_botSide);
+        playlist_pnl_botSide.setLayout(playlist_pnl_botSideLayout);
+        playlist_pnl_botSideLayout.setHorizontalGroup(
+            playlist_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        home_pnl_botSideLayout.setVerticalGroup(
-            home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        playlist_pnl_botSideLayout.setVerticalGroup(
+            playlist_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 194, Short.MAX_VALUE)
         );
 
-        home_pnl_inside.setBackground(new java.awt.Color(18, 18, 18));
+        playlist_pnl_inside.setBackground(new java.awt.Color(18, 18, 18));
 
         ((RoundedButton) btt_profile).setTextAlignment(TextAlign.LEFT);
         btt_profile.setBackground(new java.awt.Color(185, 192, 198));
@@ -245,8 +253,8 @@ public class PlaylistsWindow extends javax.swing.JFrame {
             }
         });
 
-        home_pnl_welcome.setBackground(new java.awt.Color(18, 18, 18));
-        home_pnl_welcome.setLayout(new javax.swing.BoxLayout(home_pnl_welcome, javax.swing.BoxLayout.LINE_AXIS));
+        playlist_pnl_welcome.setBackground(new java.awt.Color(18, 18, 18));
+        playlist_pnl_welcome.setLayout(new javax.swing.BoxLayout(playlist_pnl_welcome, javax.swing.BoxLayout.LINE_AXIS));
 
         spacing1.setBackground(new java.awt.Color(18, 18, 18));
         spacing1.setPreferredSize(new java.awt.Dimension(200, 100));
@@ -255,23 +263,23 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         spacing1.setLayout(spacing1Layout);
         spacing1Layout.setHorizontalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 263, Short.MAX_VALUE)
+            .addGap(0, 218, Short.MAX_VALUE)
         );
         spacing1Layout.setVerticalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 48, Short.MAX_VALUE)
         );
 
-        home_pnl_welcome.add(spacing1);
+        playlist_pnl_welcome.add(spacing1);
+
+        icon_wave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/playlistIcon.png"))); // NOI18N
+        playlist_pnl_welcome.add(icon_wave);
 
         lbl_playlists.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 18));
         lbl_playlists.setForeground(new java.awt.Color(168, 170, 170));
-        lbl_playlists.setText("Playlists!");
-        lbl_playlists.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
-        home_pnl_welcome.add(lbl_playlists);
-
-        icon_wave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/waveEmoji.png"))); // NOI18N
-        home_pnl_welcome.add(icon_wave);
+        lbl_playlists.setText("Estas são suas playlists!");
+        lbl_playlists.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        playlist_pnl_welcome.add(lbl_playlists);
 
         spacing2.setBackground(new java.awt.Color(18, 18, 18));
         spacing2.setPreferredSize(new java.awt.Dimension(200, 100));
@@ -280,70 +288,159 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         spacing2.setLayout(spacing2Layout);
         spacing2Layout.setHorizontalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 263, Short.MAX_VALUE)
+            .addGap(0, 218, Short.MAX_VALUE)
         );
         spacing2Layout.setVerticalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 48, Short.MAX_VALUE)
         );
 
-        home_pnl_welcome.add(spacing2);
+        playlist_pnl_welcome.add(spacing2);
 
-        javax.swing.GroupLayout home_pnl_insideLayout = new javax.swing.GroupLayout(home_pnl_inside);
-        home_pnl_inside.setLayout(home_pnl_insideLayout);
-        home_pnl_insideLayout.setHorizontalGroup(
-            home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(home_pnl_insideLayout.createSequentialGroup()
+        ((RoundedPanel) playlist_pnl_playlists).setHover(0);
+        playlist_pnl_playlists.setBackground(new java.awt.Color(54, 54, 54));
+        playlist_pnl_playlists.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        playlist_pnl_playlists.setLayout(new javax.swing.BoxLayout(playlist_pnl_playlists, javax.swing.BoxLayout.LINE_AXIS));
+
+        ((RoundedPanel) playlist1).setNormalColor(new Color(18,18,18));
+        ((RoundedPanel) playlist1).setHoverColor(new Color(36,36,36));
+        playlist1.setBackground(new java.awt.Color(18, 18, 18));
+
+        lbl_playlist1.setFont(new Font("Gotham Black", Font.PLAIN, 22));
+        lbl_playlist1.setForeground(new java.awt.Color(168, 168, 168));
+        lbl_playlist1.setText("playlist");
+
+        javax.swing.GroupLayout playlist1Layout = new javax.swing.GroupLayout(playlist1);
+        playlist1.setLayout(playlist1Layout);
+        playlist1Layout.setHorizontalGroup(
+            playlist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playlist1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(home_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_playlist1)
+                .addContainerGap(354, Short.MAX_VALUE))
+        );
+        playlist1Layout.setVerticalGroup(
+            playlist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playlist1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_playlist1)
+                .addContainerGap(646, Short.MAX_VALUE))
+        );
+
+        playlist_pnl_playlists.add(playlist1);
+
+        pad5.setMaximumSize(new java.awt.Dimension(10, 10));
+        pad5.setMinimumSize(new java.awt.Dimension(10, 10));
+        pad5.setOpaque(false);
+        pad5.setPreferredSize(new java.awt.Dimension(10, 10));
+
+        javax.swing.GroupLayout pad5Layout = new javax.swing.GroupLayout(pad5);
+        pad5.setLayout(pad5Layout);
+        pad5Layout.setHorizontalGroup(
+            pad5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        pad5Layout.setVerticalGroup(
+            pad5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        playlist_pnl_playlists.add(pad5);
+
+        ((RoundedPanel) playlist2).setNormalColor(new Color(18,18,18));
+        ((RoundedPanel) playlist2).setHoverColor(new Color(36,36,36));
+        playlist2.setBackground(new java.awt.Color(18, 18, 18));
+
+        lbl_playlist2.setFont(new Font("Gotham Black", Font.PLAIN, 22));
+        lbl_playlist2.setForeground(new java.awt.Color(168, 168, 168));
+        lbl_playlist2.setText("playlist2");
+
+        javax.swing.GroupLayout playlist2Layout = new javax.swing.GroupLayout(playlist2);
+        playlist2.setLayout(playlist2Layout);
+        playlist2Layout.setHorizontalGroup(
+            playlist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playlist2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_playlist2)
+                .addContainerGap(354, Short.MAX_VALUE))
+        );
+        playlist2Layout.setVerticalGroup(
+            playlist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playlist2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_playlist2)
+                .addContainerGap(646, Short.MAX_VALUE))
+        );
+
+        playlist_pnl_playlists.add(playlist2);
+
+        btt_removePlaylist.setText("Remover");
+
+        javax.swing.GroupLayout playlist_pnl_insideLayout = new javax.swing.GroupLayout(playlist_pnl_inside);
+        playlist_pnl_inside.setLayout(playlist_pnl_insideLayout);
+        playlist_pnl_insideLayout.setHorizontalGroup(
+            playlist_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playlist_pnl_insideLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(playlist_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(playlist_pnl_insideLayout.createSequentialGroup()
+                        .addComponent(playlist_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(playlist_pnl_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(playlist_pnl_insideLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btt_removePlaylist)))
                 .addContainerGap())
         );
-        home_pnl_insideLayout.setVerticalGroup(
-            home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(home_pnl_insideLayout.createSequentialGroup()
+        playlist_pnl_insideLayout.setVerticalGroup(
+            playlist_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playlist_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(home_pnl_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(playlist_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(playlist_pnl_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btt_profile, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(playlist_pnl_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btt_removePlaylist)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout home_pnl_allLayout = new javax.swing.GroupLayout(home_pnl_all);
-        home_pnl_all.setLayout(home_pnl_allLayout);
-        home_pnl_allLayout.setHorizontalGroup(
-            home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(home_pnl_botSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(home_pnl_allLayout.createSequentialGroup()
-                .addComponent(home_pnl_leftSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout playlist_pnl_allLayout = new javax.swing.GroupLayout(playlist_pnl_all);
+        playlist_pnl_all.setLayout(playlist_pnl_allLayout);
+        playlist_pnl_allLayout.setHorizontalGroup(
+            playlist_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(playlist_pnl_botSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(playlist_pnl_allLayout.createSequentialGroup()
+                .addComponent(playlist_pnl_leftSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(home_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(home_pnl_topSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(playlist_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(playlist_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(playlist_pnl_topSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        home_pnl_allLayout.setVerticalGroup(
-            home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(home_pnl_allLayout.createSequentialGroup()
-                .addGroup(home_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(home_pnl_allLayout.createSequentialGroup()
-                        .addComponent(home_pnl_topSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        playlist_pnl_allLayout.setVerticalGroup(
+            playlist_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playlist_pnl_allLayout.createSequentialGroup()
+                .addGroup(playlist_pnl_allLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(playlist_pnl_allLayout.createSequentialGroup()
+                        .addComponent(playlist_pnl_topSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(home_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(home_pnl_leftSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(playlist_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(playlist_pnl_leftSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(home_pnl_botSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(playlist_pnl_botSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(home_pnl_all, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(playlist_pnl_all, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(home_pnl_all, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(playlist_pnl_all, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -409,17 +506,12 @@ public class PlaylistsWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_profile;
-    private javax.swing.JPanel home_pnl_all;
-    private javax.swing.JPanel home_pnl_botSide;
+    private javax.swing.JButton btt_removePlaylist;
     private javax.swing.JPanel home_pnl_homeOpt;
-    private javax.swing.JPanel home_pnl_inside;
-    private javax.swing.JPanel home_pnl_leftSide;
     private javax.swing.JPanel home_pnl_options;
     private javax.swing.JPanel home_pnl_playlistOpt;
     private javax.swing.JPanel home_pnl_searchOpt;
     private javax.swing.JPanel home_pnl_titleLogo;
-    private javax.swing.JPanel home_pnl_topSide;
-    private javax.swing.JPanel home_pnl_welcome;
     private javax.swing.JLabel icon_home;
     private javax.swing.JLabel icon_logo;
     private javax.swing.JLabel icon_playlist;
@@ -427,9 +519,21 @@ public class PlaylistsWindow extends javax.swing.JFrame {
     private javax.swing.JLabel icon_wave;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_playlist;
+    private javax.swing.JLabel lbl_playlist1;
+    private javax.swing.JLabel lbl_playlist2;
     private javax.swing.JLabel lbl_playlists;
     private javax.swing.JLabel lbl_search;
     private javax.swing.JLabel lbl_title;
+    private javax.swing.JPanel pad5;
+    private javax.swing.JPanel playlist1;
+    private javax.swing.JPanel playlist2;
+    private javax.swing.JPanel playlist_pnl_all;
+    private javax.swing.JPanel playlist_pnl_botSide;
+    private javax.swing.JPanel playlist_pnl_inside;
+    private javax.swing.JPanel playlist_pnl_leftSide;
+    private javax.swing.JPanel playlist_pnl_playlists;
+    private javax.swing.JPanel playlist_pnl_topSide;
+    private javax.swing.JPanel playlist_pnl_welcome;
     private javax.swing.JPanel spacing1;
     private javax.swing.JPanel spacing2;
     // End of variables declaration//GEN-END:variables
