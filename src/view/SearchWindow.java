@@ -144,6 +144,8 @@ public class SearchWindow extends javax.swing.JFrame {
     public void setBtt_like(JButton btt_like) {
         this.btt_like = btt_like;
     }
+    
+    
 
    
     /**
