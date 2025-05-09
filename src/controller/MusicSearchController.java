@@ -55,6 +55,7 @@ public class MusicSearchController {
                         
                         // Atualiza o histórico
                         user.addToHistoric(selectedMusic.getMusicTitle());
+                        displayHistoric();
 
                         // Atualiza no banco
                         try (Connection conn = new DbConnection().getConnection()) {
@@ -92,20 +93,7 @@ public class MusicSearchController {
                 view.getjList1().setListData(new String[0]);
                 currentMusics.clear(); // limpa também a lista atual
                 
-                displayHistoric();
-                
-//                if (user.getHistoric() != null && !user.getHistoric().isEmpty()) {                    
-//                    //converte o ArrayList pra String[] por causa do jList
-//                    String[] historyArray = user.getHistoric().toArray(new String[0]);
-//                    view.getjList1().setListData(historyArray);
-//                    System.out.println("Atualizando JList com histórico:");
-//                    for (String s : historyArray) {
-//                        System.out.println(s);
-//                    }
-//                } else {
-//                    System.out.println("piru");
-//                    view.getjList1().setListData(new String[0]); // exibe lista vazia
-//                }
+                displayHistoric();                
                 
             } else {
                 currentMusics = new ArrayList<>(musics); // salva as músicas encontradas
@@ -114,8 +102,9 @@ public class MusicSearchController {
                         .map(Music::getMusicTitle)
                         .toArray(String[]::new);
                 view.getjList1().setListData(titles);
+                
             }
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
             CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar músicas no banco de dados.");
@@ -124,19 +113,35 @@ public class MusicSearchController {
     
     
     private void displayHistoric() {
-        if (user.getHistoric() != null && !user.getHistoric().isEmpty()) {
-            // Converte o ArrayList para String[] por causa do jList
-            String[] historyArray = user.getHistoric().toArray(new String[0]);
-            view.getjList1().setListData(historyArray);
+        List<String> historicTitles = user.getHistoric();
 
-            System.out.println("Atualizando JList com histórico:");
-            for (String s : historyArray) {
-                System.out.println(s);
+        if (historicTitles != null && !historicTitles.isEmpty()) {
+            List<Music> musicsFromHistoric = new ArrayList<>();
+
+            try (Connection conn = new DbConnection().getConnection()) {
+                MusicDAO musicDAO = new MusicDAO(conn);
+
+                for (String title : historicTitles) {
+                    Music m = musicDAO.getMusicByTitle(title);
+                    if (m != null) {
+                        musicsFromHistoric.add(m);
+                    }
+                }
+                currentMusics = new ArrayList<>(musicsFromHistoric); // atualiza com músicas do histórico
+                String[] titles = musicsFromHistoric.stream()
+                        .map(Music::getMusicTitle)
+                        .toArray(String[]::new);
+                view.getjList1().setListData(titles);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                CustomJDialog.showCustomDialog("Erro!", "Erro ao carregar histórico do banco de dados.");
             }
         } else {
             view.getjList1().setListData(new String[0]); // Exibe lista vazia
         }
     }
+
         
     public void setUserNameOnWindow(){
         view.getBtt_profile().setText(user.getUserLogin());

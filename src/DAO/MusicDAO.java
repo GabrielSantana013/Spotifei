@@ -46,6 +46,29 @@ public class MusicDAO {
     
         return musics;
     }
-
     
+    public Music getMusicByTitle(String title) throws SQLException {
+        String sql = "SELECT m.*, a.name AS artist_name " +
+                     "FROM spotifei.music m " +
+                     "JOIN spotifei.artist a ON m.artist_id = a.artist_id " +
+                     "WHERE m.title = ?";
+
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, title);
+        ResultSet res = statement.executeQuery();
+
+        if (res.next()) {
+            return new Music(
+                res.getInt("music_id"),            
+                res.getInt("likes"),            
+                res.getInt("deslikes"),
+                res.getInt("duration"),
+                res.getString("title"),
+                res.getString("description"),                        
+                res.getString("genre"),
+                res.getString("artist_name")
+            );
+        }   
+        return null;
+    }
 }
