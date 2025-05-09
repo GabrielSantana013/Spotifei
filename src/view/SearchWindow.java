@@ -73,11 +73,11 @@ public class SearchWindow extends javax.swing.JFrame {
         this.lbl_musicArtist = lbl_musicArtist;
     }
 
-    public JLabel getLbl_musicDescription() {
+    public JTextArea getLbl_musicDescription() {
         return lbl_musicDescription;
     }
 
-    public void setLbl_musicDescription(JLabel lbl_musicDescription) {
+    public void setLbl_musicDescription(JTextArea lbl_musicDescription) {
         this.lbl_musicDescription = lbl_musicDescription;
     }
 
@@ -154,7 +154,6 @@ public class SearchWindow extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         home_pnl_all = new javax.swing.JPanel();
         search_pnl_leftSide = new javax.swing.JPanel();
@@ -192,8 +191,9 @@ public class SearchWindow extends javax.swing.JFrame {
         lbl3 = new javax.swing.JLabel();
         lbl4 = new javax.swing.JLabel();
         lbl5 = new javax.swing.JLabel();
+        musicDesc_scroll = new javax.swing.JScrollPane();
+        lbl_musicDescription = new javax.swing.JTextArea();
         lbl_musicDuration = new javax.swing.JLabel();
-        lbl_musicDescription = new javax.swing.JLabel();
         lbl_musicGenre = new javax.swing.JLabel();
         pnl4 = new javax.swing.JPanel();
         lbl_musicDislikes = new javax.swing.JLabel();
@@ -246,7 +246,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -266,7 +266,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_searchOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_searchOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_searchOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -286,7 +286,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_searchOpt);
 
         home_pnl_playlistOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -426,7 +426,7 @@ public class SearchWindow extends javax.swing.JFrame {
         scroll_musics.setViewportView(list_musics);
 
         search_pnl_musicInfo.setBackground(new java.awt.Color(18, 18, 18));
-        search_pnl_musicInfo.setLayout(new java.awt.GridLayout());
+        search_pnl_musicInfo.setLayout(new java.awt.GridLayout(1, 0));
 
         pnl1.setBackground(new java.awt.Color(18, 18, 18));
         pnl1.setPreferredSize(new java.awt.Dimension(256, 384));
@@ -508,13 +508,29 @@ public class SearchWindow extends javax.swing.JFrame {
         lbl4.setText("Decrição");
 
         lbl5.setFont(new Font("Gotham Black", Font.PLAIN, 22));
-        lbl5.setText("Duração (s)");
+        lbl5.setText("Duração");
+
+        musicDesc_scroll.setBackground(new java.awt.Color(18, 18, 18));
+
+        lbl_musicDescription.setBackground(new java.awt.Color(18, 18, 18));
+        lbl_musicDescription.setColumns(20);
+        lbl_musicDescription.setFont(new Font("Gotham Black", Font.PLAIN, 22));
+        lbl_musicDescription.setForeground(new java.awt.Color(168, 168, 168));
+        lbl_musicDescription.setLineWrap(true);
+        lbl_musicDescription.setRows(5);
+        lbl_musicDescription.setWrapStyleWord(true);
+        lbl_musicDescription.setEnabled(false);
+        musicDesc_scroll.setViewportView(lbl_musicDescription);
+
+        musicDesc_scroll.setBorder(null);
+        musicDesc_scroll.setViewportBorder(null);
+        musicDesc_scroll.setOpaque(false);
+        musicDesc_scroll.getViewport().setOpaque(false);
+        musicDesc_scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        musicDesc_scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         lbl_musicDuration.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         lbl_musicDuration.setForeground(new java.awt.Color(168, 168, 168));
-
-        lbl_musicDescription.setFont(new Font("Gotham Black", Font.PLAIN, 22));
-        lbl_musicDescription.setForeground(new java.awt.Color(168, 168, 168));
 
         lbl_musicGenre.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         lbl_musicGenre.setForeground(new java.awt.Color(168, 168, 168));
@@ -529,10 +545,10 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addComponent(lbl3)
                     .addComponent(lbl_musicGenre)
                     .addComponent(lbl4)
-                    .addComponent(lbl_musicDescription)
                     .addComponent(lbl5)
-                    .addComponent(lbl_musicDuration))
-                .addContainerGap(182, Short.MAX_VALUE))
+                    .addComponent(lbl_musicDuration)
+                    .addComponent(musicDesc_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         pnl3Layout.setVerticalGroup(
             pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,12 +560,12 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lbl4)
                 .addGap(18, 18, 18)
-                .addComponent(lbl_musicDescription)
-                .addGap(18, 18, 18)
+                .addComponent(musicDesc_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl5)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_musicDuration)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         search_pnl_musicInfo.add(pnl3);
@@ -566,12 +582,12 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_like.setBackground(new java.awt.Color(18, 18, 18));
         btt_like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/like.png"))); // NOI18N
         btt_like.setBorder(null);
-        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btt_dislike.setBackground(new java.awt.Color(18, 18, 18));
         btt_dislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/dislike.png"))); // NOI18N
         btt_dislike.setBorder(null);
-        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout pnl4Layout = new javax.swing.GroupLayout(pnl4);
         pnl4.setLayout(pnl4Layout);
@@ -766,7 +782,7 @@ public class SearchWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lbl5;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_musicArtist;
-    private javax.swing.JLabel lbl_musicDescription;
+    private javax.swing.JTextArea lbl_musicDescription;
     private javax.swing.JLabel lbl_musicDislikes;
     private javax.swing.JLabel lbl_musicDuration;
     private javax.swing.JLabel lbl_musicGenre;
@@ -776,6 +792,7 @@ public class SearchWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_search;
     private javax.swing.JLabel lbl_title;
     private javax.swing.JList<String> list_musics;
+    private javax.swing.JScrollPane musicDesc_scroll;
     private javax.swing.JPanel pnl1;
     private javax.swing.JPanel pnl2;
     private javax.swing.JPanel pnl3;

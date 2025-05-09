@@ -55,11 +55,26 @@ public class LoginWindow extends javax.swing.JFrame {
                 }
             }
         });
-        
+                
         // center panel after layout is initialized
         SwingUtilities.invokeLater(() -> {
             centerLoginPanel();
+            setupEnterKeyBinding();
             // addResizeListener();
+        });
+    }
+    
+    // set enter as key bind for login
+    private void setupEnterKeyBinding() {
+        InputMap im = btt_login.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap am = btt_login.getActionMap();
+
+        im.put(KeyStroke.getKeyStroke("ENTER"), "login");
+        am.put("login", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                btt_loginActionPerformed(e);
+            }
         });
     }
 
@@ -209,6 +224,11 @@ public class LoginWindow extends javax.swing.JFrame {
                 btt_loginActionPerformed(evt);
             }
         });
+        btt_login.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btt_loginKeyPressed(evt);
+            }
+        });
 
         btt_register.setBackground(new java.awt.Color(28, 28, 28));
         btt_register.setFont(new java.awt.Font("Gotham Light", Font.ITALIC, 13));
@@ -316,11 +336,17 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
         // TODO add your handling code here:
+        btt_loginActionPerformed(null);
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void txt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_loginActionPerformed
         // TODO add your handling code here:
+        btt_loginActionPerformed(null);
     }//GEN-LAST:event_txt_loginActionPerformed
+
+    private void btt_loginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btt_loginKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btt_loginKeyPressed
    
     /**
      * @param args the command line arguments
