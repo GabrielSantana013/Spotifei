@@ -107,7 +107,7 @@ public class Music {
         return new Music(
             res.getInt("music_id"),            
             res.getInt("likes"),            
-            res.getInt("deslikes"),
+            res.getInt("dislikes"),
             res.getInt("duration"),
             res.getString("title"),
             res.getString("description"),                        

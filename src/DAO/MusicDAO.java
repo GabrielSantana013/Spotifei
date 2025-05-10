@@ -61,7 +61,7 @@ public class MusicDAO {
             return new Music(
                 res.getInt("music_id"),            
                 res.getInt("likes"),            
-                res.getInt("deslikes"),
+                res.getInt("dislikes"),
                 res.getInt("duration"),
                 res.getString("title"),
                 res.getString("description"),                        
@@ -86,7 +86,7 @@ public class MusicDAO {
             return new Music(
                 res.getInt("music_id"),            
                 res.getInt("likes"),            
-                res.getInt("deslikes"),
+                res.getInt("dislikes"),
                 res.getInt("duration"),
                 res.getString("title"),
                 res.getString("description"),                        
@@ -97,20 +97,36 @@ public class MusicDAO {
         return null;
     }
     
-    public void updateLikeCount(int musicId, int increment) throws SQLException {
-        String sql = "UPDATE spotifei.music SET likes = likes + ? WHERE music_id = ?";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setInt(1, increment);
-        statement.setInt(2, musicId);
+    public void incrementLike(int musicId) throws SQLException {
+    String sql = "UPDATE spotifei.music SET likes = likes + 1 WHERE music_id = ?";
+    try (PreparedStatement statement = conn.prepareStatement(sql)) {
+        statement.setInt(1, musicId);
         statement.executeUpdate();
     }
+}
 
-    public void updateDislikeCount(int musicId, int increment) throws SQLException {
-        String sql = "UPDATE spotifei.music SET dislikes = dislikes + ? WHERE music_id = ?";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setInt(1, increment);
-        statement.setInt(2, musicId);
-        statement.executeUpdate();
+    public void decrementLike(int musicId) throws SQLException {
+        String sql = "UPDATE spotifei.music SET likes = likes - 1 WHERE music_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, musicId);
+            statement.executeUpdate();
+        }
+    }
+
+    public void incrementDislike(int musicId) throws SQLException {
+        String sql = "UPDATE spotifei.music SET dislikes = dislikes + 1 WHERE music_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, musicId);
+            statement.executeUpdate();
+        }
+    }
+
+    public void decrementDislike(int musicId) throws SQLException {
+        String sql = "UPDATE spotifei.music SET dislikes = dislikes - 1 WHERE music_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, musicId);
+            statement.executeUpdate();
+        }
     }
 }
 

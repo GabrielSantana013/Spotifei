@@ -57,51 +57,31 @@ public class UserDAO {
         statement.executeUpdate();
     }
     
-    public Boolean getUserLikeStatus(int userId, int musicId) throws SQLException {
-        String sql = "SELECT is_like FROM spotifei.user_like_music WHERE user_id = ? AND music_id = ?";
+    public String getUserInteraction(int userId, int musicId) throws SQLException {
+        String sql = "SELECT is_like FROM spotifei.user_like_music WHERE user_id = ?"
+                + " AND music_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, userId);
             statement.setInt(2, musicId);
-            ResultSet res = statement.executeQuery();
-            if (res.next()) {
-                return res.getBoolean("is_like"); // true = like, false = dislike
+            try (ResultSet res = statement.executeQuery()) {
+                if (res.next()) {
+                    return res.getBoolean("is_like") ? "like" : "dislike";
+                }
             }
         }
-        return null; // nunca curtiu/descurtiu
+        return "none";
     }
 
-    // Adiciona ou atualiza a reação do usuário
-    public void insertOrUpdateLike(int userId, int musicId, boolean isLike) throws SQLException {
-        Boolean currentStatus = getUserLikeStatus(userId, musicId);
-
-        if (currentStatus == null) {
-            // Novo like/dislike
-            String sql = "INSERT INTO spotifei.user_like_music (user_id, "
-                    + "music_id, is_like) VALUES (?, ?, ?)";
-            PreparedStatement statement = conn.prepareStatement(sql);
+    public void insertOrUpdateInteraction(int userId, int musicId, boolean is_like) throws SQLException {
+        String sql = "INSERT INTO spotifei.user_like_music (user_id, music_id, "
+                + "is_like) VALUES (?, ?, ?) " +
+                     "ON CONFLICT (user_id, music_id) DO UPDATE SET is_like = "
+                + "EXCLUDED.is_like";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, userId);
             statement.setInt(2, musicId);
-            statement.setBoolean(3, isLike);
+            statement.setBoolean(3, is_like);
             statement.executeUpdate();
-            
-        } else if (currentStatus != isLike) {
-            // Mudou de like para dislike ou vice-versa
-            String sql = "UPDATE spotifei.user_like_music SET is_like = ? "
-                    + "WHERE user_id = ? AND music_id = ?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setBoolean(1, isLike);
-            statement.setInt(2, userId);
-            statement.setInt(3, musicId);
-            statement.executeUpdate();
-            
-        } else {
-            // Remove like/dislike (toggle)
-            String sql = "DELETE FROM user_like_music WHERE user_id = ? AND music_id = ?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userId);
-            statement.setInt(2, musicId);
-            statement.executeUpdate();
-            
         }
     }
 }

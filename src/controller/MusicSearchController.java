@@ -15,31 +15,31 @@ import view.SearchWindow;
 import view.customDialogs.CustomJDialog;
 
 public class MusicSearchController {
-
     private SearchWindow view;
-    private ArrayList<Music> currentMusics; // Armazena as músicas exibidas no JList
+    private ArrayList<Music> currentMusics;
     private User user;
+    private Music selectedMusic; // Nova variável para armazenar a música selecionada
 
     public MusicSearchController(SearchWindow view, User user) {
         this.view = view;
         this.user = user;
         this.currentMusics = new ArrayList<>();
-        
+        this.selectedMusic = null;
+
         displayHistoric();
 
-        //Criando um evento da barra de pesquisa
+        // Evento da barra de pesquisa (seleção de item na lista)
         this.view.getjList1().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     int selectedIndex = view.getjList1().getSelectedIndex();
-                    
+
                     //verifica se o intervalo é válido
                     if (selectedIndex >= 0 && selectedIndex < currentMusics.size()) {
-                        Music selectedMusic = currentMusics.get(selectedIndex);
-                        
+                        selectedMusic = currentMusics.get(selectedIndex); // Atualiza a música selecionada
                         updateMusicLabels(selectedMusic);
-                        
+
                         // Atualiza o histórico
                         user.addToHistoric(selectedMusic.getMusicTitle());
                         displayHistoric();
@@ -51,62 +51,77 @@ public class MusicSearchController {
                         } catch (SQLException ex) {
                             CustomJDialog.showCustomDialog("Erro!", "Erro ao atualizar o historico no banco de dados.");
                         }
-                        
-                        //debugg
-                        for(String m : user.getHistoric()){
+
+                        // debug
+                        for (String m : user.getHistoric()) {
                             System.out.println(m);
                         }
                     }
-                    
                 }
             }
         });
-        
-        //evento do botão LIKE
+
+        // Botão LIKE
         this.view.getBtt_like().addActionListener(e -> {
-            System.out.println("Clicou like");
-            int selectedIndex = view.getjList1().getSelectedIndex();
-            if (selectedIndex >= 0 && selectedIndex < currentMusics.size()) {
-                Music selectedMusic = currentMusics.get(selectedIndex);
+            if (selectedMusic != null) {
                 try (Connection conn = new DbConnection().getConnection()) {
                     UserDAO userDAO = new UserDAO(conn);
                     MusicDAO musicDAO = new MusicDAO(conn);
 
-                    userDAO.insertOrUpdateLike(user.getUserId(), selectedMusic.getMusicId(), true); // true = like
-                    musicDAO.updateLikeCount(selectedMusic.getMusicId(), 1);
+                    String interaction = userDAO.getUserInteraction(user.getUserId(), selectedMusic.getMusicId());
 
-                    // Atualiza o objeto local e os labels
+                    if ("like".equals(interaction)) {
+                        CustomJDialog.showCustomDialog("Aviso", "Você já curtiu essa música.");
+                        return;
+                    } else if ("dislike".equals(interaction)) {
+                        musicDAO.decrementDislike(selectedMusic.getMusicId());
+                    }
+
+                    userDAO.insertOrUpdateInteraction(user.getUserId(), selectedMusic.getMusicId(), true);
+                    musicDAO.incrementLike(selectedMusic.getMusicId());
+
                     Music updatedMusic = musicDAO.getMusicById(selectedMusic.getMusicId());
-                    currentMusics.set(selectedIndex, updatedMusic);
+                    selectedMusic = updatedMusic;
                     updateMusicLabels(updatedMusic);
 
                 } catch (SQLException ex) {
                     CustomJDialog.showCustomDialog("Erro!", "Erro ao curtir a música.");
+                    ex.printStackTrace();
                 }
+            } else {
+                CustomJDialog.showCustomDialog("Aviso", "Nenhuma música selecionada.");
             }
         });
-        
-        //evento do botão Deslike
+
+        // Botão DISLIKE
         this.view.getBtt_dislike().addActionListener(e -> {
-            System.out.println("Clicou deslike");
-            int selectedIndex = view.getjList1().getSelectedIndex();
-            if (selectedIndex >= 0 && selectedIndex < currentMusics.size()) {
-                Music selectedMusic = currentMusics.get(selectedIndex);
+            if (selectedMusic != null) {
                 try (Connection conn = new DbConnection().getConnection()) {
                     UserDAO userDAO = new UserDAO(conn);
                     MusicDAO musicDAO = new MusicDAO(conn);
 
-                    userDAO.insertOrUpdateLike(user.getUserId(), selectedMusic.getMusicId(), false); // false = dislike
-                    musicDAO.updateDislikeCount(selectedMusic.getMusicId(), 1);
+                    String interaction = userDAO.getUserInteraction(user.getUserId(), selectedMusic.getMusicId());
 
-                    // Atualiza o objeto local e os labels
+                    if ("dislike".equals(interaction)) {
+                        CustomJDialog.showCustomDialog("Aviso", "Você já descurtiu essa música.");
+                        return;
+                    } else if ("like".equals(interaction)) {
+                        musicDAO.decrementLike(selectedMusic.getMusicId());
+                    }
+
+                    userDAO.insertOrUpdateInteraction(user.getUserId(), selectedMusic.getMusicId(), false);
+                    musicDAO.incrementDislike(selectedMusic.getMusicId());
+
                     Music updatedMusic = musicDAO.getMusicById(selectedMusic.getMusicId());
-                    currentMusics.set(selectedIndex, updatedMusic);
+                    selectedMusic = updatedMusic;
                     updateMusicLabels(updatedMusic);
 
                 } catch (SQLException ex) {
                     CustomJDialog.showCustomDialog("Erro!", "Erro ao descurtir a música.");
+                    ex.printStackTrace();
                 }
+            } else {
+                CustomJDialog.showCustomDialog("Aviso", "Nenhuma música selecionada.");
             }
         });
     }
@@ -189,10 +204,15 @@ public class MusicSearchController {
         view.getLbl_musicDescription().setText(music.getMusicDescription());
         view.getLbl_musicArtist().setText(music.getArtistName());
     }
-
+    
+    public int getAtualIndex(ArrayList<Music> m, String title){
+        return m.indexOf(title);
+    }
 
         
     public void setUserNameOnWindow(){
         view.getBtt_profile().setText(user.getUserLogin());
     }
+    
+    
 }
