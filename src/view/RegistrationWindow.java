@@ -93,7 +93,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
     public void setTxt_birthDate(JFormattedTextField txt_birthDate) {
         this.txt_birthDate = txt_birthDate;
     }
-
+    
     public JTextField getTxt_login() {
         return txt_login;
     }
