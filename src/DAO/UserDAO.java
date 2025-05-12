@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import model.Music;
 import model.User;
 
 /**
@@ -74,8 +76,8 @@ public class UserDAO {
 
     public void insertOrUpdateInteraction(int userId, int musicId, boolean is_like) throws SQLException {
         String sql = "INSERT INTO spotifei.user_like_music (user_id, music_id, "
-                + "is_like) VALUES (?, ?, ?) " +
-                     "ON CONFLICT (user_id, music_id) DO UPDATE SET is_like = "
+                + "is_like) VALUES (?, ?, ?) "
+                + "ON CONFLICT (user_id, music_id) DO UPDATE SET is_like = "
                 + "EXCLUDED.is_like";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, userId);
@@ -83,5 +85,42 @@ public class UserDAO {
             statement.setBoolean(3, is_like);
             statement.executeUpdate();
         }
+    }
+    
+    public ArrayList<Music> getLikedMusics(int userId) throws SQLException {
+        String sql = "SELECT m.* FROM spotifei.music m " +
+                     "JOIN spotifei.user_like_music ulm ON m.music_id = ulm.music_id " +
+                     "WHERE ulm.user_id = ? AND ulm.is_like = TRUE";
+        ArrayList<Music> likedMusics = new ArrayList<>();
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            ResultSet res = statement.executeQuery();
+            while (res.next()) {
+                int musicId = res.getInt("music_id");
+                String musicName = res.getString("title");
+                Music music = new Music(musicId, musicName);
+                // Adapte conforme seu modelo de Music
+                likedMusics.add(music);
+            }
+        }
+        return likedMusics;
+    }
+
+    public ArrayList<Music> getDislikedMusics(int userId) throws SQLException {
+        String sql = "SELECT m.* FROM spotifei.music m " +
+                     "JOIN spotifei.user_like_music ulm ON m.music_id = ulm.music_id " +
+                     "WHERE ulm.user_id = ? AND ulm.is_like = FALSE";
+        ArrayList<Music> dislikedMusics = new ArrayList<>();
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            ResultSet res = statement.executeQuery();
+            while (res.next()) {                
+                int musicId = res.getInt("music_id");
+                String musicName = res.getString("title");
+                Music music = new Music(musicId, musicName);               
+                dislikedMusics.add(music);
+            }
+        }
+        return dislikedMusics;
     }
 }

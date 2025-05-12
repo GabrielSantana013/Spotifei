@@ -44,6 +44,7 @@ public class HomeWindow extends javax.swing.JFrame {
         
         this.setLocation(new Point(x,y));
         c.setUserNameOnWindow();
+        c.setLikesAndDislikes();
     }
     
     public JButton getBtt_profile() {
@@ -61,7 +62,23 @@ public class HomeWindow extends javax.swing.JFrame {
     public void setLbl_welcome(JLabel lbl_welcome) {
         this.lbl_welcome = lbl_welcome;
     }
-    
+
+    public JButton getBttDislikes() {
+        return bttDislikes;
+    }
+
+    public void setBttDislikes(JButton bttDislikes) {
+        this.bttDislikes = bttDislikes;
+    }
+
+    public JButton getBttLikes() {
+        return bttLikes;
+    }
+
+    public void setBttLikes(JButton bttLikes) {
+        this.bttLikes = bttLikes;
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,7 +87,6 @@ public class HomeWindow extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         home_pnl_all = new javax.swing.JPanel();
         home_pnl_leftSide = new javax.swing.JPanel();
@@ -122,11 +138,9 @@ public class HomeWindow extends javax.swing.JFrame {
         artist5 = new javax.swing.JLabel();
         photo5 = new javax.swing.JPanel();
         home_pnl_likes = new RoundedPanel();
-        likes = new RoundedPanel();
-        num_likes = new javax.swing.JLabel();
         pad5 = new javax.swing.JPanel();
-        dislikes = new RoundedPanel();
-        num_dislikes = new javax.swing.JLabel();
+        bttLikes = new javax.swing.JButton();
+        bttDislikes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -173,7 +187,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -193,7 +207,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_searchOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_searchOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_searchOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -213,7 +227,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_searchOpt);
 
         home_pnl_playlistOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -271,7 +285,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_botSide.setLayout(home_pnl_botSideLayout);
         home_pnl_botSideLayout.setHorizontalGroup(
             home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1397, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         home_pnl_botSideLayout.setVerticalGroup(
             home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -700,75 +714,30 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_likes.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         home_pnl_likes.setLayout(new javax.swing.BoxLayout(home_pnl_likes, javax.swing.BoxLayout.LINE_AXIS));
 
-        ((RoundedPanel) likes).setNormalColor(new Color(18,18,18));
-        ((RoundedPanel) likes).setHoverColor(new Color(36,36,36));
-        likes.setBackground(new java.awt.Color(18, 18, 18));
-
-        num_likes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
-        num_likes.setForeground(new java.awt.Color(168, 168, 168));
-        num_likes.setText("likes");
-
-        javax.swing.GroupLayout likesLayout = new javax.swing.GroupLayout(likes);
-        likes.setLayout(likesLayout);
-        likesLayout.setHorizontalGroup(
-            likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(likesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(num_likes)
-                .addContainerGap(551, Short.MAX_VALUE))
-        );
-        likesLayout.setVerticalGroup(
-            likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(likesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(num_likes)
-                .addContainerGap(321, Short.MAX_VALUE))
-        );
-
-        home_pnl_likes.add(likes);
-
         pad5.setOpaque(false);
-        pad5.setPreferredSize(new java.awt.Dimension(10, 10));
 
         javax.swing.GroupLayout pad5Layout = new javax.swing.GroupLayout(pad5);
         pad5.setLayout(pad5Layout);
         pad5Layout.setHorizontalGroup(
             pad5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGroup(pad5Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(bttLikes)
+                .addGap(391, 391, 391)
+                .addComponent(bttDislikes)
+                .addContainerGap(589, Short.MAX_VALUE))
         );
         pad5Layout.setVerticalGroup(
             pad5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 344, Short.MAX_VALUE)
+            .addGroup(pad5Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addGroup(pad5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bttLikes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bttDislikes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
 
         home_pnl_likes.add(pad5);
-
-        ((RoundedPanel) dislikes).setNormalColor(new Color(18,18,18));
-        ((RoundedPanel) dislikes).setHoverColor(new Color(36,36,36));
-        dislikes.setBackground(new java.awt.Color(18, 18, 18));
-
-        num_dislikes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
-        num_dislikes.setForeground(new java.awt.Color(168, 168, 168));
-        num_dislikes.setText("dislikes");
-
-        javax.swing.GroupLayout dislikesLayout = new javax.swing.GroupLayout(dislikes);
-        dislikes.setLayout(dislikesLayout);
-        dislikesLayout.setHorizontalGroup(
-            dislikesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dislikesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(num_dislikes)
-                .addContainerGap(551, Short.MAX_VALUE))
-        );
-        dislikesLayout.setVerticalGroup(
-            dislikesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dislikesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(num_dislikes)
-                .addContainerGap(321, Short.MAX_VALUE))
-        );
-
-        home_pnl_likes.add(dislikes);
 
         javax.swing.GroupLayout home_pnl_insideLayout = new javax.swing.GroupLayout(home_pnl_inside);
         home_pnl_inside.setLayout(home_pnl_insideLayout);
@@ -780,7 +749,7 @@ public class HomeWindow extends javax.swing.JFrame {
                     .addComponent(home_pnl_likes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(home_pnl_topMusics, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, home_pnl_insideLayout.createSequentialGroup()
-                        .addComponent(home_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, 1002, Short.MAX_VALUE)
+                        .addComponent(home_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -904,8 +873,9 @@ public class HomeWindow extends javax.swing.JFrame {
     private javax.swing.JLabel artist3;
     private javax.swing.JLabel artist4;
     private javax.swing.JLabel artist5;
+    private javax.swing.JButton bttDislikes;
+    private javax.swing.JButton bttLikes;
     private javax.swing.JButton btt_profile;
-    private javax.swing.JPanel dislikes;
     private javax.swing.JPanel home_pnl_all;
     private javax.swing.JPanel home_pnl_botSide;
     private javax.swing.JPanel home_pnl_homeOpt;
@@ -924,23 +894,16 @@ public class HomeWindow extends javax.swing.JFrame {
     private javax.swing.JLabel icon_playlist;
     private javax.swing.JLabel icon_search;
     private javax.swing.JLabel icon_wave;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_playlist;
     private javax.swing.JLabel lbl_search;
     private javax.swing.JLabel lbl_title;
     private javax.swing.JLabel lbl_welcome;
-    private javax.swing.JPanel likes;
     private javax.swing.JPanel music1;
     private javax.swing.JPanel music2;
     private javax.swing.JPanel music3;
     private javax.swing.JPanel music4;
     private javax.swing.JPanel music5;
-    private javax.swing.JLabel num_dislikes;
-    private javax.swing.JLabel num_likes;
     private javax.swing.JPanel pad1;
     private javax.swing.JPanel pad2;
     private javax.swing.JPanel pad3;

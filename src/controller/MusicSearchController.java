@@ -79,7 +79,7 @@ public class MusicSearchController {
 
                     userDAO.insertOrUpdateInteraction(user.getUserId(), selectedMusic.getMusicId(), true);
                     musicDAO.incrementLike(selectedMusic.getMusicId());
-
+                    
                     Music updatedMusic = musicDAO.getMusicById(selectedMusic.getMusicId());
                     selectedMusic = updatedMusic;
                     updateMusicLabels(updatedMusic);

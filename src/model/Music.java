@@ -38,6 +38,11 @@ public class Music {
         this.musicDescription = musicDescription;
     }
     
+    public Music(int musicId, String title) {
+        this.musicId = musicId;
+        this.musicTitle = title;
+    }
+    
     public int getMusicId() {
         return musicId;
     }
