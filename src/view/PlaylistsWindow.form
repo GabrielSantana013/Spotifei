@@ -121,7 +121,7 @@
                           <Component id="icon_logo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lbl_title" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -145,7 +145,7 @@
                 <Component class="javax.swing.JLabel" name="icon_logo">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/view/logos_imgs/logoSpotifei.png"/>
+                      <Image iconType="3" name="/view/assets/images/logoSpotifei.png"/>
                     </Property>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
@@ -200,7 +200,7 @@
                     <Component class="javax.swing.JLabel" name="icon_home">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/view/logos_imgs/homeIcon.png"/>
+                          <Image iconType="3" name="/view/assets/images/homeIcon.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -239,7 +239,7 @@
                     <Component class="javax.swing.JLabel" name="icon_search">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/view/logos_imgs/searchIcon.png"/>
+                          <Image iconType="3" name="/view/assets/images/searchIcon.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -278,7 +278,7 @@
                     <Component class="javax.swing.JLabel" name="icon_playlist">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/view/logos_imgs/playlistIcon.png"/>
+                          <Image iconType="3" name="/view/assets/images/playlistIcon.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -440,7 +440,7 @@
                 <Component class="javax.swing.JLabel" name="icon_playlists">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/view/logos_imgs/playlistIcon.png"/>
+                      <Image iconType="3" name="/view/assets/images/playlistIcon.png"/>
                     </Property>
                   </Properties>
                 </Component>

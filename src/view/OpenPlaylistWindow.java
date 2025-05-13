@@ -29,7 +29,7 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         this.user = user;
         this.setSize(width, height);
         // changes window icon
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png")).getImage());
 
     }
 
@@ -52,9 +52,7 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("nome_playlist");
         setBackground(new java.awt.Color(18, 18, 18));
-        setMaximumSize(new java.awt.Dimension(484, 384));
         setMinimumSize(new java.awt.Dimension(484, 384));
-        setPreferredSize(new java.awt.Dimension(484, 384));
         setResizable(false);
 
         background.setBackground(new java.awt.Color(18, 18, 18));
@@ -214,7 +212,7 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         });
         ((RoundedButton) btt_playlistName).setHover(0);
 
-        icon_playlists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/playlistIcon.png"))); // NOI18N
+        icon_playlists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/playlistIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);

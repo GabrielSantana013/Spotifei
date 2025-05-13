@@ -84,8 +84,8 @@ public class MusicSearchController {
                     Music updatedMusic = musicDAO.getMusicById(selectedMusic.getMusicId());
                     selectedMusic = updatedMusic;
                     updateMusicLabels(updatedMusic);
-                    view.getBtt_dislike().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/dislike.png")));
-                    view.getBtt_like().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/like_green.png")));
+                    view.getBtt_dislike().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/dislike.png")));
+                    view.getBtt_like().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/like_green.png")));
 
                 } catch (SQLException ex) {
                     CustomJDialog.showCustomDialog("Erro!", "Erro ao curtir a música.");
@@ -118,8 +118,8 @@ public class MusicSearchController {
                     Music updatedMusic = musicDAO.getMusicById(selectedMusic.getMusicId());
                     selectedMusic = updatedMusic;
                     updateMusicLabels(updatedMusic);
-                    view.getBtt_like().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/like.png")));
-                    view.getBtt_dislike().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/dislike_red.png")));
+                    view.getBtt_like().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/like.png")));
+                    view.getBtt_dislike().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/dislike_red.png")));
 
                 } catch (SQLException ex) {
                     CustomJDialog.showCustomDialog("Erro!", "Erro ao descurtir a música.");

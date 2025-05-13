@@ -112,7 +112,7 @@
             <Component class="javax.swing.JLabel" name="icon_logo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/view/logos_imgs/logoSpotifei.png"/>
+                  <Image iconType="3" name="/view/assets/images/logoSpotifei.png"/>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Default Cursor"/>

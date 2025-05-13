@@ -21,7 +21,7 @@ public class CustomJDialog {
         dialog.setSize(400, 200);
         dialog.setLocationRelativeTo(null);  // center the dialog
         dialog.setResizable(false);
-        dialog.setIconImage(new javax.swing.ImageIcon(CustomJDialog.class.getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
+        dialog.setIconImage(new javax.swing.ImageIcon(CustomJDialog.class.getResource("/view/assets/images/logoSpotifei.png")).getImage());
 
         
         // create a JPanel for the dialog content

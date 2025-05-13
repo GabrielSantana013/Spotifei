@@ -35,7 +35,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         this.setSize(width, height);
         
         // changes window icon
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png")).getImage());
         
         // center the window
 
@@ -102,7 +102,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
 
         home_pnl_titleLogo.setBackground(new java.awt.Color(28, 28, 28));
 
-        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png"))); // NOI18N
+        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png"))); // NOI18N
         icon_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lbl_title.setFont(new Font("Gotham Black", Font.PLAIN, 24));
@@ -118,7 +118,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
                 .addComponent(icon_logo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbl_title)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         home_pnl_titleLogoLayout.setVerticalGroup(
             home_pnl_titleLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +145,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
             }
         });
 
-        icon_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/homeIcon.png"))); // NOI18N
+        icon_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/homeIcon.png"))); // NOI18N
         home_pnl_homeOpt.add(icon_home);
 
         lbl_home.setFont(new Font("Gotham Black", Font.PLAIN, 16));
@@ -165,7 +165,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
             }
         });
 
-        icon_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/searchIcon.png"))); // NOI18N
+        icon_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/searchIcon.png"))); // NOI18N
         home_pnl_searchOpt.add(icon_search);
 
         lbl_search.setFont(new Font("Gotham Black", Font.PLAIN, 16));
@@ -185,7 +185,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
             }
         });
 
-        icon_playlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/playlistIcon.png"))); // NOI18N
+        icon_playlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/playlistIcon.png"))); // NOI18N
         home_pnl_playlistOpt.add(icon_playlist);
 
         lbl_playlist.setFont(new Font("Gotham Black", Font.PLAIN, 16));
@@ -264,7 +264,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         playlist_pnl_welcome.setBackground(new java.awt.Color(18, 18, 18));
         playlist_pnl_welcome.setLayout(new javax.swing.BoxLayout(playlist_pnl_welcome, javax.swing.BoxLayout.LINE_AXIS));
 
-        icon_playlists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/playlistIcon.png"))); // NOI18N
+        icon_playlists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/playlistIcon.png"))); // NOI18N
         playlist_pnl_welcome.add(icon_playlists);
 
         lbl_playlists.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 18));

@@ -31,7 +31,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         this.setSize(width, height);
         
         // changes window icon
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png")).getImage());
         
         // get the screen size and center the window
         int x = (screenSize.width - width) / 2;
@@ -159,7 +159,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
         register_pnl_titleLogo.setBackground(new java.awt.Color(28, 28, 28));
 
-        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png"))); // NOI18N
+        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png"))); // NOI18N
         icon_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lbl_title.setFont(new Font("Gotham Black", Font.PLAIN, 24));
@@ -246,7 +246,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         btt_cadastrar.setText("Cadastrar");
         btt_cadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_cadastrar.setBorderPainted(false);
-        btt_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_cadastrar.setPreferredSize(new java.awt.Dimension(170, 50));
         btt_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,10 +289,10 @@ public class RegistrationWindow extends javax.swing.JFrame {
         );
 
         btt_return.setBackground(new java.awt.Color(28, 28, 28));
-        btt_return.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/returnArrow.png"))); // NOI18N
+        btt_return.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/returnArrow.png"))); // NOI18N
         btt_return.setBorder(null);
         btt_return.setBorderPainted(false);
-        btt_return.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_return.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_return.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btt_returnActionPerformed(evt);

@@ -5,6 +5,7 @@
 package spotifei;
 
 import view.LoginWindow;
+import view.assets.fonts.FontLoader;
 
 /**
  *
@@ -16,6 +17,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        FontLoader.registerAllFonts(); // registra todas as fontes
+        
         LoginWindow lw = new LoginWindow();
         lw.setVisible(true);
     }

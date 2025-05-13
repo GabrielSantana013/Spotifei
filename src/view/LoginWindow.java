@@ -32,7 +32,7 @@ public class LoginWindow extends javax.swing.JFrame {
         this.setSize(width, height);
         
         // changes window icon
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png")).getImage());
         
         // get the screen size and center the window
         int x = (screenSize.width - width) / 2;
@@ -160,7 +160,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
         login_pnl_titleLogo.setBackground(new java.awt.Color(28, 28, 28));
 
-        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png"))); // NOI18N
+        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png"))); // NOI18N
         icon_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lbl_title.setFont(new Font("Gotham Black", Font.PLAIN, 24));

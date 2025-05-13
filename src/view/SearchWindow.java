@@ -35,7 +35,7 @@ public class SearchWindow extends javax.swing.JFrame {
         this.setSize(width, height);
         
         // changes window icon
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png")).getImage());
         
         // center the window
         int x = (screenSize.width - width) / 2;
@@ -218,7 +218,7 @@ public class SearchWindow extends javax.swing.JFrame {
 
         home_pnl_titleLogo.setBackground(new java.awt.Color(28, 28, 28));
 
-        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/logoSpotifei.png"))); // NOI18N
+        icon_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png"))); // NOI18N
         icon_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lbl_title.setFont(new Font("Gotham Black", Font.PLAIN, 24));
@@ -261,7 +261,7 @@ public class SearchWindow extends javax.swing.JFrame {
             }
         });
 
-        icon_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/homeIcon.png"))); // NOI18N
+        icon_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/homeIcon.png"))); // NOI18N
         home_pnl_homeOpt.add(icon_home);
 
         lbl_home.setFont(new Font("Gotham Black", Font.PLAIN, 16));
@@ -281,7 +281,7 @@ public class SearchWindow extends javax.swing.JFrame {
             }
         });
 
-        icon_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/searchIcon.png"))); // NOI18N
+        icon_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/searchIcon.png"))); // NOI18N
         home_pnl_searchOpt.add(icon_search);
 
         lbl_search.setFont(new Font("Gotham Black", Font.PLAIN, 16));
@@ -301,7 +301,7 @@ public class SearchWindow extends javax.swing.JFrame {
             }
         });
 
-        icon_playlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/playlistIcon.png"))); // NOI18N
+        icon_playlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/playlistIcon.png"))); // NOI18N
         home_pnl_playlistOpt.add(icon_playlist);
 
         lbl_playlist.setFont(new Font("Gotham Black", Font.PLAIN, 16));
@@ -400,7 +400,7 @@ public class SearchWindow extends javax.swing.JFrame {
             }
         });
 
-        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/searchIcon_gray_small.png"))); // NOI18N
+        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/searchIcon_gray_small.png"))); // NOI18N
 
         javax.swing.GroupLayout search_pnl_barLayout = new javax.swing.GroupLayout(search_pnl_bar);
         search_pnl_bar.setLayout(search_pnl_barLayout);
@@ -446,26 +446,13 @@ public class SearchWindow extends javax.swing.JFrame {
 
         pnl1.setBackground(new java.awt.Color(18, 18, 18));
         pnl1.setPreferredSize(new java.awt.Dimension(256, 384));
+        pnl1.setLayout(new java.awt.GridBagLayout());
 
-        artist_photo.setText("FOTO");
+        artist_photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/music_photo_test4.png"))); // NOI18N
         artist_photo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         artist_photo.setPreferredSize(new java.awt.Dimension(256, 384));
         artist_photo.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-
-        javax.swing.GroupLayout pnl1Layout = new javax.swing.GroupLayout(pnl1);
-        pnl1.setLayout(pnl1Layout);
-        pnl1Layout.setHorizontalGroup(
-            pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl1Layout.createSequentialGroup()
-                .addComponent(artist_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        pnl1Layout.setVerticalGroup(
-            pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl1Layout.createSequentialGroup()
-                .addComponent(artist_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        pnl1.add(artist_photo, new java.awt.GridBagConstraints());
 
         search_pnl_musicInfo.add(pnl1);
 
@@ -607,7 +594,7 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_like.setContentAreaFilled(false);
         btt_like.setBorderPainted(false);
         btt_like.setBackground(new java.awt.Color(18, 18, 18));
-        btt_like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/like.png"))); // NOI18N
+        btt_like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/like.png"))); // NOI18N
         btt_like.setBorder(null);
         btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -615,7 +602,7 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_dislike.setContentAreaFilled(false);
         btt_dislike.setBorderPainted(false);
         btt_dislike.setBackground(new java.awt.Color(18, 18, 18));
-        btt_dislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/dislike.png"))); // NOI18N
+        btt_dislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/dislike.png"))); // NOI18N
         btt_dislike.setBorder(null);
         btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
