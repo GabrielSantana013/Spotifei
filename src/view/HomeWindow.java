@@ -135,22 +135,18 @@ public class HomeWindow extends javax.swing.JFrame {
         title1 = new javax.swing.JLabel();
         artist1 = new javax.swing.JLabel();
         photo1 = new javax.swing.JPanel();
-        pad1 = new javax.swing.JPanel();
         music2 = new RoundedPanel();
         title2 = new javax.swing.JLabel();
         artist2 = new javax.swing.JLabel();
         photo2 = new javax.swing.JPanel();
-        pad2 = new javax.swing.JPanel();
         music3 = new RoundedPanel();
         title3 = new javax.swing.JLabel();
         artist3 = new javax.swing.JLabel();
         photo3 = new javax.swing.JPanel();
-        pad3 = new javax.swing.JPanel();
         music4 = new RoundedPanel();
         title4 = new javax.swing.JLabel();
         artist4 = new javax.swing.JLabel();
         photo4 = new javax.swing.JPanel();
-        pad4 = new javax.swing.JPanel();
         music5 = new RoundedPanel();
         title5 = new javax.swing.JLabel();
         artist5 = new javax.swing.JLabel();
@@ -171,6 +167,7 @@ public class HomeWindow extends javax.swing.JFrame {
         setResizable(false);
 
         home_pnl_all.setBackground(new java.awt.Color(28, 28, 28));
+        home_pnl_all.setPreferredSize(new java.awt.Dimension(1024, 1024));
 
         home_pnl_leftSide.setBackground(new java.awt.Color(28, 28, 28));
 
@@ -211,7 +208,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -231,7 +228,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_searchOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_pnl_searchOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_searchOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -251,7 +248,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_searchOpt);
 
         home_pnl_playlistOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -309,7 +306,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_botSide.setLayout(home_pnl_botSideLayout);
         home_pnl_botSideLayout.setHorizontalGroup(
             home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1397, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         home_pnl_botSideLayout.setVerticalGroup(
             home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,7 +343,7 @@ public class HomeWindow extends javax.swing.JFrame {
         spacing1.setLayout(spacing1Layout);
         spacing1Layout.setHorizontalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 212, Short.MAX_VALUE)
         );
         spacing1Layout.setVerticalGroup(
             spacing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,7 +368,7 @@ public class HomeWindow extends javax.swing.JFrame {
         spacing2.setLayout(spacing2Layout);
         spacing2Layout.setHorizontalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 212, Short.MAX_VALUE)
         );
         spacing2Layout.setVerticalGroup(
             spacing2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,15 +380,20 @@ public class HomeWindow extends javax.swing.JFrame {
         ((RoundedPanel) home_pnl_topMusics).setHover(0);
         home_pnl_topMusics.setBackground(new java.awt.Color(54, 54, 54));
         home_pnl_topMusics.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        home_pnl_topMusics.setPreferredSize(new java.awt.Dimension(0, 354));
-        home_pnl_topMusics.setLayout(new javax.swing.BoxLayout(home_pnl_topMusics, javax.swing.BoxLayout.LINE_AXIS));
+        home_pnl_topMusics.setMaximumSize(new java.awt.Dimension(847, 354));
+        home_pnl_topMusics.setMinimumSize(new java.awt.Dimension(847, 354));
+        home_pnl_topMusics.setPreferredSize(new java.awt.Dimension(847, 354));
+        java.awt.GridBagLayout home_pnl_topMusicsLayout = new java.awt.GridBagLayout();
+        home_pnl_topMusicsLayout.columnWidths = new int[] {20, 20, 20};
+        home_pnl_topMusicsLayout.columnWeights = new double[] {5.0, 5.0, 5.0, 5.0, 5.0};
+        home_pnl_topMusics.setLayout(home_pnl_topMusicsLayout);
 
         ((RoundedPanel) music1).setNormalColor(new Color(18,18,18));
         ((RoundedPanel) music1).setHoverColor(new Color(36,36,36));
         music1.setBackground(new java.awt.Color(18, 18, 18));
-        music1.setMaximumSize(new java.awt.Dimension(400, 400));
-        music1.setMinimumSize(new java.awt.Dimension(200, 400));
-        music1.setPreferredSize(new java.awt.Dimension(200, 400));
+        music1.setMaximumSize(new java.awt.Dimension(200, 300));
+        music1.setMinimumSize(new java.awt.Dimension(200, 300));
+        music1.setPreferredSize(new java.awt.Dimension(200, 300));
 
         title1.setFont(new Font("Gotham Black", Font.PLAIN, 18));
         title1.setForeground(new java.awt.Color(168, 168, 168));
@@ -424,7 +426,7 @@ public class HomeWindow extends javax.swing.JFrame {
                         .addGroup(music1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(title1)
                             .addComponent(artist1))
-                        .addGap(0, 156, Short.MAX_VALUE)))
+                        .addGap(0, 122, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         music1Layout.setVerticalGroup(
@@ -439,32 +441,14 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        home_pnl_topMusics.add(music1);
-
-        pad1.setMaximumSize(new java.awt.Dimension(50, 50));
-        pad1.setMinimumSize(new java.awt.Dimension(50, 50));
-        pad1.setOpaque(false);
-        pad1.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        javax.swing.GroupLayout pad1Layout = new javax.swing.GroupLayout(pad1);
-        pad1.setLayout(pad1Layout);
-        pad1Layout.setHorizontalGroup(
-            pad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        pad1Layout.setVerticalGroup(
-            pad1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        home_pnl_topMusics.add(pad1);
+        home_pnl_topMusics.add(music1, new java.awt.GridBagConstraints());
 
         ((RoundedPanel) music2).setNormalColor(new Color(18,18,18));
         ((RoundedPanel) music2).setHoverColor(new Color(36,36,36));
         music2.setBackground(new java.awt.Color(18, 18, 18));
-        music2.setMaximumSize(new java.awt.Dimension(400, 400));
-        music2.setMinimumSize(new java.awt.Dimension(200, 400));
-        music2.setPreferredSize(new java.awt.Dimension(200, 400));
+        music2.setMaximumSize(new java.awt.Dimension(200, 300));
+        music2.setMinimumSize(new java.awt.Dimension(200, 300));
+        music2.setPreferredSize(new java.awt.Dimension(200, 300));
 
         title2.setFont(new Font("Gotham Black", Font.PLAIN, 18));
         title2.setForeground(new java.awt.Color(168, 168, 168));
@@ -482,7 +466,7 @@ public class HomeWindow extends javax.swing.JFrame {
         );
         photo2Layout.setVerticalGroup(
             photo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 252, Short.MAX_VALUE)
+            .addGap(0, 218, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout music2Layout = new javax.swing.GroupLayout(music2);
@@ -496,7 +480,7 @@ public class HomeWindow extends javax.swing.JFrame {
                         .addGroup(music2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(artist2)
                             .addComponent(title2))
-                        .addGap(0, 156, Short.MAX_VALUE))
+                        .addGap(0, 122, Short.MAX_VALUE))
                     .addComponent(photo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -512,32 +496,14 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        home_pnl_topMusics.add(music2);
-
-        pad2.setMaximumSize(new java.awt.Dimension(50, 50));
-        pad2.setMinimumSize(new java.awt.Dimension(50, 50));
-        pad2.setOpaque(false);
-        pad2.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        javax.swing.GroupLayout pad2Layout = new javax.swing.GroupLayout(pad2);
-        pad2.setLayout(pad2Layout);
-        pad2Layout.setHorizontalGroup(
-            pad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        pad2Layout.setVerticalGroup(
-            pad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        home_pnl_topMusics.add(pad2);
+        home_pnl_topMusics.add(music2, new java.awt.GridBagConstraints());
 
         ((RoundedPanel) music3).setNormalColor(new Color(18,18,18));
         ((RoundedPanel) music3).setHoverColor(new Color(36,36,36));
         music3.setBackground(new java.awt.Color(18, 18, 18));
-        music3.setMaximumSize(new java.awt.Dimension(400, 400));
-        music3.setMinimumSize(new java.awt.Dimension(200, 400));
-        music3.setPreferredSize(new java.awt.Dimension(200, 400));
+        music3.setMaximumSize(new java.awt.Dimension(200, 300));
+        music3.setMinimumSize(new java.awt.Dimension(200, 300));
+        music3.setPreferredSize(new java.awt.Dimension(200, 300));
 
         title3.setFont(new Font("Gotham Black", Font.PLAIN, 18));
         title3.setForeground(new java.awt.Color(168, 168, 168));
@@ -555,7 +521,7 @@ public class HomeWindow extends javax.swing.JFrame {
         );
         photo3Layout.setVerticalGroup(
             photo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 252, Short.MAX_VALUE)
+            .addGap(0, 218, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout music3Layout = new javax.swing.GroupLayout(music3);
@@ -569,7 +535,7 @@ public class HomeWindow extends javax.swing.JFrame {
                         .addGroup(music3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(title3)
                             .addComponent(artist3))
-                        .addGap(0, 156, Short.MAX_VALUE))
+                        .addGap(0, 122, Short.MAX_VALUE))
                     .addComponent(photo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -585,32 +551,14 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        home_pnl_topMusics.add(music3);
-
-        pad3.setMaximumSize(new java.awt.Dimension(50, 50));
-        pad3.setMinimumSize(new java.awt.Dimension(50, 50));
-        pad3.setOpaque(false);
-        pad3.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        javax.swing.GroupLayout pad3Layout = new javax.swing.GroupLayout(pad3);
-        pad3.setLayout(pad3Layout);
-        pad3Layout.setHorizontalGroup(
-            pad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        pad3Layout.setVerticalGroup(
-            pad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        home_pnl_topMusics.add(pad3);
+        home_pnl_topMusics.add(music3, new java.awt.GridBagConstraints());
 
         ((RoundedPanel) music4).setNormalColor(new Color(18,18,18));
         ((RoundedPanel) music4).setHoverColor(new Color(36,36,36));
         music4.setBackground(new java.awt.Color(18, 18, 18));
-        music4.setMaximumSize(new java.awt.Dimension(400, 400));
-        music4.setMinimumSize(new java.awt.Dimension(200, 400));
-        music4.setPreferredSize(new java.awt.Dimension(200, 400));
+        music4.setMaximumSize(new java.awt.Dimension(200, 300));
+        music4.setMinimumSize(new java.awt.Dimension(200, 300));
+        music4.setPreferredSize(new java.awt.Dimension(200, 300));
 
         title4.setFont(new Font("Gotham Black", Font.PLAIN, 18));
         title4.setForeground(new java.awt.Color(168, 168, 168));
@@ -628,7 +576,7 @@ public class HomeWindow extends javax.swing.JFrame {
         );
         photo4Layout.setVerticalGroup(
             photo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 252, Short.MAX_VALUE)
+            .addGap(0, 218, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout music4Layout = new javax.swing.GroupLayout(music4);
@@ -642,7 +590,7 @@ public class HomeWindow extends javax.swing.JFrame {
                         .addGroup(music4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(title4)
                             .addComponent(artist4))
-                        .addGap(0, 156, Short.MAX_VALUE))
+                        .addGap(0, 122, Short.MAX_VALUE))
                     .addComponent(photo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -658,32 +606,14 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        home_pnl_topMusics.add(music4);
-
-        pad4.setMaximumSize(new java.awt.Dimension(50, 50));
-        pad4.setMinimumSize(new java.awt.Dimension(50, 50));
-        pad4.setOpaque(false);
-        pad4.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        javax.swing.GroupLayout pad4Layout = new javax.swing.GroupLayout(pad4);
-        pad4.setLayout(pad4Layout);
-        pad4Layout.setHorizontalGroup(
-            pad4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        pad4Layout.setVerticalGroup(
-            pad4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        home_pnl_topMusics.add(pad4);
+        home_pnl_topMusics.add(music4, new java.awt.GridBagConstraints());
 
         ((RoundedPanel) music5).setNormalColor(new Color(18,18,18));
         ((RoundedPanel) music5).setHoverColor(new Color(36,36,36));
         music5.setBackground(new java.awt.Color(18, 18, 18));
-        music5.setMaximumSize(new java.awt.Dimension(400, 400));
-        music5.setMinimumSize(new java.awt.Dimension(200, 400));
-        music5.setPreferredSize(new java.awt.Dimension(200, 400));
+        music5.setMaximumSize(new java.awt.Dimension(200, 300));
+        music5.setMinimumSize(new java.awt.Dimension(200, 300));
+        music5.setPreferredSize(new java.awt.Dimension(200, 300));
 
         title5.setFont(new Font("Gotham Black", Font.PLAIN, 18));
         title5.setForeground(new java.awt.Color(168, 168, 168));
@@ -701,7 +631,7 @@ public class HomeWindow extends javax.swing.JFrame {
         );
         photo5Layout.setVerticalGroup(
             photo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 252, Short.MAX_VALUE)
+            .addGap(0, 218, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout music5Layout = new javax.swing.GroupLayout(music5);
@@ -715,7 +645,7 @@ public class HomeWindow extends javax.swing.JFrame {
                         .addGroup(music5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(title5)
                             .addComponent(artist5))
-                        .addGap(0, 156, Short.MAX_VALUE))
+                        .addGap(0, 122, Short.MAX_VALUE))
                     .addComponent(photo5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -731,26 +661,32 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        home_pnl_topMusics.add(music5);
+        home_pnl_topMusics.add(music5, new java.awt.GridBagConstraints());
 
         ((RoundedPanel) home_pnl_likes).setHover(0);
         home_pnl_likes.setBackground(new java.awt.Color(54, 54, 54));
         home_pnl_likes.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        home_pnl_likes.setLayout(new javax.swing.BoxLayout(home_pnl_likes, javax.swing.BoxLayout.LINE_AXIS));
+        home_pnl_likes.setLayout(new javax.swing.BoxLayout(home_pnl_likes, javax.swing.BoxLayout.X_AXIS));
 
         ((RoundedPanel) likes).setNormalColor(new Color(18,18,18));
         ((RoundedPanel) likes).setHoverColor(new Color(36,36,36));
+        ((RoundedPanel) likes).setHover(0);
         likes.setBackground(new java.awt.Color(18, 18, 18));
 
         num_likes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         num_likes.setForeground(new java.awt.Color(168, 168, 168));
         num_likes.setText("likes");
 
-        listLikes.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jScrollPane1.setBackground(new java.awt.Color(60, 63, 65));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setForeground(new java.awt.Color(58, 58, 58));
+
+        listLikes.setBackground(new java.awt.Color(18, 18, 18));
+        listLikes.setBorder(null);
+        listLikes.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        listLikes.setForeground(new java.awt.Color(236, 239, 241));
+        listLikes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listLikes.setSelectionBackground(new java.awt.Color(100, 165, 135));
         jScrollPane1.setViewportView(listLikes);
 
         javax.swing.GroupLayout likesLayout = new javax.swing.GroupLayout(likes);
@@ -758,55 +694,63 @@ public class HomeWindow extends javax.swing.JFrame {
         likesLayout.setHorizontalGroup(
             likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(likesLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                     .addGroup(likesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(num_likes))
-                    .addGroup(likesLayout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(274, Short.MAX_VALUE))
+                        .addComponent(num_likes)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         likesLayout.setVerticalGroup(
             likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(likesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(num_likes)
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         home_pnl_likes.add(likes);
 
+        pad5.setMaximumSize(new java.awt.Dimension(25, 25));
+        pad5.setMinimumSize(new java.awt.Dimension(25, 25));
         pad5.setOpaque(false);
+        pad5.setPreferredSize(new java.awt.Dimension(25, 25));
 
         javax.swing.GroupLayout pad5Layout = new javax.swing.GroupLayout(pad5);
         pad5.setLayout(pad5Layout);
         pad5Layout.setHorizontalGroup(
             pad5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         pad5Layout.setVerticalGroup(
             pad5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 344, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
 
         home_pnl_likes.add(pad5);
 
         ((RoundedPanel) dislikes).setNormalColor(new Color(18,18,18));
         ((RoundedPanel) dislikes).setHoverColor(new Color(36,36,36));
+        ((RoundedPanel) dislikes).setHover(0);
         dislikes.setBackground(new java.awt.Color(18, 18, 18));
 
         num_dislikes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         num_dislikes.setForeground(new java.awt.Color(168, 168, 168));
         num_dislikes.setText("dislikes");
 
-        listDislikes.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jScrollPane2.setBackground(new java.awt.Color(60, 63, 65));
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setForeground(new java.awt.Color(58, 58, 58));
+
+        listDislikes.setBackground(new java.awt.Color(18, 18, 18));
+        listDislikes.setBorder(null);
+        listDislikes.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        listDislikes.setForeground(new java.awt.Color(236, 239, 241));
+        listDislikes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listDislikes.setSelectionBackground(new java.awt.Color(100, 165, 135));
         jScrollPane2.setViewportView(listDislikes);
 
         javax.swing.GroupLayout dislikesLayout = new javax.swing.GroupLayout(dislikes);
@@ -814,23 +758,22 @@ public class HomeWindow extends javax.swing.JFrame {
         dislikesLayout.setHorizontalGroup(
             dislikesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dislikesLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(dislikesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                     .addGroup(dislikesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(num_dislikes))
-                    .addGroup(dislikesLayout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(366, Short.MAX_VALUE))
+                        .addComponent(num_dislikes)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         dislikesLayout.setVerticalGroup(
             dislikesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dislikesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(num_dislikes)
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         home_pnl_likes.add(dislikes);
@@ -842,12 +785,12 @@ public class HomeWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(home_pnl_likes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(home_pnl_topMusics, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, home_pnl_insideLayout.createSequentialGroup()
-                        .addComponent(home_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, 1002, Short.MAX_VALUE)
+                        .addComponent(home_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(home_pnl_likes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(home_pnl_topMusics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         home_pnl_insideLayout.setVerticalGroup(
@@ -858,7 +801,7 @@ public class HomeWindow extends javax.swing.JFrame {
                     .addComponent(home_pnl_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btt_profile, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(home_pnl_topMusics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(home_pnl_topMusics, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(home_pnl_likes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1006,10 +949,6 @@ public class HomeWindow extends javax.swing.JFrame {
     private javax.swing.JPanel music5;
     private javax.swing.JLabel num_dislikes;
     private javax.swing.JLabel num_likes;
-    private javax.swing.JPanel pad1;
-    private javax.swing.JPanel pad2;
-    private javax.swing.JPanel pad3;
-    private javax.swing.JPanel pad4;
     private javax.swing.JPanel pad5;
     private javax.swing.JPanel photo1;
     private javax.swing.JPanel photo2;

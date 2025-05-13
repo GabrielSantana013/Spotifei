@@ -19,6 +19,8 @@ public class RoundedButton extends JButton {
     private boolean hovering = false;
     private int cornerRadiusHorizontal = 30;
     private int cornerRadiusVertical = 30;
+    private int hover = 1;
+
     
     // enum for alignment
     public enum TextAlign {
@@ -40,13 +42,15 @@ public class RoundedButton extends JButton {
         @Override
         public void mouseEntered(MouseEvent e) {
             hovering = true;
-            startHoverAnimation();
+            if(hover == 1)
+                startHoverAnimation();
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
             hovering = false;
-            startHoverAnimation();
+            if(hover == 1)
+                startHoverAnimation();
         }
     });
     }
@@ -67,7 +71,9 @@ public class RoundedButton extends JButton {
         this.cornerRadiusVertical = cornerRadiusVertical;
     }
 
-    
+    public void setHover(int hover) {
+        this.hover = hover;
+    }
     
     // set the text alignment
     public void setTextAlignment(TextAlign align) {

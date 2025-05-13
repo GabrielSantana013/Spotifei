@@ -144,6 +144,10 @@ public class SearchWindow extends javax.swing.JFrame {
     public void setBtt_like(JButton btt_like) {
         this.btt_like = btt_like;
     }
+
+    public void setSearch_pnl_musicInfoVisibility(Boolean flag) {
+        this.search_pnl_musicInfo.setVisible(flag);
+    }
     
     
 
@@ -438,6 +442,7 @@ public class SearchWindow extends javax.swing.JFrame {
 
         search_pnl_musicInfo.setBackground(new java.awt.Color(18, 18, 18));
         search_pnl_musicInfo.setLayout(new java.awt.GridLayout(1, 0));
+        search_pnl_musicInfo.setVisible(false);
 
         pnl1.setBackground(new java.awt.Color(18, 18, 18));
         pnl1.setPreferredSize(new java.awt.Dimension(256, 384));
@@ -598,15 +603,21 @@ public class SearchWindow extends javax.swing.JFrame {
         lbl_musicLikes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         lbl_musicLikes.setForeground(new java.awt.Color(168, 168, 168));
 
+        btt_like.setFocusPainted(false);
+        btt_like.setContentAreaFilled(false);
+        btt_like.setBorderPainted(false);
         btt_like.setBackground(new java.awt.Color(18, 18, 18));
         btt_like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/like.png"))); // NOI18N
         btt_like.setBorder(null);
-        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        btt_dislike.setFocusPainted(false);
+        btt_dislike.setContentAreaFilled(false);
+        btt_dislike.setBorderPainted(false);
         btt_dislike.setBackground(new java.awt.Color(18, 18, 18));
         btt_dislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/dislike.png"))); // NOI18N
         btt_dislike.setBorder(null);
-        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout pnl4Layout = new javax.swing.GroupLayout(pnl4);
         pnl4.setLayout(pnl4Layout);

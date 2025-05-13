@@ -61,6 +61,7 @@ public class MusicSearchController {
             }
         });
 
+        // TODO: arrumar uns errinhos da mudança de cor do botão
         // Botão LIKE
         this.view.getBtt_like().addActionListener(e -> {
             if (selectedMusic != null) {
@@ -83,6 +84,8 @@ public class MusicSearchController {
                     Music updatedMusic = musicDAO.getMusicById(selectedMusic.getMusicId());
                     selectedMusic = updatedMusic;
                     updateMusicLabels(updatedMusic);
+                    view.getBtt_dislike().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/dislike.png")));
+                    view.getBtt_like().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/like_green.png")));
 
                 } catch (SQLException ex) {
                     CustomJDialog.showCustomDialog("Erro!", "Erro ao curtir a música.");
@@ -115,6 +118,8 @@ public class MusicSearchController {
                     Music updatedMusic = musicDAO.getMusicById(selectedMusic.getMusicId());
                     selectedMusic = updatedMusic;
                     updateMusicLabels(updatedMusic);
+                    view.getBtt_like().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/like.png")));
+                    view.getBtt_dislike().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/logos_imgs/dislike_red.png")));
 
                 } catch (SQLException ex) {
                     CustomJDialog.showCustomDialog("Erro!", "Erro ao descurtir a música.");
@@ -193,9 +198,11 @@ public class MusicSearchController {
     }
     
     private void updateMusicLabels(Music music) {
+        view.setSearch_pnl_musicInfoVisibility(Boolean.TRUE);
+        
         int duration = music.getDuration();
         String formattedDuration = String.format("%d:%02d", duration / 60, duration % 60);
-
+        
         view.getLbl_musicTitle().setText(music.getMusicTitle());
         view.getLbl_musicGenre().setText(music.getGenre());
         view.getLbl_musicDuration().setText(formattedDuration);
@@ -208,11 +215,8 @@ public class MusicSearchController {
     public int getAtualIndex(ArrayList<Music> m, String title){
         return m.indexOf(title);
     }
-
-        
+    
     public void setUserNameOnWindow(){
         view.getBtt_profile().setText(user.getUserLogin());
     }
-    
-    
 }

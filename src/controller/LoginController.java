@@ -11,6 +11,7 @@ import auth.Authenticator;
 import auth.UserAuthenticator;
 import auth.AdmAuthenticator;
 import java.sql.SQLException;
+import java.util.Arrays;
 import javax.swing.*;
 import model.Adm;
 import model.User;
@@ -31,7 +32,8 @@ public class LoginController {
 
     public void login() {
         String login = view.getTxt_login().getText();
-        String password = view.getTxt_password().getText();
+        char[] passwordChars = view.getTxt_password().getPassword(); // pega a senha
+        String password = new String(passwordChars); // converte pra string
 
         try {
            //tenta autenticar como user
@@ -70,6 +72,9 @@ public class LoginController {
                         + "banco de dados.\nEntre em contato com os administradores.");
             });
             return;
+        } finally {
+            // limpa o array de senha por segurança
+            Arrays.fill(passwordChars, '\0');
         }
 
         // Se não for user nem admin

@@ -150,8 +150,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txt_password" max="32767" attributes="0"/>
-                          <Component id="btt_register" pref="330" max="32767" attributes="0"/>
+                          <Component id="btt_register" alignment="1" pref="330" max="32767" attributes="0"/>
+                          <Component id="txt_password" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -167,8 +167,8 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="121" max="32767" attributes="0"/>
-                      <Component id="txt_password" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace pref="124" max="32767" attributes="0"/>
+                      <Component id="txt_password" min="-2" pref="47" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btt_login" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -207,7 +207,7 @@
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PlaceholderFields(&quot;Login...&quot;, new Insets(0, 15, 0, 0))"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_password">
+            <Component class="javax.swing.JPasswordField" name="txt_password">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -222,11 +222,8 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_passwordActionPerformed"/>
-              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PlaceholderFields(&quot;Senha...&quot;, new Insets(0, 15, 0, 0))"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PlaceholderPassword(&quot;Senha...&quot;, new Insets(0, 15, 0, 0))"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btt_login">

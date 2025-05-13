@@ -8,6 +8,7 @@ import view.customClasses.PlaceholderFields;
 import controller.LoginController;
 import java.awt.*;
 import javax.swing.*;
+import view.customClasses.PlaceholderPassword;
 import view.customDialogs.CustomJDialog;
 
 /**
@@ -123,11 +124,11 @@ public class LoginWindow extends javax.swing.JFrame {
         this.txt_login = txt_login;
     }
 
-    public JTextField getTxt_password() {
+    public JPasswordField getTxt_password() {
         return txt_password;
     }
 
-    public void setTxt_password(JTextField txt_password) {
+    public void setTxt_password(JPasswordField txt_password) {
         this.txt_password = txt_password;
     }
 
@@ -146,7 +147,7 @@ public class LoginWindow extends javax.swing.JFrame {
         lbl_title = new javax.swing.JLabel();
         login_pnl_login = new javax.swing.JPanel();
         txt_login = new PlaceholderFields("Login...", new Insets(0, 15, 0, 0));
-        txt_password = new PlaceholderFields("Senha...", new Insets(0, 15, 0, 0));
+        txt_password = new PlaceholderPassword("Senha...", new Insets(0, 15, 0, 0));
         btt_login = new RoundedButton("Entrar") ;
         btt_register = new javax.swing.JButton();
 
@@ -205,11 +206,6 @@ public class LoginWindow extends javax.swing.JFrame {
         txt_password.setFont(new java.awt.Font("Gotham Thin", 1, 14));
         txt_password.setForeground(new java.awt.Color(168, 170, 170));
         txt_password.setBorder(null);
-        txt_password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_passwordActionPerformed(evt);
-            }
-        });
 
         btt_login.setBackground(new java.awt.Color(185, 192, 198));
         btt_login.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 18));
@@ -253,8 +249,8 @@ public class LoginWindow extends javax.swing.JFrame {
             .addGroup(login_pnl_loginLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_password)
-                    .addComponent(btt_register, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
+                    .addComponent(btt_register, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                    .addComponent(txt_password))
                 .addContainerGap())
             .addGroup(login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(login_pnl_loginLayout.createSequentialGroup()
@@ -265,8 +261,8 @@ public class LoginWindow extends javax.swing.JFrame {
         login_pnl_loginLayout.setVerticalGroup(
             login_pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(login_pnl_loginLayout.createSequentialGroup()
-                .addContainerGap(121, Short.MAX_VALUE)
-                .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE)
+                .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -334,11 +330,6 @@ public class LoginWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btt_loginActionPerformed
 
-    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
-        // TODO add your handling code here:
-        btt_loginActionPerformed(null);
-    }//GEN-LAST:event_txt_passwordActionPerformed
-
     private void txt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_loginActionPerformed
         // TODO add your handling code here:
         btt_loginActionPerformed(null);
@@ -394,6 +385,6 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JPanel login_pnl_login;
     private javax.swing.JPanel login_pnl_titleLogo;
     private javax.swing.JTextField txt_login;
-    private javax.swing.JTextField txt_password;
+    private javax.swing.JPasswordField txt_password;
     // End of variables declaration//GEN-END:variables
 }
