@@ -67,7 +67,7 @@ public class PlaylistsController {
 
         this.view.getBtt_addPlaylist().addActionListener(e -> createPlaylist());
         this.view.getBtt_removePlaylist().addActionListener(e -> removePlaylist());
-        this.view.getBtt_removeMusic().addActionListener(e -> removeMusic());
+        this.view.getBtt_openPlaylist().addActionListener(e -> removeMusic());
 
     }
     

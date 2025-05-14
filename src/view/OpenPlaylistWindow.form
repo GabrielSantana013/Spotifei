@@ -7,8 +7,11 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="12" green="12" red="12" type="rgb"/>
     </Property>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[532, 384]"/>
+    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[484, 384]"/>
+      <Dimension value="[532, 384]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -31,12 +34,9 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="484" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="532" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="background" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
+              <Component id="background" alignment="0" pref="532" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,34 +69,42 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="icon_playlists" min="-2" pref="48" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btt_playlistName" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="scroll_playlistsMusics" min="-2" pref="322" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btt_removeMusic" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="scroll_playlistsMusics" min="-2" pref="322" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="scroll_desc" pref="0" max="32767" attributes="0"/>
+                      <Component id="btt_removeMusic" pref="180" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btt_playlistName" max="32767" attributes="0"/>
-                      <Component id="icon_playlists" pref="54" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="scroll_desc" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btt_removeMusic" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btt_playlistName" max="32767" attributes="0"/>
+                              <Component id="icon_playlists" pref="54" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="scroll_playlistsMusics" min="-2" pref="250" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scroll_playlistsMusics" min="-2" pref="256" max="-2" attributes="0"/>
-                      <Component id="btt_removeMusic" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -146,48 +154,7 @@
                   <Color blue="f1" green="ef" red="ec" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                  <StringArray count="40">
-                    <StringItem index="0" value="musicas"/>
-                    <StringItem index="1" value="musicas"/>
-                    <StringItem index="2" value="musicas"/>
-                    <StringItem index="3" value="musicas"/>
-                    <StringItem index="4" value="musicas"/>
-                    <StringItem index="5" value="musicas"/>
-                    <StringItem index="6" value="musicas"/>
-                    <StringItem index="7" value="musicas"/>
-                    <StringItem index="8" value="musicas"/>
-                    <StringItem index="9" value="musicas"/>
-                    <StringItem index="10" value="musicas"/>
-                    <StringItem index="11" value="musicas"/>
-                    <StringItem index="12" value="musicas"/>
-                    <StringItem index="13" value="musicas"/>
-                    <StringItem index="14" value="musicas"/>
-                    <StringItem index="15" value="musicas"/>
-                    <StringItem index="16" value="musicas"/>
-                    <StringItem index="17" value="musicas"/>
-                    <StringItem index="18" value="musicas"/>
-                    <StringItem index="19" value="musicas"/>
-                    <StringItem index="20" value="musicas"/>
-                    <StringItem index="21" value="musicas"/>
-                    <StringItem index="22" value="musicas"/>
-                    <StringItem index="23" value="musicas"/>
-                    <StringItem index="24" value="musicas"/>
-                    <StringItem index="25" value="musicas"/>
-                    <StringItem index="26" value="musicas"/>
-                    <StringItem index="27" value="musicas"/>
-                    <StringItem index="28" value="musicas"/>
-                    <StringItem index="29" value="musicas"/>
-                    <StringItem index="30" value="musicas"/>
-                    <StringItem index="31" value="musicas"/>
-                    <StringItem index="32" value="musicas"/>
-                    <StringItem index="33" value="musicas"/>
-                    <StringItem index="34" value="musicas"/>
-                    <StringItem index="35" value="musicas"/>
-                    <StringItem index="36" value="musicas"/>
-                    <StringItem index="37" value="musicas"/>
-                    <StringItem index="38" value="musicas"/>
-                    <StringItem index="39" value="musicas"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
                 <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -227,6 +194,9 @@
               <Dimension value="[120, 40]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btt_removeMusicActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedButton(&quot;Remover m&#xfa;sica&quot;)"/>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="((RoundedButton) btt_removeMusic).setCornerRadiusVertical(20);&#xa;((RoundedButton) btt_removeMusic).setCornerRadiusHorizontal(20);"/>
@@ -274,6 +244,47 @@
             </Property>
           </Properties>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="scroll_desc">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="scroll_desc.getVerticalScrollBar().setUI(new BasicScrollBarUI() {&#xa;    @Override&#xa;    protected void configureScrollBarColors() {&#xa;        this.thumbColor = new Color(60,63,65);&#xa;        this.trackColor = new Color(24,24,24);&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createDecreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createIncreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    private JButton createZeroButton() {&#xa;        JButton button = new JButton();&#xa;        button.setPreferredSize(new Dimension(0, 0));&#xa;        button.setMinimumSize(new Dimension(0, 0));&#xa;        button.setMaximumSize(new Dimension(0, 0));&#xa;        return button;&#xa;    }&#xa;&#xa;    // barra de scroll mais larga&#xa;    @Override&#xa;    public Dimension getPreferredSize(JComponent c) {&#xa;        return new Dimension(8, super.getPreferredSize(c).height); &#xa;    }&#xa;&#xa;    // arredonda o bot&#xe3;o&#xa;    @Override&#xa;    protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);&#xa;        g2.translate(thumbBounds.x, thumbBounds.y);&#xa;        g2.setColor(thumbColor);&#xa;        int arc = 12;&#xa;        g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);&#xa;        g2.dispose();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setColor(trackColor);&#xa;        g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);&#xa;        g2.dispose();&#xa;    }&#xa;});"/>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="txt_description">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="1c" green="1c" red="1c" type="rgb"/>
+                </Property>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new Font(&quot;Gotham Light&quot;, Font.PLAIN, 14)" type="code"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f1" green="ef" red="ec" type="rgb"/>
+                </Property>
+                <Property name="lineWrap" type="boolean" value="true"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="autoscrolls" type="boolean" value="false"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+                <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f1" green="ef" red="ec" type="rgb"/>
+                </Property>
+                <Property name="focusable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

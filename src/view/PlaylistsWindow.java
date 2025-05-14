@@ -6,9 +6,11 @@ package view;
 
 import controller.PlaylistsController;
 import view.customClasses.RoundedButton;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 import javax.swing.*;
 import model.User;
+import view.customClasses.PlaceholderFields;
 import view.customClasses.RoundedButton.*;
 import view.customClasses.RoundedPanel;
 
@@ -71,12 +73,20 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         this.btt_profile = btt_profile;
     }
 
-    public JButton getBtt_removeMusic() {
-        return btt_removeMusic;
+    public JButton getBtt_openPlaylist() {
+        return btt_openPlaylist;
     }
 
-    public void setBtt_removeMusic(JButton btt_removeMusic) {
-        this.btt_removeMusic = btt_removeMusic;
+    public void setBtt_openPlaylist(JButton btt_openPlaylist) {
+        this.btt_openPlaylist = btt_openPlaylist;
+    }
+
+    public JButton getBtt_confirmar() {
+        return btt_confirmar;
+    }
+
+    public void setBtt_confirmar(JButton btt_confirmar) {
+        this.btt_confirmar = btt_confirmar;
     }
 
     public JButton getBtt_removePlaylist() {
@@ -125,9 +135,16 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         playlist_pnl_playlists = new RoundedPanel();
         scroll_playlists = new javax.swing.JScrollPane();
         list_playlists = new javax.swing.JList<>();
-        btt_removeMusic = new RoundedButton("Remover música");
+        btt_openPlaylist = new RoundedButton("Abrir playlist");
         btt_removePlaylist = new RoundedButton("Apagar playlist");
         btt_addPlaylist = new RoundedButton("Adicionar playlist");
+        pnl_addPlaylist = new javax.swing.JPanel();
+        lbl_nome = new javax.swing.JLabel();
+        txt_nomePlaylist = new PlaceholderFields("Digite o nome da playlist...", new Insets(0, 5, 0, 0));
+        lbl_desc = new javax.swing.JLabel();
+        scroll_desc = new javax.swing.JScrollPane();
+        txt_description = new javax.swing.JTextArea();
+        btt_confirmar = new RoundedButton("Confirmar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -272,7 +289,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         playlist_pnl_botSide.setLayout(playlist_pnl_botSideLayout);
         playlist_pnl_botSideLayout.setHorizontalGroup(
             playlist_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1018, Short.MAX_VALUE)
         );
         playlist_pnl_botSideLayout.setVerticalGroup(
             playlist_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,16 +367,16 @@ public class PlaylistsWindow extends javax.swing.JFrame {
 
         playlist_pnl_playlists.add(scroll_playlists);
 
-        btt_removeMusic.setBackground(new java.awt.Color(168, 170, 170));
-        btt_removeMusic.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
-        btt_removeMusic.setForeground(new java.awt.Color(28, 28, 28));
-        btt_removeMusic.setBorder(null);
-        btt_removeMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btt_removeMusic.setMaximumSize(new java.awt.Dimension(120, 40));
-        btt_removeMusic.setMinimumSize(new java.awt.Dimension(120, 40));
-        btt_removeMusic.setPreferredSize(new java.awt.Dimension(120, 40));
-        ((RoundedButton) btt_removeMusic).setCornerRadiusVertical(20);
-        ((RoundedButton) btt_removeMusic).setCornerRadiusHorizontal(20);
+        btt_openPlaylist.setBackground(new java.awt.Color(168, 170, 170));
+        btt_openPlaylist.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
+        btt_openPlaylist.setForeground(new java.awt.Color(28, 28, 28));
+        btt_openPlaylist.setBorder(null);
+        btt_openPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_openPlaylist.setMaximumSize(new java.awt.Dimension(120, 40));
+        btt_openPlaylist.setMinimumSize(new java.awt.Dimension(120, 40));
+        btt_openPlaylist.setPreferredSize(new java.awt.Dimension(120, 40));
+        ((RoundedButton) btt_openPlaylist).setCornerRadiusVertical(20);
+        ((RoundedButton) btt_openPlaylist).setCornerRadiusHorizontal(20);
 
         btt_removePlaylist.setBackground(new java.awt.Color(168, 170, 170));
         btt_removePlaylist.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
@@ -383,6 +400,128 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         ((RoundedButton) btt_addPlaylist).setCornerRadiusVertical(20);
         ((RoundedButton) btt_addPlaylist).setCornerRadiusHorizontal(20);
 
+        pnl_addPlaylist.setBackground(new java.awt.Color(18, 18, 18));
+
+        lbl_nome.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        lbl_nome.setForeground(new java.awt.Color(236, 239, 241));
+        lbl_nome.setText("Nome da playlist:");
+
+        txt_nomePlaylist.setBackground(new java.awt.Color(28, 28, 28));
+        ((PlaceholderFields) txt_nomePlaylist).setBackgroundColor(new Color(28,28,28));
+        ((PlaceholderFields) txt_nomePlaylist).setHoverBackgroundColor(new Color(56,56,56));
+        txt_nomePlaylist.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+        txt_nomePlaylist.setForeground(new java.awt.Color(168, 170, 170));
+        txt_nomePlaylist.setBorder(null);
+        txt_nomePlaylist.setMaximumSize(new java.awt.Dimension(64, 17));
+
+        lbl_desc.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        lbl_desc.setForeground(new java.awt.Color(236, 239, 241));
+        lbl_desc.setText("Descrição da playlist:");
+
+        scroll_desc.setBorder(null);
+
+        txt_description.setBackground(new java.awt.Color(28, 28, 28));
+        txt_description.setColumns(20);
+        txt_description.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+        txt_description.setForeground(new java.awt.Color(168, 170, 170));
+        txt_description.setLineWrap(true);
+        txt_description.setRows(5);
+        txt_description.setWrapStyleWord(true);
+        txt_description.setAutoscrolls(false);
+        txt_description.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txt_description.setDisabledTextColor(new java.awt.Color(236, 239, 241));
+        txt_description.setMaximumSize(new java.awt.Dimension(212, 214));
+        scroll_desc.setViewportView(txt_description);
+
+        scroll_desc.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(60,63,65);
+                this.trackColor = new Color(24,24,24);
+            }
+
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton button = new JButton();
+                button.setPreferredSize(new Dimension(0, 0));
+                button.setMinimumSize(new Dimension(0, 0));
+                button.setMaximumSize(new Dimension(0, 0));
+                return button;
+            }
+
+            // barra de scroll mais larga
+            @Override
+            public Dimension getPreferredSize(JComponent c) {
+                return new Dimension(8, super.getPreferredSize(c).height);
+            }
+
+            // arredonda o botão
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.translate(thumbBounds.x, thumbBounds.y);
+                g2.setColor(thumbColor);
+                int arc = 12;
+                g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);
+                g2.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setColor(trackColor);
+                g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+                g2.dispose();
+            }
+        });
+
+        btt_confirmar.setBackground(new java.awt.Color(168, 170, 170));
+        btt_confirmar.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
+        btt_confirmar.setForeground(new java.awt.Color(28, 28, 28));
+        btt_confirmar.setBorder(null);
+        btt_confirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_confirmar.setMaximumSize(new java.awt.Dimension(120, 40));
+        btt_confirmar.setMinimumSize(new java.awt.Dimension(120, 40));
+        btt_confirmar.setPreferredSize(new java.awt.Dimension(120, 40));
+        ((RoundedButton) btt_addPlaylist).setCornerRadiusVertical(20);
+        ((RoundedButton) btt_addPlaylist).setCornerRadiusHorizontal(20);
+
+        javax.swing.GroupLayout pnl_addPlaylistLayout = new javax.swing.GroupLayout(pnl_addPlaylist);
+        pnl_addPlaylist.setLayout(pnl_addPlaylistLayout);
+        pnl_addPlaylistLayout.setHorizontalGroup(
+            pnl_addPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btt_confirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(scroll_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(lbl_desc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txt_nomePlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_nome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnl_addPlaylistLayout.setVerticalGroup(
+            pnl_addPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_addPlaylistLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_nome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_nomePlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_desc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btt_confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout playlist_pnl_insideLayout = new javax.swing.GroupLayout(playlist_pnl_inside);
         playlist_pnl_inside.setLayout(playlist_pnl_insideLayout);
         playlist_pnl_insideLayout.setHorizontalGroup(
@@ -393,12 +532,13 @@ public class PlaylistsWindow extends javax.swing.JFrame {
                     .addComponent(playlist_pnl_playlists, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(playlist_pnl_welcome, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(playlist_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(playlist_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btt_profile, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                     .addGroup(playlist_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btt_removeMusic, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                        .addComponent(btt_removePlaylist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btt_addPlaylist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btt_removePlaylist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                        .addComponent(btt_addPlaylist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btt_openPlaylist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnl_addPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         playlist_pnl_insideLayout.setVerticalGroup(
@@ -413,11 +553,13 @@ public class PlaylistsWindow extends javax.swing.JFrame {
                     .addGroup(playlist_pnl_insideLayout.createSequentialGroup()
                         .addComponent(btt_addPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btt_removePlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btt_removePlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btt_removeMusic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(playlist_pnl_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btt_openPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnl_addPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(playlist_pnl_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -521,8 +663,9 @@ public class PlaylistsWindow extends javax.swing.JFrame {
     private PlaylistsController c;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_addPlaylist;
+    private javax.swing.JButton btt_confirmar;
+    private javax.swing.JButton btt_openPlaylist;
     private javax.swing.JButton btt_profile;
-    private javax.swing.JButton btt_removeMusic;
     private javax.swing.JButton btt_removePlaylist;
     private javax.swing.JPanel home_pnl_homeOpt;
     private javax.swing.JPanel home_pnl_options;
@@ -534,7 +677,9 @@ public class PlaylistsWindow extends javax.swing.JFrame {
     private javax.swing.JLabel icon_playlist;
     private javax.swing.JLabel icon_playlists;
     private javax.swing.JLabel icon_search;
+    private javax.swing.JLabel lbl_desc;
     private javax.swing.JLabel lbl_home;
+    private javax.swing.JLabel lbl_nome;
     private javax.swing.JLabel lbl_playlist;
     private javax.swing.JLabel lbl_playlists;
     private javax.swing.JLabel lbl_search;
@@ -547,7 +692,11 @@ public class PlaylistsWindow extends javax.swing.JFrame {
     private javax.swing.JPanel playlist_pnl_playlists;
     private javax.swing.JPanel playlist_pnl_topSide;
     private javax.swing.JPanel playlist_pnl_welcome;
+    private javax.swing.JPanel pnl_addPlaylist;
+    private javax.swing.JScrollPane scroll_desc;
     private javax.swing.JScrollPane scroll_playlists;
     private javax.swing.JPanel spacing2;
+    private javax.swing.JTextArea txt_description;
+    private javax.swing.JTextField txt_nomePlaylist;
     // End of variables declaration//GEN-END:variables
 }

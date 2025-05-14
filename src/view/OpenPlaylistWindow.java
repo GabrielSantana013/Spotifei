@@ -33,6 +33,22 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
 
     }
 
+    public JList<String> getList_musics() {
+        return list_musics;
+    }
+
+    public void setList_musics(JList<String> list_musics) {
+        this.list_musics = list_musics;
+    }
+
+    public JTextArea getTxt_description() {
+        return txt_description;
+    }
+
+    public void setTxt_description(JTextArea txt_description) {
+        this.txt_description = txt_description;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,11 +64,14 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         btt_removeMusic = new RoundedButton("Remover música");
         btt_playlistName = new RoundedButton("nome_playlist");
         icon_playlists = new javax.swing.JLabel();
+        scroll_desc = new javax.swing.JScrollPane();
+        txt_description = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("nome_playlist");
         setBackground(new java.awt.Color(18, 18, 18));
-        setMinimumSize(new java.awt.Dimension(484, 384));
+        setMaximumSize(new java.awt.Dimension(532, 384));
+        setMinimumSize(new java.awt.Dimension(532, 384));
         setResizable(false);
 
         background.setBackground(new java.awt.Color(18, 18, 18));
@@ -174,11 +193,6 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         list_musics.setBorder(null);
         list_musics.setFont(new Font("Gotham Light", Font.PLAIN, 14));
         list_musics.setForeground(new java.awt.Color(236, 239, 241));
-        list_musics.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas", "musicas" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         list_musics.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         list_musics.setSelectionBackground(new java.awt.Color(100, 165, 135));
         scroll_playlistsMusics.setViewportView(list_musics);
@@ -193,6 +207,11 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         btt_removeMusic.setPreferredSize(new java.awt.Dimension(120, 40));
         ((RoundedButton) btt_removeMusic).setCornerRadiusVertical(20);
         ((RoundedButton) btt_removeMusic).setCornerRadiusHorizontal(20);
+        btt_removeMusic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_removeMusicActionPerformed(evt);
+            }
+        });
 
         ((RoundedButton) btt_playlistName).setTextAlignment(TextAlign.CENTER);
         btt_playlistName.setBackground(new java.awt.Color(185, 192, 198));
@@ -214,6 +233,74 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
 
         icon_playlists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/playlistIcon.png"))); // NOI18N
 
+        scroll_desc.setBorder(null);
+
+        txt_description.setEditable(false);
+        txt_description.setBackground(new java.awt.Color(28, 28, 28));
+        txt_description.setColumns(20);
+        txt_description.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        txt_description.setForeground(new java.awt.Color(236, 239, 241));
+        txt_description.setLineWrap(true);
+        txt_description.setRows(5);
+        txt_description.setWrapStyleWord(true);
+        txt_description.setAutoscrolls(false);
+        txt_description.setBorder(null);
+        txt_description.setDisabledTextColor(new java.awt.Color(236, 239, 241));
+        txt_description.setFocusable(false);
+        scroll_desc.setViewportView(txt_description);
+
+        scroll_desc.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(60,63,65);
+                this.trackColor = new Color(24,24,24);
+            }
+
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton button = new JButton();
+                button.setPreferredSize(new Dimension(0, 0));
+                button.setMinimumSize(new Dimension(0, 0));
+                button.setMaximumSize(new Dimension(0, 0));
+                return button;
+            }
+
+            // barra de scroll mais larga
+            @Override
+            public Dimension getPreferredSize(JComponent c) {
+                return new Dimension(8, super.getPreferredSize(c).height);
+            }
+
+            // arredonda o botão
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.translate(thumbBounds.x, thumbBounds.y);
+                g2.setColor(thumbColor);
+                int arc = 12;
+                g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);
+                g2.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setColor(trackColor);
+                g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+                g2.dispose();
+            }
+        });
+
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
@@ -225,34 +312,38 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
                         .addComponent(icon_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btt_playlistName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addComponent(scroll_playlistsMusics, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btt_removeMusic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(scroll_playlistsMusics, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scroll_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btt_removeMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                .addContainerGap())
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+            .addGroup(backgroundLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btt_playlistName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(icon_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scroll_playlistsMusics, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btt_removeMusic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(scroll_desc)
+                        .addGap(18, 18, 18)
+                        .addComponent(btt_removeMusic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btt_playlistName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(icon_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(scroll_playlistsMusics, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
+            .addGap(0, 532, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,6 +359,10 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btt_playlistNameActionPerformed
+
+    private void btt_removeMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_removeMusicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btt_removeMusicActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -310,6 +405,8 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
     private javax.swing.JButton btt_removeMusic;
     private javax.swing.JLabel icon_playlists;
     private javax.swing.JList<String> list_musics;
+    private javax.swing.JScrollPane scroll_desc;
     private javax.swing.JScrollPane scroll_playlistsMusics;
+    private javax.swing.JTextArea txt_description;
     // End of variables declaration//GEN-END:variables
 }
