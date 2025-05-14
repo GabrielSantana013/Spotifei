@@ -182,7 +182,7 @@ public class MusicSearchController {
                         musicsFromHistoric.add(m);
                     }
                 }
-                currentMusics = new ArrayList<>(musicsFromHistoric); // atualiza com músicas do histórico
+                currentMusics = new ArrayList<>(musicsFromHistoric);
                 String[] titles = musicsFromHistoric.stream()
                         .map(Music::getMusicTitle)
                         .toArray(String[]::new);

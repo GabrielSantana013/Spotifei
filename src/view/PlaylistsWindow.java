@@ -31,6 +31,8 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         initComponents();
         this.user = user;
         c = new PlaylistsController(this, user);
+        c.setUserNameOnWindow();
+        c.loadUserPaylists();
         
         this.setSize(width, height);
         
@@ -52,6 +54,41 @@ public class PlaylistsWindow extends javax.swing.JFrame {
     public void setList_playlists(JList<String> list_playlists) {
         this.list_playlists = list_playlists;
     }
+
+    public JButton getBtt_addPlaylist() {
+        return btt_addPlaylist;
+    }
+
+    public void setBtt_addPlaylist(JButton btt_addPlaylist) {
+        this.btt_addPlaylist = btt_addPlaylist;
+    }
+
+    public JButton getBtt_profile() {
+        return btt_profile;
+    }
+
+    public void setBtt_profile(JButton btt_profile) {
+        this.btt_profile = btt_profile;
+    }
+
+    public JButton getBtt_removeMusic() {
+        return btt_removeMusic;
+    }
+
+    public void setBtt_removeMusic(JButton btt_removeMusic) {
+        this.btt_removeMusic = btt_removeMusic;
+    }
+
+    public JButton getBtt_removePlaylist() {
+        return btt_removePlaylist;
+    }
+
+    public void setBtt_removePlaylist(JButton btt_removePlaylist) {
+        this.btt_removePlaylist = btt_removePlaylist;
+    }
+    
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
