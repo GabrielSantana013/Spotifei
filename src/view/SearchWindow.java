@@ -31,6 +31,7 @@ public class SearchWindow extends javax.swing.JFrame {
     public SearchWindow(User user) {
         initComponents();
         c = new MusicSearchController(this, user);
+        c.loadUserPlaylists();
         this.user = user;
 
         this.setSize(width, height);
@@ -149,10 +150,23 @@ public class SearchWindow extends javax.swing.JFrame {
     public void setSearch_pnl_musicInfoVisibility(Boolean flag) {
         this.search_pnl_musicInfo.setVisible(flag);
     }
-    
-    
 
-   
+    public JList<String> getList_playlists() {
+        return list_playlists;
+    }
+
+    public void setList_playlists(JList<String> list_playlists) {
+        this.list_playlists = list_playlists;
+    }
+
+    public JButton getBtt_addPlaylist() {
+        return btt_addPlaylist;
+    }
+
+    public void setBtt_addPlaylist(JButton btt_addPlaylist) {
+        this.btt_addPlaylist = btt_addPlaylist;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -258,7 +272,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -278,7 +292,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_searchOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_searchOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_searchOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -298,7 +312,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_searchOpt);
 
         home_pnl_playlistOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -366,7 +380,7 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_like.setBackground(new java.awt.Color(28, 28, 28));
         btt_like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/like.png"))); // NOI18N
         btt_like.setBorder(null);
-        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btt_dislike.setFocusPainted(false);
         btt_dislike.setContentAreaFilled(false);
@@ -374,7 +388,7 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_dislike.setBackground(new java.awt.Color(28, 28, 28));
         btt_dislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/dislike.png"))); // NOI18N
         btt_dislike.setBorder(null);
-        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout pnl_likesLayout = new javax.swing.GroupLayout(pnl_likes);
         pnl_likes.setLayout(pnl_likesLayout);
@@ -646,7 +660,7 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_addPlaylist.setForeground(new java.awt.Color(28, 28, 28));
         btt_addPlaylist.setText("Adicionar à playlist");
         btt_addPlaylist.setBorder(null);
-        btt_addPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_addPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         scroll_playlists.setBackground(new java.awt.Color(60, 63, 65));
         scroll_playlists.setBorder(null);
@@ -722,7 +736,7 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addComponent(search_pnl_bar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scroll_musics, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addComponent(search_pnl_musicInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

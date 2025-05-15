@@ -27,7 +27,7 @@ public class FontLoader {
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);
-            System.out.println("Registered font: " + font.getFontName());
+            //System.out.println("Registered font: " + font.getFontName());
 
         } catch (IOException | FontFormatException e) {
             System.err.println("Error loading font: " + resourcePath);
