@@ -208,6 +208,7 @@ public class AdmHomeWindow extends javax.swing.JFrame {
         artist5 = new javax.swing.JLabel();
         photo5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         home_pnl_topMusicsDislike = new RoundedPanel();
         music6 = new RoundedPanel();
@@ -241,6 +242,7 @@ public class AdmHomeWindow extends javax.swing.JFrame {
         photo10 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -765,6 +767,8 @@ public class AdmHomeWindow extends javax.swing.JFrame {
 
         home_pnl_topMusicsLike.add(music5, new java.awt.GridBagConstraints());
 
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/fire.png"))); // NOI18N
+
         jLabel6.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         jLabel6.setForeground(new java.awt.Color(168, 168, 168));
         jLabel6.setText("Top 5 músicas mais curtidas");
@@ -1094,6 +1098,8 @@ public class AdmHomeWindow extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(168, 168, 168));
         jLabel12.setText("Top 5 músicas menos curtidas");
 
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/sad-face.png"))); // NOI18N
+
         javax.swing.GroupLayout home_pnl_insideLayout = new javax.swing.GroupLayout(home_pnl_inside);
         home_pnl_inside.setLayout(home_pnl_insideLayout);
         home_pnl_insideLayout.setHorizontalGroup(
@@ -1101,14 +1107,23 @@ public class AdmHomeWindow extends javax.swing.JFrame {
             .addGroup(home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(home_pnl_insideLayout.createSequentialGroup()
                         .addComponent(home_pnl_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(home_pnl_topMusicsLike, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(home_pnl_topMusicsDislike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(home_pnl_insideLayout.createSequentialGroup()
+                        .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(home_pnl_insideLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6))
+                            .addGroup(home_pnl_insideLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         home_pnl_insideLayout.setVerticalGroup(
@@ -1119,11 +1134,15 @@ public class AdmHomeWindow extends javax.swing.JFrame {
                     .addComponent(home_pnl_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btt_profile, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(home_pnl_topMusicsLike, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(home_pnl_topMusicsDislike, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1250,6 +1269,8 @@ public class AdmHomeWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
