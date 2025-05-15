@@ -22,14 +22,11 @@ public class PlaylistDAO {
     }
     
     public void createPlaylist(Playlist playlist) throws SQLException {
-        String sql = "INSERT INTO spotifei.playlist (title, description, playlist_songs, user_id) VALUES (?, ?, ?, ?)";
-        String serializedSong = String.join(";",playlist.getPlaylistSongs());
-
+        String sql = "INSERT INTO spotifei.playlist (title, description, user_id) VALUES (?, ?, ?)";        
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, playlist.getPlaylistName());
-            statement.setString(2, playlist.getPlaylistDescription());
-            statement.setString(3, serializedSong); // Ex: "1;3;7;"
-            statement.setInt(4, playlist.getUserId());
+            statement.setString(2, playlist.getPlaylistDescription());            
+            statement.setInt(3, playlist.getUserId());
             statement.executeUpdate();
         }
 
@@ -40,32 +37,30 @@ public class PlaylistDAO {
             statement.executeUpdate();
     }
 
-    /*public void removeMusicFromPlaylist(int playlistId, int musicId) throws SQLException {
-        // 1. Buscar playlist_songs atual
-        String selectSql = "SELECT playlist_songs FROM spotifei.playlist WHERE playlist_id = ?";
-        String currentSongs = "";
+    public void updatePlaylistSongs(int playlistId, String updatedSongs) throws SQLException {
+        String sql = "UPDATE spotifei.playlist SET playlist_songs = ? WHERE playlist_id = ?";
 
-            PreparedStatement statement = conn.prepareStatement(sql);
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setString(1, updatedSongs);
+            statement.setInt(2, playlistId);
+            statement.executeUpdate();
+        }
+    }
+    
+    public String getPlaylistSongs(int playlistId) throws SQLException {
+        String sql = "SELECT playlist_songs FROM spotifei.playlist WHERE playlist_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, playlistId);
-            try (ResultSet res = statement.executeQuery()) {
-                if (res.next()) {
-                    currentSongs = res.getString("playlist_songs");
-                }
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getString("playlist_songs");
+            } else {
+                return null;
             }
         }
-
-        // 2. Remover o musicId da string
-        String idStr = musicId + ";";
-        String updatedSongs = currentSongs.replace(idStr, "");
-
-        // 3. Atualizar a string no banco
-        String updateSql = "UPDATE spotifei.playlist SET playlist_songs = ? WHERE playlist_id = ?";
-        try (PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
-            updateStmt.setString(1, updatedSongs);
-            updateStmt.setInt(2, playlistId);
-            updateStmt.executeUpdate();
-        }
-    }*/
+    }
 
     public ArrayList<Playlist> getPlaylistsByUserId(int userId) throws SQLException {
         String sql = "SELECT * FROM spotifei.playlist WHERE user_id = ?";
@@ -82,6 +77,5 @@ public class PlaylistDAO {
 
         return playlists;
     }
-
     
 }

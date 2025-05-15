@@ -34,7 +34,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         this.user = user;
         c = new PlaylistsController(this, user);
         c.setUserNameOnWindow();
-        c.loadUserPaylists();
+        c.loadUserPlaylists();
         
         this.setSize(width, height);
         
@@ -96,7 +96,30 @@ public class PlaylistsWindow extends javax.swing.JFrame {
     public void setBtt_removePlaylist(JButton btt_removePlaylist) {
         this.btt_removePlaylist = btt_removePlaylist;
     }
-    
+
+    public JPanel getPnl_addPlaylist() {
+        return pnl_addPlaylist;
+    }
+
+    public void setPnl_addPlaylist(JPanel pnl_addPlaylist) {
+        this.pnl_addPlaylist = pnl_addPlaylist;
+    }
+
+    public JTextArea getTxt_description() {
+        return txt_description;
+    }
+
+    public void setTxt_description(JTextArea txt_description) {
+        this.txt_description = txt_description;
+    }
+
+    public JTextField getTxt_nomePlaylist() {
+        return txt_nomePlaylist;
+    }
+
+    public void setTxt_nomePlaylist(JTextField txt_nomePlaylist) {
+        this.txt_nomePlaylist = txt_nomePlaylist;
+    }
     
     
     

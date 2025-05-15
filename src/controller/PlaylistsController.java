@@ -33,18 +33,10 @@ public class PlaylistsController {
     public PlaylistsController(PlaylistsWindow view, User user) {
         this.view = view;
         this.user = user;
-        this.currentPlaylists = new ArrayList<>();
-        OpenPlaylistWindow opw = new OpenPlaylistWindow(user);  
+        this.currentPlaylists = new ArrayList<>();        
         
-        // TODO: pop-up da playlist, setVisible so pra testes
-        this.view.getList_playlists().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                opw.setVisible(true);
-            }
-        });
-        
-        
+        this.view.getBtt_addPlaylist().addActionListener(e -> view.getPnl_addPlaylist().setVisible(true));
+                
         view.getList_playlists().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -52,44 +44,76 @@ public class PlaylistsController {
                     int selectedIndex = view.getList_playlists().getSelectedIndex();
 
                     if (selectedIndex >= 0 && selectedIndex < currentPlaylists.size()) {
-                        Playlist selectedPlaylist = currentPlaylists.get(selectedIndex);
-
-                        // Aqui você pode, por exemplo, exibir as músicas da playlist:
-                        System.out.println("Playlist selecionada: " + selectedPlaylist.getPlaylistName());
-                        System.out.println("Músicas: " + selectedPlaylist.getPlaylistSongs());
-
-                        // Você pode também criar um método para exibir os detalhes da playlist na tela
-                        // exibirDetalhesDaPlaylist(selectedPlaylist);
+                        selectedPlaylist = currentPlaylists.get(selectedIndex);     
+                        
+                        System.out.println("id " + selectedPlaylist.getPlaylistId());
                     }
                 }
             }
         });
 
-        this.view.getBtt_addPlaylist().addActionListener(e -> createPlaylist());
+        this.view.getBtt_confirmar().addActionListener(e -> createPlaylist());        
         this.view.getBtt_removePlaylist().addActionListener(e -> removePlaylist());
-        this.view.getBtt_openPlaylist().addActionListener(e -> removeMusic());
-
+        this.view.getBtt_openPlaylist().addActionListener(e -> showPlaylistDetails());
     }
     
     public void createPlaylist(){
-        //deixar a janela da criação de playlist visível
-        //criar a playlist
-        //deixar invisível
+        String playlistTitle = view.getTxt_nomePlaylist().getText();
+        String playlistDescription = view.getTxt_description().getText();
+
+        if (playlistTitle.isBlank()) {
+            CustomJDialog.showCustomDialog("Aviso", "Digite um nome para a playlist.");
+            return;
+        }
+
+        Playlist p = new Playlist(playlistTitle, playlistDescription, user.getUserId());
+
+        try (Connection conn = new DbConnection().getConnection()) {
+            PlaylistDAO dao = new PlaylistDAO(conn);
+            dao.createPlaylist(p);
+
+            loadUserPlaylists();
+
+            view.getTxt_nomePlaylist().setText("");
+            view.getTxt_description().setText("");
+            view.getPnl_addPlaylist().setVisible(false);
+
+            CustomJDialog.showCustomDialog("Sucesso", "Playlist criada com sucesso!");
+
+        } catch (SQLException e) {
+            CustomJDialog.showCustomDialog("Erro!", "Erro ao criar playlist.");            
+        }
     }
+
     
     public void removePlaylist(){
-        //deixar a janela da criação de playlist visível
-        //criar a playlist
-        //deixar invisível
+        
+        try(Connection conn = new DbConnection().getConnection()){
+            PlaylistDAO dao = new PlaylistDAO(conn);
+            dao.deletePlaylist(selectedPlaylist.getPlaylistId());
+        
+        }catch(SQLException e){
+            CustomJDialog.showCustomDialog("Erro!", "Erro ao deletar playlist.");
+            e.printStackTrace();
+        }
+        
+        loadUserPlaylists();
+        CustomJDialog.showCustomDialog("Aviso!", "Playlist deletada.");
     }
     
-    public void removeMusic(){
-        //deixar a janela da criação de playlist visível
-        //criar a playlist
-        //deixar invisível
+    public void showPlaylistDetails() {
+        if (selectedPlaylist == null) {
+            CustomJDialog.showCustomDialog("Aviso", "Selecione uma playlist primeiro.");
+            return;
+        }
+
+        OpenPlaylistWindow playlistDetailsView = new OpenPlaylistWindow(selectedPlaylist);
+        PlaylistDetailsController controller = new PlaylistDetailsController(playlistDetailsView, selectedPlaylist);
+
+        playlistDetailsView.setVisible(true);
     }
     
-    public void loadUserPaylists(){
+    public void loadUserPlaylists(){
         
         try(Connection conn = new DbConnection().getConnection()){
             PlaylistDAO dao = new PlaylistDAO(conn);
@@ -113,5 +137,6 @@ public class PlaylistsController {
     
     public void setUserNameOnWindow(){
         view.getBtt_profile().setText(user.getUserLogin());
+        view.getPnl_addPlaylist().setVisible(false);
     }
 }

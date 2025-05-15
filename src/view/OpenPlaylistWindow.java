@@ -4,10 +4,11 @@
  */
 package view;
 
+import controller.PlaylistDetailsController;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
-import model.User;
+import model.Playlist;
 import view.customClasses.RoundedButton;
 import view.customClasses.RoundedButton.TextAlign;
 
@@ -16,17 +17,20 @@ import view.customClasses.RoundedButton.TextAlign;
  * @author Pedro Schneider, Gabriel Santana Dias
  */
 public class OpenPlaylistWindow extends javax.swing.JFrame {
-
-    private User user;
+    
     private final int width = 484;
     private final int height = 384;
+    private Playlist playlist;
 
     /**
      * Creates new form OpenPlaylistWindow
      */
-    public OpenPlaylistWindow(User user) {
+    public OpenPlaylistWindow(Playlist playlist) {
         initComponents();
-        this.user = user;
+        this.playlist = playlist;
+        PlaylistDetailsController c = new PlaylistDetailsController(this, playlist);
+        c.loadPlaylistSongs();
+        c.setPlaylistAtributtes();        
         this.setSize(width, height);
         // changes window icon
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/logoSpotifei.png")).getImage());
@@ -48,6 +52,22 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
     public void setTxt_description(JTextArea txt_description) {
         this.txt_description = txt_description;
     }
+
+    public JButton getBtt_playlistName() {
+        return btt_playlistName;
+    }
+
+    public void setBtt_playlistName(JButton btt_playlistName) {
+        this.btt_playlistName = btt_playlistName;
+    }
+
+    public JButton getBtt_removeMusic() {
+        return btt_removeMusic;
+    }
+
+    public void setBtt_removeMusic(JButton btt_removeMusic) {
+        this.btt_removeMusic = btt_removeMusic;
+    }        
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -201,7 +221,7 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         btt_removeMusic.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
         btt_removeMusic.setForeground(new java.awt.Color(28, 28, 28));
         btt_removeMusic.setBorder(null);
-        btt_removeMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_removeMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_removeMusic.setMaximumSize(new java.awt.Dimension(120, 40));
         btt_removeMusic.setMinimumSize(new java.awt.Dimension(120, 40));
         btt_removeMusic.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -398,6 +418,8 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    
+    private PlaylistDetailsController c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
