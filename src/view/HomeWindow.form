@@ -359,12 +359,15 @@
                           <Component id="home_pnl_likes" alignment="1" max="32767" attributes="0"/>
                           <Component id="home_pnl_topMusics" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="home_pnl_welcome" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="home_pnl_welcome" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btt_profile" min="-2" pref="212" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -380,8 +383,11 @@
                           <Component id="btt_profile" pref="48" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" pref="44" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel6" max="32767" attributes="0"/>
+                          <Component id="jLabel7" pref="44" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="home_pnl_topMusics" min="-2" pref="354" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="home_pnl_likes" min="-2" pref="320" max="-2" attributes="0"/>
@@ -1601,6 +1607,13 @@
                   <Color blue="a8" green="a8" red="a8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Top 5 m&#xfa;sicas mais curtidas"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/view/assets/images/fire.png"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
