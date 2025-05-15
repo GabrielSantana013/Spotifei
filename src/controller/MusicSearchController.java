@@ -34,28 +34,20 @@ public class MusicSearchController {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     int selectedIndex = view.getjList1().getSelectedIndex();
-
-                    //verifica se o intervalo é válido
+                    
                     if (selectedIndex >= 0 && selectedIndex < currentMusics.size()) {
                         selectedMusic = currentMusics.get(selectedIndex); // Atualiza a música selecionada
                         updateMusicLabels(selectedMusic);
-
-                        // Atualiza o histórico
+                        
                         user.addToHistoric(selectedMusic.getMusicTitle());
                         displayHistoric();
-
-                        // Atualiza no banco
+                        
                         try (Connection conn = new DbConnection().getConnection()) {
                             UserDAO dao = new UserDAO(conn);
                             dao.updateHistoric(user);
                         } catch (SQLException ex) {
                             CustomJDialog.showCustomDialog("Erro!", "Erro ao atualizar o historico no banco de dados.");
-                        }
-
-                        // debug
-                        for (String m : user.getHistoric()) {
-                            System.out.println(m);
-                        }
+                        }                        
                     }
                 }
             }

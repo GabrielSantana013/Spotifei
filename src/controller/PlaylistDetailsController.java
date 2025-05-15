@@ -12,6 +12,8 @@ import model.Playlist;
 import view.OpenPlaylistWindow;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import view.customDialogs.CustomJDialog;
 
 /**
@@ -26,8 +28,9 @@ public class PlaylistDetailsController {
 
     public PlaylistDetailsController(OpenPlaylistWindow view, Playlist playlist) {
         this.view = view;
-        this.playlist = playlist;         
-        view.getBtt_removeMusic().addActionListener(e -> removePlaylistSong());        
+        this.playlist = playlist;
+        
+        view.getBtt_removeMusic().addActionListener(e -> removePlaylistSong());   
     }
     
     public void setPlaylistAtributtes(){
@@ -57,19 +60,21 @@ public class PlaylistDetailsController {
         }
     }
     
-    public void removePlaylistSong() {
+    public void removePlaylistSong() {               
         
-        int selectedIndex = view.getList_musics().getSelectedIndex();
-
-        if (selectedIndex < 0) {
+        musicIndex = view.getList_musics().getSelectedIndex();
+        
+        System.out.println("mIndex " + musicIndex);
+        
+        if (musicIndex < 0) {
             CustomJDialog.showCustomDialog("Aviso", "Nenhuma música selecionada.");
-            System.out.println("Selected Index: " + selectedIndex);
+            System.out.println("Selected Index: " + musicIndex);
             System.out.println("View Selected Index: " + view.getList_musics().getSelectedIndex());
             return;
         }
 
         ArrayList<String> currentSongs = playlist.getPlaylistSongs();
-        currentSongs.remove(selectedIndex);
+        currentSongs.remove(musicIndex);
 
         String updatedSongs = String.join(";", currentSongs);
 

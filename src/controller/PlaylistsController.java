@@ -106,10 +106,7 @@ public class PlaylistsController {
             CustomJDialog.showCustomDialog("Aviso", "Selecione uma playlist primeiro.");
             return;
         }
-
-        OpenPlaylistWindow playlistDetailsView = new OpenPlaylistWindow(selectedPlaylist);
-        PlaylistDetailsController controller = new PlaylistDetailsController(playlistDetailsView, selectedPlaylist);
-
+        OpenPlaylistWindow playlistDetailsView = new OpenPlaylistWindow(selectedPlaylist);      
         playlistDetailsView.setVisible(true);
     }
     
