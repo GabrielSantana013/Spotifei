@@ -264,7 +264,7 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         txt_description.setRows(5);
         txt_description.setWrapStyleWord(true);
         txt_description.setAutoscrolls(false);
-        txt_description.setBorder(null);
+        txt_description.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         txt_description.setDisabledTextColor(new java.awt.Color(236, 239, 241));
         txt_description.setFocusable(false);
         scroll_desc.setViewportView(txt_description);

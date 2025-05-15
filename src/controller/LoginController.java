@@ -5,11 +5,10 @@
 package controller;
 
 import view.customDialogs.CustomJDialog;
-import DAO.DbConnection;
-import DAO.UserDAO;
 import auth.Authenticator;
 import auth.UserAuthenticator;
 import auth.AdmAuthenticator;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import javax.swing.*;
@@ -30,7 +29,7 @@ public class LoginController {
         this.admAuthenticator = new AdmAuthenticator();
     }
 
-    public void login() {
+    public void login() throws IOException{
         String login = view.getTxt_login().getText();
         char[] passwordChars = view.getTxt_password().getPassword(); // pega a senha
         String password = new String(passwordChars); // converte pra string

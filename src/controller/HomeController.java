@@ -8,16 +8,17 @@ import DAO.DbConnection;
 import DAO.MusicDAO;
 import DAO.UserDAO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import model.Music;
 import model.User;
+import static utils.ImageProcessor.byteArrayToImage;
 import view.HomeWindow;
 import view.customDialogs.CustomJDialog;
 
@@ -76,10 +77,9 @@ public class HomeController{
         }
     }
     
-    public void fillTopFive()throws IOException{
-    
+    public void fillTopFive() throws IOException{
         ArrayList<Music> topFive = new ArrayList();
-        BufferedImage image = null;
+        
         try(Connection conn = new DbConnection().getConnection()){
         
             MusicDAO dao = new MusicDAO(conn);
@@ -88,15 +88,42 @@ public class HomeController{
         }catch(SQLException e){
             CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar o top 5 no banco.");
         }
-                
-        try{
-        ByteArrayInputStream input = new ByteArrayInputStream(topFive.get(0).getMusicPhoto());
-        image = ImageIO.read(input);
-        }catch(IOException ex){
-            CustomJDialog.showCustomDialog("Erro!", "Imagem corrompida!");
-        }        
         
-        view.getjLabel1().setIcon(new ImageIcon(image));
+        List<JLabel> titles = Arrays.asList(
+            view.getTitle1(),
+            view.getTitle2(),
+            view.getTitle3(),
+            view.getTitle4(),
+            view.getTitle5()
+        );
+        
+        List<JLabel> artists = Arrays.asList(
+            view.getArtist1(),
+            view.getArtist2(),
+            view.getArtist3(),
+            view.getArtist4(),
+            view.getArtist5()
+        );
+        
+        List<JLabel> images = Arrays.asList(
+            view.getjLabel1(),
+            view.getjLabel2(),
+            view.getjLabel3(),
+            view.getjLabel4(),
+            view.getjLabel5()
+        );
+
+        for (int i = 0; i < topFive.size(); i++) {
+            Music m = topFive.get(i);
+            
+            String title = m.getMusicTitle();
+            titles.get(i).setText(title);
+            String artist = m.getArtistName();
+            artists.get(i).setText(artist);
+            BufferedImage image = byteArrayToImage(m.getMusicPhoto());
+            images.get(i).setIcon(new ImageIcon(image));
+            
+        }
     }
 
 

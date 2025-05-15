@@ -8,6 +8,7 @@ import controller.PlaylistsController;
 import view.customClasses.RoundedButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
+import java.io.IOException;
 import javax.swing.*;
 import model.User;
 import view.customClasses.PlaceholderFields;
@@ -632,9 +633,13 @@ public class PlaylistsWindow extends javax.swing.JFrame {
 
     private void home_pnl_homeOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_homeOptMouseClicked
         // TODO add your handling code here:
-        HomeWindow hw = new HomeWindow(user);
-        hw.setVisible(rootPaneCheckingEnabled);
-        this.setVisible(false);
+        try{
+            HomeWindow hw = new HomeWindow(user);
+            hw.setVisible(rootPaneCheckingEnabled);
+            this.setVisible(false);
+        } catch(IOException i){
+            i.printStackTrace();
+        }
     }//GEN-LAST:event_home_pnl_homeOptMouseClicked
 
     private void home_pnl_searchOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_searchOptMouseClicked

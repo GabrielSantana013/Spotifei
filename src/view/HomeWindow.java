@@ -105,9 +105,79 @@ public class HomeWindow extends javax.swing.JFrame {
         this.jLabel1 = jLabel1;
     }
 
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getArtist1() {
+        return artist1;
+    }
+
+    public JLabel getArtist2() {
+        return artist2;
+    }
+
+    public JLabel getArtist3() {
+        return artist3;
+    }
+
+    public JLabel getArtist4() {
+        return artist4;
+    }
+
+    public JLabel getArtist5() {
+        return artist5;
+    }
+
+    public JLabel getTitle1() {
+        return title1;
+    }
+
+    public JLabel getTitle2() {
+        return title2;
+    }
+
+    public JLabel getTitle3() {
+        return title3;
+    }
+
+    public JLabel getTitle4() {
+        return title4;
+    }
+
+    public JLabel getTitle5() {
+        return title5;
+    }
     
     
-  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -151,20 +221,22 @@ public class HomeWindow extends javax.swing.JFrame {
         title2 = new javax.swing.JLabel();
         artist2 = new javax.swing.JLabel();
         photo2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         music3 = new RoundedPanel();
         title3 = new javax.swing.JLabel();
         artist3 = new javax.swing.JLabel();
         photo3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         music4 = new RoundedPanel();
         title4 = new javax.swing.JLabel();
         artist4 = new javax.swing.JLabel();
         photo4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         music5 = new RoundedPanel();
         title5 = new javax.swing.JLabel();
         artist5 = new javax.swing.JLabel();
         photo5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         home_pnl_likes = new RoundedPanel();
         likes = new RoundedPanel();
         num_likes = new javax.swing.JLabel();
@@ -222,7 +294,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -242,7 +314,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_searchOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_searchOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_searchOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -262,7 +334,7 @@ public class HomeWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_searchOpt);
 
         home_pnl_playlistOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -409,17 +481,19 @@ public class HomeWindow extends javax.swing.JFrame {
         music1.setMinimumSize(new java.awt.Dimension(200, 300));
         music1.setPreferredSize(new java.awt.Dimension(200, 300));
 
-        title1.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        title1.setFont(new Font("Gotham Black", Font.PLAIN, 14));
         title1.setForeground(new java.awt.Color(168, 168, 168));
         title1.setText("title");
 
-        artist1.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        artist1.setFont(new Font("Gotham Black", Font.PLAIN, 12));
         artist1.setForeground(new java.awt.Color(168, 168, 168));
         artist1.setText("artist");
 
+        photo1.setBackground(new java.awt.Color(18, 18, 18));
+        photo1.setOpaque(false);
         photo1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/music_photo_test2.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/music_photo_test4.png"))); // NOI18N
         photo1.add(jLabel1, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout music1Layout = new javax.swing.GroupLayout(music1);
@@ -441,12 +515,12 @@ public class HomeWindow extends javax.swing.JFrame {
             music1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, music1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(photo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(photo1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(title1)
                 .addGap(18, 18, 18)
                 .addComponent(artist1)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         home_pnl_topMusics.add(music1, new java.awt.GridBagConstraints());
@@ -458,18 +532,20 @@ public class HomeWindow extends javax.swing.JFrame {
         music2.setMinimumSize(new java.awt.Dimension(200, 300));
         music2.setPreferredSize(new java.awt.Dimension(200, 300));
 
-        title2.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        title2.setFont(new Font("Gotham Black", Font.PLAIN, 14));
         title2.setForeground(new java.awt.Color(168, 168, 168));
         title2.setText("title");
 
-        artist2.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        artist2.setFont(new Font("Gotham Black", Font.PLAIN, 12));
         artist2.setForeground(new java.awt.Color(168, 168, 168));
         artist2.setText("artist");
 
+        photo2.setBackground(new java.awt.Color(18, 18, 18));
+        photo2.setOpaque(false);
         photo2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/music_photo_test3.png"))); // NOI18N
-        photo2.add(jLabel3, new java.awt.GridBagConstraints());
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/music_photo_test4.png"))); // NOI18N
+        photo2.add(jLabel2, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout music2Layout = new javax.swing.GroupLayout(music2);
         music2.setLayout(music2Layout);
@@ -490,12 +566,12 @@ public class HomeWindow extends javax.swing.JFrame {
             music2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, music2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(photo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(photo2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(title2)
                 .addGap(18, 18, 18)
                 .addComponent(artist2)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         home_pnl_topMusics.add(music2, new java.awt.GridBagConstraints());
@@ -507,18 +583,20 @@ public class HomeWindow extends javax.swing.JFrame {
         music3.setMinimumSize(new java.awt.Dimension(200, 300));
         music3.setPreferredSize(new java.awt.Dimension(200, 300));
 
-        title3.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        title3.setFont(new Font("Gotham Black", Font.PLAIN, 14));
         title3.setForeground(new java.awt.Color(168, 168, 168));
         title3.setText("title");
 
-        artist3.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        artist3.setFont(new Font("Gotham Black", Font.PLAIN, 12));
         artist3.setForeground(new java.awt.Color(168, 168, 168));
         artist3.setText("artist");
 
+        photo3.setBackground(new java.awt.Color(18, 18, 18));
+        photo3.setOpaque(false);
         photo3.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/music_photo_test4.png"))); // NOI18N
-        photo3.add(jLabel2, new java.awt.GridBagConstraints());
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/music_photo_test4.png"))); // NOI18N
+        photo3.add(jLabel3, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout music3Layout = new javax.swing.GroupLayout(music3);
         music3.setLayout(music3Layout);
@@ -539,12 +617,12 @@ public class HomeWindow extends javax.swing.JFrame {
             music3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, music3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(photo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(photo3, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(title3)
                 .addGap(18, 18, 18)
                 .addComponent(artist3)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         home_pnl_topMusics.add(music3, new java.awt.GridBagConstraints());
@@ -556,24 +634,20 @@ public class HomeWindow extends javax.swing.JFrame {
         music4.setMinimumSize(new java.awt.Dimension(200, 300));
         music4.setPreferredSize(new java.awt.Dimension(200, 300));
 
-        title4.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        title4.setFont(new Font("Gotham Black", Font.PLAIN, 14));
         title4.setForeground(new java.awt.Color(168, 168, 168));
         title4.setText("title");
 
-        artist4.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        artist4.setFont(new Font("Gotham Black", Font.PLAIN, 12));
         artist4.setForeground(new java.awt.Color(168, 168, 168));
         artist4.setText("artist");
 
-        javax.swing.GroupLayout photo4Layout = new javax.swing.GroupLayout(photo4);
-        photo4.setLayout(photo4Layout);
-        photo4Layout.setHorizontalGroup(
-            photo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        photo4Layout.setVerticalGroup(
-            photo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 218, Short.MAX_VALUE)
-        );
+        photo4.setBackground(new java.awt.Color(18, 18, 18));
+        photo4.setOpaque(false);
+        photo4.setLayout(new java.awt.GridBagLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/music_photo_test4.png"))); // NOI18N
+        photo4.add(jLabel4, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout music4Layout = new javax.swing.GroupLayout(music4);
         music4.setLayout(music4Layout);
@@ -594,12 +668,12 @@ public class HomeWindow extends javax.swing.JFrame {
             music4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, music4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(photo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(photo4, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(title4)
                 .addGap(18, 18, 18)
                 .addComponent(artist4)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         home_pnl_topMusics.add(music4, new java.awt.GridBagConstraints());
@@ -611,24 +685,20 @@ public class HomeWindow extends javax.swing.JFrame {
         music5.setMinimumSize(new java.awt.Dimension(200, 300));
         music5.setPreferredSize(new java.awt.Dimension(200, 300));
 
-        title5.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        title5.setFont(new Font("Gotham Black", Font.PLAIN, 14));
         title5.setForeground(new java.awt.Color(168, 168, 168));
         title5.setText("title");
 
-        artist5.setFont(new Font("Gotham Black", Font.PLAIN, 18));
+        artist5.setFont(new Font("Gotham Black", Font.PLAIN, 12));
         artist5.setForeground(new java.awt.Color(168, 168, 168));
         artist5.setText("artist");
 
-        javax.swing.GroupLayout photo5Layout = new javax.swing.GroupLayout(photo5);
-        photo5.setLayout(photo5Layout);
-        photo5Layout.setHorizontalGroup(
-            photo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        photo5Layout.setVerticalGroup(
-            photo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 218, Short.MAX_VALUE)
-        );
+        photo5.setBackground(new java.awt.Color(18, 18, 18));
+        photo5.setOpaque(false);
+        photo5.setLayout(new java.awt.GridBagLayout());
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/music_photo_test4.png"))); // NOI18N
+        photo5.add(jLabel5, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout music5Layout = new javax.swing.GroupLayout(music5);
         music5.setLayout(music5Layout);
@@ -649,12 +719,12 @@ public class HomeWindow extends javax.swing.JFrame {
             music5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, music5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(photo5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(photo5, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(title5)
                 .addGap(18, 18, 18)
                 .addComponent(artist5)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         home_pnl_topMusics.add(music5, new java.awt.GridBagConstraints());
@@ -931,6 +1001,8 @@ public class HomeWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_home;

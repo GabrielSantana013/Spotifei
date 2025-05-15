@@ -7,6 +7,7 @@ package view;
 import controller.MusicSearchController;
 import view.customClasses.RoundedButton;
 import java.awt.*;
+import java.io.IOException;
 import javax.swing.*;
 import model.User;
 import view.customClasses.*;
@@ -714,9 +715,13 @@ public class SearchWindow extends javax.swing.JFrame {
 
     private void home_pnl_homeOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_homeOptMouseClicked
         // TODO add your handling code here:
-        HomeWindow hw = new HomeWindow(user);
-        hw.setVisible(rootPaneCheckingEnabled);
-        this.setVisible(false);
+        try{
+            HomeWindow hw = new HomeWindow(user);
+            hw.setVisible(rootPaneCheckingEnabled);
+            this.setVisible(false);
+        } catch(IOException i){
+            i.printStackTrace();
+        }
     }//GEN-LAST:event_home_pnl_homeOptMouseClicked
 
     private void home_pnl_searchOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_searchOptMouseClicked
