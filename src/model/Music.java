@@ -15,6 +15,7 @@ public class Music {
     
     private int musicId, likes, deslikes, duration;
     private String musicTitle, musicDescription, genre, artistName;
+    private byte[] musicPhoto;
 
     public Music(int musicId, int likes, int deslikes, int duration, 
             String musicTitle, String musicDescription, String genre,
@@ -41,6 +42,12 @@ public class Music {
     public Music(int musicId, String title) {
         this.musicId = musicId;
         this.musicTitle = title;
+    }
+
+    public Music(String musicTitle, String artistName, byte[] musicPhoto) {
+        this.musicTitle = musicTitle;
+        this.artistName = artistName;
+        this.musicPhoto = musicPhoto;
     }
     
     public int getMusicId() {
@@ -106,6 +113,16 @@ public class Music {
     public void setArtistName(String artistName) {
         this.artistName = artistName;
     }
+
+    public byte[] getMusicPhoto() {
+        return musicPhoto;
+    }
+
+    public void setMusicPhoto(byte[] musicPhoto) {
+        this.musicPhoto = musicPhoto;
+    }
+    
+    
     
     public static Music fromResultSet(ResultSet res) throws SQLException {
         

@@ -5,10 +5,17 @@
 package controller;
 
 import DAO.DbConnection;
+import DAO.MusicDAO;
 import DAO.UserDAO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import model.Music;
 import model.User;
 import view.HomeWindow;
@@ -18,14 +25,14 @@ import view.customDialogs.CustomJDialog;
  *
  * @author Gabriel
  */
-public class HomeController {
+public class HomeController{
     
     private HomeWindow view;
     private User user;
 
-    public HomeController(HomeWindow view, User user) {
+    public HomeController(HomeWindow view, User user) throws IOException{
         this.view = view;
-        this.user = user;
+        this.user = user;        
         
     }
     
@@ -67,6 +74,29 @@ public class HomeController {
         } else {
             view.getListDislikes().setListData(new String[0]);
         }
+    }
+    
+    public void fillTopFive()throws IOException{
+    
+        ArrayList<Music> topFive = new ArrayList();
+        BufferedImage image = null;
+        try(Connection conn = new DbConnection().getConnection()){
+        
+            MusicDAO dao = new MusicDAO(conn);
+            topFive = dao.getTop5MostLikedMusics();
+            
+        }catch(SQLException e){
+            CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar o top 5 no banco.");
+        }
+                
+        try{
+        ByteArrayInputStream input = new ByteArrayInputStream(topFive.get(0).getMusicPhoto());
+        image = ImageIO.read(input);
+        }catch(IOException ex){
+            CustomJDialog.showCustomDialog("Erro!", "Imagem corrompida!");
+        }        
+        
+        view.getjLabel1().setIcon(new ImageIcon(image));
     }
 
 

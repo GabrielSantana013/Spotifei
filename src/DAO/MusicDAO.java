@@ -128,6 +128,29 @@ public class MusicDAO {
             statement.executeUpdate();
         }
     }
+    
+    public ArrayList<Music> getTop5MostLikedMusics() throws SQLException {
+        String sql = "SELECT m.*, a.name AS artist_name " +
+                     "FROM spotifei.music m " +
+                     "JOIN spotifei.artist a ON m.artist_id = a.artist_id " +
+                     "ORDER BY m.likes DESC " +
+                     "LIMIT 5";
+
+        PreparedStatement statement = conn.prepareStatement(sql);
+        ResultSet res = statement.executeQuery();
+
+        ArrayList<Music> topMusics = new ArrayList<>();
+        while (res.next()) {
+            topMusics.add(new Music(
+                res.getString("title"),
+                res.getString("artist_name"),
+                res.getBytes("music_photo")
+            ));
+        }
+        return topMusics;
+    }
+
+    
 }
 
 

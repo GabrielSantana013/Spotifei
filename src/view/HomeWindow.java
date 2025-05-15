@@ -7,9 +7,9 @@ package view;
 import controller.HomeController;
 import view.customClasses.RoundedButton;
 import java.awt.*;
+import java.io.IOException;
 import javax.swing.*;
 import model.User;
-import view.assets.fonts.FontLoader;
 import view.customClasses.RoundedButton.*;
 import view.customClasses.RoundedPanel;
 
@@ -28,9 +28,10 @@ public class HomeWindow extends javax.swing.JFrame {
     /**
      * Creates new form HomeWindow
      */
-    public HomeWindow(User user) {
+    public HomeWindow(User user) throws IOException{
         initComponents();
         c =  new HomeController(this, user);
+        c.fillTopFive();
         this.user = user;
         
         this.setSize(width, height);
@@ -95,6 +96,15 @@ public class HomeWindow extends javax.swing.JFrame {
     public void setNum_likes(JLabel num_likes) {
         this.num_likes = num_likes;
     }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
     
     
   
