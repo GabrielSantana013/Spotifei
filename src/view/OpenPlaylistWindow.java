@@ -221,7 +221,7 @@ public class OpenPlaylistWindow extends javax.swing.JFrame {
         btt_removeMusic.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
         btt_removeMusic.setForeground(new java.awt.Color(28, 28, 28));
         btt_removeMusic.setBorder(null);
-        btt_removeMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_removeMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_removeMusic.setMaximumSize(new java.awt.Dimension(120, 40));
         btt_removeMusic.setMinimumSize(new java.awt.Dimension(120, 40));
         btt_removeMusic.setPreferredSize(new java.awt.Dimension(120, 40));

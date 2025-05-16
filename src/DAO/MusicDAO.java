@@ -149,8 +149,62 @@ public class MusicDAO {
         }
         return topMusics;
     }
+    
+    public ArrayList<Music> getTop5LessLikedMusics() throws SQLException {
+        String sql = "SELECT m.*, a.name AS artist_name " +
+                     "FROM spotifei.music m " +
+                     "JOIN spotifei.artist a ON m.artist_id = a.artist_id " +
+                     "ORDER BY m.dislikes DESC " +
+                     "LIMIT 5";
 
+        PreparedStatement statement = conn.prepareStatement(sql);
+        ResultSet res = statement.executeQuery();
+
+        ArrayList<Music> topMusics = new ArrayList<>();
+        while (res.next()) {
+            topMusics.add(new Music(
+                res.getString("title"),
+                res.getString("artist_name"),
+                res.getBytes("music_photo")
+            ));
+        }
+        return topMusics;
+    }
+    
+    public int getTotalUsers() throws SQLException{
+        String sql = "SELECT COUNT(*) FROM spotifei.users";
+        
+        PreparedStatement statement = conn.prepareStatement(sql);
+        ResultSet res = statement.executeQuery();
+        
+        int users = 0;
+        
+        if (res.next()) {
+            users = res.getInt(1);
+        }
+
+        res.close();
+        statement.close();
+        
+        return users;
+    }
+    
+    public int getTotalMusics() throws SQLException{
+        String sql = "SELECT COUNT(*) FROM spotifei.music";
+        
+        PreparedStatement statement = conn.prepareStatement(sql);
+        ResultSet res = statement.executeQuery();
+        
+        int users = 0;
+        
+        if (res.next()) {
+            users = res.getInt(1);
+        }
+
+        res.close();
+        statement.close();
+        
+        return users;
+    }
     
 }
-
-

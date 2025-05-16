@@ -395,7 +395,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         btt_openPlaylist.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
         btt_openPlaylist.setForeground(new java.awt.Color(28, 28, 28));
         btt_openPlaylist.setBorder(null);
-        btt_openPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_openPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_openPlaylist.setMaximumSize(new java.awt.Dimension(120, 40));
         btt_openPlaylist.setMinimumSize(new java.awt.Dimension(120, 40));
         btt_openPlaylist.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -406,7 +406,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         btt_removePlaylist.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
         btt_removePlaylist.setForeground(new java.awt.Color(28, 28, 28));
         btt_removePlaylist.setBorder(null);
-        btt_removePlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_removePlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_removePlaylist.setMaximumSize(new java.awt.Dimension(120, 40));
         btt_removePlaylist.setMinimumSize(new java.awt.Dimension(120, 40));
         btt_removePlaylist.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -417,7 +417,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         btt_addPlaylist.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
         btt_addPlaylist.setForeground(new java.awt.Color(28, 28, 28));
         btt_addPlaylist.setBorder(null);
-        btt_addPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_addPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_addPlaylist.setMaximumSize(new java.awt.Dimension(120, 40));
         btt_addPlaylist.setMinimumSize(new java.awt.Dimension(120, 40));
         btt_addPlaylist.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -513,7 +513,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         btt_confirmar.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
         btt_confirmar.setForeground(new java.awt.Color(28, 28, 28));
         btt_confirmar.setBorder(null);
-        btt_confirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_confirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_confirmar.setMaximumSize(new java.awt.Dimension(120, 40));
         btt_confirmar.setMinimumSize(new java.awt.Dimension(120, 40));
         btt_confirmar.setPreferredSize(new java.awt.Dimension(120, 40));

@@ -12,8 +12,8 @@ import javax.swing.*;
  * @author Pedro Schneider, Gabriel Santana Dias
  */
 public class RoundedButton extends JButton {
-    private final Color normalColor = new Color(185, 192, 192); // default background
-    private final Color hoverColor = new Color(142, 150, 150);  // hover color
+    private Color normalColor = new Color(185, 192, 192); // default background
+    private Color hoverColor = new Color(142, 150, 150);  // hover color
     private Color currentBackground = normalColor;
     private Timer hoverTimer;
     private boolean hovering = false;
@@ -73,6 +73,14 @@ public class RoundedButton extends JButton {
 
     public void setHover(int hover) {
         this.hover = hover;
+    }
+
+    public void setNormalColor(Color normalColor) {
+        this.normalColor = normalColor;
+    }
+    
+    public void setHoverColor(Color hoverColor) {
+        this.hoverColor = hoverColor;
     }
     
     // set the text alignment

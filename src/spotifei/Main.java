@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import model.Music;
+import java.io.IOException;
 import view.LoginWindow;
 import view.assets.fonts.FontLoader;
 import view.customDialogs.CustomJDialog;
@@ -24,7 +25,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         FontLoader.registerAllFonts(); // registra todas as fontes
         List<Music> allMusics = null;
         try(Connection conn = new DbConnection().getConnection()){

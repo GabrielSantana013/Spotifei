@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.HomeController;
+import controller.AdmHomeController;
 import view.customClasses.RoundedButton;
 import java.awt.*;
 import java.io.IOException;
@@ -30,9 +30,11 @@ public class AdmHomeWindow extends javax.swing.JFrame {
      */
     public AdmHomeWindow(User user) throws IOException {
         initComponents();
-        // mudar o controller pro admhomecontroller
-//        c =  new HomeController(this, user);
-//        c.fillTopFive();
+        c =  new AdmHomeController(this, user);
+        c.fillTopFive();
+        c.fillTopFiveBad();
+        c.totalUsers();
+        c.totalMusics();
         this.user = user;
         
         this.setSize(width, height);
@@ -46,8 +48,7 @@ public class AdmHomeWindow extends javax.swing.JFrame {
         int y = (screenSize.height - height) / 2;
         
         this.setLocation(new Point(x,y));
-//        c.setUserNameOnWindow();
-//        c.setLikesAndDislikes();
+        c.setUserNameOnWindow();
     }
     
     public JButton getBtt_profile() {
@@ -65,47 +66,52 @@ public class AdmHomeWindow extends javax.swing.JFrame {
     public void setLbl_welcome(JLabel lbl_welcome) {
         this.lbl_welcome = lbl_welcome;
     }
-
+    
     public JLabel getjLabel1() {
         return jLabel1;
-    }
-
-    public void setjLabel1(JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
     }
 
     public JLabel getjLabel2() {
         return jLabel2;
     }
 
-    public void setjLabel2(JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
-    }
-
     public JLabel getjLabel3() {
         return jLabel3;
-    }
-
-    public void setjLabel3(JLabel jLabel3) {
-        this.jLabel3 = jLabel3;
     }
 
     public JLabel getjLabel4() {
         return jLabel4;
     }
 
-    public void setjLabel4(JLabel jLabel4) {
-        this.jLabel4 = jLabel4;
-    }
-
     public JLabel getjLabel5() {
         return jLabel5;
     }
 
-    public void setjLabel5(JLabel jLabel5) {
-        this.jLabel5 = jLabel5;
+    // label do top 5
+    public JLabel getjLabel6() {
+        return jLabel6;
     }
 
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public JLabel getjLabel9() {
+        return jLabel9;
+    }
+    
+    public JLabel getjLabel10() {
+        return jLabel10;
+    }
+
+    public JLabel getjLabel11() {
+        return jLabel11;
+    }
+    
     public JLabel getArtist1() {
         return artist1;
     }
@@ -125,6 +131,27 @@ public class AdmHomeWindow extends javax.swing.JFrame {
     public JLabel getArtist5() {
         return artist5;
     }
+    
+    public JLabel getArtist6() {
+        return artist6;
+    }
+
+    public JLabel getArtist7() {
+        return artist7;
+    }
+
+    public JLabel getArtist8() {
+        return artist8;
+    }
+
+    public JLabel getArtist9() {
+        return artist9;
+    }
+    
+    public JLabel getArtist10() {
+        return artist10;
+    }
+
 
     public JLabel getTitle1() {
         return title1;
@@ -145,7 +172,34 @@ public class AdmHomeWindow extends javax.swing.JFrame {
     public JLabel getTitle5() {
         return title5;
     }
+
+    public JLabel getTitle6() {
+        return title6;
+    }
+
+    public JLabel getTitle7() {
+        return title7;
+    }
+
+    public JLabel getTitle8() {
+        return title8;
+    }
+
+    public JLabel getTitle9() {
+        return title9;
+    }
     
+    public JLabel getTitle10() {
+        return title10;
+    }
+
+    public JLabel getLbl_numberMusics() {
+        return lbl_numberMusics;
+    }
+
+    public JLabel getLbl_numberUsers() {
+        return lbl_numberUsers;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -170,6 +224,11 @@ public class AdmHomeWindow extends javax.swing.JFrame {
         lbl_config = new javax.swing.JLabel();
         home_pnl_topSide = new javax.swing.JPanel();
         home_pnl_botSide = new javax.swing.JPanel();
+        pnl_numbers = new javax.swing.JPanel();
+        lbl_numberUsers = new javax.swing.JLabel();
+        lbl_numberMusics = new javax.swing.JLabel();
+        lbl_users = new javax.swing.JLabel();
+        lbl_musics = new javax.swing.JLabel();
         home_pnl_inside = new javax.swing.JPanel();
         btt_profile = new RoundedButton("user_name");
         home_pnl_welcome = new javax.swing.JPanel();
@@ -366,15 +425,70 @@ public class AdmHomeWindow extends javax.swing.JFrame {
 
         home_pnl_botSide.setBackground(new java.awt.Color(28, 28, 28));
 
+        pnl_numbers.setOpaque(false);
+
+        lbl_numberUsers.setFont(new Font("Gotham Black", Font.PLAIN, 16));
+        lbl_numberUsers.setForeground(new java.awt.Color(168, 168, 168));
+        lbl_numberUsers.setText("numero_usuarios");
+
+        lbl_numberMusics.setFont(new Font("Gotham Black", Font.PLAIN, 16));
+        lbl_numberMusics.setForeground(new java.awt.Color(168, 168, 168));
+        lbl_numberMusics.setText("numero_musicas");
+
+        lbl_users.setFont(new Font("Gotham Black", Font.PLAIN, 22));
+        lbl_users.setForeground(new java.awt.Color(96, 96, 96));
+        lbl_users.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbl_users.setText("Número total de usuários:");
+
+        lbl_musics.setFont(new Font("Gotham Black", Font.PLAIN, 22));
+        lbl_musics.setForeground(new java.awt.Color(96, 96, 96));
+        lbl_musics.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbl_musics.setText("Número total de músicas:");
+        lbl_musics.setToolTipText("");
+
+        javax.swing.GroupLayout pnl_numbersLayout = new javax.swing.GroupLayout(pnl_numbers);
+        pnl_numbers.setLayout(pnl_numbersLayout);
+        pnl_numbersLayout.setHorizontalGroup(
+            pnl_numbersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_numbersLayout.createSequentialGroup()
+                .addGroup(pnl_numbersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbl_musics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_users, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_numbersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_numberMusics)
+                    .addComponent(lbl_numberUsers))
+                .addContainerGap())
+        );
+        pnl_numbersLayout.setVerticalGroup(
+            pnl_numbersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_numbersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_numbersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_numberUsers)
+                    .addComponent(lbl_users))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_numbersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_numberMusics)
+                    .addComponent(lbl_musics))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout home_pnl_botSideLayout = new javax.swing.GroupLayout(home_pnl_botSide);
         home_pnl_botSide.setLayout(home_pnl_botSideLayout);
         home_pnl_botSideLayout.setHorizontalGroup(
             home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, home_pnl_botSideLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnl_numbers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         home_pnl_botSideLayout.setVerticalGroup(
             home_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
+            .addGroup(home_pnl_botSideLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnl_numbers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         home_pnl_inside.setBackground(new java.awt.Color(18, 18, 18));
@@ -1198,6 +1312,9 @@ public class AdmHomeWindow extends javax.swing.JFrame {
 
     private void home_pnl_configsOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_configsOptMouseClicked
         // TODO add your handling code here:
+        AdmSettingsWindow asw = new AdmSettingsWindow(this.user);
+        asw.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(false);
     }//GEN-LAST:event_home_pnl_configsOptMouseClicked
 
     /**
@@ -1235,7 +1352,7 @@ public class AdmHomeWindow extends javax.swing.JFrame {
 //        });
 //    }
     
-//    private HomeController c;
+    private AdmHomeController c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel artist1;
@@ -1281,7 +1398,11 @@ public class AdmHomeWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lbl_config;
     private javax.swing.JLabel lbl_home;
+    private javax.swing.JLabel lbl_musics;
+    private javax.swing.JLabel lbl_numberMusics;
+    private javax.swing.JLabel lbl_numberUsers;
     private javax.swing.JLabel lbl_title;
+    private javax.swing.JLabel lbl_users;
     private javax.swing.JLabel lbl_welcome;
     private javax.swing.JPanel music1;
     private javax.swing.JPanel music10;
@@ -1303,6 +1424,7 @@ public class AdmHomeWindow extends javax.swing.JFrame {
     private javax.swing.JPanel photo7;
     private javax.swing.JPanel photo8;
     private javax.swing.JPanel photo9;
+    private javax.swing.JPanel pnl_numbers;
     private javax.swing.JPanel spacing1;
     private javax.swing.JPanel spacing2;
     private javax.swing.JLabel title1;

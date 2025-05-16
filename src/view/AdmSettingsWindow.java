@@ -4,14 +4,28 @@
  */
 package view;
 
-import controller.HomeController;
-import view.customClasses.RoundedButton;
-import java.awt.*;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import javax.swing.*;
-import model.User;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import javax.imageio.ImageIO;
+
+import view.customClasses.RoundedButton;
+import view.customClasses.PlaceholderFields;
 import view.customClasses.RoundedButton.*;
 import view.customClasses.RoundedPanel;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.*;
+import java.awt.*;
+import java.text.NumberFormat;
+import javax.swing.text.NumberFormatter;
+
+import model.User;
+import static utils.ImageProcessor.processImage;
 
 /**
  *
@@ -56,6 +70,16 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
     public void setBtt_profile(JButton btt_profile) {
         this.btt_profile = btt_profile;
     }
+
+    public JPanel getPnl_registerUser() {
+        return pnl_registerArtist;
+    }
+
+    public JPanel getPnl_registerMusic() {
+        return pnl_registerMusic;
+    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,6 +106,45 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         home_pnl_botSide = new javax.swing.JPanel();
         home_pnl_inside = new javax.swing.JPanel();
         btt_profile = new RoundedButton("user_name");
+        btt_registerUser = new RoundedButton("Cadastrar novo usuário");
+        btt_registerArtist = new RoundedButton("Cadastrar novo artista");
+        btt_registerMusic = new RoundedButton("Cadastrar nova música");
+        pnl_registers = new javax.swing.JPanel();
+        pnl_registerArtist = new RoundedPanel();
+        txt_name = new PlaceholderFields("Digite o nome do artista...", new Insets(0, 15, 0, 0));
+        javax.swing.text.MaskFormatter dateFormatter = null;
+        try {
+            dateFormatter = new javax.swing.text.MaskFormatter("##/##/####");
+            dateFormatter.setPlaceholderCharacter('_');
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_birthDate = new PlaceholderFields(dateFormatter, "01/01/2000", new Insets(0, 15, 0, 0));
+        cbox_gender = new javax.swing.JComboBox<>();
+        scroll_desc = new javax.swing.JScrollPane();
+        txt_description = new javax.swing.JTextArea();
+        lbl_desc = new javax.swing.JLabel();
+        pnl_registerMusic = new RoundedPanel();
+        txt_title = new PlaceholderFields("Digite o título da música...", new Insets(0, 15, 0, 0));
+        txt_genre = new PlaceholderFields("Digite o gênero da música...", new Insets(0, 15, 0, 0));
+        lbl_musicArtist = new javax.swing.JLabel();
+        scroll_musicArtists = new javax.swing.JScrollPane();
+        list_artists = new javax.swing.JList<>();
+        scroll_musicDesc = new javax.swing.JScrollPane();
+        txt_musicDescription = new javax.swing.JTextArea();
+        lbl_musicDesc = new javax.swing.JLabel();
+        txt_duration = new PlaceholderFields("Duração da música (s)", new Insets(0, 15, 0, 0));
+        NumberFormat intFormat = NumberFormat.getIntegerInstance();
+        intFormat.setGroupingUsed(false); // tira separação por , e .
+
+        NumberFormatter formatter = new NumberFormatter(intFormat);
+        formatter.setMinimum(0); // so numeros positivos
+        txt_likes = new PlaceholderFields(formatter, "0", new Insets(0, 5, 0, 0));
+        txt_dislikes = new PlaceholderFields(formatter, "0", new Insets(0, 5, 0, 0));
+        lbl_likes = new javax.swing.JLabel();
+        lbl_dislikes = new javax.swing.JLabel();
+        btt_addPhoto = new RoundedButton("Adicionar foto");
+        btt_addAudio = new RoundedButton("Adicionar áudio");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -187,7 +250,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                 .addComponent(home_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(home_pnl_options, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(512, Short.MAX_VALUE))
         );
 
         home_pnl_topSide.setBackground(new java.awt.Color(28, 28, 28));
@@ -236,12 +299,501 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
             }
         });
 
+        ((RoundedButton) btt_registerUser).setTextAlignment(TextAlign.LEFT);
+        btt_registerUser.setBackground(new java.awt.Color(185, 192, 198));
+        btt_registerUser.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
+        btt_registerUser.setForeground(new java.awt.Color(28, 28, 28));
+        btt_registerUser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
+        btt_registerUser.setBorderPainted(false);
+        btt_registerUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_registerUser.setPreferredSize(new java.awt.Dimension(48, 20));
+        ((RoundedButton) btt_registerUser).setCornerRadiusVertical(80);
+        ((RoundedButton) btt_registerUser).setCornerRadiusHorizontal(40);
+        btt_registerUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_registerUserActionPerformed(evt);
+            }
+        });
+
+        ((RoundedButton) btt_registerArtist).setTextAlignment(TextAlign.LEFT);
+        btt_registerArtist.setBackground(new java.awt.Color(185, 192, 198));
+        btt_registerArtist.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
+        btt_registerArtist.setForeground(new java.awt.Color(28, 28, 28));
+        btt_registerArtist.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
+        btt_registerArtist.setBorderPainted(false);
+        btt_registerArtist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_registerArtist.setPreferredSize(new java.awt.Dimension(48, 20));
+        ((RoundedButton) btt_registerArtist).setCornerRadiusVertical(80);
+        ((RoundedButton) btt_registerArtist).setCornerRadiusHorizontal(40);
+        btt_registerArtist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_registerArtistActionPerformed(evt);
+            }
+        });
+
+        ((RoundedButton) btt_registerMusic).setTextAlignment(TextAlign.LEFT);
+        btt_registerMusic.setBackground(new java.awt.Color(185, 192, 198));
+        btt_registerMusic.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
+        btt_registerMusic.setForeground(new java.awt.Color(28, 28, 28));
+        btt_registerMusic.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
+        btt_registerMusic.setBorderPainted(false);
+        btt_registerMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_registerMusic.setPreferredSize(new java.awt.Dimension(48, 20));
+        ((RoundedButton) btt_registerMusic).setCornerRadiusVertical(80);
+        ((RoundedButton) btt_registerMusic).setCornerRadiusHorizontal(40);
+        btt_registerMusic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_registerMusicActionPerformed(evt);
+            }
+        });
+
+        pnl_registers.setOpaque(false);
+        pnl_registers.setLayout(new javax.swing.OverlayLayout(pnl_registers));
+
+        ((RoundedPanel) pnl_registerArtist).setHover(0);
+        pnl_registerArtist.setBackground(new java.awt.Color(38, 38, 38));
+        pnl_registerArtist.setVisible(false);
+
+        txt_name.setBackground(new java.awt.Color(51, 51, 51));
+        txt_name.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+        txt_name.setForeground(new java.awt.Color(168, 170, 170));
+        txt_name.setBorder(null);
+        txt_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nameActionPerformed(evt);
+            }
+        });
+
+        txt_birthDate.setBackground(new java.awt.Color(51, 51, 51));
+        txt_birthDate.setBorder(null);
+        txt_birthDate.setForeground(new java.awt.Color(168, 168, 168));
+        txt_birthDate.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+
+        cbox_gender.setBackground(new java.awt.Color(51, 51, 51));
+        cbox_gender.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+        cbox_gender.setForeground(new java.awt.Color(168, 170, 170));
+        cbox_gender.setMaximumRowCount(3);
+        cbox_gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outro" }));
+        cbox_gender.setToolTipText("");
+        cbox_gender.setBorder(null);
+        cbox_gender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        scroll_desc.setBorder(null);
+
+        txt_description.setBackground(new java.awt.Color(51, 51, 51));
+        txt_description.setColumns(20);
+        txt_description.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+        txt_description.setForeground(new java.awt.Color(168, 168, 168));
+        txt_description.setLineWrap(true);
+        txt_description.setRows(5);
+        txt_description.setWrapStyleWord(true);
+        txt_description.setAutoscrolls(false);
+        txt_description.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txt_description.setDisabledTextColor(new java.awt.Color(236, 239, 241));
+        txt_description.setMaximumSize(new java.awt.Dimension(212, 214));
+        scroll_desc.setViewportView(txt_description);
+
+        scroll_desc.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(60,63,65);
+                this.trackColor = new Color(24,24,24);
+            }
+
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton button = new JButton();
+                button.setPreferredSize(new Dimension(0, 0));
+                button.setMinimumSize(new Dimension(0, 0));
+                button.setMaximumSize(new Dimension(0, 0));
+                return button;
+            }
+
+            // barra de scroll mais larga
+            @Override
+            public Dimension getPreferredSize(JComponent c) {
+                return new Dimension(8, super.getPreferredSize(c).height);
+            }
+
+            // arredonda o botão
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.translate(thumbBounds.x, thumbBounds.y);
+                g2.setColor(thumbColor);
+                int arc = 12;
+                g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);
+                g2.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setColor(trackColor);
+                g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+                g2.dispose();
+            }
+        });
+
+        lbl_desc.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        lbl_desc.setForeground(new java.awt.Color(236, 239, 241));
+        lbl_desc.setText("Descrição do artista:");
+
+        javax.swing.GroupLayout pnl_registerArtistLayout = new javax.swing.GroupLayout(pnl_registerArtist);
+        pnl_registerArtist.setLayout(pnl_registerArtistLayout);
+        pnl_registerArtistLayout.setHorizontalGroup(
+            pnl_registerArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_registerArtistLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_registerArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_birthDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txt_name)
+                    .addComponent(cbox_gender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scroll_desc)
+                    .addComponent(lbl_desc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnl_registerArtistLayout.setVerticalGroup(
+            pnl_registerArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_registerArtistLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cbox_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_desc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnl_registers.add(pnl_registerArtist);
+
+        ((RoundedPanel) pnl_registerMusic).setHover(0);
+        pnl_registerMusic.setBackground(new java.awt.Color(38, 38, 38));
+        pnl_registerMusic.setVisible(false);
+
+        txt_title.setBackground(new java.awt.Color(51, 51, 51));
+        txt_title.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+        txt_title.setForeground(new java.awt.Color(168, 170, 170));
+        txt_title.setBorder(null);
+        txt_title.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_titleActionPerformed(evt);
+            }
+        });
+
+        txt_genre.setBackground(new java.awt.Color(51, 51, 51));
+        txt_genre.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+        txt_genre.setForeground(new java.awt.Color(168, 170, 170));
+        txt_genre.setBorder(null);
+        txt_genre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_genreActionPerformed(evt);
+            }
+        });
+
+        lbl_musicArtist.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        lbl_musicArtist.setForeground(new java.awt.Color(236, 239, 241));
+        lbl_musicArtist.setText("Selecione o artista da música:");
+
+        scroll_musicArtists.setBackground(new java.awt.Color(60, 63, 65));
+        scroll_musicArtists.setBorder(null);
+        scroll_musicArtists.setForeground(new java.awt.Color(58, 58, 58));
+        scroll_musicArtists.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll_musicArtists.setMaximumSize(new java.awt.Dimension(322, 322));
+        scroll_musicArtists.setMinimumSize(new java.awt.Dimension(322, 322));
+        scroll_musicArtists.setPreferredSize(new java.awt.Dimension(322, 322));
+        scroll_musicArtists.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(60,63,65);
+                this.trackColor = new Color(24,24,24);
+            }
+
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton button = new JButton();
+                button.setPreferredSize(new Dimension(0, 0));
+                button.setMinimumSize(new Dimension(0, 0));
+                button.setMaximumSize(new Dimension(0, 0));
+                return button;
+            }
+
+            // barra de scroll mais larga
+            @Override
+            public Dimension getPreferredSize(JComponent c) {
+                return new Dimension(8, super.getPreferredSize(c).height);
+            }
+
+            // arredonda o botão
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.translate(thumbBounds.x, thumbBounds.y);
+                g2.setColor(thumbColor);
+                int arc = 12;
+                g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);
+                g2.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setColor(trackColor);
+                g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+                g2.dispose();
+            }
+        });
+
+        list_artists.setBackground(new java.awt.Color(51, 51, 51));
+        list_artists.setBorder(null);
+        list_artists.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        list_artists.setForeground(new java.awt.Color(236, 239, 241));
+        list_artists.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Artista 1", "Artista 2", "Artista 3", "Artista 4", "Artista 5", "Artista 6", "Artista 7", "Artista 8", "Artista 9", "Artista 10", "Artista 11" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        list_artists.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        list_artists.setSelectionBackground(new java.awt.Color(100, 165, 135));
+        scroll_musicArtists.setViewportView(list_artists);
+
+        scroll_musicDesc.setBorder(null);
+
+        txt_musicDescription.setBackground(new java.awt.Color(51, 51, 51));
+        txt_musicDescription.setColumns(20);
+        txt_musicDescription.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+        txt_musicDescription.setForeground(new java.awt.Color(168, 168, 168));
+        txt_musicDescription.setLineWrap(true);
+        txt_musicDescription.setRows(5);
+        txt_musicDescription.setWrapStyleWord(true);
+        txt_musicDescription.setAutoscrolls(false);
+        txt_musicDescription.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txt_musicDescription.setDisabledTextColor(new java.awt.Color(236, 239, 241));
+        txt_musicDescription.setMaximumSize(new java.awt.Dimension(212, 214));
+        scroll_musicDesc.setViewportView(txt_musicDescription);
+
+        scroll_musicDesc.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(60,63,65);
+                this.trackColor = new Color(24,24,24);
+            }
+
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton button = new JButton();
+                button.setPreferredSize(new Dimension(0, 0));
+                button.setMinimumSize(new Dimension(0, 0));
+                button.setMaximumSize(new Dimension(0, 0));
+                return button;
+            }
+
+            // barra de scroll mais larga
+            @Override
+            public Dimension getPreferredSize(JComponent c) {
+                return new Dimension(8, super.getPreferredSize(c).height);
+            }
+
+            // arredonda o botão
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.translate(thumbBounds.x, thumbBounds.y);
+                g2.setColor(thumbColor);
+                int arc = 12;
+                g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);
+                g2.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setColor(trackColor);
+                g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+                g2.dispose();
+            }
+        });
+
+        lbl_musicDesc.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        lbl_musicDesc.setForeground(new java.awt.Color(236, 239, 241));
+        lbl_musicDesc.setText("Descrição da música:");
+
+        txt_duration.setBackground(new java.awt.Color(51, 51, 51));
+        txt_duration.setFont(new java.awt.Font("Gotham Thin", 1, 14));
+        txt_duration.setForeground(new java.awt.Color(168, 170, 170));
+        txt_duration.setBorder(null);
+        txt_duration.setEnabled(false);
+        txt_duration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_durationActionPerformed(evt);
+            }
+        });
+
+        txt_likes.setBackground(new java.awt.Color(51, 51, 51));
+        txt_likes.setBorder(null);
+        txt_likes.setForeground(new java.awt.Color(236, 239, 241));
+        txt_likes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(formatter));
+        txt_likes.setText("0");
+        txt_likes.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+
+        txt_dislikes.setBackground(new java.awt.Color(51, 51, 51));
+        txt_dislikes.setBorder(null);
+        txt_dislikes.setForeground(new java.awt.Color(236, 239, 241));
+        txt_dislikes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(formatter));
+        txt_dislikes.setText("0");
+        txt_dislikes.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+
+        lbl_likes.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        lbl_likes.setForeground(new java.awt.Color(236, 239, 241));
+        lbl_likes.setText("N° Likes");
+        lbl_likes.setEnabled(false);
+
+        lbl_dislikes.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        lbl_dislikes.setForeground(new java.awt.Color(236, 239, 241));
+        lbl_dislikes.setText("N° Dislikes");
+        lbl_dislikes.setEnabled(false);
+
+        btt_addPhoto.setBackground(new java.awt.Color(51, 51, 51));
+        btt_addPhoto.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 10));
+        btt_addPhoto.setForeground(new java.awt.Color(168, 170, 170));
+        btt_addPhoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
+        btt_addPhoto.setBorderPainted(false);
+        btt_addPhoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_addPhoto.setPreferredSize(new java.awt.Dimension(48, 20));
+        ((RoundedButton) btt_addPhoto).setNormalColor(new Color(51,51,51));
+        ((RoundedButton) btt_addPhoto).setHoverColor(new Color(71,71,71));
+        ((RoundedButton) btt_addPhoto).setCornerRadiusVertical(15);
+        ((RoundedButton) btt_addPhoto).setCornerRadiusHorizontal(15);
+        btt_addPhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_addPhotoActionPerformed(evt);
+            }
+        });
+
+        btt_addAudio.setBackground(new java.awt.Color(51, 51, 51));
+        btt_addAudio.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 10));
+        btt_addAudio.setForeground(new java.awt.Color(168, 170, 170));
+        btt_addAudio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
+        btt_addAudio.setBorderPainted(false);
+        btt_addAudio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_addAudio.setPreferredSize(new java.awt.Dimension(48, 20));
+        ((RoundedButton) btt_addAudio).setNormalColor(new Color(51,51,51));
+        ((RoundedButton) btt_addAudio).setHoverColor(new Color(71,71,71));
+        ((RoundedButton) btt_addAudio).setCornerRadiusVertical(15);
+        ((RoundedButton) btt_addAudio).setCornerRadiusHorizontal(15);
+        btt_addAudio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_addAudioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnl_registerMusicLayout = new javax.swing.GroupLayout(pnl_registerMusic);
+        pnl_registerMusic.setLayout(pnl_registerMusicLayout);
+        pnl_registerMusicLayout.setHorizontalGroup(
+            pnl_registerMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_registerMusicLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_registerMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scroll_musicArtists, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(txt_title)
+                    .addComponent(scroll_musicDesc)
+                    .addComponent(lbl_musicDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_genre)
+                    .addComponent(lbl_musicArtist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_duration, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnl_registerMusicLayout.createSequentialGroup()
+                        .addGroup(pnl_registerMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lbl_likes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_likes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(btt_addPhoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnl_registerMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btt_addAudio, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(txt_dislikes)
+                            .addComponent(lbl_dislikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        pnl_registerMusicLayout.setVerticalGroup(
+            pnl_registerMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_registerMusicLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_title, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_genre, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_musicArtist)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll_musicArtists, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_musicDesc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll_musicDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_duration, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnl_registerMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_dislikes)
+                    .addComponent(lbl_likes))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_registerMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_likes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_dislikes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_registerMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btt_addPhoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btt_addAudio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnl_registers.add(pnl_registerMusic);
+
         javax.swing.GroupLayout home_pnl_insideLayout = new javax.swing.GroupLayout(home_pnl_inside);
         home_pnl_inside.setLayout(home_pnl_insideLayout);
         home_pnl_insideLayout.setHorizontalGroup(
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(home_pnl_insideLayout.createSequentialGroup()
-                .addContainerGap(641, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btt_registerUser, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(btt_registerArtist, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(btt_registerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(pnl_registers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -249,8 +801,17 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(754, Short.MAX_VALUE))
+                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnl_registers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(home_pnl_insideLayout.createSequentialGroup()
+                        .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btt_registerUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btt_registerArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btt_registerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout home_pnl_allLayout = new javax.swing.GroupLayout(home_pnl_all);
@@ -299,11 +860,167 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
     private void home_pnl_homeOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_homeOptMouseClicked
         // TODO add your handling code here:
+        AdmHomeWindow ahw = null;
+        try {
+            ahw = new AdmHomeWindow(this.user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ahw.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(false);
     }//GEN-LAST:event_home_pnl_homeOptMouseClicked
 
     private void home_pnl_configsOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_configsOptMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_home_pnl_configsOptMouseClicked
+
+    private void btt_registerUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerUserActionPerformed
+        // TODO add your handling code here:
+        this.getPnl_registerMusic().setVisible(false);
+        this.getPnl_registerUser().setVisible(false);
+        RegistrationWindow rw = new RegistrationWindow();
+        rw.setVisible(true);
+        rw.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        rw.getBtt_return().setVisible(false);
+    }//GEN-LAST:event_btt_registerUserActionPerformed
+
+    private void btt_registerArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerArtistActionPerformed
+        // TODO add your handling code here:
+        this.getPnl_registerMusic().setVisible(false);
+        this.getPnl_registerUser().setVisible(true);
+    }//GEN-LAST:event_btt_registerArtistActionPerformed
+
+    private void btt_registerMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerMusicActionPerformed
+        // TODO add your handling code here:
+        this.getPnl_registerUser().setVisible(false);
+        this.getPnl_registerMusic().setVisible(true);
+    }//GEN-LAST:event_btt_registerMusicActionPerformed
+
+    private void txt_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nameActionPerformed
+
+    private void txt_titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_titleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_titleActionPerformed
+
+    private void txt_genreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_genreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_genreActionPerformed
+
+    private void btt_addPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_addPhotoActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        
+        // Caminho para a pasta Documentos do usuário
+        String caminhoDocumentos = System.getProperty("user.home") + File.separator + "Documents";
+        File pastaInicial = new File(caminhoDocumentos);
+
+        // Verifica se a pasta existe e é um diretório
+        if (pastaInicial.exists() && pastaInicial.isDirectory()) {
+            fileChooser = new JFileChooser(pastaInicial);
+        } else {
+            fileChooser = new JFileChooser(); // abre no padrão
+        }
+        
+        // filtra apenas imagens
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagens", "jpg", "png", "jpeg");
+        fileChooser.setFileFilter(filtro);
+
+        int retorno = fileChooser.showOpenDialog(this);
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            // TODO: colocar o que ta pra baixo no controller
+            try {
+                File arquivoSelecionado = fileChooser.getSelectedFile();
+                System.out.println("Arquivo selecionado: " + arquivoSelecionado.getAbsolutePath());
+
+                // Example: Read an image file
+                File inputFile = fileChooser.getSelectedFile();
+
+                // Checa se o arquivo existe e pode ser lido
+                if (!inputFile.exists()) {
+                    System.err.println("Erro: Arquivo não existe: "
+                            + inputFile.getAbsolutePath());
+                    return;
+                }
+
+                if (!inputFile.canRead()) {
+                    System.err.println("Erro: Não foi possível ler o arquivo (cheque permissões): "
+                            + inputFile.getAbsolutePath());
+                    return;
+                }
+
+                BufferedImage originalImage = null;
+                originalImage = ImageIO.read(inputFile);
+
+
+                // Checa se a imagem foi lida
+                if (originalImage == null) {
+                    System.err.println("Erro: Não foi possível ler a imagem."
+                            + "Certifique a extensão do arquivo (JPEG, PNG, BMP, GIF)");
+                    return;
+                }
+
+                // Converte para array de bytes
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                ImageIO.write(originalImage, "PNG", byteArrayOutputStream); // PNG para transparência
+                byte[] imageData = byteArrayOutputStream.toByteArray();
+
+                // Processa a imagem
+                byte[] processedImage = null;
+                processedImage = processImage(imageData);
+                System.out.println("Imagem processada - Tamnho final: " + processedImage.length + " bytes");
+
+                // Salva a imagem nova num arquivo para verificar
+                File outputFile = new File(arquivoSelecionado.getAbsolutePath());
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(processedImage);
+                BufferedImage resultImage = null;
+
+                resultImage = ImageIO.read(inputStream);
+
+                ImageIO.write(resultImage, "PNG", outputFile);
+
+                System.out.println("Imagem processada e salva em: " + outputFile.getAbsolutePath());
+                } catch (IOException e) {
+                    System.err.println("Error processing image: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            // TODO: essa função foi criada por IA, tem que arrumar no utils.imageProcessor e na hora que chamar tbm
+            // Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/yourdb", "username", "password");
+            // storeImageInDatabase(connection, 1, processedImage);
+        }
+    }//GEN-LAST:event_btt_addPhotoActionPerformed
+
+    private void btt_addAudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_addAudioActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        
+        // Caminho para a pasta Documentos do usuário
+        String caminhoDocumentos = System.getProperty("user.home") + File.separator + "Documents";
+        File pastaInicial = new File(caminhoDocumentos);
+
+        // Verifica se a pasta existe e é um diretório
+        if (pastaInicial.exists() && pastaInicial.isDirectory()) {
+            fileChooser = new JFileChooser(pastaInicial);
+        } else {
+            fileChooser = new JFileChooser(); // abre no padrão
+        }
+
+        // filtra apenas áudios
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Áudios", "mp3", "wav", "ogg", "AAC");
+        fileChooser.setFileFilter(filtro);
+        int retorno = fileChooser.showOpenDialog(this);
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            File arquivoSelecionado = fileChooser.getSelectedFile();
+            System.out.println("Arquivo selecionado: " + arquivoSelecionado.getAbsolutePath());
+        }
+    }//GEN-LAST:event_btt_addAudioActionPerformed
+
+    private void txt_durationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_durationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_durationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,7 +1060,14 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 //    private HomeController c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btt_addAudio;
+    private javax.swing.JButton btt_addPhoto;
     private javax.swing.JButton btt_profile;
+    private javax.swing.JButton btt_registerArtist;
+    private javax.swing.JButton btt_registerMusic;
+    private javax.swing.JButton btt_registerUser;
+    private javax.swing.JComboBox<String> cbox_gender;
+    private javax.swing.JComboBox<String> cbox_gender1;
     private javax.swing.JPanel home_pnl_all;
     private javax.swing.JPanel home_pnl_botSide;
     private javax.swing.JPanel home_pnl_configsOpt;
@@ -357,7 +1081,34 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
     private javax.swing.JLabel icon_home;
     private javax.swing.JLabel icon_logo;
     private javax.swing.JLabel lbl_config;
+    private javax.swing.JLabel lbl_desc;
+    private javax.swing.JLabel lbl_desc1;
+    private javax.swing.JLabel lbl_dislikes;
     private javax.swing.JLabel lbl_home;
+    private javax.swing.JLabel lbl_likes;
+    private javax.swing.JLabel lbl_musicArtist;
+    private javax.swing.JLabel lbl_musicDesc;
     private javax.swing.JLabel lbl_title;
+    private javax.swing.JList<String> list_artists;
+    private javax.swing.JPanel pnl_registerArtist;
+    private javax.swing.JPanel pnl_registerMusic;
+    private javax.swing.JPanel pnl_registerUser1;
+    private javax.swing.JPanel pnl_registers;
+    private javax.swing.JScrollPane scroll_desc;
+    private javax.swing.JScrollPane scroll_desc1;
+    private javax.swing.JScrollPane scroll_musicArtists;
+    private javax.swing.JScrollPane scroll_musicDesc;
+    private javax.swing.JFormattedTextField txt_birthDate;
+    private javax.swing.JFormattedTextField txt_birthDate1;
+    private javax.swing.JTextArea txt_description;
+    private javax.swing.JTextArea txt_description1;
+    private javax.swing.JFormattedTextField txt_dislikes;
+    private javax.swing.JTextField txt_duration;
+    private javax.swing.JTextField txt_genre;
+    private javax.swing.JFormattedTextField txt_likes;
+    private javax.swing.JTextArea txt_musicDescription;
+    private javax.swing.JTextField txt_name;
+    private javax.swing.JTextField txt_name1;
+    private javax.swing.JTextField txt_title;
     // End of variables declaration//GEN-END:variables
 }

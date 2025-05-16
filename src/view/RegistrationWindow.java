@@ -118,7 +118,9 @@ public class RegistrationWindow extends javax.swing.JFrame {
         this.txt_password = txt_password;
     }
 
-   
+    public JButton getBtt_return() {
+        return btt_return;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
