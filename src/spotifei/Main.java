@@ -4,8 +4,16 @@
  */
 package spotifei;
 
+import DAO.DbConnection;
+import DAO.MusicDAO;
+import cache.MusicCache;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import model.Music;
 import view.LoginWindow;
 import view.assets.fonts.FontLoader;
+import view.customDialogs.CustomJDialog;
 
 /**
  *
@@ -18,6 +26,21 @@ public class Main {
      */
     public static void main(String[] args) {
         FontLoader.registerAllFonts(); // registra todas as fontes
+        List<Music> allMusics = null;
+        try(Connection conn = new DbConnection().getConnection()){
+        
+            MusicDAO dao = new MusicDAO(conn);
+            allMusics = dao.searchMusic("");
+            MusicCache.loadCache(allMusics);
+            
+        }catch(SQLException e){
+            CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar músicas no banco.");
+            System.out.println(e.getMessage());
+        }
+        
+        for(Music m : allMusics){
+            System.out.println(m.getMusicTitle());
+        }
         
         LoginWindow lw = new LoginWindow();
         lw.setVisible(true);
