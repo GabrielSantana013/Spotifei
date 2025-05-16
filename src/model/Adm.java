@@ -42,6 +42,9 @@ public class Adm extends Person{
         this.admPassword = admPassword;
         this.adm = true;
     }
+
+    public Adm() {
+    }    
  
     public int getAdmId() {
         return admId;
@@ -63,7 +66,22 @@ public class Adm extends Person{
         return adm;
     }  
     
-    //esse método cria um adm com os resultados da consulta (usar para login)
+    
+
+    public static Adm fromUser(User user) {
+        if (!user.isAdm()) {
+            throw new IllegalArgumentException("Usuário não é administrador.");
+        }
+
+        Adm adm = new Adm();
+        adm.admId = user.getUserId();              // ou mapeie como preferir
+        adm.admLogin = user.getUserLogin();
+        adm.admPassword = user.getUserPassword();
+        adm.adm = true;
+
+        return adm;
+    }
+ 
     public static Adm fromResultSet(ResultSet res) throws SQLException {
  
         Date birthDate = new Date(res.getDate("birth_date").getTime());

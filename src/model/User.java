@@ -27,7 +27,8 @@ public class User extends Person{
     
     public User(String userLogin, String userPassword, int userId,
             ArrayList<String> historic, ArrayList<Music> likedMusics,
-            ArrayList<Music> dislikedMusics, String name, String gender, Date birthDate) {
+            ArrayList<Music> dislikedMusics, String name, String gender, 
+            Date birthDate, boolean isAdm) {
         super(name, gender, birthDate);
         this.userLogin = userLogin;
         this.userPassword = userPassword;
@@ -35,9 +36,8 @@ public class User extends Person{
         this.historic = historic;
         this.likedMusics = likedMusics;
         this.dislikedMusics = dislikedMusics;
-        this.adm = false;
+        this.adm = isAdm;
     }
-
 
     public User(String userLogin, String userPassword, String name, String gender, Date birthDate) {
         super(name, gender, birthDate);
@@ -132,7 +132,8 @@ public class User extends Person{
             dislikedMusics,
             res.getString("name"),
             res.getString("gender"),
-            birthDate
+            birthDate,
+            res.getBoolean("is_adm")
         );
     }
 

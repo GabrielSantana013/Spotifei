@@ -9,7 +9,7 @@ import view.customClasses.RoundedButton;
 import java.awt.*;
 import java.io.IOException;
 import javax.swing.*;
-import model.User;
+import model.Adm;
 import view.customClasses.RoundedButton.*;
 import view.customClasses.RoundedPanel;
 
@@ -23,19 +23,19 @@ public class AdmHomeWindow extends javax.swing.JFrame {
     private final Dimension screenSize = toolkit.getScreenSize();
     private final int width = screenSize.width;
     private final int height = screenSize.height;
-    private User user;
+    private Adm adm;
     
     /**
      * Creates new form HomeWindow
      */
-    public AdmHomeWindow(User user) throws IOException {
+    public AdmHomeWindow(Adm adm) throws IOException {
         initComponents();
-        c =  new AdmHomeController(this, user);
+        c =  new AdmHomeController(this, adm);
         c.fillTopFive();
         c.fillTopFiveBad();
         c.totalUsers();
         c.totalMusics();
-        this.user = user;
+        this.adm = adm;
         
         this.setSize(width, height);
         
@@ -1312,7 +1312,7 @@ public class AdmHomeWindow extends javax.swing.JFrame {
 
     private void home_pnl_configsOptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_pnl_configsOptMouseClicked
         // TODO add your handling code here:
-        AdmSettingsWindow asw = new AdmSettingsWindow(this.user);
+        AdmSettingsWindow asw = new AdmSettingsWindow(this.adm);
         asw.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_configsOptMouseClicked

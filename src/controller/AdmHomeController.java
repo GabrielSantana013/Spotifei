@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import model.Adm;
 import model.Music;
 import model.User;
 import static utils.ImageProcessor.byteArrayToImage;
@@ -28,17 +29,17 @@ import view.customDialogs.CustomJDialog;
 public class AdmHomeController{
     
     private AdmHomeWindow view;
-    private User user;
+    private Adm adm;
 
-    public AdmHomeController(AdmHomeWindow view, User user) throws IOException{
+    public AdmHomeController(AdmHomeWindow view, Adm adm) throws IOException{
         this.view = view;
-        this.user = user;        
+        this.adm = adm;        
         
     }
     
     public void setUserNameOnWindow(){
-        view.getBtt_profile().setText(user.getUserLogin());
-        view.getLbl_welcome().setText("Bem-vindo(a), administrador " + user.getName());
+        view.getBtt_profile().setText(adm.getAdmLogin());
+        view.getLbl_welcome().setText("Bem-vindo(a), administrador " + adm.getName());
     }
  
     public void fillTopFive() throws IOException{
@@ -170,8 +171,8 @@ public class AdmHomeController{
     }
     
     
-    public User getUser() {
-        return user;
+    public Adm getAdm() {
+        return adm;
     }
 }
 

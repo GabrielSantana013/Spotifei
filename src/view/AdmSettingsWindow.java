@@ -23,6 +23,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.NumberFormat;
 import javax.swing.text.NumberFormatter;
+import model.Adm;
 
 import model.User;
 import static utils.ImageProcessor.processImage;
@@ -37,16 +38,16 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
     private final Dimension screenSize = toolkit.getScreenSize();
     private final int width = screenSize.width;
     private final int height = screenSize.height;
-    private User user;
+    private Adm adm;
     
     /**
      * Creates new form HomeWindow
      */
-    public AdmSettingsWindow(User user) {
+    public AdmSettingsWindow(Adm adm) {
         initComponents();
         // mudar o controller pro admhomecontroller
 //        c =  new HomeController(this, user);
-        this.user = user;
+        this.adm = adm;
         
         this.setSize(width, height);
         
@@ -862,7 +863,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         AdmHomeWindow ahw = null;
         try {
-            ahw = new AdmHomeWindow(this.user);
+            ahw = new AdmHomeWindow(this.adm);
         } catch (IOException e) {
             e.printStackTrace();
         }
