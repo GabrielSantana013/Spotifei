@@ -48,54 +48,38 @@ public class MusicDAO {
     }
     
     public Music getMusicByTitle(String title) throws SQLException {
-        String sql = "SELECT m.*, a.name AS artist_name " +
-                     "FROM spotifei.music m " +
-                     "JOIN spotifei.artist a ON m.artist_id = a.artist_id " +
-                     "WHERE m.title = ?";
+    String sql = "SELECT m.*, a.name AS artist_name " +
+                 "FROM spotifei.music m " +
+                 "JOIN spotifei.artist a ON m.artist_id = a.artist_id " +
+                 "WHERE m.title = ?";
 
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, title);
-        ResultSet res = statement.executeQuery();
+    PreparedStatement statement = conn.prepareStatement(sql);
+    statement.setString(1, title);
+    ResultSet res = statement.executeQuery();
 
-        if (res.next()) {
-            return new Music(
-                res.getInt("music_id"),            
-                res.getInt("likes"),            
-                res.getInt("dislikes"),
-                res.getInt("duration"),
-                res.getString("title"),
-                res.getString("description"),                        
-                res.getString("genre"),
-                res.getString("artist_name")
-            );
-        }   
-        return null;
-    }
+    if (res.next()) {
+        return Music.fromResultSet(res);
+    }   
+    return null;
+}
+
 
     public Music getMusicById(int musicId) throws SQLException {
-        String sql = "SELECT m.*, a.name AS artist_name " +
-                     "FROM spotifei.music m " +
-                     "JOIN spotifei.artist a ON m.artist_id = a.artist_id " +
-                     "WHERE m.music_id = ?";
+    String sql = "SELECT m.*, a.name AS artist_name " +
+                 "FROM spotifei.music m " +
+                 "JOIN spotifei.artist a ON m.artist_id = a.artist_id " +
+                 "WHERE m.music_id = ?";
 
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setInt(1, musicId);
-        ResultSet res = statement.executeQuery();
+    PreparedStatement statement = conn.prepareStatement(sql);
+    statement.setInt(1, musicId);
+    ResultSet res = statement.executeQuery();
 
-        if (res.next()) {
-            return new Music(
-                res.getInt("music_id"),            
-                res.getInt("likes"),            
-                res.getInt("dislikes"),
-                res.getInt("duration"),
-                res.getString("title"),
-                res.getString("description"),                        
-                res.getString("genre"),
-                res.getString("artist_name")
-            );
-        }   
-        return null;
-    }
+    if (res.next()) {
+        return Music.fromResultSet(res);
+    }   
+    return null;
+}
+
     
     public void incrementLike(int musicId) throws SQLException {
     String sql = "UPDATE spotifei.music SET likes = likes + 1 WHERE music_id = ?";

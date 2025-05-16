@@ -5,13 +5,12 @@
 package controller;
 
 import DAO.DbConnection;
-import DAO.MusicDAO;
 import DAO.UserDAO;
+import cache.MusicCache;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -77,18 +76,12 @@ public class HomeController{
         }
     }
     
-    public void fillTopFive() throws IOException{
-        ArrayList<Music> topFive = new ArrayList();
-        
-        try(Connection conn = new DbConnection().getConnection()){
-        
-            MusicDAO dao = new MusicDAO(conn);
-            topFive = dao.getTop5MostLikedMusics();
-            
-        }catch(SQLException e){
-            CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar o top 5 no banco.");
-        }
-        
+    public void fillTopFive() throws IOException {
+        List<Music> topFive = MusicCache.getAllMusics().stream()
+            .sorted((m1, m2) -> Integer.compare(m2.getLikes(), m1.getLikes())) // ordem decrescente
+            .limit(5)
+            .toList();
+
         List<JLabel> titles = Arrays.asList(
             view.getTitle1(),
             view.getTitle2(),
@@ -96,7 +89,7 @@ public class HomeController{
             view.getTitle4(),
             view.getTitle5()
         );
-        
+
         List<JLabel> artists = Arrays.asList(
             view.getArtist1(),
             view.getArtist2(),
@@ -104,7 +97,7 @@ public class HomeController{
             view.getArtist4(),
             view.getArtist5()
         );
-        
+
         List<JLabel> images = Arrays.asList(
             view.getjLabel1(),
             view.getjLabel2(),
@@ -115,16 +108,13 @@ public class HomeController{
 
         for (int i = 0; i < topFive.size(); i++) {
             Music m = topFive.get(i);
-            
-            String title = m.getMusicTitle();
-            titles.get(i).setText(title);
-            String artist = m.getArtistName();
-            artists.get(i).setText(artist);
+            titles.get(i).setText(m.getMusicTitle());
+            artists.get(i).setText(m.getArtistName());
             BufferedImage image = byteArrayToImage(m.getMusicPhoto());
             images.get(i).setIcon(new ImageIcon(image));
-            
         }
     }
+
 
 
     public User getUser() {

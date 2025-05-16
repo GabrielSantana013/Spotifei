@@ -15,7 +15,7 @@ public class Music {
     
     private int musicId, likes, deslikes, duration;
     private String musicTitle, musicDescription, genre, artistName;
-    private byte[] musicPhoto;
+    private byte[] musicPhoto, musicAudio;
 
     public Music(int musicId, int likes, int deslikes, int duration, 
             String musicTitle, String musicDescription, String genre,
@@ -48,6 +48,21 @@ public class Music {
         this.musicTitle = musicTitle;
         this.artistName = artistName;
         this.musicPhoto = musicPhoto;
+    }
+
+    public Music(int musicId, int likes, int deslikes, int duration, 
+            String musicTitle, String musicDescription, String genre, 
+            String artistName, byte[] musicPhoto, byte[] musicAudio) {
+        this.musicId = musicId;
+        this.likes = likes;
+        this.deslikes = deslikes;
+        this.duration = duration;
+        this.musicTitle = musicTitle;
+        this.musicDescription = musicDescription;
+        this.genre = genre;
+        this.artistName = artistName;
+        this.musicPhoto = musicPhoto;
+        this.musicAudio = musicAudio;
     }
     
     public int getMusicId() {
@@ -121,9 +136,17 @@ public class Music {
     public void setMusicPhoto(byte[] musicPhoto) {
         this.musicPhoto = musicPhoto;
     }
+
+    public byte[] getMusicAudio() {
+        return musicAudio;
+    }
+
+    public void setMusicAudio(byte[] musicAudio) {
+        this.musicAudio = musicAudio;
+    }
     
     
-    
+     
     public static Music fromResultSet(ResultSet res) throws SQLException {
         
         return new Music(
@@ -134,7 +157,9 @@ public class Music {
             res.getString("title"),
             res.getString("description"),                        
             res.getString("genre"),
-            res.getString("artist_name")
+            res.getString("artist_name"),
+            res.getBytes("music_photo"),
+            res.getBytes("music_audio")
         );
     }
     

@@ -4,16 +4,21 @@ import DAO.DbConnection;
 import DAO.MusicDAO;
 import DAO.PlaylistDAO;
 import DAO.UserDAO;
+import cache.MusicCache;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import model.Music;
 import model.Playlist;
 import model.User;
+import static utils.ImageProcessor.byteArrayToImage;
 import view.SearchWindow;
 import view.customDialogs.CustomJDialog;
 
@@ -47,45 +52,42 @@ public class MusicSearchController {
             return;
         }
 
-        try (Connection conn = new DbConnection().getConnection()) {
-            MusicDAO musicDAO = new MusicDAO(conn);
-            List<Music> musics = musicDAO.searchMusic(musicName);
+       String searchLower = musicName.toLowerCase();
+        List<Music> musics = MusicCache.getAllMusics().stream()
+                .filter(m -> 
+                    m.getMusicTitle().toLowerCase().contains(searchLower) ||
+                    m.getArtistName().toLowerCase().contains(searchLower) ||
+                    m.getGenre().toLowerCase().contains(searchLower)
+                )
+                .collect(Collectors.toList());
 
-            if (musics.isEmpty()) {
-                CustomJDialog.showCustomDialog("Resultado", "Nenhuma música encontrada.");
-                view.getjList1().setListData(new String[0]);
-                currentMusics.clear(); // limpa também a lista atual
-                
-                displayHistoric();                
-                
-            } else {
-                currentMusics = new ArrayList<>(musics); // salva as músicas encontradas
+        if (musics.isEmpty()) {
+            CustomJDialog.showCustomDialog("Resultado", "Nenhuma música encontrada.");
+            view.getjList1().setListData(new String[0]);
+            currentMusics.clear();
 
-                String[] titles = currentMusics.stream()
-                        .map(Music::getMusicTitle)
-                        .toArray(String[]::new);
-                view.getjList1().setListData(titles);
-                
-            }
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-            CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar músicas no banco de dados.");
+            displayHistoric();                
+
+        } else {
+            currentMusics = new ArrayList<>(musics);
+
+            String[] titles = currentMusics.stream()
+                    .map(Music::getMusicTitle)
+                    .toArray(String[]::new);
+            view.getjList1().setListData(titles);
         }
     }
-    
-    
+     
     private void displayHistoric() {
         List<String> historicTitles = user.getHistoric();
 
         if (historicTitles != null && !historicTitles.isEmpty()) {
             List<Music> musicsFromHistoric = new ArrayList<>();
-
-            try (Connection conn = new DbConnection().getConnection()) {
-                MusicDAO musicDAO = new MusicDAO(conn);
-
-                for (String title : historicTitles) {
-                    Music m = musicDAO.getMusicByTitle(title);
+               for (String title : historicTitles) {                  
+                    Music m = MusicCache.getAllMusics().stream()
+                    .filter(music -> music.getMusicTitle().equalsIgnoreCase(title))
+                    .findFirst()
+                    .orElse(null);
                     if (m != null) {
                         musicsFromHistoric.add(m);
                     }
@@ -96,16 +98,12 @@ public class MusicSearchController {
                         .toArray(String[]::new);
                 view.getjList1().setListData(titles);
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-                CustomJDialog.showCustomDialog("Erro!", "Erro ao carregar histórico do banco de dados.");
-            }
         } else {
-            view.getjList1().setListData(new String[0]); // Exibe lista vazia
+            view.getjList1().setListData(new String[0]);
         }
     }
     
-    private void updateMusicLabels(Music music) {
+    private void updateMusicLabels(Music music){
         view.setSearch_pnl_musicInfoVisibility(Boolean.TRUE);
         
         int duration = music.getDuration();
@@ -118,6 +116,14 @@ public class MusicSearchController {
         view.getLbl_musicDislikes().setText(String.valueOf(music.getDeslikes()));
         view.getLbl_musicDescription().setText(music.getMusicDescription());
         view.getLbl_musicArtist().setText(music.getArtistName());
+        
+        try{
+            BufferedImage image = byteArrayToImage(music.getMusicPhoto());
+            view.getArtist_photo().setIcon(new ImageIcon(image));
+        }catch(IOException e){
+            CustomJDialog.showCustomDialog("Erro", "Erro ao carregar a foto do artista.");
+            e.printStackTrace();
+        }   
     }
     
     private void likeSelectedMusic() {

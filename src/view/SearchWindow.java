@@ -166,7 +166,14 @@ public class SearchWindow extends javax.swing.JFrame {
     public void setBtt_addPlaylist(JButton btt_addPlaylist) {
         this.btt_addPlaylist = btt_addPlaylist;
     }
-    
+
+    public JLabel getArtist_photo() {
+        return artist_photo;
+    }
+
+    public void setArtist_photo(JLabel artist_photo) {
+        this.artist_photo = artist_photo;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

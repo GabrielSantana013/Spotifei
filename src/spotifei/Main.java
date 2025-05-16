@@ -32,17 +32,13 @@ public class Main {
         
             MusicDAO dao = new MusicDAO(conn);
             allMusics = dao.searchMusic("");
-            MusicCache.loadCache(allMusics);
+            MusicCache.loadCache(allMusics);            
             
         }catch(SQLException e){
             CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar músicas no banco.");
             System.out.println(e.getMessage());
         }
-        
-        for(Music m : allMusics){
-            System.out.println(m.getMusicTitle());
-        }
-        
+               
         LoginWindow lw = new LoginWindow();
         lw.setVisible(true);
     }
