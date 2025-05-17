@@ -25,7 +25,7 @@ public class Artist extends Person{
         super(name, gender, birthDate);
         this.artistDescription = artistDescription;
     }
-    
+  
     public int getArtistId() {
         return artistId;
     }

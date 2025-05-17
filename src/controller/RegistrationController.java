@@ -27,9 +27,12 @@ public class RegistrationController {
 
     private RegistrationWindow view;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private boolean isAdm;
+    
 
-    public RegistrationController(RegistrationWindow view) {
+    public RegistrationController(RegistrationWindow view, boolean isAdm) {
         this.view = view;
+        this.isAdm = isAdm;
     }
     
     public void saveUser(){
@@ -61,13 +64,18 @@ public class RegistrationController {
             SwingUtilities.invokeLater(() -> {
                     CustomJDialog.showCustomDialog("Cadastro", "Usuário cadastrado com sucesso!");
                 });
-            LoginWindow lw = new LoginWindow();
-            lw.setVisible(true);
+            if (this.isAdm) {
             view.setVisible(false);
+            } else {
+                LoginWindow lw = new LoginWindow();
+                lw.setVisible(true);
+                view.setVisible(false);
+            }
         }catch(SQLException e){
             SwingUtilities.invokeLater(() -> {
                     CustomJDialog.showCustomDialog("ERRO!", "Erro de conexão com o banco de dados.\nEntre em contato com os administradores.");
             });
         }
-    }   
+    }
+    
 }

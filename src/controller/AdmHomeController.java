@@ -39,7 +39,7 @@ public class AdmHomeController{
     
     public void setUserNameOnWindow(){
         view.getBtt_profile().setText(adm.getAdmLogin());
-        view.getLbl_welcome().setText("Bem-vindo(a), administrador " + adm.getName());
+        view.getLbl_welcome().setText("Bem-vindo(a), administrador ");
     }
  
     public void fillTopFive() throws IOException{

@@ -24,9 +24,9 @@ public class RegistrationWindow extends javax.swing.JFrame {
     /**
      * Creates new form LoginWindow
      */
-    public RegistrationWindow() {
+    public RegistrationWindow(boolean isAdm) {
         initComponents();
-        c = new RegistrationController(this);
+        c = new RegistrationController(this, isAdm);
         
         this.setSize(width, height);
         

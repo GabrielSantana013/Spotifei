@@ -13,7 +13,7 @@ import java.sql.SQLException;
  */
 public class Music {
     
-    private int musicId, likes, deslikes, duration;
+    private int musicId, likes, deslikes, duration, artistId;
     private String musicTitle, musicDescription, genre, artistName;
     private byte[] musicPhoto, musicAudio;
 
@@ -64,6 +64,22 @@ public class Music {
         this.musicPhoto = musicPhoto;
         this.musicAudio = musicAudio;
     }
+
+    public Music(int likes, int deslikes, int duration, int artistId, 
+            String musicTitle, String musicDescription, String genre,
+            byte[] musicPhoto, byte[] musicAudio) {
+        this.likes = likes;
+        this.deslikes = deslikes;
+        this.duration = duration;
+        this.artistId = artistId;
+        this.musicTitle = musicTitle;
+        this.musicDescription = musicDescription;
+        this.genre = genre;
+        this.musicPhoto = musicPhoto;
+        this.musicAudio = musicAudio;
+    }
+    
+    
     
     public int getMusicId() {
         return musicId;

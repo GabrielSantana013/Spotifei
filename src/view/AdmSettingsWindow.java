@@ -5,6 +5,7 @@
 package view;
 
 
+import controller.AdmSettingsController;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,6 @@ import java.text.NumberFormat;
 import javax.swing.text.NumberFormatter;
 import model.Adm;
 
-import model.User;
 import static utils.ImageProcessor.processImage;
 
 /**
@@ -45,9 +45,9 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
      */
     public AdmSettingsWindow(Adm adm) {
         initComponents();
-        // mudar o controller pro admhomecontroller
-//        c =  new HomeController(this, user);
+        c =  new AdmSettingsController(this, adm);
         this.adm = adm;
+        c.setUserNameOnWindow();
         
         this.setSize(width, height);
         
@@ -60,8 +60,6 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         int y = (screenSize.height - height) / 2;
         
         this.setLocation(new Point(x,y));
-//        c.setUserNameOnWindow();
-//        c.setLikesAndDislikes();
     }
     
     public JButton getBtt_profile() {
@@ -146,6 +144,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         lbl_dislikes = new javax.swing.JLabel();
         btt_addPhoto = new RoundedButton("Adicionar foto");
         btt_addAudio = new RoundedButton("Adicionar áudio");
+        btt_cadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -195,7 +194,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -215,7 +214,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_configsOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_configsOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_configsOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_configsOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_configsOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -306,7 +305,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_registerUser.setForeground(new java.awt.Color(28, 28, 28));
         btt_registerUser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_registerUser.setBorderPainted(false);
-        btt_registerUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_registerUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_registerUser.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_registerUser).setCornerRadiusVertical(80);
         ((RoundedButton) btt_registerUser).setCornerRadiusHorizontal(40);
@@ -322,7 +321,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_registerArtist.setForeground(new java.awt.Color(28, 28, 28));
         btt_registerArtist.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_registerArtist.setBorderPainted(false);
-        btt_registerArtist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_registerArtist.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_registerArtist.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_registerArtist).setCornerRadiusVertical(80);
         ((RoundedButton) btt_registerArtist).setCornerRadiusHorizontal(40);
@@ -338,7 +337,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_registerMusic.setForeground(new java.awt.Color(28, 28, 28));
         btt_registerMusic.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_registerMusic.setBorderPainted(false);
-        btt_registerMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_registerMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_registerMusic.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_registerMusic).setCornerRadiusVertical(80);
         ((RoundedButton) btt_registerMusic).setCornerRadiusHorizontal(40);
@@ -693,7 +692,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_addPhoto.setForeground(new java.awt.Color(168, 170, 170));
         btt_addPhoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_addPhoto.setBorderPainted(false);
-        btt_addPhoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_addPhoto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_addPhoto.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_addPhoto).setNormalColor(new Color(51,51,51));
         ((RoundedButton) btt_addPhoto).setHoverColor(new Color(71,71,71));
@@ -710,7 +709,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_addAudio.setForeground(new java.awt.Color(168, 170, 170));
         btt_addAudio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_addAudio.setBorderPainted(false);
-        btt_addAudio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_addAudio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_addAudio.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_addAudio).setNormalColor(new Color(51,51,51));
         ((RoundedButton) btt_addAudio).setHoverColor(new Color(71,71,71));
@@ -782,6 +781,8 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
         pnl_registers.add(pnl_registerMusic);
 
+        btt_cadastrar.setText("Cadastrar");
+
         javax.swing.GroupLayout home_pnl_insideLayout = new javax.swing.GroupLayout(home_pnl_inside);
         home_pnl_inside.setLayout(home_pnl_insideLayout);
         home_pnl_insideLayout.setHorizontalGroup(
@@ -794,9 +795,15 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                     .addComponent(btt_registerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnl_registers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(home_pnl_insideLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                        .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(home_pnl_insideLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(btt_cadastrar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         home_pnl_insideLayout.setVerticalGroup(
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -808,11 +815,16 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                         .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btt_registerUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btt_registerArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btt_registerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(home_pnl_insideLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btt_registerArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btt_registerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(home_pnl_insideLayout.createSequentialGroup()
+                                .addGap(198, 198, 198)
+                                .addComponent(btt_cadastrar)))))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout home_pnl_allLayout = new javax.swing.GroupLayout(home_pnl_all);
@@ -877,24 +889,17 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
     private void btt_registerUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerUserActionPerformed
         // TODO add your handling code here:
-        this.getPnl_registerMusic().setVisible(false);
-        this.getPnl_registerUser().setVisible(false);
-        RegistrationWindow rw = new RegistrationWindow();
-        rw.setVisible(true);
-        rw.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        rw.getBtt_return().setVisible(false);
+        c.registerUser();
     }//GEN-LAST:event_btt_registerUserActionPerformed
 
     private void btt_registerArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerArtistActionPerformed
         // TODO add your handling code here:
-        this.getPnl_registerMusic().setVisible(false);
-        this.getPnl_registerUser().setVisible(true);
+        c.registerArtist();
     }//GEN-LAST:event_btt_registerArtistActionPerformed
 
     private void btt_registerMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registerMusicActionPerformed
         // TODO add your handling code here:
-        this.getPnl_registerUser().setVisible(false);
-        this.getPnl_registerMusic().setVisible(true);
+        c.registerMusic();
     }//GEN-LAST:event_btt_registerMusicActionPerformed
 
     private void txt_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nameActionPerformed
@@ -911,118 +916,129 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
     private void btt_addPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_addPhotoActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        
-        // Caminho para a pasta Documentos do usuário
-        String caminhoDocumentos = System.getProperty("user.home") + File.separator + "Documents";
-        File pastaInicial = new File(caminhoDocumentos);
-
-        // Verifica se a pasta existe e é um diretório
-        if (pastaInicial.exists() && pastaInicial.isDirectory()) {
-            fileChooser = new JFileChooser(pastaInicial);
-        } else {
-            fileChooser = new JFileChooser(); // abre no padrão
-        }
-        
-        // filtra apenas imagens
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagens", "jpg", "png", "jpeg");
-        fileChooser.setFileFilter(filtro);
-
-        int retorno = fileChooser.showOpenDialog(this);
-
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            // TODO: colocar o que ta pra baixo no controller
-            try {
-                File arquivoSelecionado = fileChooser.getSelectedFile();
-                System.out.println("Arquivo selecionado: " + arquivoSelecionado.getAbsolutePath());
-
-                // Example: Read an image file
-                File inputFile = fileChooser.getSelectedFile();
-
-                // Checa se o arquivo existe e pode ser lido
-                if (!inputFile.exists()) {
-                    System.err.println("Erro: Arquivo não existe: "
-                            + inputFile.getAbsolutePath());
-                    return;
-                }
-
-                if (!inputFile.canRead()) {
-                    System.err.println("Erro: Não foi possível ler o arquivo (cheque permissões): "
-                            + inputFile.getAbsolutePath());
-                    return;
-                }
-
-                BufferedImage originalImage = null;
-                originalImage = ImageIO.read(inputFile);
-
-
-                // Checa se a imagem foi lida
-                if (originalImage == null) {
-                    System.err.println("Erro: Não foi possível ler a imagem."
-                            + "Certifique a extensão do arquivo (JPEG, PNG, BMP, GIF)");
-                    return;
-                }
-
-                // Converte para array de bytes
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                ImageIO.write(originalImage, "PNG", byteArrayOutputStream); // PNG para transparência
-                byte[] imageData = byteArrayOutputStream.toByteArray();
-
-                // Processa a imagem
-                byte[] processedImage = null;
-                processedImage = processImage(imageData);
-                System.out.println("Imagem processada - Tamnho final: " + processedImage.length + " bytes");
-
-                // Salva a imagem nova num arquivo para verificar
-                File outputFile = new File(arquivoSelecionado.getAbsolutePath());
-                ByteArrayInputStream inputStream = new ByteArrayInputStream(processedImage);
-                BufferedImage resultImage = null;
-
-                resultImage = ImageIO.read(inputStream);
-
-                ImageIO.write(resultImage, "PNG", outputFile);
-
-                System.out.println("Imagem processada e salva em: " + outputFile.getAbsolutePath());
-                } catch (IOException e) {
-                    System.err.println("Error processing image: " + e.getMessage());
-                    e.printStackTrace();
-                }
-            // TODO: essa função foi criada por IA, tem que arrumar no utils.imageProcessor e na hora que chamar tbm
-            // Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/yourdb", "username", "password");
-            // storeImageInDatabase(connection, 1, processedImage);
-        }
+        c.addPhoto();     
     }//GEN-LAST:event_btt_addPhotoActionPerformed
 
     private void btt_addAudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_addAudioActionPerformed
-        // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        
-        // Caminho para a pasta Documentos do usuário
-        String caminhoDocumentos = System.getProperty("user.home") + File.separator + "Documents";
-        File pastaInicial = new File(caminhoDocumentos);
-
-        // Verifica se a pasta existe e é um diretório
-        if (pastaInicial.exists() && pastaInicial.isDirectory()) {
-            fileChooser = new JFileChooser(pastaInicial);
-        } else {
-            fileChooser = new JFileChooser(); // abre no padrão
-        }
-
-        // filtra apenas áudios
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Áudios", "mp3", "wav", "ogg", "AAC");
-        fileChooser.setFileFilter(filtro);
-        int retorno = fileChooser.showOpenDialog(this);
-
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            File arquivoSelecionado = fileChooser.getSelectedFile();
-            System.out.println("Arquivo selecionado: " + arquivoSelecionado.getAbsolutePath());
-        }
+        c.addAudio();
     }//GEN-LAST:event_btt_addAudioActionPerformed
 
     private void txt_durationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_durationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_durationActionPerformed
 
+    public JButton getBtt_cadastrar() {
+        return btt_cadastrar;
+    }
+
+    public void setBtt_cadastrar(JButton btt_cadastrar) {
+        this.btt_cadastrar = btt_cadastrar;
+    }
+
+    public JFormattedTextField getTxt_birthDate() {
+        return txt_birthDate;
+    }
+
+    public void setTxt_birthDate(JFormattedTextField txt_birthDate) {
+        this.txt_birthDate = txt_birthDate;
+    }
+
+    public JTextArea getTxt_description() {
+        return txt_description;
+    }
+
+    public void setTxt_description(JTextArea txt_description) {
+        this.txt_description = txt_description;
+    }
+
+    public JFormattedTextField getTxt_dislikes() {
+        return txt_dislikes;
+    }
+
+    public void setTxt_dislikes(JFormattedTextField txt_dislikes) {
+        this.txt_dislikes = txt_dislikes;
+    }
+
+    public JTextField getTxt_duration() {
+        return txt_duration;
+    }
+
+    public void setTxt_duration(JTextField txt_duration) {
+        this.txt_duration = txt_duration;
+    }
+
+    public JTextField getTxt_genre() {
+        return txt_genre;
+    }
+
+    public void setTxt_genre(JTextField txt_genre) {
+        this.txt_genre = txt_genre;
+    }
+
+    public JFormattedTextField getTxt_likes() {
+        return txt_likes;
+    }
+
+    public void setTxt_likes(JFormattedTextField txt_likes) {
+        this.txt_likes = txt_likes;
+    }
+
+    public JTextArea getTxt_musicDescription() {
+        return txt_musicDescription;
+    }
+
+    public void setTxt_musicDescription(JTextArea txt_musicDescription) {
+        this.txt_musicDescription = txt_musicDescription;
+    }
+
+    public JTextField getTxt_name() {
+        return txt_name;
+    }
+
+    public void setTxt_name(JTextField txt_name) {
+        this.txt_name = txt_name;
+    }
+
+    public JTextField getTxt_title() {
+        return txt_title;
+    }
+
+    public void setTxt_title(JTextField txt_title) {
+        this.txt_title = txt_title;
+    }
+
+    public JComboBox<String> getCbox_gender() {
+        return cbox_gender;
+    }
+
+    public void setCbox_gender(JComboBox<String> cbox_gender) {
+        this.cbox_gender = cbox_gender;
+    }
+
+    public JButton getBtt_addAudio() {
+        return btt_addAudio;
+    }
+
+    public void setBtt_addAudio(JButton btt_addAudio) {
+        this.btt_addAudio = btt_addAudio;
+    }
+
+    public JButton getBtt_addPhoto() {
+        return btt_addPhoto;
+    }
+
+    public void setBtt_addPhoto(JButton btt_addPhoto) {
+        this.btt_addPhoto = btt_addPhoto;
+    }
+
+    public JList<String> getList_artists() {
+        return list_artists;
+    }
+
+    public void setList_artists(JList<String> list_artists) {
+        this.list_artists = list_artists;
+    }
+  
     /**
      * @param args the command line arguments
      */
@@ -1058,17 +1074,17 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 //        });
 //    }
     
-//    private HomeController c;
+    private AdmSettingsController c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_addAudio;
     private javax.swing.JButton btt_addPhoto;
+    private javax.swing.JButton btt_cadastrar;
     private javax.swing.JButton btt_profile;
     private javax.swing.JButton btt_registerArtist;
     private javax.swing.JButton btt_registerMusic;
     private javax.swing.JButton btt_registerUser;
     private javax.swing.JComboBox<String> cbox_gender;
-    private javax.swing.JComboBox<String> cbox_gender1;
     private javax.swing.JPanel home_pnl_all;
     private javax.swing.JPanel home_pnl_botSide;
     private javax.swing.JPanel home_pnl_configsOpt;
@@ -1083,7 +1099,6 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
     private javax.swing.JLabel icon_logo;
     private javax.swing.JLabel lbl_config;
     private javax.swing.JLabel lbl_desc;
-    private javax.swing.JLabel lbl_desc1;
     private javax.swing.JLabel lbl_dislikes;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_likes;
@@ -1093,23 +1108,18 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
     private javax.swing.JList<String> list_artists;
     private javax.swing.JPanel pnl_registerArtist;
     private javax.swing.JPanel pnl_registerMusic;
-    private javax.swing.JPanel pnl_registerUser1;
     private javax.swing.JPanel pnl_registers;
     private javax.swing.JScrollPane scroll_desc;
-    private javax.swing.JScrollPane scroll_desc1;
     private javax.swing.JScrollPane scroll_musicArtists;
     private javax.swing.JScrollPane scroll_musicDesc;
     private javax.swing.JFormattedTextField txt_birthDate;
-    private javax.swing.JFormattedTextField txt_birthDate1;
     private javax.swing.JTextArea txt_description;
-    private javax.swing.JTextArea txt_description1;
     private javax.swing.JFormattedTextField txt_dislikes;
     private javax.swing.JTextField txt_duration;
     private javax.swing.JTextField txt_genre;
     private javax.swing.JFormattedTextField txt_likes;
     private javax.swing.JTextArea txt_musicDescription;
     private javax.swing.JTextField txt_name;
-    private javax.swing.JTextField txt_name1;
     private javax.swing.JTextField txt_title;
     // End of variables declaration//GEN-END:variables
 }
