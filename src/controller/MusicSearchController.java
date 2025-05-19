@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -282,9 +284,21 @@ public class MusicSearchController {
         CustomJDialog.showCustomDialog("Aviso!", "Musica adicionada na playlist.");
     }
     
-    // TODO: pegar o id da musica na busca, pensar num jeito de passar as flags
-    // para outras janelas pq se ela ta tocando e eu troco de janela, o botao
-    // reseta e eu posso tocar a musica infinitas vezes
+    public void stopMusic() {
+        if (isPlaying) {
+            stopRequested = true;
+            if (audioLine != null) {
+                audioLine.stop();
+                audioLine.close();
+            }
+            isPlaying = false;
+            SwingUtilities.invokeLater(() -> {
+                view.getBtt_play().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/play.png")));
+            });
+        }
+    }
+    
+    // TODO: pegar o id da musica na busca
     public void playMusic() {
         if (isPlaying) {
             // Se já estiver tocando, solicite parada
@@ -310,7 +324,7 @@ public class MusicSearchController {
                 // Recupera os bytes da música do banco de dados
                 try (Connection conn = new DbConnection().getConnection()) {
                     MusicDAO dao = new MusicDAO(conn);
-                    audioData = dao.getMusicAudio(15);
+                    audioData = dao.getMusicAudio(15); // TODO: mudar o 15 pelo ID correto
                 } catch (SQLException e) {
                     CustomJDialog.showCustomDialog("Erro!", "Erro ao tocar música");
                     isPlaying = false;
@@ -320,9 +334,17 @@ public class MusicSearchController {
                 // Cria um InputStream com os dados
                 ByteArrayInputStream audio = new ByteArrayInputStream(audioData);
                 AudioInputStream audioStream = AudioSystem.getAudioInputStream(audio);
-
+                
                 // Pega o formato e abre a linha para reprodução
                 AudioFormat format = audioStream.getFormat();
+                long totalFrames = audioStream.getFrameLength();
+                float frameRate = format.getFrameRate();
+                int totalSeconds = (int) (totalFrames / frameRate);
+                
+                view.getSlider_duration().setMinimum(0);
+                view.getSlider_duration().setMaximum(totalSeconds);
+                view.getSlider_duration().setValue(0);                
+
                 DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
                 audioLine = (SourceDataLine) AudioSystem.getLine(info);
                 audioLine.open(format);
@@ -331,10 +353,19 @@ public class MusicSearchController {
                 // Buffer para reprodução
                 byte[] buffer = new byte[4096];
                 int bytesRead;
+                int totalBytesRead = 0;
+                int bytesPerSecond = (int) (format.getFrameSize() * format.getFrameRate());
 
                 // Toca o áudio enquanto não for solicitado parar
                 while (!stopRequested && (bytesRead = audioStream.read(buffer)) != -1) {
                     audioLine.write(buffer, 0, bytesRead);
+                    totalBytesRead += bytesRead;
+
+                    int currentSecond = totalBytesRead / bytesPerSecond;
+
+                    // Atualiza o slider na EDT
+                    final int sliderValue = currentSecond;
+                    SwingUtilities.invokeLater(() -> view.getSlider_duration().setValue(sliderValue));
                 }
 
                 // Finaliza

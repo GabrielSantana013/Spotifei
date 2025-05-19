@@ -8,6 +8,8 @@ import controller.MusicSearchController;
 import view.customClasses.RoundedButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicSliderUI;
@@ -516,6 +518,7 @@ public class SearchWindow extends javax.swing.JFrame {
         slider_duration.setBackground(new java.awt.Color(28, 28, 28));
         slider_duration.setValue(0);
         slider_duration.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        slider_duration.setEnabled(false);
         slider_duration.setMaximumSize(new java.awt.Dimension(300, 50));
         slider_duration.setMinimumSize(new java.awt.Dimension(300, 50));
         slider_duration.setPreferredSize(new java.awt.Dimension(300, 50));
@@ -994,6 +997,7 @@ public class SearchWindow extends javax.swing.JFrame {
         try{
             HomeWindow hw = new HomeWindow(user);
             hw.setVisible(rootPaneCheckingEnabled);
+            c.stopMusic();
             this.setVisible(false);
         } catch(IOException i){
             i.printStackTrace();
@@ -1008,6 +1012,7 @@ public class SearchWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         PlaylistsWindow pw = new PlaylistsWindow(user);
         pw.setVisible(rootPaneCheckingEnabled);
+        c.stopMusic();
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_playlistOptMouseClicked
 
