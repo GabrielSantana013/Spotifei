@@ -191,4 +191,17 @@ public class MusicDAO {
         return users;
     }
     
+    public byte[] getMusicAudio(int musicId) throws SQLException{
+        String sql = "SELECT music_audio FROM spotifei.music WHERE music_id = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+
+        statement.setInt(1, musicId);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            return rs.getBytes("music_audio");
+        }
+
+        return null;
+    }
+    
 }

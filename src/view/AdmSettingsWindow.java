@@ -6,12 +6,8 @@ package view;
 
 
 import controller.AdmSettingsController;
-import java.awt.image.BufferedImage;
-import java.io.File;
+
 import java.io.IOException;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import javax.imageio.ImageIO;
 
 import view.customClasses.RoundedButton;
 import view.customClasses.PlaceholderFields;
@@ -19,14 +15,11 @@ import view.customClasses.RoundedButton.*;
 import view.customClasses.RoundedPanel;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.*;
 import java.awt.*;
 import java.text.NumberFormat;
 import javax.swing.text.NumberFormatter;
 import model.Adm;
-
-import static utils.ImageProcessor.processImage;
 
 /**
  *
@@ -70,7 +63,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         this.btt_profile = btt_profile;
     }
 
-    public JPanel getPnl_registerUser() {
+    public JPanel getPnl_registerArtist() {
         return pnl_registerArtist;
     }
 
@@ -144,7 +137,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         lbl_dislikes = new javax.swing.JLabel();
         btt_addPhoto = new RoundedButton("Adicionar foto");
         btt_addAudio = new RoundedButton("Adicionar áudio");
-        btt_cadastrar = new javax.swing.JButton();
+        btt_cadastrar = new RoundedButton("Cadastrar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -194,7 +187,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -214,7 +207,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_configsOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_configsOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        home_pnl_configsOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_pnl_configsOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_configsOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -305,7 +298,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_registerUser.setForeground(new java.awt.Color(28, 28, 28));
         btt_registerUser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_registerUser.setBorderPainted(false);
-        btt_registerUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_registerUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_registerUser.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_registerUser).setCornerRadiusVertical(80);
         ((RoundedButton) btt_registerUser).setCornerRadiusHorizontal(40);
@@ -321,7 +314,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_registerArtist.setForeground(new java.awt.Color(28, 28, 28));
         btt_registerArtist.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_registerArtist.setBorderPainted(false);
-        btt_registerArtist.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_registerArtist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_registerArtist.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_registerArtist).setCornerRadiusVertical(80);
         ((RoundedButton) btt_registerArtist).setCornerRadiusHorizontal(40);
@@ -337,7 +330,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_registerMusic.setForeground(new java.awt.Color(28, 28, 28));
         btt_registerMusic.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_registerMusic.setBorderPainted(false);
-        btt_registerMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_registerMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_registerMusic.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_registerMusic).setCornerRadiusVertical(80);
         ((RoundedButton) btt_registerMusic).setCornerRadiusHorizontal(40);
@@ -692,7 +685,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_addPhoto.setForeground(new java.awt.Color(168, 170, 170));
         btt_addPhoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_addPhoto.setBorderPainted(false);
-        btt_addPhoto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_addPhoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_addPhoto.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_addPhoto).setNormalColor(new Color(51,51,51));
         ((RoundedButton) btt_addPhoto).setHoverColor(new Color(71,71,71));
@@ -709,7 +702,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_addAudio.setForeground(new java.awt.Color(168, 170, 170));
         btt_addAudio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_addAudio.setBorderPainted(false);
-        btt_addAudio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_addAudio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_addAudio.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_addAudio).setNormalColor(new Color(51,51,51));
         ((RoundedButton) btt_addAudio).setHoverColor(new Color(71,71,71));
@@ -781,7 +774,15 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
         pnl_registers.add(pnl_registerMusic);
 
-        btt_cadastrar.setText("Cadastrar");
+        btt_cadastrar.setBackground(new java.awt.Color(185, 192, 198));
+        btt_cadastrar.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
+        btt_cadastrar.setForeground(new java.awt.Color(28, 28, 28));
+        btt_cadastrar.setBorder(null);
+        btt_cadastrar.setVisible(false);
+        btt_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_cadastrar.setMaximumSize(new java.awt.Dimension(0, 0));
+        btt_cadastrar.setMinimumSize(new java.awt.Dimension(0, 0));
+        btt_cadastrar.setPreferredSize(new java.awt.Dimension(0, 0));
 
         javax.swing.GroupLayout home_pnl_insideLayout = new javax.swing.GroupLayout(home_pnl_inside);
         home_pnl_inside.setLayout(home_pnl_insideLayout);
@@ -794,16 +795,12 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                     .addComponent(btt_registerArtist, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                     .addComponent(btt_registerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(pnl_registers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(home_pnl_insideLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
-                        .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(home_pnl_insideLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(btt_cadastrar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btt_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnl_registers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         home_pnl_insideLayout.setVerticalGroup(
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -815,16 +812,13 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                         .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btt_registerUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(home_pnl_insideLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(btt_registerArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btt_registerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(home_pnl_insideLayout.createSequentialGroup()
-                                .addGap(198, 198, 198)
-                                .addComponent(btt_cadastrar)))))
-                .addContainerGap(104, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btt_registerArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btt_registerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(btt_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout home_pnl_allLayout = new javax.swing.GroupLayout(home_pnl_all);
@@ -916,7 +910,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
     private void btt_addPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_addPhotoActionPerformed
         // TODO add your handling code here:
-        c.addPhoto();     
+        c.addPhoto(); 
     }//GEN-LAST:event_btt_addPhotoActionPerformed
 
     private void btt_addAudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_addAudioActionPerformed
@@ -1019,16 +1013,8 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         return btt_addAudio;
     }
 
-    public void setBtt_addAudio(JButton btt_addAudio) {
-        this.btt_addAudio = btt_addAudio;
-    }
-
     public JButton getBtt_addPhoto() {
         return btt_addPhoto;
-    }
-
-    public void setBtt_addPhoto(JButton btt_addPhoto) {
-        this.btt_addPhoto = btt_addPhoto;
     }
 
     public JList<String> getList_artists() {

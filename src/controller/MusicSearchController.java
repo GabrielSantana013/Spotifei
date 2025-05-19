@@ -6,14 +6,23 @@ import DAO.PlaylistDAO;
 import DAO.UserDAO;
 import cache.MusicCache;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import model.Music;
 import model.Playlist;
@@ -28,6 +37,11 @@ public class MusicSearchController {
     private ArrayList<Playlist> currentPlaylists;
     private User user;
     private Music selectedMusic;
+    // para tocar a musica
+    private volatile boolean isPlaying = false;
+    private volatile boolean stopRequested = false;
+    private SourceDataLine audioLine;
+    private Thread musicThread;
 
     public MusicSearchController(SearchWindow view, User user) {
         this.view = view;
@@ -268,6 +282,81 @@ public class MusicSearchController {
         CustomJDialog.showCustomDialog("Aviso!", "Musica adicionada na playlist.");
     }
     
+    // TODO: pegar o id da musica na busca, pensar num jeito de passar as flags
+    // para outras janelas pq se ela ta tocando e eu troco de janela, o botao
+    // reseta e eu posso tocar a musica infinitas vezes
+    public void playMusic() {
+        if (isPlaying) {
+            // Se já estiver tocando, solicite parada
+            stopRequested = true;
+            if (audioLine != null) {
+                audioLine.stop();
+                audioLine.close();
+            }
+
+            view.getBtt_play().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/play.png")));
+            isPlaying = false;
+            return;
+        }
+
+        view.getBtt_play().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/pause.png")));
+        isPlaying = true;
+        stopRequested = false;
+
+        musicThread = new Thread(() -> {
+            try {
+                byte[] audioData = null;
+
+                // Recupera os bytes da música do banco de dados
+                try (Connection conn = new DbConnection().getConnection()) {
+                    MusicDAO dao = new MusicDAO(conn);
+                    audioData = dao.getMusicAudio(15);
+                } catch (SQLException e) {
+                    CustomJDialog.showCustomDialog("Erro!", "Erro ao tocar música");
+                    isPlaying = false;
+                    return;
+                }
+
+                // Cria um InputStream com os dados
+                ByteArrayInputStream audio = new ByteArrayInputStream(audioData);
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(audio);
+
+                // Pega o formato e abre a linha para reprodução
+                AudioFormat format = audioStream.getFormat();
+                DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+                audioLine = (SourceDataLine) AudioSystem.getLine(info);
+                audioLine.open(format);
+                audioLine.start();
+
+                // Buffer para reprodução
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+
+                // Toca o áudio enquanto não for solicitado parar
+                while (!stopRequested && (bytesRead = audioStream.read(buffer)) != -1) {
+                    audioLine.write(buffer, 0, bytesRead);
+                }
+
+                // Finaliza
+                audioLine.drain();
+                audioLine.stop();
+                audioLine.close();
+                audioStream.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                isPlaying = false;
+                stopRequested = false;
+                SwingUtilities.invokeLater(() -> {
+                    view.getBtt_play().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/play.png")));
+                });
+            }
+        });
+
+        musicThread.start();
+    }
+
     
     public int getAtualIndex(ArrayList<Music> m, String title){
         return m.indexOf(title);

@@ -10,9 +10,9 @@ import java.sql.Connection;
 import DAO.DbConnection;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
@@ -27,6 +30,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Adm;
 import model.Artist;
+import model.Music;
 import static utils.ImageProcessor.processImage;
 import view.AdmSettingsWindow;
 import view.RegistrationWindow;
@@ -41,15 +45,19 @@ public class AdmSettingsController {
     private AdmSettingsWindow view;
     private Adm adm;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private byte[] musicPhoto; // atributos instaciados aqui para conseguir passar os arquivos de uma função para outra
+    private byte[] musicAudio;
+    private int duration;
 
     public AdmSettingsController(AdmSettingsWindow view, Adm adm) {
         this.view = view;
         this.adm = adm;     
     }
      
-    public void registerUser(){   
+    public void registerUser(){
+        view.getBtt_cadastrar().setVisible(false);
         view.getPnl_registerMusic().setVisible(false);
-        view.getPnl_registerUser().setVisible(false);
+        view.getPnl_registerArtist().setVisible(false);
         RegistrationWindow rw = new RegistrationWindow(true);
         rw.setVisible(true);
         rw.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -58,7 +66,8 @@ public class AdmSettingsController {
     
     public void registerArtist(){
         view.getPnl_registerMusic().setVisible(false);
-        view.getPnl_registerUser().setVisible(true);
+        view.getPnl_registerArtist().setVisible(true);
+        view.getBtt_cadastrar().setVisible(true);
         
         for (ActionListener al : view.getBtt_cadastrar().getActionListeners()) {
             view.getBtt_cadastrar().removeActionListener(al);
@@ -100,13 +109,19 @@ public class AdmSettingsController {
             } 
             CustomJDialog.showCustomDialog("Aviso!", "Artista cadastrado "
                              + "com sucesso!");
-            
+    
+            view.getPnl_registerArtist().setVisible(false);
+            view.getBtt_cadastrar().setVisible(false);
         });
+
+
     }
     
     public void registerMusic(){
-        view.getPnl_registerUser().setVisible(false);
+        view.getPnl_registerArtist().setVisible(false);
         view.getPnl_registerMusic().setVisible(true);
+        view.getBtt_cadastrar().setVisible(true);
+        
         List<Artist> artists = new ArrayList<>();
         
         try(Connection conn = new DbConnection().getConnection()){
@@ -136,9 +151,6 @@ public class AdmSettingsController {
             String stringLikes = view.getTxt_likes().getText();
             String stringDislikes = view.getTxt_dislikes().getText();
             int artistId = artists.get(view.getList_artists().getSelectedIndex()).getArtistId();
-            //int duration
-            //byte musicPhoto
-            //byte musicAudio
             
             //regex dos ints
             if(!stringLikes.matches("\\d+") || !stringDislikes.matches("\\d+")){
@@ -149,22 +161,22 @@ public class AdmSettingsController {
             int likes = Integer.parseInt(stringLikes);
             int dislikes = Integer.parseInt(stringDislikes);
             
-            //Descomenta essa parte pra upar a música no banco
-            /*Music music = new Music(likes, dislikes, duration, artistId, musicName, description, genre, musicPhoto, musicAudio);
+            Music music = new Music(likes, dislikes, duration, artistId, musicName, description, genre, this.musicPhoto, this.musicAudio);
            
             try(Connection conn = new DbConnection().getConnection()){
                 AdmDAO dao = new AdmDAO(conn);            
-                dao.insertMusic(musicName, description, duration, genre, artistId, musicPhoto, musicAudio);
+                dao.insertMusic(musicName, description, duration, genre, artistId, this.musicPhoto, this.musicAudio);
             }catch(SQLException ex){
                 CustomJDialog.showCustomDialog("Erro!", "Erro ao cadastrar musica no banco.");
             }
-            */
             
-            //printa o artista selecionado pra debuggar
+            
+            // printa o artista selecionado pra debuggar
             System.out.println(artists.get(view.getList_artists().getSelectedIndex()).getName());
             
             CustomJDialog.showCustomDialog("Aviso!", "Musica cadastrada com sucesso.");
             view.getPnl_registerMusic().setVisible(false);
+            view.getBtt_cadastrar().setVisible(false);
         });
     }
     
@@ -191,10 +203,6 @@ public class AdmSettingsController {
         if (retorno == JFileChooser.APPROVE_OPTION) {
             // TODO: colocar o que ta pra baixo no controller
             try {
-                File arquivoSelecionado = fileChooser.getSelectedFile();
-                System.out.println("Arquivo selecionado: " + arquivoSelecionado.getAbsolutePath());
-
-                // Example: Read an image file
                 File inputFile = fileChooser.getSelectedFile();
 
                 // Checa se o arquivo existe e pode ser lido
@@ -213,11 +221,10 @@ public class AdmSettingsController {
                 BufferedImage originalImage = null;
                 originalImage = ImageIO.read(inputFile);
 
-
                 // Checa se a imagem foi lida
                 if (originalImage == null) {
                     System.err.println("Erro: Não foi possível ler a imagem."
-                            + "Certifique a extensão do arquivo (JPEG, PNG, BMP, GIF)");
+                            + "Certifique a extensão do arquivo (JPEG, PNG)");
                     return;
                 }
 
@@ -227,11 +234,13 @@ public class AdmSettingsController {
                 byte[] imageData = byteArrayOutputStream.toByteArray();
 
                 // Processa a imagem
-                byte[] processedImage = null;
-                processedImage = processImage(imageData);
-                System.out.println("Imagem processada - Tamnho final: " + processedImage.length + " bytes");
+                this.musicPhoto = processImage(imageData);
+                
+                
+                System.out.println("Imagem processada - Tamanho final: " + this.musicPhoto.length + " bytes");
 
-                // Salva a imagem nova num arquivo para verificar
+                // Salvando a imagem nova num arquivo para verificar
+                /*
                 File outputFile = new File(arquivoSelecionado.getAbsolutePath());
                 ByteArrayInputStream inputStream = new ByteArrayInputStream(processedImage);
                 BufferedImage resultImage = null;
@@ -241,13 +250,11 @@ public class AdmSettingsController {
                 ImageIO.write(resultImage, "PNG", outputFile);
 
                 System.out.println("Imagem processada e salva em: " + outputFile.getAbsolutePath());
+                */
                 } catch (IOException e) {
                     System.err.println("Error processing image: " + e.getMessage());
                     e.printStackTrace();
                 }
-            // TODO: essa função foi criada por IA, tem que arrumar no utils.imageProcessor e na hora que chamar tbm
-            // Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/yourdb", "username", "password");
-            // storeImageInDatabase(connection, 1, processedImage);
         }
     }
     
@@ -268,13 +275,59 @@ public class AdmSettingsController {
         }
 
         // filtra apenas áudios
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Áudios", "mp3", "wav", "ogg", "AAC");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Áudios", "wav");
         fileChooser.setFileFilter(filtro);
         int retorno = fileChooser.showOpenDialog(view);
 
         if (retorno == JFileChooser.APPROVE_OPTION) {
-            File arquivoSelecionado = fileChooser.getSelectedFile();
-            System.out.println("Arquivo selecionado: " + arquivoSelecionado.getAbsolutePath());
+
+            File inputFile = fileChooser.getSelectedFile();
+
+            // Checa se o arquivo existe e pode ser lido
+            if (!inputFile.exists()) {
+                System.err.println("Erro: Arquivo não existe: "
+                        + inputFile.getAbsolutePath());
+                return;
+            }
+
+            if (!inputFile.canRead()) {
+                System.err.println("Erro: Não foi possível ler o arquivo (cheque permissões): "
+                        + inputFile.getAbsolutePath());
+                return;
+            }
+
+            try (FileInputStream fis = new FileInputStream(inputFile);
+                ByteArrayOutputStream audioData = new ByteArrayOutputStream()) {
+
+                // buffer para ler o arquivo em chunks
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+
+                while ((bytesRead = fis.read(buffer)) != -1) {
+                    audioData.write(buffer, 0, bytesRead);
+                }
+
+                // Armazena o áudio como byte[]
+                this.musicAudio = audioData.toByteArray();
+                
+                try {
+                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
+                    AudioFormat format = audioInputStream.getFormat();
+                    long frames = audioInputStream.getFrameLength();
+                    double durationInSeconds = (frames + 0.0) / format.getFrameRate();
+                    this.duration = (int) Math.round(durationInSeconds);
+                    view.getTxt_duration().setText(String.valueOf(this.duration) + " s");
+                    audioInputStream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                
+                System.out.println("Áudio carregado - Tamanho: " + musicAudio.length + " bytes");
+
+                } catch (IOException e) {
+                    System.err.println("Erro ao ler o arquivo de áudio: " + e.getMessage());
+                    e.printStackTrace();
+                }
         }
     }
     

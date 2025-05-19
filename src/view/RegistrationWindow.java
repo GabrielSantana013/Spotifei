@@ -248,7 +248,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         btt_cadastrar.setText("Cadastrar");
         btt_cadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_cadastrar.setBorderPainted(false);
-        btt_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_cadastrar.setPreferredSize(new java.awt.Dimension(170, 50));
         btt_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,7 +294,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         btt_return.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/returnArrow.png"))); // NOI18N
         btt_return.setBorder(null);
         btt_return.setBorderPainted(false);
-        btt_return.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_return.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btt_return.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btt_returnActionPerformed(evt);

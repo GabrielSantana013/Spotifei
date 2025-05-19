@@ -6,9 +6,11 @@ package view;
 
 import controller.MusicSearchController;
 import view.customClasses.RoundedButton;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 import java.io.IOException;
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicSliderUI;
 import model.User;
 import view.customClasses.*;
 import view.customClasses.RoundedButton.TextAlign;
@@ -174,6 +176,23 @@ public class SearchWindow extends javax.swing.JFrame {
     public void setArtist_photo(JLabel artist_photo) {
         this.artist_photo = artist_photo;
     }
+
+    public JButton getBtt_play() {
+        return btt_play;
+    }
+
+    public void setBtt_play(JButton btt_play) {
+        this.btt_play = btt_play;
+    }
+
+    public JSlider getSlider_duration() {
+        return slider_duration;
+    }
+
+    public void setSlider_duration(JSlider slider_duration) {
+        this.slider_duration = slider_duration;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -200,11 +219,15 @@ public class SearchWindow extends javax.swing.JFrame {
         lbl_playlist = new javax.swing.JLabel();
         search_pnl_topSide = new javax.swing.JPanel();
         search_pnl_botSide = new javax.swing.JPanel();
+        pnl_all = new javax.swing.JPanel();
         pnl_likes = new javax.swing.JPanel();
         lbl_musicDislikes = new javax.swing.JLabel();
         lbl_musicLikes = new javax.swing.JLabel();
         btt_like = new javax.swing.JButton();
         btt_dislike = new javax.swing.JButton();
+        pnl_player = new javax.swing.JPanel();
+        btt_play = new javax.swing.JButton();
+        slider_duration = new javax.swing.JSlider();
         search_pnl_inside = new javax.swing.JPanel();
         btt_profile = new RoundedButton("user_name");
         search_pnl_bar = new RoundedPanel();
@@ -280,7 +303,6 @@ public class SearchWindow extends javax.swing.JFrame {
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
         home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        home_pnl_homeOpt.setMinimumSize(null);
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -301,7 +323,6 @@ public class SearchWindow extends javax.swing.JFrame {
 
         home_pnl_searchOpt.setBackground(new java.awt.Color(28, 28, 28));
         home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        home_pnl_searchOpt.setMinimumSize(null);
         home_pnl_searchOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_searchOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -322,7 +343,6 @@ public class SearchWindow extends javax.swing.JFrame {
 
         home_pnl_playlistOpt.setBackground(new java.awt.Color(28, 28, 28));
         home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        home_pnl_playlistOpt.setMinimumSize(null);
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -358,7 +378,7 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addComponent(home_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(home_pnl_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(472, Short.MAX_VALUE))
+                .addContainerGap(370, Short.MAX_VALUE))
         );
 
         search_pnl_topSide.setBackground(new java.awt.Color(28, 28, 28));
@@ -376,6 +396,11 @@ public class SearchWindow extends javax.swing.JFrame {
 
         search_pnl_botSide.setBackground(new java.awt.Color(28, 28, 28));
 
+        pnl_all.setOpaque(false);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
+        flowLayout1.setAlignOnBaseline(true);
+        pnl_all.setLayout(flowLayout1);
+
         pnl_likes.setOpaque(false);
 
         lbl_musicDislikes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
@@ -390,7 +415,7 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_like.setBackground(new java.awt.Color(28, 28, 28));
         btt_like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/like.png"))); // NOI18N
         btt_like.setBorder(null);
-        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btt_dislike.setFocusPainted(false);
         btt_dislike.setContentAreaFilled(false);
@@ -398,7 +423,7 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_dislike.setBackground(new java.awt.Color(28, 28, 28));
         btt_dislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/dislike.png"))); // NOI18N
         btt_dislike.setBorder(null);
-        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout pnl_likesLayout = new javax.swing.GroupLayout(pnl_likes);
         pnl_likes.setLayout(pnl_likesLayout);
@@ -430,21 +455,89 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addComponent(lbl_musicDislikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        pnl_all.add(pnl_likes);
+
+        pnl_player.setBackground(new java.awt.Color(28, 28, 28));
+        pnl_player.setLayout(new javax.swing.BoxLayout(pnl_player, javax.swing.BoxLayout.LINE_AXIS));
+
+        btt_play.setFocusPainted(false);
+        btt_play.setContentAreaFilled(false);
+        btt_play.setBorderPainted(false);
+        btt_play.setBackground(new java.awt.Color(28, 28, 28));
+        btt_play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/play.png"))); // NOI18N
+        btt_play.setBorder(null);
+        btt_play.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_play.setOpaque(true);
+        btt_play.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_playActionPerformed(evt);
+            }
+        });
+        pnl_player.add(btt_play);
+
+        slider_duration.setUI(new BasicSliderUI(slider_duration) {
+            @Override
+            public void paintThumb(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Cor e forma do thumb
+                g2.setColor(new Color(54, 54, 54));
+                int thumbSize = 16;
+                int x = thumbRect.x + (thumbRect.width - thumbSize) / 2;
+                int y = thumbRect.y + (thumbRect.height - thumbSize) / 2;
+                g2.fillOval(x, y, thumbSize, thumbSize);
+                g2.dispose();
+            }
+
+            @Override
+            public void paintTrack(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                int trackHeight = 4;
+                int y = trackRect.y + (trackRect.height - trackHeight) / 2;
+
+                g2.setColor(new Color(30, 215, 96));
+                g2.fillRoundRect(trackRect.x, y, trackRect.width, trackHeight, 10, 10);
+                g2.dispose();
+            }
+
+            @Override
+            public void paintFocus(Graphics g) {
+                // Não desenha nada ao focar
+            }
+        });
+
+        // Remover fundo e borda
+        slider_duration.setOpaque(false);
+        slider_duration.setBackground(new Color(0,0,0,0)); // transparente
+        slider_duration.setFocusable(false);
+        slider_duration.setBackground(new java.awt.Color(28, 28, 28));
+        slider_duration.setValue(0);
+        slider_duration.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        slider_duration.setMaximumSize(new java.awt.Dimension(300, 50));
+        slider_duration.setMinimumSize(new java.awt.Dimension(300, 50));
+        slider_duration.setPreferredSize(new java.awt.Dimension(300, 50));
+        pnl_player.add(slider_duration);
+
+        pnl_all.add(pnl_player);
+
         javax.swing.GroupLayout search_pnl_botSideLayout = new javax.swing.GroupLayout(search_pnl_botSide);
         search_pnl_botSide.setLayout(search_pnl_botSideLayout);
         search_pnl_botSideLayout.setHorizontalGroup(
             search_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, search_pnl_botSideLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnl_likes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(search_pnl_botSideLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnl_all, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         search_pnl_botSideLayout.setVerticalGroup(
             search_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(search_pnl_botSideLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnl_likes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, search_pnl_botSideLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnl_all, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         search_pnl_inside.setBackground(new java.awt.Color(18, 18, 18));
@@ -564,7 +657,7 @@ public class SearchWindow extends javax.swing.JFrame {
                         .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl1)
                             .addComponent(lbl2))
-                        .addGap(0, 159, Short.MAX_VALUE)))
+                        .addGap(0, 158, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnl2Layout.setVerticalGroup(
@@ -578,7 +671,7 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addComponent(lbl2)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_musicArtist)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         search_pnl_musicInfo.add(pnl2);
@@ -618,8 +711,109 @@ public class SearchWindow extends javax.swing.JFrame {
         musicDesc_scroll.setViewportBorder(null);
         musicDesc_scroll.setOpaque(false);
         musicDesc_scroll.getViewport().setOpaque(false);
-        musicDesc_scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        musicDesc_scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        musicDesc_scroll.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(60,63,65);
+                this.trackColor = new Color(18,18,18);
+            }
+
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton button = new JButton();
+                button.setPreferredSize(new Dimension(0, 0));
+                button.setMinimumSize(new Dimension(0, 0));
+                button.setMaximumSize(new Dimension(0, 0));
+                return button;
+            }
+
+            // barra de scroll mais larga
+            @Override
+            public Dimension getPreferredSize(JComponent c) {
+                return new Dimension(12, super.getPreferredSize(c).height);
+            }
+
+            // arredonda o botão
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.translate(thumbBounds.x, thumbBounds.y);
+                g2.setColor(thumbColor);
+                int arc = 10;
+                g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);
+                g2.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setColor(trackColor);
+                g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+                g2.dispose();
+            }
+        });
+
+        musicDesc_scroll.getHorizontalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(60,63,65);
+                this.trackColor = new Color(18,18,18);
+            }
+
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton button = new JButton();
+                button.setPreferredSize(new Dimension(0, 0));
+                button.setMinimumSize(new Dimension(0, 0));
+                button.setMaximumSize(new Dimension(0, 0));
+                return button;
+            }
+
+            // barra de scroll mais larga
+            @Override
+            public Dimension getPreferredSize(JComponent c) {
+                return new Dimension(super.getPreferredSize(c).width, 12);
+            }
+
+            // arredonda o botão
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.translate(thumbBounds.x, thumbBounds.y);
+                g2.setColor(thumbColor);
+                int arc = 10;
+                g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);
+                g2.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setColor(trackColor);
+                g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+                g2.dispose();
+            }
+        });
 
         lbl_musicDuration.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         lbl_musicDuration.setForeground(new java.awt.Color(168, 168, 168));
@@ -639,7 +833,7 @@ public class SearchWindow extends javax.swing.JFrame {
                             .addComponent(lbl4)
                             .addComponent(lbl5)
                             .addComponent(lbl_musicDuration))
-                        .addGap(0, 147, Short.MAX_VALUE)))
+                        .addGap(0, 145, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnl3Layout.setVerticalGroup(
@@ -657,7 +851,7 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addComponent(lbl5)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_musicDuration)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         search_pnl_musicInfo.add(pnl3);
@@ -670,7 +864,7 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_addPlaylist.setForeground(new java.awt.Color(28, 28, 28));
         btt_addPlaylist.setText("Adicionar à playlist");
         btt_addPlaylist.setBorder(null);
-        btt_addPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_addPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         scroll_playlists.setBackground(new java.awt.Color(60, 63, 65));
         scroll_playlists.setBorder(null);
@@ -697,17 +891,22 @@ public class SearchWindow extends javax.swing.JFrame {
         pnl4.setLayout(pnl4Layout);
         pnl4Layout.setHorizontalGroup(
             pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btt_addPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnl4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btt_addPlaylist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(scroll_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl4Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(scroll_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
         );
         pnl4Layout.setVerticalGroup(
             pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
                 .addComponent(btt_addPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -746,7 +945,7 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addComponent(search_pnl_bar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scroll_musics, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(search_pnl_musicInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -770,7 +969,7 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addGroup(home_pnl_allLayout.createSequentialGroup()
                         .addComponent(search_pnl_topSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE))
+                        .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE))
                     .addComponent(search_pnl_leftSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(search_pnl_botSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -821,6 +1020,11 @@ public class SearchWindow extends javax.swing.JFrame {
         c.searchMusic();
     }//GEN-LAST:event_search_nameActionPerformed
 
+    private void btt_playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_playActionPerformed
+        // TODO add your handling code here:
+        c.playMusic();
+    }//GEN-LAST:event_btt_playActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -863,6 +1067,7 @@ public class SearchWindow extends javax.swing.JFrame {
     private javax.swing.JButton btt_addPlaylist;
     private javax.swing.JButton btt_dislike;
     private javax.swing.JButton btt_like;
+    private javax.swing.JButton btt_play;
     private javax.swing.JButton btt_profile;
     private javax.swing.JPanel home_pnl_all;
     private javax.swing.JPanel home_pnl_homeOpt;
@@ -899,7 +1104,9 @@ public class SearchWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnl2;
     private javax.swing.JPanel pnl3;
     private javax.swing.JPanel pnl4;
+    private javax.swing.JPanel pnl_all;
     private javax.swing.JPanel pnl_likes;
+    private javax.swing.JPanel pnl_player;
     private javax.swing.JScrollPane scroll_musics;
     private javax.swing.JScrollPane scroll_playlists;
     private javax.swing.JTextField search_name;
@@ -909,5 +1116,6 @@ public class SearchWindow extends javax.swing.JFrame {
     private javax.swing.JPanel search_pnl_leftSide;
     private javax.swing.JPanel search_pnl_musicInfo;
     private javax.swing.JPanel search_pnl_topSide;
+    private javax.swing.JSlider slider_duration;
     // End of variables declaration//GEN-END:variables
 }
