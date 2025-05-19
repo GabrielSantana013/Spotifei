@@ -210,6 +210,9 @@ public class MusicSearchController {
 
     private void onMusicSelected(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
+            
+            view.getPnl_player().setVisible(true);
+            view.getPnl_likes().setVisible(true);
             int selectedIndex = view.getjList1().getSelectedIndex();
 
             if (selectedIndex >= 0 && selectedIndex < currentMusics.size()) {
@@ -299,7 +302,7 @@ public class MusicSearchController {
     }
     
     // TODO: pegar o id da musica na busca
-    public void playMusic() {
+    public void playMusic() {        
         if (isPlaying) {
             // Se já estiver tocando, solicite parada
             stopRequested = true;
@@ -320,16 +323,9 @@ public class MusicSearchController {
         musicThread = new Thread(() -> {
             try {
                 byte[] audioData = null;
-
-                // Recupera os bytes da música do banco de dados
-                try (Connection conn = new DbConnection().getConnection()) {
-                    MusicDAO dao = new MusicDAO(conn);
-                    audioData = dao.getMusicAudio(15); // TODO: mudar o 15 pelo ID correto
-                } catch (SQLException e) {
-                    CustomJDialog.showCustomDialog("Erro!", "Erro ao tocar música");
-                    isPlaying = false;
-                    return;
-                }
+                
+                audioData = selectedMusic.getMusicAudio();
+                
 
                 // Cria um InputStream com os dados
                 ByteArrayInputStream audio = new ByteArrayInputStream(audioData);

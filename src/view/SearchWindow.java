@@ -53,6 +53,8 @@ public class SearchWindow extends javax.swing.JFrame {
             list_musics.requestFocusInWindow();
         });
         c.setUserNameOnWindow();
+        this.getPnl_player().setVisible(false);
+        this.getPnl_likes().setVisible(false);
     }
 
     public JTextField getSearch_name() {
@@ -194,6 +196,24 @@ public class SearchWindow extends javax.swing.JFrame {
     public void setSlider_duration(JSlider slider_duration) {
         this.slider_duration = slider_duration;
     }
+
+    public JPanel getPnl_likes() {
+        return pnl_likes;
+    }
+
+    public void setPnl_likes(JPanel pnl_likes) {
+        this.pnl_likes = pnl_likes;
+    }
+
+    public JPanel getPnl_player() {
+        return pnl_player;
+    }
+
+    public void setPnl_player(JPanel pnl_player) {
+        this.pnl_player = pnl_player;
+    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -222,14 +242,14 @@ public class SearchWindow extends javax.swing.JFrame {
         search_pnl_topSide = new javax.swing.JPanel();
         search_pnl_botSide = new javax.swing.JPanel();
         pnl_all = new javax.swing.JPanel();
+        pnl_player = new javax.swing.JPanel();
+        btt_play = new javax.swing.JButton();
+        slider_duration = new javax.swing.JSlider();
         pnl_likes = new javax.swing.JPanel();
         lbl_musicDislikes = new javax.swing.JLabel();
         lbl_musicLikes = new javax.swing.JLabel();
         btt_like = new javax.swing.JButton();
         btt_dislike = new javax.swing.JButton();
-        pnl_player = new javax.swing.JPanel();
-        btt_play = new javax.swing.JButton();
-        slider_duration = new javax.swing.JSlider();
         search_pnl_inside = new javax.swing.JPanel();
         btt_profile = new RoundedButton("user_name");
         search_pnl_bar = new RoundedPanel();
@@ -304,7 +324,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.setLayout(new javax.swing.BoxLayout(home_pnl_options, javax.swing.BoxLayout.Y_AXIS));
 
         home_pnl_homeOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_homeOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_homeOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_homeOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -324,7 +344,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_homeOpt);
 
         home_pnl_searchOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_searchOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_searchOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_searchOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -344,7 +364,7 @@ public class SearchWindow extends javax.swing.JFrame {
         home_pnl_options.add(home_pnl_searchOpt);
 
         home_pnl_playlistOpt.setBackground(new java.awt.Color(28, 28, 28));
-        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_pnl_playlistOpt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_pnl_playlistOpt.setPreferredSize(new java.awt.Dimension(65, 58));
         home_pnl_playlistOpt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -403,62 +423,6 @@ public class SearchWindow extends javax.swing.JFrame {
         flowLayout1.setAlignOnBaseline(true);
         pnl_all.setLayout(flowLayout1);
 
-        pnl_likes.setOpaque(false);
-
-        lbl_musicDislikes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
-        lbl_musicDislikes.setForeground(new java.awt.Color(168, 168, 168));
-
-        lbl_musicLikes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
-        lbl_musicLikes.setForeground(new java.awt.Color(168, 168, 168));
-
-        btt_like.setFocusPainted(false);
-        btt_like.setContentAreaFilled(false);
-        btt_like.setBorderPainted(false);
-        btt_like.setBackground(new java.awt.Color(28, 28, 28));
-        btt_like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/like.png"))); // NOI18N
-        btt_like.setBorder(null);
-        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        btt_dislike.setFocusPainted(false);
-        btt_dislike.setContentAreaFilled(false);
-        btt_dislike.setBorderPainted(false);
-        btt_dislike.setBackground(new java.awt.Color(28, 28, 28));
-        btt_dislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/dislike.png"))); // NOI18N
-        btt_dislike.setBorder(null);
-        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout pnl_likesLayout = new javax.swing.GroupLayout(pnl_likes);
-        pnl_likes.setLayout(pnl_likesLayout);
-        pnl_likesLayout.setHorizontalGroup(
-            pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_likesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_likesLayout.createSequentialGroup()
-                        .addComponent(btt_like)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_musicLikes, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-                    .addGroup(pnl_likesLayout.createSequentialGroup()
-                        .addComponent(btt_dislike)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_musicDislikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pnl_likesLayout.setVerticalGroup(
-            pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_likesLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_musicLikes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btt_like))
-                .addGap(18, 18, 18)
-                .addGroup(pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btt_dislike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_musicDislikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
-        pnl_all.add(pnl_likes);
-
         pnl_player.setBackground(new java.awt.Color(28, 28, 28));
         pnl_player.setLayout(new javax.swing.BoxLayout(pnl_player, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -468,7 +432,7 @@ public class SearchWindow extends javax.swing.JFrame {
         btt_play.setBackground(new java.awt.Color(28, 28, 28));
         btt_play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/play.png"))); // NOI18N
         btt_play.setBorder(null);
-        btt_play.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_play.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_play.setOpaque(true);
         btt_play.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -525,6 +489,62 @@ public class SearchWindow extends javax.swing.JFrame {
         pnl_player.add(slider_duration);
 
         pnl_all.add(pnl_player);
+
+        pnl_likes.setOpaque(false);
+
+        lbl_musicDislikes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
+        lbl_musicDislikes.setForeground(new java.awt.Color(168, 168, 168));
+
+        lbl_musicLikes.setFont(new Font("Gotham Black", Font.PLAIN, 22));
+        lbl_musicLikes.setForeground(new java.awt.Color(168, 168, 168));
+
+        btt_like.setFocusPainted(false);
+        btt_like.setContentAreaFilled(false);
+        btt_like.setBorderPainted(false);
+        btt_like.setBackground(new java.awt.Color(28, 28, 28));
+        btt_like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/like.png"))); // NOI18N
+        btt_like.setBorder(null);
+        btt_like.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        btt_dislike.setFocusPainted(false);
+        btt_dislike.setContentAreaFilled(false);
+        btt_dislike.setBorderPainted(false);
+        btt_dislike.setBackground(new java.awt.Color(28, 28, 28));
+        btt_dislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/dislike.png"))); // NOI18N
+        btt_dislike.setBorder(null);
+        btt_dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout pnl_likesLayout = new javax.swing.GroupLayout(pnl_likes);
+        pnl_likes.setLayout(pnl_likesLayout);
+        pnl_likesLayout.setHorizontalGroup(
+            pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_likesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_likesLayout.createSequentialGroup()
+                        .addComponent(btt_like)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_musicLikes, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+                    .addGroup(pnl_likesLayout.createSequentialGroup()
+                        .addComponent(btt_dislike)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_musicDislikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnl_likesLayout.setVerticalGroup(
+            pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_likesLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_musicLikes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btt_like))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_likesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btt_dislike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_musicDislikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        pnl_all.add(pnl_likes);
 
         javax.swing.GroupLayout search_pnl_botSideLayout = new javax.swing.GroupLayout(search_pnl_botSide);
         search_pnl_botSide.setLayout(search_pnl_botSideLayout);
