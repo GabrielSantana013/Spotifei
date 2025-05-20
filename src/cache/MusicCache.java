@@ -5,6 +5,7 @@
 package cache;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +36,9 @@ public class MusicCache {
     }
 
     public static List<Music> getAllMusics() {
-        return new ArrayList<>(musicById.values());
+        return Collections.unmodifiableList(new ArrayList<>(musicById.values()));
     }
+
 
     public static void clear() {
         musicById.clear();
