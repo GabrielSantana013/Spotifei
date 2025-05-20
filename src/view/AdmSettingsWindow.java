@@ -101,6 +101,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_registerUser = new RoundedButton("Cadastrar novo usuário");
         btt_registerArtist = new RoundedButton("Cadastrar novo artista");
         btt_registerMusic = new RoundedButton("Cadastrar nova música");
+        btt_removeMusic = new RoundedButton("Excluir música");
         pnl_registers = new javax.swing.JPanel();
         pnl_registerArtist = new RoundedPanel();
         txt_name = new PlaceholderFields("Digite o nome do artista...", new Insets(0, 15, 0, 0));
@@ -137,7 +138,11 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         lbl_dislikes = new javax.swing.JLabel();
         btt_addPhoto = new RoundedButton("Adicionar foto");
         btt_addAudio = new RoundedButton("Adicionar áudio");
-        btt_cadastrar = new RoundedButton("Cadastrar");
+        pnl_removeMusic = new RoundedPanel();
+        lbl_listMusics = new javax.swing.JLabel();
+        scroll_musics = new javax.swing.JScrollPane();
+        list_musics = new javax.swing.JList<>();
+        btt_atualizar = new RoundedButton("Atualizar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -337,6 +342,22 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_registerMusic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btt_registerMusicActionPerformed(evt);
+            }
+        });
+
+        ((RoundedButton) btt_removeMusic).setTextAlignment(TextAlign.LEFT);
+        btt_removeMusic.setBackground(new java.awt.Color(185, 192, 198));
+        btt_removeMusic.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
+        btt_removeMusic.setForeground(new java.awt.Color(28, 28, 28));
+        btt_removeMusic.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
+        btt_removeMusic.setBorderPainted(false);
+        btt_removeMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_removeMusic.setPreferredSize(new java.awt.Dimension(48, 20));
+        ((RoundedButton) btt_removeMusic).setCornerRadiusVertical(80);
+        ((RoundedButton) btt_removeMusic).setCornerRadiusHorizontal(40);
+        btt_removeMusic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_removeMusicActionPerformed(evt);
             }
         });
 
@@ -774,15 +795,115 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
         pnl_registers.add(pnl_registerMusic);
 
-        btt_cadastrar.setBackground(new java.awt.Color(185, 192, 198));
-        btt_cadastrar.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
-        btt_cadastrar.setForeground(new java.awt.Color(28, 28, 28));
-        btt_cadastrar.setBorder(null);
-        btt_cadastrar.setVisible(false);
-        btt_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btt_cadastrar.setMaximumSize(new java.awt.Dimension(0, 0));
-        btt_cadastrar.setMinimumSize(new java.awt.Dimension(0, 0));
-        btt_cadastrar.setPreferredSize(new java.awt.Dimension(0, 0));
+        ((RoundedPanel) pnl_removeMusic).setHover(0);
+        pnl_removeMusic.setBackground(new java.awt.Color(38, 38, 38));
+        pnl_removeMusic.setVisible(true);
+
+        lbl_listMusics.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        lbl_listMusics.setForeground(new java.awt.Color(236, 239, 241));
+        lbl_listMusics.setText("Selecione a música:");
+
+        scroll_musics.setBackground(new java.awt.Color(60, 63, 65));
+        scroll_musics.setBorder(null);
+        scroll_musics.setForeground(new java.awt.Color(58, 58, 58));
+        scroll_musics.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll_musics.setMaximumSize(new java.awt.Dimension(322, 322));
+        scroll_musics.setMinimumSize(new java.awt.Dimension(322, 322));
+        scroll_musics.setPreferredSize(new java.awt.Dimension(322, 322));
+        scroll_musics.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(60,63,65);
+                this.trackColor = new Color(24,24,24);
+            }
+
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton button = new JButton();
+                button.setPreferredSize(new Dimension(0, 0));
+                button.setMinimumSize(new Dimension(0, 0));
+                button.setMaximumSize(new Dimension(0, 0));
+                return button;
+            }
+
+            // barra de scroll mais larga
+            @Override
+            public Dimension getPreferredSize(JComponent c) {
+                return new Dimension(8, super.getPreferredSize(c).height);
+            }
+
+            // arredonda o botão
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.translate(thumbBounds.x, thumbBounds.y);
+                g2.setColor(thumbColor);
+                int arc = 12;
+                g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);
+                g2.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setColor(trackColor);
+                g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+                g2.dispose();
+            }
+        });
+
+        list_musics.setBackground(new java.awt.Color(51, 51, 51));
+        list_musics.setBorder(null);
+        list_musics.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        list_musics.setForeground(new java.awt.Color(236, 239, 241));
+        list_musics.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Artista 1", "Artista 2", "Artista 3", "Artista 4", "Artista 5", "Artista 6", "Artista 7", "Artista 8", "Artista 9", "Artista 10", "Artista 11" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        list_musics.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        list_musics.setSelectionBackground(new java.awt.Color(100, 165, 135));
+        scroll_musics.setViewportView(list_musics);
+
+        javax.swing.GroupLayout pnl_removeMusicLayout = new javax.swing.GroupLayout(pnl_removeMusic);
+        pnl_removeMusic.setLayout(pnl_removeMusicLayout);
+        pnl_removeMusicLayout.setHorizontalGroup(
+            pnl_removeMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_removeMusicLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_removeMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scroll_musics, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lbl_listMusics, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnl_removeMusicLayout.setVerticalGroup(
+            pnl_removeMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_removeMusicLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_listMusics)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll_musics, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(420, Short.MAX_VALUE))
+        );
+
+        pnl_registers.add(pnl_removeMusic);
+
+        btt_atualizar.setBackground(new java.awt.Color(185, 192, 198));
+        btt_atualizar.setFont(new java.awt.Font("Gotham Black", Font.PLAIN, 12));
+        btt_atualizar.setForeground(new java.awt.Color(28, 28, 28));
+        btt_atualizar.setBorder(null);
+        btt_atualizar.setVisible(false);
+        btt_atualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout home_pnl_insideLayout = new javax.swing.GroupLayout(home_pnl_inside);
         home_pnl_inside.setLayout(home_pnl_insideLayout);
@@ -793,10 +914,11 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                 .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btt_registerUser, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                     .addComponent(btt_registerArtist, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                    .addComponent(btt_registerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                    .addComponent(btt_registerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(btt_removeMusic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btt_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btt_atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnl_registers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -807,7 +929,10 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
             .addGroup(home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_registers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(home_pnl_insideLayout.createSequentialGroup()
+                        .addComponent(pnl_registers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(home_pnl_insideLayout.createSequentialGroup()
                         .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btt_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -815,9 +940,9 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btt_registerArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btt_registerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btt_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btt_registerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btt_removeMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -921,12 +1046,16 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_durationActionPerformed
 
+    private void btt_removeMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_removeMusicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btt_removeMusicActionPerformed
+
     public JButton getBtt_cadastrar() {
-        return btt_cadastrar;
+        return btt_atualizar;
     }
 
     public void setBtt_cadastrar(JButton btt_cadastrar) {
-        this.btt_cadastrar = btt_cadastrar;
+        this.btt_atualizar = btt_cadastrar;
     }
 
     public JFormattedTextField getTxt_birthDate() {
@@ -1065,11 +1194,12 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_addAudio;
     private javax.swing.JButton btt_addPhoto;
-    private javax.swing.JButton btt_cadastrar;
+    private javax.swing.JButton btt_atualizar;
     private javax.swing.JButton btt_profile;
     private javax.swing.JButton btt_registerArtist;
     private javax.swing.JButton btt_registerMusic;
     private javax.swing.JButton btt_registerUser;
+    private javax.swing.JButton btt_removeMusic;
     private javax.swing.JComboBox<String> cbox_gender;
     private javax.swing.JPanel home_pnl_all;
     private javax.swing.JPanel home_pnl_botSide;
@@ -1088,16 +1218,20 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_dislikes;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_likes;
+    private javax.swing.JLabel lbl_listMusics;
     private javax.swing.JLabel lbl_musicArtist;
     private javax.swing.JLabel lbl_musicDesc;
     private javax.swing.JLabel lbl_title;
     private javax.swing.JList<String> list_artists;
+    private javax.swing.JList<String> list_musics;
     private javax.swing.JPanel pnl_registerArtist;
     private javax.swing.JPanel pnl_registerMusic;
     private javax.swing.JPanel pnl_registers;
+    private javax.swing.JPanel pnl_removeMusic;
     private javax.swing.JScrollPane scroll_desc;
     private javax.swing.JScrollPane scroll_musicArtists;
     private javax.swing.JScrollPane scroll_musicDesc;
+    private javax.swing.JScrollPane scroll_musics;
     private javax.swing.JFormattedTextField txt_birthDate;
     private javax.swing.JTextArea txt_description;
     private javax.swing.JFormattedTextField txt_dislikes;
