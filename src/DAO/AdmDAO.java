@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 
 import model.Artist;
+import model.Music;
 
 public class AdmDAO {
     
@@ -75,7 +76,21 @@ public class AdmDAO {
 
         return artistList;
     }
+    
+    public void deleteMusicById(int musicId) throws SQLException {
+        String sql = "DELETE FROM spotifei.music WHERE music_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, musicId);
+            statement.executeUpdate();
+        }
+    }
 
-    
-    
+    public void deleteMusicByTitle(String title) throws SQLException {
+        String sql = "DELETE FROM spotifei.music WHERE title = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setString(1, title);
+            statement.executeUpdate();
+        }
+    }
+
 }

@@ -8,6 +8,7 @@ import DAO.AdmDAO;
 import java.sql.SQLException;
 import java.sql.Connection;
 import DAO.DbConnection;
+import cache.MusicCache;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -58,6 +59,7 @@ public class AdmSettingsController {
         view.getBtt_cadastrar().setVisible(false);
         view.getPnl_registerMusic().setVisible(false);
         view.getPnl_registerArtist().setVisible(false);
+        view.getBtt_cadastrar().setText("Cadastrar");
         RegistrationWindow rw = new RegistrationWindow(true);
         rw.setVisible(true);
         rw.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -121,6 +123,7 @@ public class AdmSettingsController {
         view.getPnl_registerArtist().setVisible(false);
         view.getPnl_registerMusic().setVisible(true);
         view.getBtt_cadastrar().setVisible(true);
+        view.getBtt_cadastrar().setText("Cadastrar");
         
         List<Artist> artists = new ArrayList<>();
         
@@ -143,8 +146,7 @@ public class AdmSettingsController {
             view.getBtt_cadastrar().removeActionListener(al);
         }
         
-        view.getBtt_cadastrar().addActionListener(e -> {      
-            System.out.println("ADM está cadastrando uma nova musga.");
+        view.getBtt_cadastrar().addActionListener(e -> {                  
             String musicName = view.getTxt_title().getText();
             String genre = view.getTxt_genre().getText();
             String description = view.getTxt_musicDescription().getText();
@@ -166,19 +168,74 @@ public class AdmSettingsController {
             try(Connection conn = new DbConnection().getConnection()){
                 AdmDAO dao = new AdmDAO(conn);            
                 dao.insertMusic(musicName, description, duration, genre, artistId, this.musicPhoto, this.musicAudio);
+                MusicCache.insertMusic(music);
             }catch(SQLException ex){
                 CustomJDialog.showCustomDialog("Erro!", "Erro ao cadastrar musica no banco.");
             }
-            
-            
-            // printa o artista selecionado pra debuggar
-            System.out.println(artists.get(view.getList_artists().getSelectedIndex()).getName());
             
             CustomJDialog.showCustomDialog("Aviso!", "Musica cadastrada com sucesso.");
             view.getPnl_registerMusic().setVisible(false);
             view.getBtt_cadastrar().setVisible(false);
         });
     }
+    
+    
+    public void excludeMusic(){
+        view.getPnl_registerArtist().setVisible(false);
+        view.getPnl_registerMusic().setVisible(false);
+        view.getPnl_removeMusic().setVisible(true);
+        view.getBtt_cadastrar().setVisible(true);
+        view.getBtt_cadastrar().setText("Excluir");
+
+        List<Music> musics = new ArrayList<>();
+
+        try (Connection conn = new DbConnection().getConnection()) {
+            AdmDAO dao = new AdmDAO(conn);
+            musics = MusicCache.getAllMusics();
+            DefaultListModel<String> model = new DefaultListModel<>();
+            for (Music music : musics) {
+                model.addElement(music.getMusicTitle());
+            }
+            view.getList_musics().setModel(model);
+        } catch (SQLException e) {
+            CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar músicas no banco.");
+            e.printStackTrace();
+        }
+
+        for (ActionListener al : view.getBtt_cadastrar().getActionListeners()) {
+            view.getBtt_cadastrar().removeActionListener(al);
+        }
+
+        List<Music> finalMusics = musics;
+
+        view.getBtt_cadastrar().addActionListener(e -> {
+            int selectedIndex = view.getList_musics().getSelectedIndex();
+            if (selectedIndex < 0 || selectedIndex >= finalMusics.size()) {
+                CustomJDialog.showCustomDialog("Aviso!", "Selecione uma música para excluir.");
+                return;
+            }
+
+            Music selectedMusic = finalMusics.get(selectedIndex);
+
+            try (Connection conn = new DbConnection().getConnection()) {
+                AdmDAO dao = new AdmDAO(conn);
+                dao.deleteMusicByTitle(selectedMusic.getMusicTitle());
+                MusicCache.removeByTitle(selectedMusic.getMusicTitle());                
+                
+            } catch (SQLException ex) {
+                CustomJDialog.showCustomDialog("Erro!", "Erro ao excluir música do banco.");
+                ex.printStackTrace();
+                return;
+            }
+
+            CustomJDialog.showCustomDialog("Sucesso!", "Música excluída com sucesso!");
+                    view.getPnl_removeMusic().setVisible(false);
+        view.getBtt_cadastrar().setVisible(false);
+            
+        });
+    }
+
+    
     
     public void addPhoto(){      
          JFileChooser fileChooser = new JFileChooser();
@@ -237,20 +294,7 @@ public class AdmSettingsController {
                 this.musicPhoto = processImage(imageData);
                 
                 
-                System.out.println("Imagem processada - Tamanho final: " + this.musicPhoto.length + " bytes");
-
-                // Salvando a imagem nova num arquivo para verificar
-                /*
-                File outputFile = new File(arquivoSelecionado.getAbsolutePath());
-                ByteArrayInputStream inputStream = new ByteArrayInputStream(processedImage);
-                BufferedImage resultImage = null;
-
-                resultImage = ImageIO.read(inputStream);
-
-                ImageIO.write(resultImage, "PNG", outputFile);
-
-                System.out.println("Imagem processada e salva em: " + outputFile.getAbsolutePath());
-                */
+                System.out.println("Imagem processada - Tamanho final: " + this.musicPhoto.length + " bytes");                
                 } catch (IOException e) {
                     System.err.println("Error processing image: " + e.getMessage());
                     e.printStackTrace();

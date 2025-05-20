@@ -38,11 +38,32 @@ public class MusicCache {
     public static List<Music> getAllMusics() {
         return Collections.unmodifiableList(new ArrayList<>(musicById.values()));
     }
-
-
+    
+    public static void removeById(int musicId){
+        Music music = musicById.remove(musicId);
+        if (music != null) {
+            musicByTitle.remove(music.getMusicTitle().toLowerCase());
+        }
+    }
+    
+    public static void insertMusic(Music music){
+        musicById.put(music.getMusicId(), music);
+        musicByTitle.put(music.getMusicTitle(), music);      
+    }
+    
     public static void clear() {
         musicById.clear();
         musicByTitle.clear();
+    }
+    
+    public static void removeByTitle(String title) {
+        if (title == null) return;
+
+        String key = title.toLowerCase();
+        Music music = musicByTitle.remove(key);
+        if (music != null) {
+            musicById.remove(music.getMusicId());
+        }
     }
 
 }

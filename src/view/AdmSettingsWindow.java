@@ -41,6 +41,8 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         c =  new AdmSettingsController(this, adm);
         this.adm = adm;
         c.setUserNameOnWindow();
+        this.getPnl_removeMusic().setVisible(false);
+        this.getBtt_cadastrar().setVisible(false);
         
         this.setSize(width, height);
         
@@ -1047,7 +1049,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_durationActionPerformed
 
     private void btt_removeMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_removeMusicActionPerformed
-        // TODO add your handling code here:
+        c.excludeMusic();
     }//GEN-LAST:event_btt_removeMusicActionPerformed
 
     public JButton getBtt_cadastrar() {
@@ -1153,7 +1155,32 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
     public void setList_artists(JList<String> list_artists) {
         this.list_artists = list_artists;
     }
-  
+
+    public JButton getBtt_atualizar() {
+        return btt_atualizar;
+    }
+
+    public void setBtt_atualizar(JButton btt_atualizar) {
+        this.btt_atualizar = btt_atualizar;
+    }
+
+    public JList<String> getList_musics() {
+        return list_musics;
+    }
+
+    public void setList_musics(JList<String> list_musics) {
+        this.list_musics = list_musics;
+    }
+
+    public JPanel getPnl_removeMusic() {
+        return pnl_removeMusic;
+    }
+
+    public void setPnl_removeMusic(JPanel pnl_removeMusic) {
+        this.pnl_removeMusic = pnl_removeMusic;
+    }
+
+    
     /**
      * @param args the command line arguments
      */
