@@ -133,9 +133,14 @@ public class MusicSearchController {
         view.getLbl_musicDescription().setText(music.getMusicDescription());
         view.getLbl_musicArtist().setText(music.getArtistName());
         
+        view.getPnl_data().setVisible(true);
+        view.getLbl_musicTitle1().setText(music.getMusicTitle());
+        view.getLbl_musicArtist1().setText(music.getArtistName());
+        
         try{
             BufferedImage image = byteArrayToImage(music.getMusicPhoto());
             view.getArtist_photo().setIcon(new ImageIcon(image));
+            view.getArtist_photo().setVisible(true);
         }catch(IOException e){
             CustomJDialog.showCustomDialog("Erro", "Erro ao carregar a foto do artista.");
             e.printStackTrace();
@@ -163,8 +168,6 @@ public class MusicSearchController {
                 Music updatedMusic = musicDAO.getMusicById(selectedMusic.getMusicId());
                 selectedMusic = updatedMusic;
                 updateMusicLabels(updatedMusic);
-                view.getBtt_dislike().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/dislike.png")));
-                view.getBtt_like().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/like_green.png")));
 
             } catch (SQLException ex) {
                 CustomJDialog.showCustomDialog("Erro!", "Erro ao curtir a música.");
@@ -196,8 +199,6 @@ public class MusicSearchController {
                 Music updatedMusic = musicDAO.getMusicById(selectedMusic.getMusicId());
                 selectedMusic = updatedMusic;
                 updateMusicLabels(updatedMusic);
-                view.getBtt_like().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/like.png")));
-                view.getBtt_dislike().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/dislike_red.png")));
 
             } catch (SQLException ex) {
                 CustomJDialog.showCustomDialog("Erro!", "Erro ao descurtir a música.");
