@@ -5,7 +5,6 @@
 </p>
 
 
-
 O **Spotifei** é uma aplicação de streaming musical desenvolvida em **Java**, com interface gráfica em **Swing**, banco de dados **PostgreSQL**, e arquitetura **MVC**. O projeto permite que usuários escutem suas músicas favoritas, criem playlists personalizadas e interajam com o conteúdo musical, enquanto administradores podem gerenciar o sistema e visualizar estatísticas.
 
 ## 📌 Funcionalidades
@@ -43,8 +42,8 @@ O **Spotifei** é uma aplicação de streaming musical desenvolvida em **Java**,
 
 * **Login de Administrador**
 
-*  **LOGIN ADM: adm**
-*  **SENHA ADM: 123**
+  * **LOGIN ADM:** `adm`
+  * **SENHA ADM:** `123`
 
 * **Gerenciamento de Conteúdo**
 
@@ -77,21 +76,21 @@ O **Spotifei** é uma aplicação de streaming musical desenvolvida em **Java**,
 ```
 /spotifei
 ├── /src
-│   ├──/model
-│   ├──/view
-│   ├──/spotifei
-│   ├──/cache
-│   ├──/auth
-│   ├──/DAO
-│   ├──/utils
-│   ├──/view.assets.fonts
-│   ├──/view.assets.images
-│   ├──/view.custom.Classes
-│   ├──/view.custom.Dialogs
+│   ├── /model
+│   ├── /view
+│   ├── /spotifei
+│   ├── /cache
+│   ├── /auth
+│   ├── /DAO
+│   ├── /utils
+│   ├── /view.assets.fonts
+│   ├── /view.assets.images
+│   ├── /view.custom.Classes
+│   ├── /view.custom.Dialogs
 │   └── /controller
 ├── README.md
-├──LICENSE
-├──manifest.mf
+├── LICENSE
+├── manifest.mf
 └── .gitignore
 ```
 
@@ -105,11 +104,15 @@ O **Spotifei** é uma aplicação de streaming musical desenvolvida em **Java**,
    git clone https://github.com/GabrielSantana013/Spotifei.git
    ```
 
-2. **Configure o banco de dados PostgreSQL** com os scripts creates.sql e depois o inserts.sql
+2. **Configure o banco de dados PostgreSQL** com os scripts `creates.sql` e depois o `inserts.sql` (somente caso não consiga se conectar com o nosso db, que está disponível por conta do supabase).
 
 3. **Compile e execute** a aplicação no seu ambiente Java com suporte a Swing.
-   
-4. **ATENÇÃO PROFESSORES!** coloque o arquivo config.properties no package DAO para que a aplicação funcione corretamente, caso contrário a aplicação não irá funcionar. O arquivo está zipado juntamente com o código fonte no moodle. 
+
+4. **Inclua o driver PostgreSQL (`postgresql-42.7.5.jar`)** na pasta `libraries` para que as queries sejam executadas corretamente.
+
+5. **ATENÇÃO PROFESSORES!**
+   Coloque o arquivo `config.properties` no pacote `DAO` para que a aplicação funcione corretamente. Caso contrário, ela não irá funcionar.
+   O arquivo está zipado juntamente com o código fonte no Moodle.
 
 ---
 
