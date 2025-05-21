@@ -52,6 +52,7 @@ public class AdmSettingsController {
     private AdmSettingsWindow view;
     private Adm adm;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private RegistrationWindow rw;
     private byte[] musicPhoto; // atributos instaciados aqui para conseguir passar os arquivos de uma função para outra
     private byte[] musicAudio;
     private int duration;
@@ -65,7 +66,8 @@ public class AdmSettingsController {
      */
     public AdmSettingsController(AdmSettingsWindow view, Adm adm) {
         this.view = view;
-        this.adm = adm;     
+        this.adm = adm;
+        this.rw = new RegistrationWindow(true);
     }
      
     /**
@@ -73,14 +75,14 @@ public class AdmSettingsController {
      * Esconde componentes relacionados ao cadastro de música e artista.
      */
     public void registerUser(){
-        view.getBtt_cadastrar().setVisible(false);
+        view.getBtt_atualizar().setVisible(false);
         view.getPnl_registerMusic().setVisible(false);
         view.getPnl_registerArtist().setVisible(false);
-        view.getBtt_cadastrar().setText("Cadastrar");
-        RegistrationWindow rw = new RegistrationWindow(true);
-        rw.setVisible(true);
-        rw.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        rw.getBtt_return().setVisible(false);
+        view.getPnl_removeMusic().setVisible(false);
+        
+        this.rw.setVisible(true);
+        this.rw.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.rw.getBtt_return().setVisible(false);
     }
     
     /**
@@ -88,15 +90,16 @@ public class AdmSettingsController {
      * valida os dados inseridos e insere o artista no banco de dados.
      */
     public void registerArtist(){
+        this.rw.dispose();
         view.getPnl_registerMusic().setVisible(false);
         view.getPnl_registerArtist().setVisible(true);
-        view.getBtt_cadastrar().setVisible(true);
+        view.getBtt_atualizar().setVisible(true);
         
-        for (ActionListener al : view.getBtt_cadastrar().getActionListeners()) {
-            view.getBtt_cadastrar().removeActionListener(al);
+        for (ActionListener al : view.getBtt_atualizar().getActionListeners()) {
+            view.getBtt_atualizar().removeActionListener(al);
         }
         
-        view.getBtt_cadastrar().addActionListener(e -> {         
+        view.getBtt_atualizar().addActionListener(e -> {         
             String name = view.getTxt_name().getText();
             String gender = view.getCbox_gender().getSelectedItem().toString();
             String description = view.getTxt_description().getText();
@@ -134,7 +137,7 @@ public class AdmSettingsController {
                              + "com sucesso!");
     
             view.getPnl_registerArtist().setVisible(false);
-            view.getBtt_cadastrar().setVisible(false);
+            view.getBtt_atualizar().setVisible(false);
         });
 
 
@@ -145,10 +148,10 @@ public class AdmSettingsController {
      * lista os artistas disponíveis para associação e insere a música no banco.
      */
     public void registerMusic(){
+        this.rw.dispose();
         view.getPnl_registerArtist().setVisible(false);
         view.getPnl_registerMusic().setVisible(true);
-        view.getBtt_cadastrar().setVisible(true);
-        view.getBtt_cadastrar().setText("Cadastrar");
+        view.getBtt_atualizar().setVisible(true);
         
         List<Artist> artists = new ArrayList<>();
         
@@ -167,11 +170,11 @@ public class AdmSettingsController {
             e.printStackTrace();
         }
         
-        for (ActionListener al : view.getBtt_cadastrar().getActionListeners()) {
-            view.getBtt_cadastrar().removeActionListener(al);
+        for (ActionListener al : view.getBtt_atualizar().getActionListeners()) {
+            view.getBtt_atualizar().removeActionListener(al);
         }
         
-        view.getBtt_cadastrar().addActionListener(e -> {                  
+        view.getBtt_atualizar().addActionListener(e -> {                  
             String musicName = view.getTxt_title().getText();
             String genre = view.getTxt_genre().getText();
             String description = view.getTxt_musicDescription().getText();
@@ -200,7 +203,7 @@ public class AdmSettingsController {
             
             CustomJDialog.showCustomDialog("Aviso!", "Musica cadastrada com sucesso.");
             view.getPnl_registerMusic().setVisible(false);
-            view.getBtt_cadastrar().setVisible(false);
+            view.getBtt_atualizar().setVisible(false);
         });
     }
     
@@ -209,11 +212,12 @@ public class AdmSettingsController {
      * lista as músicas disponíveis e remove a selecionada do banco e cache.
      */
     public void excludeMusic(){
+        this.rw.dispose();
         view.getPnl_registerArtist().setVisible(false);
         view.getPnl_registerMusic().setVisible(false);
         view.getPnl_removeMusic().setVisible(true);
-        view.getBtt_cadastrar().setVisible(true);
-        view.getBtt_cadastrar().setText("Excluir");
+        view.getBtt_atualizar().setVisible(true);
+        view.getBtt_atualizar().setText("Excluir");
 
         List<Music> musics = new ArrayList<>();
 
@@ -230,13 +234,13 @@ public class AdmSettingsController {
             e.printStackTrace();
         }
 
-        for (ActionListener al : view.getBtt_cadastrar().getActionListeners()) {
-            view.getBtt_cadastrar().removeActionListener(al);
+        for (ActionListener al : view.getBtt_atualizar().getActionListeners()) {
+            view.getBtt_atualizar().removeActionListener(al);
         }
 
         List<Music> finalMusics = musics;
 
-        view.getBtt_cadastrar().addActionListener(e -> {
+        view.getBtt_atualizar().addActionListener(e -> {
             int selectedIndex = view.getList_musics().getSelectedIndex();
             if (selectedIndex < 0 || selectedIndex >= finalMusics.size()) {
                 CustomJDialog.showCustomDialog("Aviso!", "Selecione uma música para excluir.");
@@ -258,7 +262,7 @@ public class AdmSettingsController {
 
             CustomJDialog.showCustomDialog("Sucesso!", "Música excluída com sucesso!");
                     view.getPnl_removeMusic().setVisible(false);
-        view.getBtt_cadastrar().setVisible(false);
+        view.getBtt_atualizar().setVisible(false);
             
         });
     }

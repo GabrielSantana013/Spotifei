@@ -41,8 +41,6 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         c =  new AdmSettingsController(this, adm);
         this.adm = adm;
         c.setUserNameOnWindow();
-        this.getPnl_removeMusic().setVisible(false);
-        this.getBtt_cadastrar().setVisible(false);
         
         this.setSize(width, height);
         
@@ -144,7 +142,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         lbl_listMusics = new javax.swing.JLabel();
         scroll_musics = new javax.swing.JScrollPane();
         list_musics = new javax.swing.JList<>();
-        btt_atualizar = new RoundedButton("Atualizar");
+        btt_atualizar = new RoundedButton("Cadastrar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotifei");
@@ -708,7 +706,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_addPhoto.setForeground(new java.awt.Color(168, 170, 170));
         btt_addPhoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_addPhoto.setBorderPainted(false);
-        btt_addPhoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_addPhoto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_addPhoto.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_addPhoto).setNormalColor(new Color(51,51,51));
         ((RoundedButton) btt_addPhoto).setHoverColor(new Color(71,71,71));
@@ -725,7 +723,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         btt_addAudio.setForeground(new java.awt.Color(168, 170, 170));
         btt_addAudio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 28, 28), 1, true));
         btt_addAudio.setBorderPainted(false);
-        btt_addAudio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btt_addAudio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btt_addAudio.setPreferredSize(new java.awt.Dimension(48, 20));
         ((RoundedButton) btt_addAudio).setNormalColor(new Color(51,51,51));
         ((RoundedButton) btt_addAudio).setHoverColor(new Color(71,71,71));
@@ -799,7 +797,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
         ((RoundedPanel) pnl_removeMusic).setHover(0);
         pnl_removeMusic.setBackground(new java.awt.Color(38, 38, 38));
-        pnl_removeMusic.setVisible(true);
+        pnl_removeMusic.setVisible(false);
 
         lbl_listMusics.setFont(new Font("Gotham Light", Font.PLAIN, 14));
         lbl_listMusics.setForeground(new java.awt.Color(236, 239, 241));
@@ -1052,12 +1050,8 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         c.excludeMusic();
     }//GEN-LAST:event_btt_removeMusicActionPerformed
 
-    public JButton getBtt_cadastrar() {
+    public JButton getBtt_atualizar() {
         return btt_atualizar;
-    }
-
-    public void setBtt_cadastrar(JButton btt_cadastrar) {
-        this.btt_atualizar = btt_cadastrar;
     }
 
     public JFormattedTextField getTxt_birthDate() {
@@ -1154,14 +1148,6 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
     public void setList_artists(JList<String> list_artists) {
         this.list_artists = list_artists;
-    }
-
-    public JButton getBtt_atualizar() {
-        return btt_atualizar;
-    }
-
-    public void setBtt_atualizar(JButton btt_atualizar) {
-        this.btt_atualizar = btt_atualizar;
     }
 
     public JList<String> getList_musics() {
