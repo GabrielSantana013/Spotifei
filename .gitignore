@@ -1,3 +1,6 @@
+# lib externas
+!lib/*.jar
+
 # Compiled class file
 *.class
 

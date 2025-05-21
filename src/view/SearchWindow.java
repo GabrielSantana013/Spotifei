@@ -282,10 +282,10 @@ public class SearchWindow extends javax.swing.JFrame {
         lbl3 = new javax.swing.JLabel();
         lbl4 = new javax.swing.JLabel();
         lbl5 = new javax.swing.JLabel();
+        lbl_musicDuration = new javax.swing.JLabel();
         lbl_musicGenre = new javax.swing.JLabel();
         musicDesc_scroll = new javax.swing.JScrollPane();
         lbl_musicDescription = new javax.swing.JTextArea();
-        lbl_musicDuration = new javax.swing.JLabel();
         pnl4 = new javax.swing.JPanel();
         btt_addPlaylist = new RoundedButton("Adicionar à playlist");
         scroll_playlists = new javax.swing.JScrollPane();
@@ -413,7 +413,7 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addComponent(home_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(home_pnl_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         search_pnl_topSide.setBackground(new java.awt.Color(28, 28, 28));
@@ -893,13 +893,13 @@ public class SearchWindow extends javax.swing.JFrame {
                         .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl1)
                             .addComponent(lbl2))
-                        .addGap(0, 229, Short.MAX_VALUE)))
+                        .addGap(0, 230, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnl2Layout.setVerticalGroup(
             pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(lbl1)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_musicTitle)
@@ -907,7 +907,7 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addComponent(lbl2)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_musicArtist)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addGap(107, 107, 107))
         );
 
         search_pnl_musicInfo.add(pnl2);
@@ -922,6 +922,9 @@ public class SearchWindow extends javax.swing.JFrame {
 
         lbl5.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         lbl5.setText("Duração");
+
+        lbl_musicDuration.setFont(new Font("Gotham Black", Font.PLAIN, 22));
+        lbl_musicDuration.setForeground(new java.awt.Color(168, 168, 168));
 
         lbl_musicGenre.setFont(new Font("Gotham Black", Font.PLAIN, 22));
         lbl_musicGenre.setForeground(new java.awt.Color(168, 168, 168));
@@ -1051,43 +1054,36 @@ public class SearchWindow extends javax.swing.JFrame {
             }
         });
 
-        lbl_musicDuration.setFont(new Font("Gotham Black", Font.PLAIN, 22));
-        lbl_musicDuration.setForeground(new java.awt.Color(168, 168, 168));
-
         javax.swing.GroupLayout pnl3Layout = new javax.swing.GroupLayout(pnl3);
         pnl3.setLayout(pnl3Layout);
         pnl3Layout.setHorizontalGroup(
             pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(musicDesc_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(pnl3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(musicDesc_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(pnl3Layout.createSequentialGroup()
-                        .addGroup(pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl3)
-                            .addComponent(lbl_musicGenre)
-                            .addComponent(lbl4)
-                            .addComponent(lbl5)
-                            .addComponent(lbl_musicDuration))
-                        .addGap(0, 216, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(lbl3)
+                    .addComponent(lbl_musicGenre)
+                    .addComponent(lbl4)
+                    .addComponent(lbl5)
+                    .addComponent(lbl_musicDuration))
+                .addGap(0, 230, Short.MAX_VALUE))
         );
         pnl3Layout.setVerticalGroup(
             pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(lbl3)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_musicGenre)
                 .addGap(18, 18, 18)
                 .addComponent(lbl4)
                 .addGap(18, 18, 18)
-                .addComponent(musicDesc_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(musicDesc_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lbl5)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_musicDuration)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         search_pnl_musicInfo.add(pnl3);
@@ -1230,27 +1226,24 @@ public class SearchWindow extends javax.swing.JFrame {
         pnl4.setLayout(pnl4Layout);
         pnl4Layout.setHorizontalGroup(
             pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl4Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btt_addPlaylist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(scroll_playlists, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btt_addPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scroll_playlists, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnl4Layout.setVerticalGroup(
             pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btt_addPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl4Layout.createSequentialGroup()
-                    .addGap(44, 44, 44)
-                    .addComponent(scroll_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(90, Short.MAX_VALUE)))
         );
 
         search_pnl_musicInfo.add(pnl4);
@@ -1282,9 +1275,9 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addComponent(search_pnl_bar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scroll_musics, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search_pnl_musicInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(search_pnl_musicInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout home_pnl_allLayout = new javax.swing.GroupLayout(home_pnl_all);
@@ -1306,7 +1299,7 @@ public class SearchWindow extends javax.swing.JFrame {
                     .addGroup(home_pnl_allLayout.createSequentialGroup()
                         .addComponent(search_pnl_topSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE))
+                        .addComponent(search_pnl_inside, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE))
                     .addComponent(search_pnl_leftSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(search_pnl_botSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

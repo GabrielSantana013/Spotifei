@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"auth"},{"l":"cache"},{"l":"controller"},{"l":"DAO"},{"l":"model"},{"l":"spotifei"},{"l":"utils"},{"l":"view"},{"l":"view.assets.fonts"},{"l":"view.customClasses"},{"l":"view.customDialogs"}];updateSearchResults();

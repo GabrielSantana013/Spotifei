@@ -317,7 +317,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
         );
         playlist_pnl_botSideLayout.setVerticalGroup(
             playlist_pnl_botSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
 
         playlist_pnl_inside.setBackground(new java.awt.Color(18, 18, 18));
@@ -581,7 +581,7 @@ public class PlaylistsWindow extends javax.swing.JFrame {
                         .addComponent(btt_openPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(pnl_addPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 203, Short.MAX_VALUE))
+                        .addGap(0, 197, Short.MAX_VALUE))
                     .addComponent(playlist_pnl_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

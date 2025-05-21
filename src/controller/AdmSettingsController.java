@@ -377,7 +377,7 @@ public class AdmSettingsController {
         }
 
         // filtra apenas áudios
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Áudios", "wav");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Áudios", "wav", "ogg", "opus", "mp3");
         fileChooser.setFileFilter(filtro);
         int retorno = fileChooser.showOpenDialog(view);
 

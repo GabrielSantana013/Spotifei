@@ -8,6 +8,7 @@ import cache.MusicCache;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.ShortBuffer;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ import javax.swing.event.ListSelectionEvent;
 import model.Music;
 import model.Playlist;
 import model.User;
+import org.bytedeco.javacv.FFmpegFrameGrabber;
+import org.bytedeco.javacv.FFmpegLogCallback;
+import org.bytedeco.javacv.Frame;
 import static utils.ImageProcessor.byteArrayToImage;
 import view.SearchWindow;
 import view.customDialogs.CustomJDialog;
@@ -291,72 +295,73 @@ public class MusicSearchController {
         stopRequested = false;
 
         musicThread = new Thread(() -> {
-            try {
-                byte[] audioData = null;
-                
-                audioData = selectedMusic.getMusicAudio();
-                
-
-                // Cria um InputStream com os dados
-                ByteArrayInputStream audio = null;
-                try{
-                    audio = new ByteArrayInputStream(audioData);
-                } catch(NullPointerException e) {
-                    CustomJDialog.showCustomDialog("Aviso!", "Nenhum áudio foi cadastrado para essa música.");
-                }
-                AudioInputStream audioStream = AudioSystem.getAudioInputStream(audio);
-                
-                // Pega o formato e abre a linha para reprodução
-                AudioFormat format = audioStream.getFormat();
-                long totalFrames = audioStream.getFrameLength();
-                float frameRate = format.getFrameRate();
-                int totalSeconds = (int) (totalFrames / frameRate);
-                
-                view.getSlider_duration().setMinimum(0);
-                view.getSlider_duration().setMaximum(totalSeconds);
-                view.getSlider_duration().setValue(0);                
-
-                DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-                audioLine = (SourceDataLine) AudioSystem.getLine(info);
-                audioLine.open(format);
-                audioLine.start();
-
-                // Buffer para reprodução
-                byte[] buffer = new byte[4096];
-                int bytesRead;
-                int totalBytesRead = 0;
-                int bytesPerSecond = (int) (format.getFrameSize() * format.getFrameRate());
-
-                // Toca o áudio enquanto não for solicitado parar
-                while (!stopRequested && (bytesRead = audioStream.read(buffer)) != -1) {
-                    audioLine.write(buffer, 0, bytesRead);
-                    totalBytesRead += bytesRead;
-
-                    int currentSecond = totalBytesRead / bytesPerSecond;
-
-                    // Atualiza o slider na EDT
-                    final int sliderValue = currentSecond;
-                    SwingUtilities.invokeLater(() -> view.getSlider_duration().setValue(sliderValue));
-                }
-
-                // Finaliza
-                audioLine.drain();
-                audioLine.stop();
-                audioLine.close();
-                audioStream.close();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                isPlaying = false;
-                stopRequested = false;
-                SwingUtilities.invokeLater(() -> {
-                    view.getBtt_play().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/play.png")));
-                });
+        try {
+            byte[] audioData = selectedMusic.getMusicAudio();
+            if (audioData == null || audioData.length == 0) {
+                CustomJDialog.showCustomDialog("Aviso!", "Nenhum áudio foi cadastrado para essa música.");
+                return;
             }
-        });
 
-        musicThread.start();
+            ByteArrayInputStream audioStream = new ByteArrayInputStream(audioData);
+            FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(audioStream);
+            
+            grabber.start();
+
+            AudioFormat audioFormat = new AudioFormat(grabber.getSampleRate(), 16, grabber.getAudioChannels(), true, false);
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+            audioLine = (SourceDataLine) AudioSystem.getLine(info);
+            audioLine.open(audioFormat);
+            audioLine.start();
+
+            Frame frame;
+            int totalSeconds = (int) (grabber.getLengthInTime() / 1_000_000L);
+            view.getSlider_duration().setMinimum(0);
+            view.getSlider_duration().setMaximum(totalSeconds > 0 ? totalSeconds : 100); // Fallback se der falha na duração
+            view.getSlider_duration().setValue(0);
+
+            long totalBytesWritten = 0;
+            int bytesPerSecond = (int) (audioFormat.getFrameSize() * audioFormat.getFrameRate());
+
+            while (!stopRequested && (frame = grabber.grabSamples()) != null) {
+                // Processa o audio
+                if (frame.samples != null && frame.samples.length > 0) {
+                    ShortBuffer channelSamplesShortBuffer = (ShortBuffer) frame.samples[0];
+                    channelSamplesShortBuffer.rewind();
+                    byte[] buffer = new byte[channelSamplesShortBuffer.remaining() * 2];
+                    for (int i = 0; i < channelSamplesShortBuffer.remaining(); i++) {
+                        short val = channelSamplesShortBuffer.get(i);
+                        buffer[i * 2] = (byte) (val & 0xFF);
+                        buffer[i * 2 + 1] = (byte) ((val >> 8) & 0xFF);
+                    }
+
+                    audioLine.write(buffer, 0, buffer.length);
+                    totalBytesWritten += buffer.length;
+
+                    final int currentSecond = bytesPerSecond > 0 ? 
+                        (int) (totalBytesWritten / (float) bytesPerSecond) : 0;
+                    SwingUtilities.invokeLater(() -> view.getSlider_duration().setValue(currentSecond));
+                }
+            }
+
+            grabber.stop();
+            audioLine.drain();
+            audioLine.stop();
+            audioLine.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            SwingUtilities.invokeLater(() -> {
+                CustomJDialog.showCustomDialog("Erro", "Falha ao reproduzir áudio: " + e.getMessage());
+            });
+        } finally {
+            isPlaying = false;
+            stopRequested = false;
+            SwingUtilities.invokeLater(() -> {
+                view.getBtt_play().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/play.png")));
+            });
+        }
+    });
+    musicThread.start();
+    
     }
 
     /**
