@@ -298,7 +298,12 @@ public class MusicSearchController {
                 
 
                 // Cria um InputStream com os dados
-                ByteArrayInputStream audio = new ByteArrayInputStream(audioData);
+                ByteArrayInputStream audio = null;
+                try{
+                    audio = new ByteArrayInputStream(audioData);
+                } catch(NullPointerException e) {
+                    CustomJDialog.showCustomDialog("Aviso!", "Nenhum áudio foi cadastrado para essa música.");
+                }
                 AudioInputStream audioStream = AudioSystem.getAudioInputStream(audio);
                 
                 // Pega o formato e abre a linha para reprodução

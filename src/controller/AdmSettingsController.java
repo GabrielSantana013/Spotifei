@@ -15,6 +15,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
+import java.nio.file.Files;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Adm;
@@ -53,6 +55,7 @@ public class AdmSettingsController {
     private Adm adm;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private RegistrationWindow rw;
+    
     private byte[] musicPhoto; // atributos instaciados aqui para conseguir passar os arquivos de uma função para outra
     private byte[] musicAudio;
     private int duration;
@@ -68,6 +71,20 @@ public class AdmSettingsController {
         this.view = view;
         this.adm = adm;
         this.rw = new RegistrationWindow(true);
+        
+        InputStream is = getClass().getResourceAsStream("/view/assets/images/default.png");
+
+        if (is == null) {
+            System.err.println("Imagem não encontrada!");
+        } else {
+            try{
+                byte[] imgBytes = is.readAllBytes();
+                this.musicPhoto = processImage(imgBytes); // Imagem padrão inicializada
+            } catch(IOException e){
+                System.err.println("erro " + e);
+            }
+        }
+
     }
      
     /**
@@ -94,6 +111,7 @@ public class AdmSettingsController {
         view.getPnl_registerMusic().setVisible(false);
         view.getPnl_registerArtist().setVisible(true);
         view.getBtt_atualizar().setVisible(true);
+        view.getBtt_atualizar().setText("Cadastrar");
         
         for (ActionListener al : view.getBtt_atualizar().getActionListeners()) {
             view.getBtt_atualizar().removeActionListener(al);
@@ -152,6 +170,7 @@ public class AdmSettingsController {
         view.getPnl_registerArtist().setVisible(false);
         view.getPnl_registerMusic().setVisible(true);
         view.getBtt_atualizar().setVisible(true);
+        view.getBtt_atualizar().setText("Cadastrar");
         
         List<Artist> artists = new ArrayList<>();
         
@@ -273,7 +292,7 @@ public class AdmSettingsController {
      * processa e armazena o arquivo selecionado para uso no cadastro da música.
      */
     public void addPhoto(){      
-         JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         
         // Caminho para a pasta Documentos do usuário
         String caminhoDocumentos = System.getProperty("user.home") + File.separator + "Documents";

@@ -123,9 +123,9 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         lbl_musicArtist = new javax.swing.JLabel();
         scroll_musicArtists = new javax.swing.JScrollPane();
         list_artists = new javax.swing.JList<>();
+        lbl_musicDesc = new javax.swing.JLabel();
         scroll_musicDesc = new javax.swing.JScrollPane();
         txt_musicDescription = new javax.swing.JTextArea();
-        lbl_musicDesc = new javax.swing.JLabel();
         txt_duration = new PlaceholderFields("Duração da música (s)", new Insets(0, 15, 0, 0));
         NumberFormat intFormat = NumberFormat.getIntegerInstance();
         intFormat.setGroupingUsed(false); // tira separação por , e .
@@ -150,7 +150,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
 
         home_pnl_all.setBackground(new java.awt.Color(28, 28, 28));
         home_pnl_all.setMaximumSize(new java.awt.Dimension(1024, 1024));
-        home_pnl_all.setMinimumSize(new java.awt.Dimension(1024, 1024));
+        home_pnl_all.setMinimumSize(new java.awt.Dimension(1024, 720));
         home_pnl_all.setPreferredSize(new java.awt.Dimension(1024, 1024));
 
         home_pnl_leftSide.setBackground(new java.awt.Color(28, 28, 28));
@@ -248,7 +248,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                 .addComponent(home_pnl_titleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(home_pnl_options, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(512, Short.MAX_VALUE))
+                .addContainerGap(355, Short.MAX_VALUE))
         );
 
         home_pnl_topSide.setBackground(new java.awt.Color(28, 28, 28));
@@ -490,7 +490,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                 .addComponent(lbl_desc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scroll_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         pnl_registers.add(pnl_registerArtist);
@@ -595,6 +595,10 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
         list_artists.setSelectionBackground(new java.awt.Color(100, 165, 135));
         scroll_musicArtists.setViewportView(list_artists);
 
+        lbl_musicDesc.setFont(new Font("Gotham Light", Font.PLAIN, 14));
+        lbl_musicDesc.setForeground(new java.awt.Color(236, 239, 241));
+        lbl_musicDesc.setText("Descrição da música:");
+
         scroll_musicDesc.setBorder(null);
 
         txt_musicDescription.setBackground(new java.awt.Color(51, 51, 51));
@@ -661,10 +665,6 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                 g2.dispose();
             }
         });
-
-        lbl_musicDesc.setFont(new Font("Gotham Light", Font.PLAIN, 14));
-        lbl_musicDesc.setForeground(new java.awt.Color(236, 239, 241));
-        lbl_musicDesc.setText("Descrição da música:");
 
         txt_duration.setBackground(new java.awt.Color(51, 51, 51));
         txt_duration.setFont(new java.awt.Font("Gotham Thin", 1, 14));
@@ -756,9 +756,9 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                             .addComponent(btt_addPhoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnl_registerMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btt_addAudio, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(btt_addAudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_dislikes)
-                            .addComponent(lbl_dislikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lbl_dislikes, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         pnl_registerMusicLayout.setVerticalGroup(
@@ -771,11 +771,11 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lbl_musicArtist)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll_musicArtists, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scroll_musicArtists, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_musicDesc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll_musicDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scroll_musicDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txt_duration, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -881,10 +881,10 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
             pnl_removeMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_removeMusicLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_removeMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scroll_musics, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(lbl_listMusics, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(pnl_removeMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scroll_musics, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lbl_listMusics, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_removeMusicLayout.setVerticalGroup(
             pnl_removeMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -893,7 +893,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                 .addComponent(lbl_listMusics)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scroll_musics, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
 
         pnl_registers.add(pnl_removeMusic);
@@ -911,11 +911,11 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
             home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(home_pnl_insideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btt_registerUser, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                    .addComponent(btt_registerArtist, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                    .addComponent(btt_registerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                    .addComponent(btt_removeMusic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btt_registerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btt_registerUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(btt_registerArtist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(btt_removeMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btt_atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -931,7 +931,7 @@ public class AdmSettingsWindow extends javax.swing.JFrame {
                 .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(home_pnl_insideLayout.createSequentialGroup()
                         .addComponent(pnl_registers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(home_pnl_insideLayout.createSequentialGroup()
                         .addGroup(home_pnl_insideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
