@@ -8,7 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * Representa uma música com informações como título, descrição, gênero, artista, 
+ * número de likes e dislikes, duração, além de foto e áudio em formato binário.
+ * 
  * @author unifgdias
  */
 public class Music {
@@ -17,6 +19,18 @@ public class Music {
     private String musicTitle, musicDescription, genre, artistName;
     private byte[] musicPhoto, musicAudio;
 
+    /**
+     * Construtor completo da música, incluindo dados básicos e mídia.
+     * 
+     * @param musicId ID da música.
+     * @param likes Número de likes.
+     * @param deslikes Número de dislikes.
+     * @param duration Duração da música em segundos.
+     * @param musicTitle Título da música.
+     * @param musicDescription Descrição da música.
+     * @param genre Gênero musical.
+     * @param artistName Nome do artista.
+     */
     public Music(int musicId, int likes, int deslikes, int duration, 
             String musicTitle, String musicDescription, String genre,
             String artistName) {
@@ -30,6 +44,15 @@ public class Music {
         this.artistName = artistName;
     }
 
+    /**
+     * Construtor para música com dados essenciais.
+     * 
+     * @param likes Número de likes.
+     * @param deslikes Número de dislikes.
+     * @param duration Duração em segundos.
+     * @param musicTitle Título da música.
+     * @param musicDescription Descrição da música.
+     */
     public Music(int likes, int deslikes, int duration, String musicTitle, 
             String musicDescription) {
         this.likes = likes;
@@ -39,17 +62,44 @@ public class Music {
         this.musicDescription = musicDescription;
     }
     
+    /**
+     * Construtor com ID e título.
+     * 
+     * @param musicId ID da música.
+     * @param title Título da música.
+     */
     public Music(int musicId, String title) {
         this.musicId = musicId;
         this.musicTitle = title;
     }
 
+    /**
+     * Construtor com título, artista e foto.
+     * 
+     * @param musicTitle Título da música.
+     * @param artistName Nome do artista.
+     * @param musicPhoto Foto da música em bytes.
+     */
     public Music(String musicTitle, String artistName, byte[] musicPhoto) {
         this.musicTitle = musicTitle;
         this.artistName = artistName;
         this.musicPhoto = musicPhoto;
     }
 
+    /**
+     * Construtor completo com todos os atributos.
+     * 
+     * @param musicId ID da música.
+     * @param likes Número de likes.
+     * @param deslikes Número de dislikes.
+     * @param duration Duração em segundos.
+     * @param musicTitle Título da música.
+     * @param musicDescription Descrição da música.
+     * @param genre Gênero musical.
+     * @param artistName Nome do artista.
+     * @param musicPhoto Foto da música em bytes.
+     * @param musicAudio Áudio da música em bytes.
+     */
     public Music(int musicId, int likes, int deslikes, int duration, 
             String musicTitle, String musicDescription, String genre, 
             String artistName, byte[] musicPhoto, byte[] musicAudio) {
@@ -65,6 +115,19 @@ public class Music {
         this.musicAudio = musicAudio;
     }
 
+    /**
+     * Construtor para criação com dados e associação a artista via ID.
+     * 
+     * @param likes Número de likes.
+     * @param deslikes Número de dislikes.
+     * @param duration Duração em segundos.
+     * @param artistId ID do artista.
+     * @param musicTitle Título da música.
+     * @param musicDescription Descrição da música.
+     * @param genre Gênero musical.
+     * @param musicPhoto Foto da música em bytes.
+     * @param musicAudio Áudio da música em bytes.
+     */
     public Music(int likes, int deslikes, int duration, int artistId, 
             String musicTitle, String musicDescription, String genre,
             byte[] musicPhoto, byte[] musicAudio) {
@@ -79,9 +142,7 @@ public class Music {
         this.musicAudio = musicAudio;
     }
     
-    
-    
-    public int getMusicId() {
+      public int getMusicId() {
         return musicId;
     }
 
@@ -160,9 +221,14 @@ public class Music {
     public void setMusicAudio(byte[] musicAudio) {
         this.musicAudio = musicAudio;
     }
-    
-    
-     
+        
+    /**
+     * Cria um objeto Music a partir de um ResultSet de uma consulta SQL.
+     * 
+     * @param res ResultSet com os dados da música.
+     * @return Objeto Music criado a partir do ResultSet.
+     * @throws SQLException se ocorrer erro na leitura do ResultSet.
+     */
     public static Music fromResultSet(ResultSet res) throws SQLException {
         
         return new Music(
@@ -180,3 +246,6 @@ public class Music {
     }
     
 }
+
+  
+

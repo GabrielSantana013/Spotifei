@@ -17,7 +17,9 @@ import javax.swing.event.ListSelectionListener;
 import view.customDialogs.CustomJDialog;
 
 /**
- *
+ * Controlador responsável por gerenciar as ações e lógica da janela de detalhes de uma playlist.
+ * Permite carregar as músicas da playlist, exibir seus atributos e remover músicas.
+ * 
  * @author gabas
  */
 public class PlaylistDetailsController {
@@ -26,19 +28,32 @@ public class PlaylistDetailsController {
     private Playlist playlist;
     private int musicIndex;
 
+    /**
+     * Construtor da classe PlaylistDetailsController.
+     * Inicializa os componentes e adiciona listeners aos botões.
+     * 
+     * @param view a janela que será controlada
+     * @param playlist a playlist selecionada que será manipulada
+     */
     public PlaylistDetailsController(OpenPlaylistWindow view, Playlist playlist) {
         this.view = view;
         this.playlist = playlist;
         
         view.getBtt_removeMusic().addActionListener(e -> removePlaylistSong());   
     }
-    
+
+    /**
+     * Define os atributos da playlist na interface gráfica, como nome e descrição.
+     */
     public void setPlaylistAtributtes(){
         view.getBtt_playlistName().setText(playlist.getPlaylistName());  
         view.getTxt_description().setText(playlist.getPlaylistDescription());
         view.setTitle(playlist.getPlaylistName());        
     }
-    
+
+    /**
+     * Carrega as músicas da playlist do banco de dados e as exibe na lista da interface gráfica.
+     */
     public void loadPlaylistSongs() {
         try(Connection conn = new DbConnection().getConnection()){
             PlaylistDAO playlistDAO = new PlaylistDAO(conn);
@@ -59,7 +74,10 @@ public class PlaylistDetailsController {
             e.printStackTrace();            
         }
     }
-    
+
+    /**
+     * Remove a música selecionada da playlist e atualiza o banco de dados e a interface.
+     */
     public void removePlaylistSong() {               
         
         musicIndex = view.getList_musics().getSelectedIndex();
@@ -90,6 +108,4 @@ public class PlaylistDetailsController {
         CustomJDialog.showCustomDialog("Aviso", "Música excluída com sucesso!");
         loadPlaylistSongs();
     }
-
-    
 }

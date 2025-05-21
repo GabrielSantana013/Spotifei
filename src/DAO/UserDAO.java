@@ -12,17 +12,32 @@ import model.Music;
 import model.User;
 
 /**
- *
+ * Classe responsável por gerenciar as operações de acesso a dados (DAO)
+ * relacionadas aos usuários no banco de dados da aplicação Spotifei.
+ * Realiza inserções, autenticação, atualização de histórico e interações
+ * com músicas (like/dislike).
+ * 
  * @author gabas
  */
 public class UserDAO {
-    
+
     private Connection conn;
-    
+
+    /**
+     * Construtor que recebe uma conexão com o banco de dados.
+     * 
+     * @param conn conexão com o banco de dados PostgreSQL.
+     */
     public UserDAO(Connection conn){
         this.conn = conn;
     }
-    
+
+    /**
+     * Insere um novo usuário na tabela 'users'.
+     * 
+     * @param user objeto User contendo os dados a serem inseridos.
+     * @throws SQLException se ocorrer erro durante a execução do comando SQL.
+     */
     public void insert(User user) throws SQLException{
         String sql = "insert into spotifei.users(name, gender, birth_date,"
                 + " login_user, password_user) values(?,?,?,?,?)";                
@@ -35,30 +50,47 @@ public class UserDAO {
         statement.execute();
         conn.close();
     }
-    
-    public ResultSet login(User user)throws SQLException{
+
+    /**
+     * Realiza o login do usuário verificando suas credenciais.
+     * 
+     * @param user objeto User contendo login e senha.
+     * @return ResultSet com os dados do usuário, caso encontrado.
+     * @throws SQLException se ocorrer erro ao acessar o banco.
+     */
+    public ResultSet login(User user) throws SQLException {
         String sql = "select * from spotifei.users where login_user = ? AND"
                 + " password_user = ?";   
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, user.getUserLogin());
         statement.setString(2, user.getUserPassword());
         statement.execute();
-        ResultSet result = statement.getResultSet();
-        return result;
+        return statement.getResultSet();
     }
-    
+
+    /**
+     * Atualiza o histórico de músicas do usuário na base de dados.
+     * 
+     * @param user objeto User com o histórico a ser atualizado.
+     * @throws SQLException se ocorrer erro na atualização.
+     */
     public void updateHistoric(User user) throws SQLException {
         String sql = "UPDATE spotifei.users SET historic = ? WHERE login_user = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
-
-        // Serializa o histórico
         String serializedHistoric = String.join(";", user.getHistoric());
-
         statement.setString(1, serializedHistoric);
         statement.setString(2, user.getUserLogin());
         statement.executeUpdate();
     }
-    
+
+    /**
+     * Obtém a interação (like, dislike ou none) de um usuário com uma música.
+     * 
+     * @param userId ID do usuário.
+     * @param musicId ID da música.
+     * @return "like", "dislike" ou "none".
+     * @throws SQLException se ocorrer erro na consulta.
+     */
     public String getUserInteraction(int userId, int musicId) throws SQLException {
         String sql = "SELECT is_like FROM spotifei.user_like_music WHERE user_id = ?"
                 + " AND music_id = ?";
@@ -74,6 +106,14 @@ public class UserDAO {
         return "none";
     }
 
+    /**
+     * Insere ou atualiza a interação do usuário com uma música (like/dislike).
+     * 
+     * @param userId ID do usuário.
+     * @param musicId ID da música.
+     * @param is_like true para like, false para dislike.
+     * @throws SQLException se ocorrer erro durante a operação.
+     */
     public void insertOrUpdateInteraction(int userId, int musicId, boolean is_like) throws SQLException {
         String sql = "INSERT INTO spotifei.user_like_music (user_id, music_id, "
                 + "is_like) VALUES (?, ?, ?) "
@@ -86,7 +126,14 @@ public class UserDAO {
             statement.executeUpdate();
         }
     }
-    
+
+    /**
+     * Retorna uma lista de músicas curtidas pelo usuário.
+     * 
+     * @param userId ID do usuário.
+     * @return lista de objetos Music curtidos.
+     * @throws SQLException se ocorrer erro durante a consulta.
+     */
     public ArrayList<Music> getLikedMusics(int userId) throws SQLException {
         String sql = "SELECT m.* FROM spotifei.music m " +
                      "JOIN spotifei.user_like_music ulm ON m.music_id = ulm.music_id " +
@@ -99,13 +146,19 @@ public class UserDAO {
                 int musicId = res.getInt("music_id");
                 String musicName = res.getString("title");
                 Music music = new Music(musicId, musicName);
-                // Adapte conforme seu modelo de Music
                 likedMusics.add(music);
             }
         }
         return likedMusics;
     }
 
+    /**
+     * Retorna uma lista de músicas que o usuário não curtiu (dislikes).
+     * 
+     * @param userId ID do usuário.
+     * @return lista de objetos Music não curtidos.
+     * @throws SQLException se ocorrer erro durante a consulta.
+     */
     public ArrayList<Music> getDislikedMusics(int userId) throws SQLException {
         String sql = "SELECT m.* FROM spotifei.music m " +
                      "JOIN spotifei.user_like_music ulm ON m.music_id = ulm.music_id " +
@@ -124,3 +177,4 @@ public class UserDAO {
         return dislikedMusics;
     }
 }
+

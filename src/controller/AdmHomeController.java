@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
 import DAO.DbConnection;
@@ -17,40 +13,57 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.Adm;
 import model.Music;
-import model.User;
-import static utils.ImageProcessor.byteArrayToImage;
 import view.AdmHomeWindow;
 import view.customDialogs.CustomJDialog;
+import static utils.ImageProcessor.byteArrayToImage;
 
 /**
- *
- * @author Pero Schneider, Gabriel Santana Dias
+ * Controlador para a janela principal do administrador (AdmHomeWindow).
+ * Responsável por interagir com a camada DAO para obter dados do banco,
+ * atualizar a interface com informações relevantes, como músicas mais/menos curtidas,
+ * total de usuários, total de músicas, e o nome do administrador logado.
+ * 
+ * @author Pedro Schneider, Gabriel Santana Dias
  */
-public class AdmHomeController{
+public class AdmHomeController {
     
     private AdmHomeWindow view;
     private Adm adm;
 
-    public AdmHomeController(AdmHomeWindow view, Adm adm) throws IOException{
+    /**
+     * Construtor do controlador, inicializa a view e o administrador atual.
+     * 
+     * @param view a janela principal do administrador
+     * @param adm o administrador logado
+     * @throws IOException caso ocorra erro na manipulação de imagens ou arquivos
+     */
+    public AdmHomeController(AdmHomeWindow view, Adm adm) throws IOException {
         this.view = view;
         this.adm = adm;        
-        
     }
     
-    public void setUserNameOnWindow(){
+    /**
+     * Define o nome do usuário administrador na interface gráfica,
+     * atualizando o botão de perfil e o rótulo de boas-vindas.
+     */
+    public void setUserNameOnWindow() {
         view.getBtt_profile().setText(adm.getAdmLogin());
         view.getLbl_welcome().setText("Bem-vindo(a), administrador ");
     }
  
-    public void fillTopFive() throws IOException{
-        ArrayList<Music> topFive = new ArrayList();
+    /**
+     * Preenche a interface com as 5 músicas mais curtidas do banco de dados.
+     * Atualiza os títulos, nomes dos artistas e imagens nas labels correspondentes.
+     * 
+     * @throws IOException caso haja erro na conversão de bytes para imagem
+     */
+    public void fillTopFive() throws IOException {
+        ArrayList<Music> topFive = new ArrayList<>();
         
-        try(Connection conn = new DbConnection().getConnection()){
-        
+        try (Connection conn = new DbConnection().getConnection()) {
             MusicDAO dao = new MusicDAO(conn);
             topFive = dao.getTop5MostLikedMusics();
-            
-        }catch(SQLException e){
+        } catch (SQLException e) {
             CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar o top 5 no banco.");
         }
         
@@ -87,19 +100,22 @@ public class AdmHomeController{
             artists.get(i).setText(artist);
             BufferedImage image = byteArrayToImage(m.getMusicPhoto());
             images.get(i).setIcon(new ImageIcon(image));
-            
         }
     }
 
-    public void fillTopFiveBad() throws IOException{
-        ArrayList<Music> topFive = new ArrayList();
+    /**
+     * Preenche a interface com as 5 músicas menos curtidas do banco de dados.
+     * Atualiza os títulos, nomes dos artistas e imagens nas labels correspondentes.
+     * 
+     * @throws IOException caso haja erro na conversão de bytes para imagem
+     */
+    public void fillTopFiveBad() throws IOException {
+        ArrayList<Music> topFive = new ArrayList<>();
         
-        try(Connection conn = new DbConnection().getConnection()){
-        
+        try (Connection conn = new DbConnection().getConnection()) {
             MusicDAO dao = new MusicDAO(conn);
             topFive = dao.getTop5LessLikedMusics();
-            
-        }catch(SQLException e){
+        } catch (SQLException e) {
             CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar o top 5 no banco.");
         }
         
@@ -136,43 +152,49 @@ public class AdmHomeController{
             artists.get(i).setText(artist);
             BufferedImage image = byteArrayToImage(m.getMusicPhoto());
             images.get(i).setIcon(new ImageIcon(image));
-            
         }
     }
     
-    public void totalUsers(){
+    /**
+     * Obtém e exibe o total de usuários cadastrados no sistema.
+     * Atualiza o label correspondente na interface gráfica.
+     */
+    public void totalUsers() {
         int users = 0;
         
-        try(Connection conn = new DbConnection().getConnection()){
-        
+        try (Connection conn = new DbConnection().getConnection()) {
             MusicDAO dao = new MusicDAO(conn);
             users = dao.getTotalUsers();
-            
-        }catch(SQLException e){
+        } catch (SQLException e) {
             CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar usuários.");
         }
         
         view.getLbl_numberUsers().setText(String.valueOf(users));
     }
     
-    public void totalMusics(){
+    /**
+     * Obtém e exibe o total de músicas cadastradas no sistema.
+     * Atualiza o label correspondente na interface gráfica.
+     */
+    public void totalMusics() {
         int musics = 0;
         
-        try(Connection conn = new DbConnection().getConnection()){
-        
+        try (Connection conn = new DbConnection().getConnection()) {
             MusicDAO dao = new MusicDAO(conn);
             musics = dao.getTotalMusics();
-            
-        }catch(SQLException e){
+        } catch (SQLException e) {
             CustomJDialog.showCustomDialog("Erro!", "Erro ao buscar músicas.");
         }
         
         view.getLbl_numberMusics().setText(String.valueOf(musics));
     }
     
-    
+    /**
+     * Retorna o objeto administrador associado a este controlador.
+     * 
+     * @return o administrador atual
+     */
     public Adm getAdm() {
         return adm;
     }
 }
-

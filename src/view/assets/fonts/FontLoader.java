@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package view.assets.fonts;
 
 import java.awt.Font;
@@ -9,14 +5,26 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.io.InputStream;
+
 /**
- *
- * @author Pedro Schneider, Gabriel Santana Dias
+ * Classe utilitária para carregar e registrar fontes customizadas
+ * no ambiente gráfico da aplicação.
+ * 
+ * <p>As fontes devem estar disponíveis no classpath no caminho informado,
+ * normalmente dentro da pasta resources.</p>
+ * 
+ * @author Pedro Schneider
  */
 public class FontLoader {
 
+    /**
+     * Registra uma fonte TrueType ou OpenType a partir do caminho
+     * do recurso dentro do classpath.
+     * 
+     * @param resourcePath caminho do arquivo de fonte (.ttf ou .otf) relativo ao classpath,
+     *                     por exemplo "/view/assets/fonts/Gotham-Black.otf"
+     */
     public static void registerFont(String resourcePath) {
-        // registra as fontes utilizadas
         try {
             InputStream is = FontLoader.class.getResourceAsStream(resourcePath);
             if (is == null) {
@@ -35,6 +43,11 @@ public class FontLoader {
         }
     }
 
+    /**
+     * Registra todas as fontes definidas no método.
+     * Este método chama internamente {@link #registerFont(String)} para
+     * cada arquivo de fonte listado.
+     */
     public static void registerAllFonts() {
         registerFont("/view/assets/fonts/Gotham-Black.otf");
         registerFont("/view/assets/fonts/Gotham-Bold.otf");

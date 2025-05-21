@@ -38,8 +38,14 @@ import view.RegistrationWindow;
 import view.customDialogs.CustomJDialog;
 
 /**
- *
- * @author Gabriel
+ * Controlador responsável pelas funcionalidades da janela de configurações do administrador,
+ * incluindo cadastro de usuários, artistas, músicas, exclusão de músicas, e adição de fotos e áudios.
+ * <p>
+ * Interage com a camada DAO para operações no banco de dados e com a camada de visão (view) para atualizar
+ * a interface gráfica.
+ * </p>
+ * 
+ * @author Pedro Schneider, Gabriel Santana Dias
  */
 public class AdmSettingsController {
     
@@ -50,11 +56,22 @@ public class AdmSettingsController {
     private byte[] musicAudio;
     private int duration;
 
+    
+    /**
+     * Construtor que inicializa o controlador com a janela e o administrador logado.
+     * 
+     * @param view A janela de configurações do administrador.
+     * @param adm O administrador atualmente logado.
+     */
     public AdmSettingsController(AdmSettingsWindow view, Adm adm) {
         this.view = view;
         this.adm = adm;     
     }
      
+    /**
+     * Exibe a janela para cadastro de novos usuários.
+     * Esconde componentes relacionados ao cadastro de música e artista.
+     */
     public void registerUser(){
         view.getBtt_cadastrar().setVisible(false);
         view.getPnl_registerMusic().setVisible(false);
@@ -66,6 +83,10 @@ public class AdmSettingsController {
         rw.getBtt_return().setVisible(false);
     }
     
+    /**
+     * Configura e exibe a interface para cadastro de artistas,
+     * valida os dados inseridos e insere o artista no banco de dados.
+     */
     public void registerArtist(){
         view.getPnl_registerMusic().setVisible(false);
         view.getPnl_registerArtist().setVisible(true);
@@ -119,6 +140,10 @@ public class AdmSettingsController {
 
     }
     
+    /*
+     * Configura e exibe a interface para cadastro de músicas,
+     * lista os artistas disponíveis para associação e insere a música no banco.
+     */
     public void registerMusic(){
         view.getPnl_registerArtist().setVisible(false);
         view.getPnl_registerMusic().setVisible(true);
@@ -179,7 +204,10 @@ public class AdmSettingsController {
         });
     }
     
-    
+    /**
+     * Configura e exibe a interface para exclusão de músicas,
+     * lista as músicas disponíveis e remove a selecionada do banco e cache.
+     */
     public void excludeMusic(){
         view.getPnl_registerArtist().setVisible(false);
         view.getPnl_registerMusic().setVisible(false);
@@ -236,7 +264,10 @@ public class AdmSettingsController {
     }
 
     
-    
+    /**
+     * Abre um seletor de arquivos para que o usuário possa escolher uma imagem,
+     * processa e armazena o arquivo selecionado para uso no cadastro da música.
+     */
     public void addPhoto(){      
          JFileChooser fileChooser = new JFileChooser();
         
@@ -302,6 +333,10 @@ public class AdmSettingsController {
         }
     }
     
+     /**
+     * Abre um seletor de arquivos para que o usuário possa escolher um arquivo de áudio no formato WAV,
+     * carrega o áudio em memória, calcula a duração e exibe na interface.
+     */
     public void addAudio(){
         
         // TODO add your handling code here:
@@ -375,6 +410,9 @@ public class AdmSettingsController {
         }
     }
     
+    /**
+     * Atualiza o texto do botão de perfil na janela para exibir o login do administrador atual.
+     */
     public void setUserNameOnWindow(){
         view.getBtt_profile().setText(adm.getAdmLogin());
     }

@@ -17,17 +17,33 @@ import view.HomeWindow;
 import view.LoginWindow;
 import java.sql.SQLException;
 
+/**
+ * Controlador responsável por gerenciar o processo de login dos usuários e administradores.
+ * Faz a autenticação dos dados fornecidos pela interface de login e redireciona para a janela apropriada.
+ */
 public class LoginController {
 
     private LoginWindow view;
     private Authenticator<User> userAuthenticator;
     private Authenticator<Adm> admAuthenticator;
 
+    /**
+     * Construtor que inicializa o controlador com a janela de login fornecida e o autenticador de usuários.
+     * 
+     * @param view Janela de login que será controlada.
+     */
     public LoginController(LoginWindow view) {
         this.view = view;
         this.userAuthenticator = new UserAuthenticator();
     }
 
+    /**
+     * Executa o processo de login utilizando os dados fornecidos pela interface.
+     * Se a autenticação for bem-sucedida, redireciona o usuário para a janela adequada (administrador ou usuário comum).
+     * Caso contrário, exibe uma mensagem de erro.
+     * 
+     * @throws IOException Caso ocorra algum erro de entrada/saída durante a autenticação.
+     */
     public void login() throws IOException{
         String login = view.getTxt_login().getText();
         char[] passwordChars = view.getTxt_password().getPassword(); // pega a senha
@@ -71,5 +87,3 @@ public class LoginController {
         });
     }
 }
-
-

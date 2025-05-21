@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
-/**
- *
- * @author Gabriel
- */
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,14 +11,32 @@ import java.sql.Connection;
 import model.Artist;
 import model.Music;
 
+/**
+ * DAO (Data Access Object) responsável pelas operações administrativas
+ * no banco de dados da aplicação Spotifei. Permite inserção e remoção
+ * de músicas e artistas, bem como recuperação da lista de artistas.
+ * 
+ * @author Gabriel
+ */
 public class AdmDAO {
-    
+
     private Connection conn;
 
+    /**
+     * Construtor da classe AdmDAO.
+     *
+     * @param conn conexão ativa com o banco de dados.
+     */
     public AdmDAO(Connection conn) {
         this.conn = conn;
     }
 
+    /**
+     * Insere um novo artista na tabela {@code spotifei.artist}.
+     *
+     * @param artist objeto Artist contendo os dados do artista a ser inserido.
+     * @throws SQLException caso ocorra erro durante a execução da query SQL.
+     */
     public void insertArtist(Artist artist) throws SQLException {
         String sql = "INSERT INTO spotifei.artist (name, gender, birth_date, description) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -38,6 +48,18 @@ public class AdmDAO {
         }
     }
 
+    /**
+     * Insere uma nova música na tabela {@code spotifei.music}.
+     *
+     * @param title título da música.
+     * @param description descrição da música.
+     * @param duration duração da música em segundos.
+     * @param genre gênero musical.
+     * @param artistId ID do artista associado.
+     * @param musicPhoto array de bytes representando a imagem da música.
+     * @param musicAudio array de bytes representando o áudio da música.
+     * @throws SQLException caso ocorra erro durante a execução da query SQL.
+     */
     public void insertMusic(String title, String description, int duration, 
             String genre, int artistId, byte[] musicPhoto, byte[] musicAudio) 
             throws SQLException {
@@ -55,7 +77,13 @@ public class AdmDAO {
             statement.executeUpdate();
         }
     }
-    
+
+    /**
+     * Recupera todos os artistas cadastrados na tabela {@code spotifei.artist}.
+     *
+     * @return lista de objetos {@code Artist} com todos os artistas encontrados.
+     * @throws SQLException caso ocorra erro durante a execução da query SQL.
+     */
     public List<Artist> getAllArtists() throws SQLException {
         List<Artist> artistList = new ArrayList<>();
 
@@ -76,7 +104,13 @@ public class AdmDAO {
 
         return artistList;
     }
-    
+
+    /**
+     * Exclui uma música da tabela {@code spotifei.music} com base no ID.
+     *
+     * @param musicId identificador da música a ser excluída.
+     * @throws SQLException caso ocorra erro durante a execução da query SQL.
+     */
     public void deleteMusicById(int musicId) throws SQLException {
         String sql = "DELETE FROM spotifei.music WHERE music_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -85,6 +119,12 @@ public class AdmDAO {
         }
     }
 
+    /**
+     * Exclui uma música da tabela {@code spotifei.music} com base no título.
+     *
+     * @param title título da música a ser excluída.
+     * @throws SQLException caso ocorra erro durante a execução da query SQL.
+     */
     public void deleteMusicByTitle(String title) throws SQLException {
         String sql = "DELETE FROM spotifei.music WHERE title = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -92,5 +132,4 @@ public class AdmDAO {
             statement.executeUpdate();
         }
     }
-
 }

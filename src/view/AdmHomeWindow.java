@@ -14,7 +14,15 @@ import view.customClasses.RoundedButton.*;
 import view.customClasses.RoundedPanel;
 
 /**
- *
+ * Janela principal da interface administrativa do Spotifei.
+ * Esta janela exibe informações relevantes para o administrador, como:
+ * - As 5 músicas mais bem avaliadas
+ * - As 5 músicas menos avaliadas
+ * - Total de usuários cadastrados
+ * - Total de músicas no sistema
+ * 
+ * Também realiza a personalização visual da janela, como centralização e definição de ícone.
+ * 
  * @author Pedro Schneider, Gabriel Santana Dias
  */
 public class AdmHomeWindow extends javax.swing.JFrame {
@@ -25,8 +33,14 @@ public class AdmHomeWindow extends javax.swing.JFrame {
     private final int height = screenSize.height;
     private Adm adm;
     
-    /**
-     * Creates new form HomeWindow
+     /**
+     * Construtor da janela administrativa.
+     * Inicializa os componentes gráficos e configura o controlador da janela.
+     * Também define o tamanho da janela para tela cheia, centraliza a janela,
+     * atualiza o ícone da aplicação e preenche os dados estatísticos do sistema.
+     * 
+     * @param adm Objeto do tipo {@code Adm} que representa o administrador logado.
+     * @throws IOException Caso ocorra erro ao carregar os recursos visuais da interface.
      */
     public AdmHomeWindow(Adm adm) throws IOException {
         initComponents();
@@ -1317,41 +1331,7 @@ public class AdmHomeWindow extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_home_pnl_configsOptMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(HomeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(HomeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(HomeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(HomeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new HomeWindow().setVisible(true);
-//            }
-//        });
-//    }
-    
+
     private AdmHomeController c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

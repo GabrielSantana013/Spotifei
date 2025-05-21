@@ -33,18 +33,30 @@ import static utils.ImageProcessor.byteArrayToImage;
 import view.SearchWindow;
 import view.customDialogs.CustomJDialog;
 
+/**
+ * Controlador responsável por gerenciar a lógica da busca, seleção e reprodução de músicas
+ * na interface SearchWindow, assim como a interação do usuário com playlists e histórico.
+ */
 public class MusicSearchController {
+
     private SearchWindow view;
     private ArrayList<Music> currentMusics;
     private ArrayList<Playlist> currentPlaylists;
     private User user;
     private Music selectedMusic;
-    // para tocar a musica
+
+    // Controle de reprodução da música
     private volatile boolean isPlaying = false;
     private volatile boolean stopRequested = false;
     private SourceDataLine audioLine;
     private Thread musicThread;
 
+    /**
+     * Construtor da classe MusicSearchController.
+     *
+     * @param view Interface gráfica da busca de músicas (SearchWindow).
+     * @param user Usuário atual logado no sistema.
+     */
     public MusicSearchController(SearchWindow view, User user) {
         this.view = view;
         this.user = user;
@@ -59,16 +71,20 @@ public class MusicSearchController {
         this.view.getBtt_addPlaylist().addActionListener(e -> addMusicToPlaylist());
     }
 
-
+    /**
+     * Realiza a busca de músicas filtrando por título, artista ou gênero.
+     * Atualiza a lista de músicas exibida na interface.
+     * Exibe o histórico caso o campo de busca esteja vazio.
+     */
     public void searchMusic() {
         String musicName = view.getSearch_name().getText();
 
-        if (musicName == null || musicName.trim().isEmpty()) {            
+        if (musicName == null || musicName.trim().isEmpty()) {
             displayHistoric();
             return;
         }
 
-       String searchLower = musicName.toLowerCase();
+        String searchLower = musicName.toLowerCase();
         List<Music> musics = MusicCache.getAllMusics().stream()
                 .filter(m -> 
                     m.getMusicTitle().toLowerCase().contains(searchLower) ||
@@ -81,50 +97,55 @@ public class MusicSearchController {
             CustomJDialog.showCustomDialog("Resultado", "Nenhuma música encontrada.");
             view.getjList1().setListData(new String[0]);
             currentMusics.clear();
-
-            displayHistoric();                
-
+            displayHistoric();
         } else {
             currentMusics = new ArrayList<>(musics);
-
             String[] titles = currentMusics.stream()
                     .map(Music::getMusicTitle)
                     .toArray(String[]::new);
             view.getjList1().setListData(titles);
         }
     }
-     
+
+    /**
+     * Exibe na interface as músicas do histórico do usuário.
+     * Atualiza a lista de músicas atualmente exibidas.
+     */
     private void displayHistoric() {
         List<String> historicTitles = user.getHistoric();
 
         if (historicTitles != null && !historicTitles.isEmpty()) {
             List<Music> musicsFromHistoric = new ArrayList<>();
-               for (String title : historicTitles) {                  
-                    Music m = MusicCache.getAllMusics().stream()
-                    .filter(music -> music.getMusicTitle().equalsIgnoreCase(title))
-                    .findFirst()
-                    .orElse(null);
-                    if (m != null) {
-                        musicsFromHistoric.add(m);
-                    }
+            for (String title : historicTitles) {
+                Music m = MusicCache.getAllMusics().stream()
+                        .filter(music -> music.getMusicTitle().equalsIgnoreCase(title))
+                        .findFirst()
+                        .orElse(null);
+                if (m != null) {
+                    musicsFromHistoric.add(m);
                 }
-                currentMusics = new ArrayList<>(musicsFromHistoric);
-                String[] titles = musicsFromHistoric.stream()
-                        .map(Music::getMusicTitle)
-                        .toArray(String[]::new);
-                view.getjList1().setListData(titles);
-
+            }
+            currentMusics = new ArrayList<>(musicsFromHistoric);
+            String[] titles = musicsFromHistoric.stream()
+                    .map(Music::getMusicTitle)
+                    .toArray(String[]::new);
+            view.getjList1().setListData(titles);
         } else {
             view.getjList1().setListData(new String[0]);
         }
     }
-    
-    private void updateMusicLabels(Music music){
+
+    /**
+     * Atualiza os campos da interface com os dados da música selecionada.
+     *
+     * @param music Música selecionada.
+     */
+    private void updateMusicLabels(Music music) {
         view.setSearch_pnl_musicInfoVisibility(Boolean.TRUE);
-        
+
         int duration = music.getDuration();
         String formattedDuration = String.format("%d:%02d", duration / 60, duration % 60);
-        
+
         view.getLbl_musicTitle().setText(music.getMusicTitle());
         view.getLbl_musicGenre().setText(music.getGenre());
         view.getLbl_musicDuration().setText(formattedDuration);
@@ -132,21 +153,25 @@ public class MusicSearchController {
         view.getLbl_musicDislikes().setText(String.valueOf(music.getDeslikes()));
         view.getLbl_musicDescription().setText(music.getMusicDescription());
         view.getLbl_musicArtist().setText(music.getArtistName());
-        
+
         view.getPnl_data().setVisible(true);
         view.getLbl_musicTitle1().setText(music.getMusicTitle());
         view.getLbl_musicArtist1().setText(music.getArtistName());
-        
-        try{
+
+        try {
             BufferedImage image = byteArrayToImage(music.getMusicPhoto());
             view.getArtist_photo().setIcon(new ImageIcon(image));
             view.getArtist_photo().setVisible(true);
-        }catch(IOException e){
+        } catch (IOException e) {
             CustomJDialog.showCustomDialog("Erro", "Erro ao carregar a foto do artista.");
             e.printStackTrace();
-        }   
+        }
     }
-    
+
+    /**
+     * Realiza a ação de curtir a música selecionada.
+     * Atualiza a base de dados e a interface com os novos valores.
+     */
     private void likeSelectedMusic() {
         if (selectedMusic != null) {
             try (Connection conn = new DbConnection().getConnection()) {
@@ -177,7 +202,11 @@ public class MusicSearchController {
             CustomJDialog.showCustomDialog("Aviso", "Nenhuma música selecionada.");
         }
     }
-    
+
+    /**
+     * Realiza a ação de descurtir a música selecionada.
+     * Atualiza a base de dados e a interface com os novos valores.
+     */
     private void dislikeSelectedMusic() {
         if (selectedMusic != null) {
             try (Connection conn = new DbConnection().getConnection()) {
@@ -209,7 +238,13 @@ public class MusicSearchController {
         }
     }
 
-    private void onMusicSelected(ListSelectionEvent e) {
+    /**
+     * Evento chamado quando uma música é selecionada na lista.
+     * Atualiza a interface com as informações da música, registra o histórico do usuário e atualiza o banco.
+     *
+     * @param e Evento de seleção na lista.
+     */
+        private void onMusicSelected(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             
             view.getPnl_player().setVisible(true);
@@ -233,76 +268,10 @@ public class MusicSearchController {
         }
     }
 
-    public void loadUserPlaylists(){
-        
-        try(Connection conn = new DbConnection().getConnection()){
-            PlaylistDAO dao = new PlaylistDAO(conn);
-            currentPlaylists = dao.getPlaylistsByUserId(user.getUserId());
-            
-            DefaultListModel<String> model = new DefaultListModel();
-            
-            for(Playlist p : currentPlaylists){
-                model.addElement(p.getPlaylistName());
-            }
-            
-            if(currentPlaylists != null){
-                view.getList_playlists().setModel(model);
-            }
-            
-        }catch(SQLException e){
-            CustomJDialog.showCustomDialog("Erro!", "Erro ao carregar playlists");
-            e.getMessage();
-        }
-    }
-    
-    public void addMusicToPlaylist(){
-        
-        int playlistIndex = view.getList_playlists().getSelectedIndex();
-                      
-        if(playlistIndex < 0){
-            CustomJDialog.showCustomDialog("Erro!", "Erro ao selecionar playlist");
-            return;
-        }
-        
-        ArrayList<String> playlistSongs = currentPlaylists.get(playlistIndex).getPlaylistSongs();        
-        
-        if(selectedMusic != null){        
-            if(!playlistSongs.contains(selectedMusic.getMusicTitle())){
-                playlistSongs.add(selectedMusic.getMusicTitle());
-            }
-            else{
-                CustomJDialog.showCustomDialog("Aviso!", "Esta música já está na playlist.");
-                return;
-            }            
-        }         
-             
-        String playlistSongsString = String.join(";", playlistSongs);        
-        
-        try(Connection conn = new DbConnection().getConnection()){
-            PlaylistDAO dao = new PlaylistDAO(conn);
-            dao.updatePlaylistSongs(currentPlaylists.get(playlistIndex).getPlaylistId(), playlistSongsString);
-        }catch(SQLException e){
-            CustomJDialog.showCustomDialog("Erro!", "Erro ao atualizar playlist");
-        }
-        
-        CustomJDialog.showCustomDialog("Aviso!", "Musica adicionada na playlist.");
-    }
-    
-    public void stopMusic() {
-        if (isPlaying) {
-            stopRequested = true;
-            if (audioLine != null) {
-                audioLine.stop();
-                audioLine.close();
-            }
-            isPlaying = false;
-            SwingUtilities.invokeLater(() -> {
-                view.getBtt_play().setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/assets/images/play.png")));
-            });
-        }
-    }
-    
-    // TODO: pegar o id da musica na busca
+    /**
+     * Inicia a reprodução da música selecionada.
+     * Executa a reprodução em uma thread separada para não travar a interface.
+     */
     public void playMusic() {        
         if (isPlaying) {
             // Se já estiver tocando, solicite parada
@@ -385,12 +354,91 @@ public class MusicSearchController {
         musicThread.start();
     }
 
-    
-    public int getAtualIndex(ArrayList<Music> m, String title){
-        return m.indexOf(title);
+    /**
+     * Para a reprodução da música atual.
+     */
+    public void stopMusic() {
+        stopRequested = true;
+        if (audioLine != null && audioLine.isOpen()) {
+            audioLine.stop();
+            audioLine.close();
+        }
+        if (musicThread != null && musicThread.isAlive()) {
+            try {
+                musicThread.join();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+        SwingUtilities.invokeLater(() -> view.getPnl_player().setVisible(false));
     }
-    
-    public void setUserNameOnWindow(){
-        view.getBtt_profile().setText(user.getUserLogin());
+
+    /**
+     * Adiciona a música selecionada a uma playlist selecionada.
+     * Atualiza a base de dados e informa o usuário.
+     */
+    public void addMusicToPlaylist(){
+        
+        int playlistIndex = view.getList_playlists().getSelectedIndex();
+                      
+        if(playlistIndex < 0){
+            CustomJDialog.showCustomDialog("Erro!", "Erro ao selecionar playlist");
+            return;
+        }
+        
+        ArrayList<String> playlistSongs = currentPlaylists.get(playlistIndex).getPlaylistSongs();        
+        
+        if(selectedMusic != null){        
+            if(!playlistSongs.contains(selectedMusic.getMusicTitle())){
+                playlistSongs.add(selectedMusic.getMusicTitle());
+            }
+            else{
+                CustomJDialog.showCustomDialog("Aviso!", "Esta música já está na playlist.");
+                return;
+            }            
+        }         
+             
+        String playlistSongsString = String.join(";", playlistSongs);        
+        
+        try(Connection conn = new DbConnection().getConnection()){
+            PlaylistDAO dao = new PlaylistDAO(conn);
+            dao.updatePlaylistSongs(currentPlaylists.get(playlistIndex).getPlaylistId(), playlistSongsString);
+        }catch(SQLException e){
+            CustomJDialog.showCustomDialog("Erro!", "Erro ao atualizar playlist");
+        }
+        
+        CustomJDialog.showCustomDialog("Aviso!", "Musica adicionada na playlist.");
     }
+
+    /**
+     * Carrega as playlists do usuário e atualiza o combo box da interface.
+     */
+    public void loadUserPlaylists(){
+
+            try(Connection conn = new DbConnection().getConnection()){
+                PlaylistDAO dao = new PlaylistDAO(conn);
+                currentPlaylists = dao.getPlaylistsByUserId(user.getUserId());
+
+                DefaultListModel<String> model = new DefaultListModel();
+
+                for(Playlist p : currentPlaylists){
+                    model.addElement(p.getPlaylistName());
+                }
+
+                if(currentPlaylists != null){
+                    view.getList_playlists().setModel(model);
+                }
+
+            }catch(SQLException e){
+                CustomJDialog.showCustomDialog("Erro!", "Erro ao carregar playlists");
+                e.getMessage();
+            }
+        }
+    
+        /**
+         * Atualiza o texto do botão de perfil na janela para exibir o login do administrador atual.
+         */
+        public void setUserNameOnWindow(){
+            view.getBtt_profile().setText(user.getUserLogin());
+        }
 }

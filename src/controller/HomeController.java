@@ -22,7 +22,11 @@ import view.HomeWindow;
 import view.customDialogs.CustomJDialog;
 
 /**
- *
+ * Controlador responsável por gerenciar a interação entre a
+ * {@link HomeWindow} e os dados do {@link User} conectado,
+ * incluindo atualização da interface gráfica com informações do usuário,
+ * músicas curtidas e descurtidas, e exibição do top 5 de músicas.
+ * 
  * @author Gabriel
  */
 public class HomeController{
@@ -30,17 +34,33 @@ public class HomeController{
     private HomeWindow view;
     private User user;
 
+    /**
+     * Construtor que inicializa o controlador com a view e o usuário atual.
+     * 
+     * @param view a janela principal da aplicação
+     * @param user o usuário logado
+     * @throws IOException caso ocorra erro ao processar imagens
+     */
     public HomeController(HomeWindow view, User user) throws IOException{
         this.view = view;
         this.user = user;        
         
     }
     
+    /**
+     * Atualiza a interface da view para exibir o nome do usuário
+     * e uma mensagem de boas-vindas personalizada.
+     */
     public void setUserNameOnWindow(){
         view.getBtt_profile().setText(user.getUserLogin());
         view.getLbl_welcome().setText("Bem-vindo(a), " + user.getName());
     }
     
+    /**
+     * Busca e atualiza as listas de músicas curtidas e descurtidas do usuário
+     * no banco de dados, exibindo as quantidades e os títulos nas listas da view.
+     * Em caso de erro de banco, exibe um diálogo informando o problema.
+     */
     public void setLikesAndDislikes() {
         try (Connection conn = new DbConnection().getConnection()) {
             UserDAO dao = new UserDAO(conn);
@@ -76,6 +96,12 @@ public class HomeController{
         }
     }
     
+    /**
+     * Preenche a seção do top 5 músicas da view com as músicas mais curtidas,
+     * exibindo título, artista e a imagem da capa convertida do array de bytes.
+     * 
+     * @throws IOException caso ocorra erro no processamento das imagens das músicas
+     */
     public void fillTopFive() throws IOException {
         List<Music> topFive = MusicCache.getAllMusics().stream()
             .sorted((m1, m2) -> Integer.compare(m2.getLikes(), m1.getLikes())) // ordem decrescente
@@ -115,10 +141,12 @@ public class HomeController{
         }
     }
 
-
-
+    /**
+     * Retorna o usuário atualmente logado e gerenciado pelo controlador.
+     * 
+     * @return o usuário logado
+     */
     public User getUser() {
         return user;
     }
 }
-
