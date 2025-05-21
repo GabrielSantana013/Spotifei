@@ -39,7 +39,7 @@ public class AdmHomeWindow extends javax.swing.JFrame {
      * Também define o tamanho da janela para tela cheia, centraliza a janela,
      * atualiza o ícone da aplicação e preenche os dados estatísticos do sistema.
      * 
-     * @param adm Objeto do tipo {@code Adm} que representa o administrador logado.
+     * @param adm Objeto que representa o administrador logado.
      * @throws IOException Caso ocorra erro ao carregar os recursos visuais da interface.
      */
     public AdmHomeWindow(Adm adm) throws IOException {

@@ -11,12 +11,6 @@ import java.net.URL;
  * de cores e fontes, incluindo um ícone personalizado.
  * </p>
  * 
- * <p>
- * Exemplo de uso:
- * <pre>{@code
- * CustomJDialog.showCustomDialog("Aviso", "Operação realizada com sucesso!");
- * }</pre>
- * </p>
  * 
  * @author Pedro Schneider, Gabriel Santana Dias
  */
