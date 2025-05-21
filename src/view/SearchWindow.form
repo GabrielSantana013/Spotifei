@@ -63,7 +63,7 @@
                       <Group type="102" attributes="0">
                           <Component id="search_pnl_topSide" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="search_pnl_inside" pref="802" max="32767" attributes="0"/>
+                          <Component id="search_pnl_inside" pref="486" max="32767" attributes="0"/>
                       </Group>
                       <Component id="search_pnl_leftSide" max="32767" attributes="0"/>
                   </Group>
@@ -100,7 +100,7 @@
                       <Component id="home_pnl_titleLogo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="home_pnl_options" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="370" max="32767" attributes="0"/>
+                      <EmptySpace pref="54" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -460,6 +460,9 @@
                       <Color blue="1c" green="1c" red="1c" type="rgb"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="pnl_player.setVisible(false);"/>
+                  </AuxValues>
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -543,6 +546,9 @@
                           <Properties>
                             <Property name="opaque" type="boolean" value="false"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="pnl_likes.setVisible(false);"/>
+                          </AuxValues>
 
                           <Layout>
                             <DimensionLayout dim="0">
@@ -805,10 +811,10 @@
                           <Component id="search_pnl_bar" pref="48" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="scroll_musics" min="-2" pref="288" max="-2" attributes="0"/>
-                      <EmptySpace pref="120" max="32767" attributes="0"/>
-                      <Component id="search_pnl_musicInfo" min="-2" pref="322" max="-2" attributes="0"/>
+                      <Component id="scroll_musics" min="-2" pref="96" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="search_pnl_musicInfo" min="-2" pref="312" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -922,7 +928,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor" postCode="scroll_musics.getVerticalScrollBar().setUI(new BasicScrollBarUI() {&#xa;    @Override&#xa;    protected void configureScrollBarColors() {&#xa;        this.thumbColor = new Color(60,63,65);&#xa;        this.trackColor = new Color(18,18,18);&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createDecreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createIncreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    private JButton createZeroButton() {&#xa;        JButton button = new JButton();&#xa;        button.setPreferredSize(new Dimension(0, 0));&#xa;        button.setMinimumSize(new Dimension(0, 0));&#xa;        button.setMaximumSize(new Dimension(0, 0));&#xa;        return button;&#xa;    }&#xa;&#xa;    // barra de scroll mais larga&#xa;    @Override&#xa;    public Dimension getPreferredSize(JComponent c) {&#xa;        return new Dimension(12, super.getPreferredSize(c).height); &#xa;    }&#xa;&#xa;    // arredonda o bot&#xe3;o&#xa;    @Override&#xa;    protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);&#xa;        g2.translate(thumbBounds.x, thumbBounds.y);&#xa;        g2.setColor(thumbColor);&#xa;        int arc = 10;&#xa;        g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);&#xa;        g2.dispose();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setColor(trackColor);&#xa;        g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);&#xa;        g2.dispose();&#xa;    }&#xa;});&#xa;&#xa;scroll_musics.getHorizontalScrollBar().setUI(new BasicScrollBarUI() {&#xa;    @Override&#xa;    protected void configureScrollBarColors() {&#xa;        this.thumbColor = new Color(60,63,65);&#xa;        this.trackColor = new Color(18,18,18);&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createDecreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createIncreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    private JButton createZeroButton() {&#xa;        JButton button = new JButton();&#xa;        button.setPreferredSize(new Dimension(0, 0));&#xa;        button.setMinimumSize(new Dimension(0, 0));&#xa;        button.setMaximumSize(new Dimension(0, 0));&#xa;        return button;&#xa;    }&#xa;&#xa;    // barra de scroll mais larga&#xa;    @Override&#xa;    public Dimension getPreferredSize(JComponent c) {&#xa;        return new Dimension(super.getPreferredSize(c).width, 12); &#xa;    }&#xa;&#xa;    // arredonda o bot&#xe3;o&#xa;    @Override&#xa;    protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);&#xa;        g2.translate(thumbBounds.x, thumbBounds.y);&#xa;        g2.setColor(thumbColor);&#xa;        int arc = 10;&#xa;        g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);&#xa;        g2.dispose();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setColor(trackColor);&#xa;        g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);&#xa;        g2.dispose();&#xa;    }&#xa;});">
                   <Border info="null"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1016,7 +1022,7 @@
                               <Component id="lbl2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lbl_musicArtist" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="224" max="32767" attributes="0"/>
+                              <EmptySpace pref="214" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1104,7 +1110,7 @@
                               <Component id="lbl5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lbl_musicDuration" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="121" max="32767" attributes="0"/>
+                              <EmptySpace pref="111" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1232,15 +1238,15 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="251" max="32767" attributes="0"/>
+                              <EmptySpace pref="241" max="32767" attributes="0"/>
                               <Component id="btt_addPlaylist" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                  <Component id="scroll_playlists" min="-2" pref="212" max="-2" attributes="0"/>
-                                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                                  <Component id="scroll_playlists" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="90" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1275,7 +1281,7 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="41" green="3f" red="3c" type="rgb"/>
                         </Property>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor" postCode="scroll_playlists.getVerticalScrollBar().setUI(new BasicScrollBarUI() {&#xa;    @Override&#xa;    protected void configureScrollBarColors() {&#xa;        this.thumbColor = new Color(60,63,65);&#xa;        this.trackColor = new Color(18,18,18);&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createDecreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createIncreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    private JButton createZeroButton() {&#xa;        JButton button = new JButton();&#xa;        button.setPreferredSize(new Dimension(0, 0));&#xa;        button.setMinimumSize(new Dimension(0, 0));&#xa;        button.setMaximumSize(new Dimension(0, 0));&#xa;        return button;&#xa;    }&#xa;&#xa;    // barra de scroll mais larga&#xa;    @Override&#xa;    public Dimension getPreferredSize(JComponent c) {&#xa;        return new Dimension(12, super.getPreferredSize(c).height); &#xa;    }&#xa;&#xa;    // arredonda o bot&#xe3;o&#xa;    @Override&#xa;    protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);&#xa;        g2.translate(thumbBounds.x, thumbBounds.y);&#xa;        g2.setColor(thumbColor);&#xa;        int arc = 10;&#xa;        g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);&#xa;        g2.dispose();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setColor(trackColor);&#xa;        g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);&#xa;        g2.dispose();&#xa;    }&#xa;});&#xa;&#xa;scroll_playlists.getHorizontalScrollBar().setUI(new BasicScrollBarUI() {&#xa;    @Override&#xa;    protected void configureScrollBarColors() {&#xa;        this.thumbColor = new Color(60,63,65);&#xa;        this.trackColor = new Color(18,18,18);&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createDecreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected JButton createIncreaseButton(int orientation) {&#xa;        return createZeroButton();&#xa;    }&#xa;&#xa;    private JButton createZeroButton() {&#xa;        JButton button = new JButton();&#xa;        button.setPreferredSize(new Dimension(0, 0));&#xa;        button.setMinimumSize(new Dimension(0, 0));&#xa;        button.setMaximumSize(new Dimension(0, 0));&#xa;        return button;&#xa;    }&#xa;&#xa;    // barra de scroll mais larga&#xa;    @Override&#xa;    public Dimension getPreferredSize(JComponent c) {&#xa;        return new Dimension(super.getPreferredSize(c).width, 12); &#xa;    }&#xa;&#xa;    // arredonda o bot&#xe3;o&#xa;    @Override&#xa;    protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);&#xa;        g2.translate(thumbBounds.x, thumbBounds.y);&#xa;        g2.setColor(thumbColor);&#xa;        int arc = 10;&#xa;        g2.fillRoundRect(0, 0, thumbBounds.width, thumbBounds.height, arc, arc);&#xa;        g2.dispose();&#xa;    }&#xa;&#xa;    @Override&#xa;    protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setColor(trackColor);&#xa;        g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);&#xa;        g2.dispose();&#xa;    }&#xa;});">
                           <Border info="null"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
