@@ -61,16 +61,6 @@ O **Spotifei** é uma aplicação de streaming musical desenvolvida em **Java**,
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
-
-* **Linguagem:** Java
-* **Banco de Dados:** PostgreSQL
-* **Interface Gráfica:** Swing
-* **Arquitetura:** MVC (Model-View-Controller)
-* **Gerenciamento de Dependências:** Maven
-
----
-
 ## 📂 Estrutura do Projeto
 
 ```
@@ -167,3 +157,7 @@ java -jar target/spotifei-completo.jar
 
 ## 👥 Autores
 <table align="center"> <tr> <td align="center"> <a href="https://github.com/GabrielSantana013" target="_blank"> <img src="https://github.com/GabrielSantana013.png" width="200"/> <br /> <sub><b>Gabriel Santana</b></sub> </a> </td> <td align="center"> <a href="https://github.com/PedroSchneider1" target="_blank"> <img src="https://github.com/PedroSchneider1.png" width="200"/> <br /> <sub><b>Pedro Schneider</b></sub> </a> </td> </tr> </table>
+
+
+## 🛠️ Tecnologias Utilizadas 
+<p align="left"> <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white" alt="Java"/> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/> <img src="https://img.shields.io/badge/Swing-6DB33F?style=for-the-badge&logo=java&logoColor=white" alt="Swing"/> <img src="https://img.shields.io/badge/MVC%20Architecture-007ACC?style=for-the-badge&logo=archlinux&logoColor=white" alt="MVC"/> <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven"/> </p>
