@@ -119,9 +119,7 @@ O **Spotifei** é uma aplicação de streaming musical desenvolvida em **Java**,
 
 3. **Compile e execute** a aplicação no seu ambiente Java com suporte a Swing.
 
-4. **Inclua o driver PostgreSQL (`postgresql-42.7.5.jar`)** na pasta `libraries` para que as queries sejam executadas corretamente.
-
-5. **ATENÇÃO PROFESSORES!**
+4. **ATENÇÃO PROFESSORES!**
    Coloque o arquivo `config.properties` no pacote `DAO` para que a aplicação funcione corretamente. Caso contrário, ela não irá funcionar.
    O arquivo está zipado juntamente com o código fonte no Moodle.
 
@@ -131,11 +129,21 @@ O **Spotifei** é uma aplicação de streaming musical desenvolvida em **Java**,
 
 Se preferir usar o Maven para compilar e executar, siga esses passos:
 
-    Certifique-se de ter o Maven instalado e configurado no seu sistema.
+Certifique-se de ter o Maven instalado e configurado no seu sistema, caso não tenha você pode instalar com:
 
-    No terminal, dentro da pasta do projeto, rode para compilar:
+```bash
+sudo apt install maven
+```
 
-``` java
+E checar a instalação com:
+
+```bash
+mvn -v
+```
+
+No terminal, dentro da pasta do projeto, rode para compilar:
+
+``` bash
 mvn clean package
 ```
 Isso vai gerar dois JARs dentro da pasta target:
@@ -146,13 +154,16 @@ Isso vai gerar dois JARs dentro da pasta target:
 
 Para executar o JAR com todas as dependências:
 
+```bash
 java -jar target/spotifei-completo.jar
-
-Caso precise passar algum parâmetro para configuração, coloque o arquivo config.properties na estrutura correta conforme a pasta DAO.
+```
 
 ## 📌 Observações
 
 * O sistema distingue usuários comuns e administradores.
 * As curtidas e descurtidas são armazenadas por usuário e usadas para gerar estatísticas.
 * O histórico é pessoal e limitado às últimas 10 buscas.
+---
 
+## 👥 Autores
+<table align="center"> <tr> <td align="center"> <a href="https://github.com/GabrielSantana013" target="_blank"> <img src="https://github.com/GabrielSantana013.png" width="200"/> <br /> <sub><b>Gabriel Santana</b></sub> </a> </td> <td align="center"> <a href="https://github.com/PedroSchneider1" target="_blank"> <img src="https://github.com/PedroSchneider1.png" width="200"/> <br /> <sub><b>Pedro Schneider</b></sub> </a> </td> </tr> </table>
