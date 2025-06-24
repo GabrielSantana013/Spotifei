@@ -1,0 +1,53 @@
+# lib externas
+!lib/*.jar
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs
+hs_err_pid*
+replay_pid*
+
+# DB variables
+config.properties
+
+# unused things
+private.xml
+
+# Pastas geradas automaticamente (build/distribuição)
+build/
+dist/
+
+# Configurações locais do NetBeans
+nbproject/private/
+nbproject/Makefile-*.mk
+nbproject/configs/
+
+# Arquivos temporários e de backup
+*.tmp
+*.bak
+*.swp
+
+# Configurações de IDEs
+*.iml
+*.ipr
+*.iws
+.idea/
